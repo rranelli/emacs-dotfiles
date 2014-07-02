@@ -1,0 +1,6 @@
+# Compiled
+*.elc
+# ignore elpa
+elpa/
+*.elc
+elpa/
