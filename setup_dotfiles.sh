@@ -2,6 +2,10 @@
 # Simple script for configuration of dotfiles.
 
 # if it's a symbolic link, remove the file representing it
+if [-d ~/.emacs.d/elpa/]; then
+    cp -rf ~/.emacs.d/elpa/ ~/.emacs.d.elpa.backup
+fi
+
 if [ -L ~/.emacs.d ]; then
     rm ~/.emacs.d
 fi

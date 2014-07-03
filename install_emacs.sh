@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Install emacs24
 # https://launchpad.net/~cassou/+archive/emacs
 sudo apt-get install -y python-software-properties
