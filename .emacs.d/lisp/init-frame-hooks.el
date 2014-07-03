@@ -14,13 +14,13 @@
 (add-hook 'after-make-frame-functions
           (lambda (given-frame)
             (unless (display-graphic-p given-frame)
-              (custom-set-faces
-               '(helm-buffer-directory ((t (:foreground "red"))))
-               '(helm-ff-directory ((t (:foreground "red"))))
-               '(helm-selection ((t (:background "cyan" :foreground "black"))))))))
+              (progn
+                (set-face-attribute 'helm-buffer-directory given-frame :foreground "red")
+                (set-face-attribute 'helm-ff-directory given-frame :foreground "red")
+                (set-face-attribute 'helm-selection given-frame :background "cyan" :foreground "black"))))
 
 ;; context: if using X
-(add-hook 'after-make-frame-functions 'toggle-transparency)
+(add-hook 'after-make-frame-functions 'toggle-transparency))
 
 (defun toggle-transparency (&optional given-frame)
   "Toggle frame transparency."
