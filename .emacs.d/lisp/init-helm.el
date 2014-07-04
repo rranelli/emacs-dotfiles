@@ -8,10 +8,10 @@
 (helm-mode t)
 
 ;; the following configuratin makes helm-find WAY better
-(setq helm-ff-transformer-show-only-basename nil
+(setq helm-split-window-in-side-p t
+      helm-exit-idle-delay 0.01
+      helm-ff-transformer-show-only-basename nil
       helm-ls-git-show-abs-or-relative 'relative)
-(setq helm-split-window-in-side-p t)
-
 
 ;; helpers for more familiar helm find-file navigation
 (defun helm-find-files-sensitive-backspace ()

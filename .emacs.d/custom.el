@@ -6,5 +6,4 @@
  '(idle-highlight ((t (:foreground "magenta"))))
  '(org-agenda-clocking ((t (:inherit secondary-selection :underline t :weight semi-bold))) t)
  '(org-mode-line-clock ((t (:foreground "red" :box (:line-width -1 :style released-button)))) t)
- '(ag-match-face ((t (:background "black" :underline t))))
- )
+ '(ag-match-face ((t (:background "black" :underline t)))))
