@@ -28,22 +28,26 @@
 (put 'upcase-region 'disabled nil)
 
 ;; -- Variables --
-(setq abbrev-mode t
-      column-number-mode t
-      inhibit-startup-message t
-      save-abbrevs nil
-      show-trailing-whitespace t
-      backup-inhibited t
-      make-backup-files nil
-      auto-save-default nil
-      pcomplete-ignore-case t
-      eshell-cmpl-ignore-case t
-      suggest-key-bindings t
-      ag-highlight-search t
-      x-select-enable-clipboard t)
+(setq
+ column-number-mode t
+ inhibit-startup-message nil
+ save-abbrevs nil
+ show-trailing-whitespace t
+ backup-inhibited t
+ make-backup-files nil
+ auto-save-default nil
+ pcomplete-ignore-case t
+ eshell-cmpl-ignore-case t
+ suggest-key-bindings t
+ ag-highlight-search t
+ x-select-enable-clipboard t
+ nyan-bar-length 16
+ )
 
-;; reuses frames
-(setq-default display-buffer-reuse-frames t)
+(setq-default
+ display-buffer-reuse-frames t ;; reuses frames
+ abbrev-mode t
+ )
 
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
