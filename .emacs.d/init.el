@@ -7,11 +7,12 @@
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "vendor" user-emacs-directory))
 
 (defconst *spell-check-support-enabled* nil)
 
 ;; --- bootstrapping ---
+(eval-when-compile (require 'cl))
 (require 'init-packages)
 (require 'init-custom-defuns)
 (require 'init-utils)
@@ -26,6 +27,7 @@
 (require 'init-org)
 (require 'init-theme)
 (require 'init-helm)
+(require 'init-powerline)
 (require 'init-keybindings)
 
 ;; -- custom --
