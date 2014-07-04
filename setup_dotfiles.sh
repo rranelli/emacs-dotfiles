@@ -13,39 +13,18 @@ function remove_emacs_directory {
     fi
 }
 
-function backup_elpa {
-    if [ ! -d ~/.elpa.backup/ ]; then
-        mkdir ~/.elpa.backup/
-    fi
+function make_symlinks {
+    destdir=`pwd`/.emacs.d/
+    mkdir ~/.emacs.d/ && cd ~/.emacs.d/
 
-    if [ -d ~/.emacs.d/elpa/ ]; then
-        cp -rf ~/.emacs.d/elpa/ ~/.elpa.backup/
-    fi
-}
-
-function copy_emacs_folder_to_home {
-    cp -r -f ./.emacs.d ~/
+    ln -sf $destdir/init.el
+    ln -sf $destdir/custom.el
+    ln -sf $destdir/ac-dict/
+    ln -sf $destdir/lisp/
+    ln -sf $destdir/vendor/
+    ln -sf $destdir/snippets/
 }
 
 # execute main logic
-backup_elpa
 remove_emacs_directory
-copy_emacs_folder_to_home
-
-# maybe restore elpa folder
-TEMP=`getopt -o r:: \
-     -n 'example.bash' -- "$@"`
-if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 1 ; fi
-
-eval set -- "$TEMP"
-
-while true; do
-    case "$1" in
-        -r)
-            cp -rf ~/.elpa.backup ~/.emacs.d/ ;
-            mv -f ~/.emacs.d/.elpa.backup/ ~/.emacs.d/elpa/ ;
-            echo "restoring elpa backup" ;
-            shift 2 ;;
-        --) shift; break ;;
-    esac
-done
+make_symlinks
