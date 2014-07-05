@@ -1,32 +1,24 @@
-#!/usr/bin/env bash
-# Simple script for configuration of dotfiles.
-# -r option reset's elpa packages
+#!/usr/bin/env python
+import os, shutil
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+def remove_any(path):
+    if os.path.islink(path): os.unlink(path)
+    if os.path.isfile(path): os.remove(path)
+    if os.path.isdir(path): shutil.rmtree(path)
 
-function remove_emacs_directory {
-    if [ -L ~/.emacs.d ]; then
-        rm ~/.emacs.d
-    fi
+def make_path(*args):
+    return '/'.join(args)
 
-    # if it's a directory, remove the directory and it's files
-    if [ -d ~/.emacs.d/ ]; then
-        rm -r -f ~/.emacs.d/
-    fi
-}
+username      = 'renan'
+homedir       = make_path('/home', username, '.emacs.d')
+dirname       = make_path(os.getcwd(), '.emacs.d')
+dot_emacs_dir = make_path(homedir, '.emacs.d')
 
-function make_symlinks {
-    destdir=$DIR/.emacs.d/
-    mkdir ~/.emacs.d/ && cd ~/.emacs.d/
+remove_any(dot_emacs_dir)
+os.mkdir(dot_emacs_dir)
 
-    ln -sf $destdir/init.el
-    ln -sf $destdir/custom.el
-    ln -sf $destdir/ac-dict/
-    ln -sf $destdir/lisp/
-    ln -sf $destdir/vendor/
-    ln -sf $destdir/snippets/
-}
-
-# execute main logic
-remove_emacs_directory
-make_symlinks
+for name in os.listdir(dirname):
+    head = make_path(dirname, name)
+    tail = make_path(homedir, name)
+    remove_any(tail)
+    os.symlink(head, tail)
