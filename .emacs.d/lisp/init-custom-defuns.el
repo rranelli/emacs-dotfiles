@@ -13,6 +13,11 @@
   (interactive)
   (previous-line 5))
 
+(defun move-smart-begining-of-line ()
+  (interactive)
+  (if (= (point) (line-beginning-position))
+      (back-to-indentation)
+    (move-beginning-of-line nil)))
 
 ;; -- window management --
 (defun maximize-window-vertically ()
