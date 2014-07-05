@@ -6,15 +6,13 @@
 (global-set-key (kbd "C-c C-r") 'eval-region)
 
 ;; movement and editing
-(fset 'align-equals "\C-[xalign-regex\C-m=\C-m")
-(global-set-key (kbd "C-x C-m") 'execute-extended-command)
-(global-set-key (kbd "C-q") 'comment-or-uncomment-region)
 (global-set-key (kbd "M-n") 'next5)
 (global-set-key (kbd "M-p") 'prev5)
-(global-set-key (kbd "C-z") 'zap-to-char)
+(global-set-key (kbd "C-x C-m") 'execute-extended-command)
+(global-set-key (kbd "C-q") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-h") 'backward-delete-char)
-(global-set-key (kbd "M-d") 'delete-word)
-(global-set-key (kbd "M-h") 'backward-delete-word)
+(global-set-key (kbd "M-d") 'kill-word)
+(global-set-key (kbd "M-h") 'backward-kill-word)
 (global-set-key (kbd "M-u") 'zap-to-char)
 
 (global-set-key (kbd "M-<left>") 'smartscan-symbol-go-backward)
@@ -42,4 +40,4 @@
 (global-set-key (kbd "C-c s r") 'ruby-send-region)
 
 (provide 'init-keybindings)
-;;; keybindings ends here
+;;; init-keybindings ends here

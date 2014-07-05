@@ -30,7 +30,6 @@
 ;; -- Variables --
 (setq
  column-number-mode t
- inhibit-startup-message nil
  save-abbrevs nil
  show-trailing-whitespace t
  backup-inhibited t
