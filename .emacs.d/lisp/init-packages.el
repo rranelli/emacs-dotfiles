@@ -18,6 +18,7 @@
   '(
     ;; general configuration
     magit
+    git-timemachine
     flycheck
     starter-kit
     starter-kit-bindings
