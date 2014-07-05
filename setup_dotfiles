@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Simple script for configuration of dotfiles.
 # -r option reset's elpa packages
 
