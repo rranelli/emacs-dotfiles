@@ -2,6 +2,8 @@
 # Simple script for configuration of dotfiles.
 # -r option reset's elpa packages
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 function remove_emacs_directory {
     if [ -L ~/.emacs.d ]; then
         rm ~/.emacs.d
@@ -14,7 +16,7 @@ function remove_emacs_directory {
 }
 
 function make_symlinks {
-    destdir=`pwd`/.emacs.d/
+    destdir=$DIR/.emacs.d/
     mkdir ~/.emacs.d/ && cd ~/.emacs.d/
 
     ln -sf $destdir/init.el
