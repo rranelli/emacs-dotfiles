@@ -21,7 +21,7 @@
 (autoload 'inf-ruby-keys "inf-ruby")
 
 ;; don't indent parenthesis in a weird way
-(setq ruby-deep-indent-paren-style 'space)
+(setq ruby-deep-indent-paren-style nil)
 
 ;; do not add encoding automagically
 (setq ruby-insert-encoding-magic-comment nil)
