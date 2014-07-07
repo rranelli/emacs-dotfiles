@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os, shutil
+import os, shutil, getpass
 
 def remove_any(path):
     if os.path.islink(path): os.unlink(path)
@@ -9,9 +9,10 @@ def remove_any(path):
 def make_path(*args):
     return '/'.join(args)
 
-username      = 'renan'
-homedir       = make_path('/home', username)
-dirname       = make_path(os.getcwd(), 'emacs.d')
+scriptpath = os.path.dirname(os.path.realpath(__file__))
+dirname = make_path(scriptpath, 'emacs.d')
+
+homedir  = os.path.expanduser("~")
 dot_emacs_dir = make_path(homedir, '.emacs.d')
 
 remove_any(dot_emacs_dir)
