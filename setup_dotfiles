@@ -10,15 +10,15 @@ def make_path(*args):
     return '/'.join(args)
 
 username      = 'renan'
-homedir       = make_path('/home', username, 'emacs.d')
+homedir       = make_path('/home', username)
 dirname       = make_path(os.getcwd(), 'emacs.d')
-dot_emacs_dir = make_path(homedir, 'emacs.d')
+dot_emacs_dir = make_path(homedir, '.emacs.d')
 
 remove_any(dot_emacs_dir)
 os.mkdir(dot_emacs_dir)
 
 for name in os.listdir(dirname):
     head = make_path(dirname, name)
-    tail = make_path(homedir, name)
+    tail = make_path(dot_emacs_dir, name)
     remove_any(tail)
     os.symlink(head, tail)
