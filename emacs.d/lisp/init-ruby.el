@@ -4,6 +4,8 @@
 (require 'rinari-autoloads)
 (require 'rhtml-mode)
 (require 'ruby-electric)
+(require 'rspec-mode)
+(require 'inf-ruby)
 (require 'robe)
 (require 'ac-robe)
 
@@ -59,7 +61,8 @@
 (setq rinari-tags-file-name "TAGS")
 
 ;; -- keybindings --
-(add-hook 'rspec-mode-hook (lambda () (define-key rspec-mode-map (kbd "C-c , y") 'rspec-find-spec-or-target-other-window)))
+(define-key ruby-mode-map (kbd "C-c s r") 'ruby-send-region)
+(define-key rspec-mode-map (kbd "C-c , y") 'rspec-find-spec-or-target-other-window)
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
