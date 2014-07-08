@@ -25,9 +25,7 @@
 (require 'init-yas)
 (require 'init-ruby)
 (require 'init-org)
-(require 'init-theme)
 (require 'init-helm)
-(require 'init-powerline)
 (require 'init-keybindings)
 
 ;; -- custom --
