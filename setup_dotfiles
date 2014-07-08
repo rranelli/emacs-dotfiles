@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-import os, shutil, getpass
+# backup argument does not delete ~/.emacs.d
+import os, shutil, getpass, sys
 
 def remove_any(path):
     if os.path.islink(path): os.unlink(path)
@@ -12,11 +13,12 @@ def make_path(*args):
 scriptpath = os.path.dirname(os.path.realpath(__file__))
 dirname = make_path(scriptpath, 'emacs.d')
 
-homedir  = os.path.expanduser("~")
+homedir  = os.path.expanduser('~')
 dot_emacs_dir = make_path(homedir, '.emacs.d')
 
-remove_any(dot_emacs_dir)
-os.mkdir(dot_emacs_dir)
+if not 'backup' in sys.argv:
+    remove_any(dot_emacs_dir)
+    os.mkdir(dot_emacs_dir)
 
 for name in os.listdir(dirname):
     head = make_path(dirname, name)
