@@ -2,9 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
+;; compilation
+(global-set-key (kbd "C-c ,c") 'compile)
+
 ;; evaluation
-(global-set-key (kbd "C-c C-r") 'eval-region)
-(global-set-key (kbd "C-c C-c") 'compile)
+(define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
+(define-key emacs-lisp-mode-map (kbd "C-c C-e") 'esk-eval-and-replace)
 
 ;; movement and editing
 (global-set-key (kbd "M-n") 'next5)
@@ -39,7 +42,6 @@
 ;; indentation
 (global-set-key (kbd "C-I") 'indent-region)
 (global-set-key (kbd "C-c i") 'esk-indent-buffer)
-(global-set-key (kbd "C-c s r") 'ruby-send-region)
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here
