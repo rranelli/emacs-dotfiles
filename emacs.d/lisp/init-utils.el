@@ -59,7 +59,7 @@
     ("8bes" "bundle exec rspec")
     ("8be" "bundle exec")
     ("8gpl" "git pull")
-    ("8rdbm" "bundle exec rake db:migrate && bundle exec rake db:rollback && bundle exec rake db:migrate")
+    ("8rdbm" "bundle exec rake db:migrate db:rollback db:migrate")
     ))
 
 ;; -- some automodes --
