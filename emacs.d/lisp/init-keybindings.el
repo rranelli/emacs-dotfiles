@@ -4,6 +4,7 @@
 
 ;; evaluation
 (global-set-key (kbd "C-c C-r") 'eval-region)
+(global-set-key (kbd "C-c C-c") 'compile)
 
 ;; movement and editing
 (global-set-key (kbd "M-n") 'next5)
