@@ -71,9 +71,8 @@
          (if (get-buffer-window buf)
              (progn (delete-window (get-buffer-window buf))
                     (bury-buffer buf))))
-       buffer
-       )
-    ))
+       buffer)))
+
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
 ;; -- utilities --
@@ -83,8 +82,7 @@
   "Show the full path filename in the minibuffer."
   (interactive)
   (message (buffer-file-name))
-  (kill-new (file-truename buffer-file-name))
-  )
+  (kill-new (file-truename buffer-file-name)))
 
 ;; Uniquifty lines
 (defun uniquify-all-lines-region (start end)

@@ -48,6 +48,7 @@
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'prog-mode-hook 'pretty-symbols-mode)
 
 ;; -- Abbrev --
 (define-abbrev-table 'global-abbrev-table

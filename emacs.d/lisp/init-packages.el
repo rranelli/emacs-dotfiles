@@ -33,6 +33,7 @@
     graphviz-dot-mode
     auto-complete
     ace-jump-mode
+    pretty-symbols
     ag
     ;; ruby packages
     starter-kit-ruby
