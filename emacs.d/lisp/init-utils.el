@@ -2,21 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-;; -- Utility packages --
-(eval-when-compile (require 'cl))
-(require 'ido)
-(require 'ffap)
-(require 'uniquify)
-(require 'ansi-color)
-(require 'recentf)
-(require 'linum)
-(require 'whitespace)
-(require 'dired-x)
-(require 'dirtree)
-(require 'iso-transl) ;; makes dead-keys work
-
 ;; -- Mode preferences --
-(winner-mode t)
+(winner-mode 1)
 (ido-mode t)
 (menu-bar-mode -1)
 (blink-cursor-mode t)

@@ -20,7 +20,6 @@
 (global-set-key (kbd "M-h") 'backward-kill-word)
 (global-set-key (kbd "M-u") 'zap-to-char)
 
-(global-set-key (kbd "C-;") 'ace-jump-mode)
 (global-set-key (kbd "C-;") 'ace-jump-word-mode)
 
 (global-set-key (kbd "M-<left>") 'smartscan-symbol-go-backward)

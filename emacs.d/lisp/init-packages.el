@@ -1,7 +1,6 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-
 (require 'package)
 
 (add-to-list 'package-archives
@@ -23,18 +22,19 @@
     starter-kit
     starter-kit-bindings
     starter-kit-lisp
-    solarized-theme
+    graphviz-dot-mode
+    ;; general editing tools
+    ag
     smartscan
     helm
     helm-ls-git
     yasnippet
     smooth-scrolling
     dirtree
-    graphviz-dot-mode
     auto-complete
     ace-jump-mode
     pretty-symbols
-    ag
+    solarized-theme
     ;; ruby packages
     starter-kit-ruby
     inf-ruby
@@ -51,6 +51,19 @@
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+;; -- Utility packages --
+(eval-when-compile (require 'cl))
+(require 'ido)
+(require 'ffap)
+(require 'uniquify)
+(require 'ansi-color)
+(require 'recentf)
+(require 'linum)
+(require 'whitespace)
+(require 'dired-x)
+(require 'dirtree)
+(require 'iso-transl) ;; makes dead-keys work
 
 (provide 'init-packages)
 ;;; init-packages.el ends here

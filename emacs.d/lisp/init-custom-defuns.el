@@ -67,10 +67,9 @@
       (run-with-timer
        1
        nil
-       (lambda (buf)
-         (if (get-buffer-window buf)
-             (progn (delete-window (get-buffer-window buf))
-                    (bury-buffer buf))))
+       (lambda (buf) (if (get-buffer-window buf)
+                    (progn (delete-window (get-buffer-window buf))
+                           (bury-buffer buf))))
        buffer)))
 
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
