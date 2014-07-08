@@ -40,7 +40,6 @@
  suggest-key-bindings t
  ag-highlight-search t
  x-select-enable-clipboard t
- nyan-bar-length 16
  )
 
 (setq-default
