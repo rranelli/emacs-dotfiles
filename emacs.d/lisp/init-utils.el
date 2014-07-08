@@ -29,23 +29,21 @@
 
 ;; -- Variables --
 (setq
- column-number-mode t
  save-abbrevs nil
- show-trailing-whitespace t
- backup-inhibited t
  make-backup-files nil
  auto-save-default nil
+ backup-inhibited t
+ x-select-enable-clipboard t
+ suggest-key-bindings t
+ column-number-mode t
+ show-trailing-whitespace t
  pcomplete-ignore-case t
  eshell-cmpl-ignore-case t
- suggest-key-bindings t
- ag-highlight-search t
- x-select-enable-clipboard t
- )
+ ag-highlight-search t)
 
 (setq-default
- display-buffer-reuse-frames t ;; reuses frames
- abbrev-mode t
- )
+ display-buffer-reuse-frames t
+ abbrev-mode t)
 
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)

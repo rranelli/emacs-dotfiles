@@ -32,6 +32,7 @@
     dirtree
     graphviz-dot-mode
     auto-complete
+    ace-jump-mode
     ag
     ;; ruby packages
     starter-kit-ruby
