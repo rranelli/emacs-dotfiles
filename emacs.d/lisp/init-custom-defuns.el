@@ -54,9 +54,11 @@
     (set-window-buffer other this-buffer)
     (set-window-buffer this other-buffer)))
 
+(defvar bury-compile-buffer nil)
 (defun bury-compile-buffer-if-successful (buffer string)
   "Bury a compilation buffer (as BUFFER) if succeeded without warnings (given by STRING argument)."
   (if (and
+       bury-compile-buffer
        (string-match "compilation" (buffer-name buffer))
        (string-match "finished" string)
        (not (with-current-buffer buffer
