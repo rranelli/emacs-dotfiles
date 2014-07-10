@@ -45,6 +45,11 @@
       (indent-line-to indent)
       (when (> offset 0) (forward-char offset)))))
 
+(defun ruby-send-buffer ()
+  "Send whole buffer to inferior process."
+  (interactive)
+  (ruby-send-region (point-min) (point-max)))
+
 ;; hook auxiliary modes to ruby mode
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)
@@ -61,7 +66,7 @@
 (setq rinari-tags-file-name "TAGS")
 
 ;; -- keybindings --
-(define-key ruby-mode-map (kbd "C-c s r") 'ruby-send-region)
+(define-key ruby-mode-map (kbd "C-c s r") 'ruby-send-buffer)
 (define-key rspec-mode-map (kbd "C-c , y") 'rspec-find-spec-or-target-other-window)
 
 (provide 'init-ruby)

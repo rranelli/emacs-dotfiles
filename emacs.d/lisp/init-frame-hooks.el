@@ -26,7 +26,7 @@
   "Toggle frame transparency for FRAME.  Use selected frame if frame not given."
   (interactive)
   (let* ((max-transp '(100 100))
-         (min-transp '(90 90))
+         (min-transp '(95 95))
          (frame (if frame frame (selected-frame)))
          (transp (frame-parameter frame 'alpha)))
     (if (equal transp min-transp)
