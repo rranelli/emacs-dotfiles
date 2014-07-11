@@ -34,7 +34,10 @@
     auto-complete
     ace-jump-mode
     pretty-symbols
+    ;; themes
     solarized-theme
+    color-theme-sanityinc-solarized
+    color-theme-sanityinc-tomorrow
     ;; ruby packages
     starter-kit-ruby
     inf-ruby

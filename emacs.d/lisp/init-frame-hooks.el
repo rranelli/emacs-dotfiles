@@ -9,7 +9,7 @@
   "Configure FRAME with specific settings for terminal or x."
   (if (display-graphic-p frame)
       (config-x-frame frame)
-    (config-terminal-frame frame)))
+    (config-xterm-256color-terminal-frame frame)))
 
 ;; -- X frame --
 (defun config-x-frame (frame)
@@ -55,6 +55,7 @@
                       :box nil))
 
 ;; -- Terminal frame --
+;; Use the functions bellow if not working from a 256color terminal.
 (defun config-terminal-frame (frame)
   "Configure terminal FRAME."
   (set-terminal-faces frame)
@@ -70,9 +71,17 @@
 
   (set-face-attribute 'magit-branch frame :background "black")
   (set-face-attribute 'magit-log-head-label-remote frame :foreground "black")
-  (set-face-attribute 'magit-log-head-label-local frame :foreground "red" :background "black")
-  )
+  (set-face-attribute 'magit-log-head-label-local frame :foreground "red" :background "black"))
 
+;; -- 256 color terminal frame --
+(defun config-xterm-256color-terminal-frame (frame)
+  "Set specific faces for a 256 color terminal FRAME."
+  (load-theme 'sanityinc-tomorrow-night t)
+
+  (set-face-attribute 'helm-selection frame :background "black")
+  (set-face-attribute 'helm-ff-directory frame :background "black")
+
+  (set-face-attribute 'magit-diff-add nil :foreground "white" :background "#005f00"))
 
 (provide 'init-frame-hooks)
 ;;; init-frame-hooks.el ends here
