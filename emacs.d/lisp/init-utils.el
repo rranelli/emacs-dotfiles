@@ -26,7 +26,8 @@
  show-trailing-whitespace t
  pcomplete-ignore-case t
  eshell-cmpl-ignore-case t
- ag-highlight-search t)
+ ag-highlight-search t
+ fill-column 80)
 
 (setq-default
  display-buffer-reuse-frames t
