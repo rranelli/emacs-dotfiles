@@ -1,8 +1,6 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(require 'powerline)
-
 ;; -- single hook for whole stuff --
 (add-hook 'after-make-frame-functions 'config-new-frame)
 
@@ -16,8 +14,8 @@
 ;; -- X frame --
 (defun config-x-frame (frame)
   "Configure x FRAME."
-  (global-hl-line-mode 1)
 
+  (global-hl-line-mode 1)
   (toggle-transparency frame)
   (apply-window-system-color-theme)
   (config-powerline frame))
@@ -42,6 +40,7 @@
 
 (defun config-powerline (frame)
   "Set up powerline faces for FRAME."
+  (require 'powerline)
 
   (setq powerline-arrow-shape 'arrow
         powerline-color1 "grey22"
@@ -62,11 +61,18 @@
   (global-hl-line-mode -1))
 
 (defun set-terminal-faces (frame)
-  "Set specific faces for a terminal FRAME."
-  (set-face-attribute 'helm-buffer-directory frame :foreground "red")
-  (set-face-attribute 'helm-ff-directory frame :foreground "red")
-  (set-face-attribute 'helm-ff-dot-file-p frame :background "black")
-  (set-face-attribute 'helm-selection frame :background "cyan" :foreground "black"))
+  "Set specific faces for a terminal FRAME.  This thing is hard as hell."
+  (set-face-attribute 'helm-selection frame :background "black")
+  (set-face-attribute 'helm-match frame :foreground "blue")
+  (set-face-attribute 'helm-source-header frame :foreground "white" :background "blue")
+
+  (set-face-attribute 'mode-line frame :foreground "black" :background "white" :box nil)
+
+  (set-face-attribute 'magit-branch frame :background "black")
+  (set-face-attribute 'magit-log-head-label-remote frame :foreground "black")
+  (set-face-attribute 'magit-log-head-label-local frame :foreground "red" :background "black")
+  )
+
 
 (provide 'init-frame-hooks)
 ;;; init-frame-hooks.el ends here
