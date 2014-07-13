@@ -12,7 +12,8 @@
 ;; movement and editing
 (global-set-key (kbd "M-n") 'next5)
 (global-set-key (kbd "M-p") 'prev5)
-(global-set-key (kbd "C-x C-m") 'execute-extended-command)
+(global-set-key (kbd "C-x m") 'shell)
+(global-set-key (kbd "C-x C-m") 'eshell)
 (global-set-key (kbd "C-q") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-a") 'move-smart-begining-of-line)
 (global-set-key (kbd "C-h") 'backward-delete-char)

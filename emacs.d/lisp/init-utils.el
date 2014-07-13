@@ -29,6 +29,13 @@
  ag-highlight-search t
  fill-column 80)
 
+(defadvice shell (after do-not-query-shell-exit
+                        first (&optional buffer)
+                        activate)
+  "Do not query exit confirmation for shell process buffer."
+  (interactive)
+  (set-process-query-on-exit-flag (get-process "shell") nil))
+
 (setq-default
  display-buffer-reuse-frames t
  abbrev-mode t)
