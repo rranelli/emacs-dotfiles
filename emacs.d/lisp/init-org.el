@@ -4,15 +4,15 @@
 
 (require 'org-faces)
 
-(if  (file-exists-p "~/Dropbox/git/org/life.org")
+(if  (file-exists-p "~/Dropbox/org/life.org")
     ;; Set up org-agenda files
     (progn
-      (setq org-user-agenda-files '("~/Dropbox/git/org/diary.org"
-                                    "~/Dropbox/git/org/life.org"
-                                    "~/Dropbox/git/org/study.org"
-                                    "~/Dropbox/git/org/refile.org"
-                                    "~/Dropbox/git/org/eengsoft.org"
-                                    "~/Dropbox/git/org/locaweb.org"
+      (setq org-user-agenda-files '("~/Dropbox/org/diary.org"
+                                    "~/Dropbox/org/life.org"
+                                    "~/Dropbox/org/study.org"
+                                    "~/Dropbox/org/refile.org"
+                                    "~/Dropbox/org/eengsoft.org"
+                                    "~/Dropbox/org/locaweb.org"
                                     ))
       ;; loading org custom
       (load "org-mode-custom.el")
