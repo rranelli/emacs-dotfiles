@@ -10,8 +10,8 @@
 (global-set-key (kbd "C-c ,c") 'compile)
 
 ;; train myself not to use return or backspace
-(global-set-key (kbd "<return>") 'ignore)
-(global-set-key (kbd "<backspace>") 'ignore)
+(define-key prog-mode-map (kbd "<return>") 'ignore)
+(define-key prog-mode-map (kbd "<backspace>") 'ignore)
 
 ;; evaluation
 (define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
@@ -23,16 +23,18 @@
 (global-set-key (kbd "C-x m") 'shell)
 (global-set-key (kbd "C-x C-m") 'eshell)
 (global-set-key (kbd "C-q") 'comment-or-uncomment-region)
-(global-set-key (kbd "C-a") 'move-smart-begining-of-line)
+(global-set-key (kbd "C-a") 'move-smart-beginning-of-line)
 (global-set-key (kbd "C-h") 'backward-delete-char)
 (global-set-key (kbd "M-d") 'kill-word)
 (global-set-key (kbd "M-h") 'backward-kill-word)
 (global-set-key (kbd "M-u") 'zap-to-char)
-(global-set-key (kbd "C-;") 'ace-jump-word-mode)
 
+(global-set-key (kbd "C-;") 'ace-jump-word-mode)
 (global-set-key (kbd "M-<left>") 'smartscan-symbol-go-backward)
 (global-set-key (kbd "M-<right>") 'smartscan-symbol-go-forward)
 (global-set-key (kbd "M-\"") 'smartscan-symbol-replace)
+
+(global-set-key (kbd "M-m") 'new-line-below)
 
 ;; window and buffer manipulation
 (global-set-key (kbd "C->") 'maximize-window-vertically)

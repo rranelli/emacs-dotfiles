@@ -13,11 +13,18 @@
   (interactive)
   (previous-line 5))
 
-(defun move-smart-begining-of-line ()
+(defun move-smart-beginning-of-line ()
+  "Move to beginning of line or to beginning of indentation depending on POINT."
   (interactive)
   (if (= (point) (line-beginning-position))
       (back-to-indentation)
     (move-beginning-of-line nil)))
+
+(defun new-line-below ()
+  "Make new line bellow current line."
+  (interactive)
+  (move-end-of-line nil)
+  (newline))
 
 ;; -- window management --
 (defun maximize-window-vertically ()
