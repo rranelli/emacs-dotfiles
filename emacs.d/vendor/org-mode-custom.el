@@ -23,7 +23,7 @@
 ;;
 (if (boundp 'org-user-agenda-files)
     (setq org-agenda-files org-user-agenda-files)
-  (setq org-agenda-files (quote ("~/Dropbox/git/org"))))
+  (setq org-agenda-files (quote ("~/Dropbox/org"))))
 
 ;; Custom Key Bindings
 (global-set-key (kbd "<f12>") 'org-agenda)
@@ -117,29 +117,29 @@
               ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
               ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
 
-(setq org-directory "~/Dropbox/git/org")
-(setq org-default-notes-file "~/Dropbox/git/org/refile.org")
+(setq org-directory "~/Dropbox/org")
+(setq org-default-notes-file "~/Dropbox/org/refile.org")
 
 ;; I use C-c c to start capture mode
 (global-set-key (kbd "C-c c") 'org-capture)
 
 ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
 (setq org-capture-templates
-      (quote (("t" "todo" entry (file "~/Dropbox/git/org/refile.org")
+      (quote (("t" "todo" entry (file "~/Dropbox/org/refile.org")
                "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("r" "respond" entry (file "~/Dropbox/git/org/refile.org")
+              ("r" "respond" entry (file "~/Dropbox/org/refile.org")
                "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
-              ("n" "note" entry (file "~/Dropbox/git/org/refile.org")
+              ("n" "note" entry (file "~/Dropbox/org/refile.org")
                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("j" "Journal" entry (file+datetree "~/Dropbox/git/org/diary.org")
+              ("j" "Journal" entry (file+datetree "~/Dropbox/org/diary.org")
                "* %?\n%U\n" :clock-in t :clock-resume t)
-              ("w" "org-protocol" entry (file "~/Dropbox/git/org/refile.org")
+              ("w" "org-protocol" entry (file "~/Dropbox/org/refile.org")
                "* TODO Review %c\n%U\n" :immediate-finish t)
-              ("m" "Meeting" entry (file "~/Dropbox/git/org/refile.org")
+              ("m" "Meeting" entry (file "~/Dropbox/org/refile.org")
                "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
-              ("p" "Phone call" entry (file "~/Dropbox/git/org/refile.org")
+              ("p" "Phone call" entry (file "~/Dropbox/org/refile.org")
                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
-              ("h" "Habit" entry (file "~/Dropbox/git/org/refile.org")
+              ("h" "Habit" entry (file "~/Dropbox/org/refile.org")
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
 ;; Remove empty LOGBOOK drawers on clock out
@@ -852,7 +852,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                                         ; norang-extra are images and css files that need to be included
                                         ; norang is the top-level project that gets published
       (quote (("norang-org"
-               :base-directory "~/Dropbox/git/www.norang.ca"
+               :base-directory "~/Dropbox/www.norang.ca"
                :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs"
                :recursive t
                :table-of-contents nil
@@ -865,7 +865,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                :author-info nil
                :creator-info nil)
               ("norang-extra"
-               :base-directory "~/Dropbox/git/www.norang.ca/"
+               :base-directory "~/Dropbox/www.norang.ca/"
                :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs"
                :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
                :publishing-function org-publish-attachment
@@ -879,7 +879,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                                         ; doc-extra are images and css files that need to be included
                                         ; doc is the top-level project that gets published
               ("doc-org"
-               :base-directory "~/Dropbox/git/doc.norang.ca/"
+               :base-directory "~/Dropbox/doc.norang.ca/"
                :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
                :recursive nil
                :section-numbers nil
@@ -891,7 +891,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                :author-info nil
                :creator-info nil)
               ("doc-extra"
-               :base-directory "~/Dropbox/git/doc.norang.ca/"
+               :base-directory "~/Dropbox/doc.norang.ca/"
                :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
                :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
                :publishing-function org-publish-attachment
@@ -900,7 +900,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
               ("doc"
                :components ("doc-org" "doc-extra"))
               ("doc-private-org"
-               :base-directory "~/Dropbox/git/doc.norang.ca/private"
+               :base-directory "~/Dropbox/doc.norang.ca/private"
                :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs/private"
                :recursive nil
                :section-numbers nil
@@ -916,7 +916,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                :author-info nil
                :creator-info nil)
               ("doc-private-extra"
-               :base-directory "~/Dropbox/git/doc.norang.ca/private"
+               :base-directory "~/Dropbox/doc.norang.ca/private"
                :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs/private"
                :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
                :publishing-function org-publish-attachment
@@ -928,7 +928,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                                         ; Miscellaneous pages for other websites
                                         ; org are the org-files that generate the content
               ("org-org"
-               :base-directory "~/Dropbox/git/org/"
+               :base-directory "~/Dropbox/org/"
                :publishing-directory "/ssh:www-data@www:~/org"
                :recursive t
                :section-numbers nil
@@ -946,7 +946,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                                         ; org-mode-doc is the top-level project that gets published
                                         ; This uses the same target directory as the 'doc' project
               ("org-mode-doc-org"
-               :base-directory "~/Dropbox/git/org-mode-doc/"
+               :base-directory "~/Dropbox/org-mode-doc/"
                :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
                :recursive t
                :section-numbers nil
@@ -960,7 +960,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                :author-info nil
                :creator-info nil)
               ("org-mode-doc-extra"
-               :base-directory "~/Dropbox/git/org-mode-doc/"
+               :base-directory "~/Dropbox/org-mode-doc/"
                :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
                :base-extension "css\\|pdf\\|png\\|jpg\\|gif\\|org"
                :publishing-function org-publish-attachment
@@ -1087,13 +1087,13 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
 
 (defvar bh/plantuml-if-count 0)
 
-(defun bh/plantuml-if () 
+(defun bh/plantuml-if ()
   (incf bh/plantuml-if-count)
   (number-to-string bh/plantuml-if-count))
 
 (defvar bh/plantuml-loop-count 0)
 
-(defun bh/plantuml-loop () 
+(defun bh/plantuml-loop ()
   (incf bh/plantuml-loop-count)
   (number-to-string bh/plantuml-loop-count))
 
@@ -1106,7 +1106,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
 
 (define-skeleton skel-org-block-plantuml-activity-if
   "Insert a org plantuml block activity if statement"
-  "" 
+  ""
   "if \"\" then\n"
   "  -> [condition] ==IF" (setq ifn (bh/plantuml-if)) "==\n"
   "  --> ==IF" ifn "M1==\n"
@@ -1119,7 +1119,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
 
 (define-skeleton skel-org-block-plantuml-activity-for
   "Insert a org plantuml block activity for statement"
-  "Loop for each: " 
+  "Loop for each: "
   "--> ==LOOP" (setq loopn (bh/plantuml-loop)) "==\n"
   "note left: Loop" loopn ": For each " str "\n"
   "--> ==ENDLOOP" loopn "==\n"
@@ -1387,7 +1387,7 @@ so change the default 'F' binding in the agenda to allow both"
 (setq org-agenda-skip-timestamp-if-done t)
 
 (setq org-agenda-include-diary nil)
-(setq org-agenda-diary-file "~/Dropbox/git/org/diary.org")
+(setq org-agenda-diary-file "~/Dropbox/org/diary.org")
 
 (setq org-agenda-insert-diary-extract-time t)
 
@@ -1520,7 +1520,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 ;;
 (if (boundp 'org-mode-user-contrib-lisp-path)
     (add-to-list 'load-path org-mode-user-contrib-lisp-path)
-  (add-to-list 'load-path (expand-file-name "~/Dropbox/git/org-mode/contrib/lisp")))
+  (add-to-list 'load-path (expand-file-name "~/Dropbox/org-mode/contrib/lisp")))
 
 (require 'org-checklist)
 
@@ -1716,7 +1716,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (setq org-remove-highlights-with-change t)
 
-(add-to-list 'Info-default-directory-list "~/Dropbox/git/org-mode/doc")
+(add-to-list 'Info-default-directory-list "~/Dropbox/org-mode/doc")
 
 (setq org-read-date-prefer-future 'time)
 
@@ -1816,7 +1816,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 ;; (add-hook 'org-mode-hook 'turn-on-flyspell 'append) ;; no more flyspell
 
 ;; Disable keys in org-mode
-;;    C-c [ 
+;;    C-c [
 ;;    C-c ]
 ;;    C-c ;
 ;;    C-c C-x C-q  cancelling the clock (we never want this)
