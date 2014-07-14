@@ -9,6 +9,10 @@
 ;; compilation
 (global-set-key (kbd "C-c ,c") 'compile)
 
+;; train myself not to use return or backspace
+(global-set-key (kbd "<return>") 'ignore)
+(global-set-key (kbd "<backspace>") 'ignore)
+
 ;; evaluation
 (define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
 (define-key emacs-lisp-mode-map (kbd "C-c C-e") 'esk-eval-and-replace)
