@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;; unset irritant suspend-frame
+(global-unset-key (kbd "C-x z"))
+(global-unset-key (kbd "C-z"))
+
 ;; compilation
 (global-set-key (kbd "C-c ,c") 'compile)
 
@@ -20,7 +24,6 @@
 (global-set-key (kbd "M-d") 'kill-word)
 (global-set-key (kbd "M-h") 'backward-kill-word)
 (global-set-key (kbd "M-u") 'zap-to-char)
-
 (global-set-key (kbd "C-;") 'ace-jump-word-mode)
 
 (global-set-key (kbd "M-<left>") 'smartscan-symbol-go-backward)
