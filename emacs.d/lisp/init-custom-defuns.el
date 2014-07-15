@@ -61,16 +61,30 @@
     (set-window-buffer other this-buffer)
     (set-window-buffer this other-buffer)))
 
-(defvar bury-compile-buffer nil)
+(defun rcirc-toggle-current-window-dedication (&optional window)
+  (interactive)
+  (let* ((target-window (if (boundp 'window) window (selected-window)))
+         (dedicated (window-dedicated-p target-window))
+         (will-dedicate (not dedicated)))
+    (set-window-dedicated-p target-window will-dedicate)
+    (setq window-size-fixed (not window-size-fixed))
+    (if will-dedicate
+        (message "window dedicated")
+      (message "window undedicated"))))
+
+(defun bury-compile-buffer-p (buffer string)
+  "Check if buffer must be buried."
+  (not (string-match "rspec" (buffer-name buffer))))
+
 (defun bury-compile-buffer-if-successful (buffer string)
   "Bury a compilation buffer (as BUFFER) if succeeded without warnings (given by STRING argument)."
   (if (and
-       bury-compile-buffer
+       (bury-compile-buffer-p buffer string)
        (string-match "compilation" (buffer-name buffer))
        (string-match "finished" string)
        (not (with-current-buffer buffer
-              (goto-char 1)
-              (search-forward "warning" nil t))))
+            (goto-char 1)
+            (search-forward "warning" nil t))))
       (run-with-timer
        1
        nil
@@ -79,7 +93,15 @@
                            (bury-buffer buf))))
        buffer)))
 
+(defun dedicate-compile-results-window (buffer string)
+  "Make rspec window dedicated after compilation."
+  (if (and (string-match "compilation" (buffer-name buffer))
+         (string-match "rspec" (buffer-name buffer)))
+      (let (window (get-buffer-window buffer))
+        (rcirc-toggle-current-window-dedication (get-buffer-window buffer)))))
+
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
+(add-hook 'compilation-finish-functions 'dedicate-compile-results-window)
 
 ;; -- utilities --
 
