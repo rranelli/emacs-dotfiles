@@ -34,7 +34,7 @@
 (defun apply-window-system-color-theme ()
   "Apply window system specific color theme."
   (setq solarized-high-contrast-mode-line nil
-        solarized-distinct-fringe-background t
+        solarized-distinct-fringe-background nil
         x-underline-at-descent-line t)
 
   (load-theme 'solarized-dark t))

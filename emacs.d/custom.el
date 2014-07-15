@@ -5,7 +5,6 @@
  ;; If there is more than one, they won't work right.
  '(idle-highlight ((t (:foreground "maroon"))))
  '(org-agenda-clocking ((t (:inherit secondary-selection :underline t :weight semi-bold))) t)
- '(org-mode-line-clock ((t (:foreground "red" :box (:line-width -1 :style released-button)))) t)
  '(ag-match-face ((t (:background "black" :underline t))))
  '(helm-match ((t (:foreground "steel blue" :background "lemon chiffon"))))
  )
