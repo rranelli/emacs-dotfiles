@@ -62,29 +62,17 @@
     (set-window-buffer other this-buffer)
     (set-window-buffer this other-buffer)))
 
-(defun make-window-dedicated (&optional window)
-  (interactive)
-  (let* ((target-window (if (boundp 'window) window (selected-window)))
-         (dedicated (window-dedicated-p target-window)))
-    (unless dedicated
-      (set-window-dedicated-p target-window t)
-      (setq window-size-fixed t)
-      (message "window dedicated"))))
-
-(defun make-window-undedicated (&optional window)
-  (interactive)
-  (let* ((target-window (if (boundp 'window) window (selected-window)))
-         (dedicated (window-dedicated-p target-window)))
-    (unless (not dedicated)
-      (set-window-dedicated-p target-window nil)
-      (setq window-size-fixed nil)
-      (message "window undedicated"))))
-
 (defun bury-compile-buffer-p (&optional buffer string)
   "Check if BUFFER must be buried based on STRING."
   (not (string-match "rspec" (buffer-name buffer))))
 
 ;; -- compilation utils --
+
+(defun dedicate-compilation-buffer-window (buffer string)
+  "Workaround to make a dedicated Window for the compilation BUFFER."
+  (with-current-buffer buffer
+    (make-window-undedicated buffer)
+    (make-window-dedicated buffer)))
 
 (defun bury-compile-buffer-if-successful (buffer string)
   "Bury a compilation buffer (as BUFFER) if succeeded without warnings (given by STRING argument)."
