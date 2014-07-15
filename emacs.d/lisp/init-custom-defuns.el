@@ -27,6 +27,7 @@
   (newline))
 
 ;; -- window management --
+
 (defun maximize-window-vertically ()
   "Maximizes the current window vertically the same way vi does."
   (interactive)
@@ -61,20 +62,29 @@
     (set-window-buffer other this-buffer)
     (set-window-buffer this other-buffer)))
 
-(defun rcirc-toggle-current-window-dedication (&optional window)
+(defun make-window-dedicated (&optional window)
   (interactive)
   (let* ((target-window (if (boundp 'window) window (selected-window)))
-         (dedicated (window-dedicated-p target-window))
-         (will-dedicate (not dedicated)))
-    (set-window-dedicated-p target-window will-dedicate)
-    (setq window-size-fixed (not window-size-fixed))
-    (if will-dedicate
-        (message "window dedicated")
+         (dedicated (window-dedicated-p target-window)))
+    (unless dedicated
+      (set-window-dedicated-p target-window t)
+      (setq window-size-fixed t)
+      (message "window dedicated"))))
+
+(defun make-window-undedicated (&optional window)
+  (interactive)
+  (let* ((target-window (if (boundp 'window) window (selected-window)))
+         (dedicated (window-dedicated-p target-window)))
+    (unless (not dedicated)
+      (set-window-dedicated-p target-window nil)
+      (setq window-size-fixed nil)
       (message "window undedicated"))))
 
-(defun bury-compile-buffer-p (buffer string)
-  "Check if buffer must be buried."
+(defun bury-compile-buffer-p (&optional buffer string)
+  "Check if BUFFER must be buried based on STRING."
   (not (string-match "rspec" (buffer-name buffer))))
+
+;; -- compilation utils --
 
 (defun bury-compile-buffer-if-successful (buffer string)
   "Bury a compilation buffer (as BUFFER) if succeeded without warnings (given by STRING argument)."
@@ -93,15 +103,7 @@
                            (bury-buffer buf))))
        buffer)))
 
-(defun dedicate-compile-results-window (buffer string)
-  "Make rspec window dedicated after compilation."
-  (if (and (string-match "compilation" (buffer-name buffer))
-         (string-match "rspec" (buffer-name buffer)))
-      (let (window (get-buffer-window buffer))
-        (rcirc-toggle-current-window-dedication (get-buffer-window buffer)))))
-
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
-(add-hook 'compilation-finish-functions 'dedicate-compile-results-window)
 
 ;; -- utilities --
 
