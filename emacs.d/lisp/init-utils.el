@@ -45,7 +45,7 @@
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'pretty-symbols-mode)
 
-(setq pretty-symbol-categories '(lambda relational logical))
+(setq pretty-symbol-categories '(lambda relational))
 
 ;; -- Abbrev --
 (define-abbrev-table 'global-abbrev-table
