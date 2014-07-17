@@ -24,6 +24,12 @@
       (org-babel-do-load-languages 'org-babel-load-languages
                                    '((sql . t)))
 
+      ;; make org beautifull
+      (setq
+       org-odd-levels-only t
+       org-hide-leading-stars t
+       org-startup-indented t)
+
       ;; Setting up fonfitication
       (setq org-src-fontify-natively t)
       (add-hook 'sql-mode-hook (lambda () (sql-highlight-mysql-keywords))))
