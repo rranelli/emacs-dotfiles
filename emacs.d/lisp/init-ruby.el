@@ -4,9 +4,8 @@
 (require 'rhtml-mode)
 (require 'ruby-electric)
 (require 'rspec-mode)
-(require 'inf-ruby)
-(require 'robe)
 (require 'ac-robe)
+(require 'robe)
 
 (add-hook 'rhtml-mode-hook 'rinari-launch)
 
