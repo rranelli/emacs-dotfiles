@@ -38,7 +38,7 @@
 (add-hook 'emacs-lisp-mode-hook 'expression-style-show-paren)
 
 ;; make cursor type a bar
-(modify-all-frames-parameters '('cursor-type 'bar))
+(modify-all-frames-parameters (list (cons 'cursor-type 'bar)))
 
 (defadvice shell (after do-not-query-shell-exit
                         first (&optional buffer)
