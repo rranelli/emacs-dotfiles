@@ -30,7 +30,6 @@
  fill-column 80)
 
 ;; nice paren-style highlight ;)
-(setq show-paren-style 'parenthesis)
 (defun expression-style-show-paren ()
   "make show-paren expression only for lisp modes"
   (make-variable-buffer-local 'show-paren-style)

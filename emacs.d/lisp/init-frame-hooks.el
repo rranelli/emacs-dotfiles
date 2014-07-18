@@ -37,6 +37,8 @@
         solarized-distinct-fringe-background nil
         x-underline-at-descent-line t)
 
+  (set-face-attribute 'cursor nil :background "cyan")
+
   (load-theme 'solarized-dark t))
 
 (defun config-powerline (frame)
