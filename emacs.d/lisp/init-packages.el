@@ -56,7 +56,7 @@
     (package-install p)))
 
 ;; -- Utility packages --
-(eval-when-compile (require 'cl))
+(require 'cl)
 (require 'ido)
 (require 'ffap)
 (require 'uniquify)

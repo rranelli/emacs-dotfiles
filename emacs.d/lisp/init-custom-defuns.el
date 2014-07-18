@@ -53,7 +53,7 @@
   )
 
 (defun swap-buffers-in-windows ()
-  "Put the buffer from the selected window in next window, and vice versa"
+  "Put the buffer from the selected window in next window, and vice versa."
   (interactive)
   (let* ((this (selected-window))
          (other (next-window))

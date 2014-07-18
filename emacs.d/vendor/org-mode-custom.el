@@ -3,11 +3,6 @@
 ;; org-mode-user-lisp-path
 ;;
 
-;; this part is not being used so it will be commented out
-;;(if (boundp 'org-mode-user-lisp-path)
-;;    (add-to-list 'load-path org-mode-user-lisp-path)
-;;  (add-to-list 'load-path (expand-file-name "~/gi/org-mode/lisp")))
-
 (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
 (require 'org)
 (require 'org-habit)
@@ -1739,7 +1734,6 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (setq org-link-mailto-program (quote (compose-mail "%a" "%s")))
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 (require 'smex)
 (smex-initialize)
 

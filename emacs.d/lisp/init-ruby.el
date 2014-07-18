@@ -1,7 +1,6 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(require 'rinari-autoloads)
 (require 'rhtml-mode)
 (require 'ruby-electric)
 (require 'rspec-mode)

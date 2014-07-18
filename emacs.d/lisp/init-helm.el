@@ -30,7 +30,7 @@
          (delta (- desired-width width)))
     (window-resize (frame-selected-window) delta t)))
 
-;; -- keybindings --
+;; keybindings
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "M-l") 'helm-buffers-list)

@@ -12,7 +12,7 @@
 (defconst *spell-check-support-enabled* nil)
 
 ;; --- bootstrapping ---
-(eval-when-compile (require 'cl))
+(require 'cl)
 (require 'init-packages)
 (require 'init-custom-defuns)
 (require 'init-utils)
