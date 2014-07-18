@@ -48,6 +48,8 @@
     ;; other packages
     haskell-mode
     sml-mode
+    org-mime
+    fuzzy
     )
   "A list of packages to ensure are installed at launch.")
 
