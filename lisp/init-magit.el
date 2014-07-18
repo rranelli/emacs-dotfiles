@@ -1,11 +1,15 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-
 (require 'magit)
 
-(setq magit-status-buffer-switch-function 'switch-to-buffer)
+;;(setq magit-status-buffer-switch-function 'switch-to-buffer)
 (setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-only)
+
+(defadvice magit-status
+  (before magit-save-before-status activate)
+  "Save all buffers before magit status."
+  (save-some-buffers t))
 
 ;; magit showlevels redefinition
 (define-key magit-mode-map (kbd "M-1") 'delete-other-windows)

@@ -43,6 +43,11 @@
       (indent-line-to indent)
       (when (> offset 0) (forward-char offset)))))
 
+(defadvice rspec-compile
+  (before rspec-save-before-compile (A-FILE-OR-DIR &optional opts) activate)
+  "Save current buffer before running spec.  This remove the annoying save confirmation."
+  (save-some-buffers (lambda () (string-match "\\.rb" (buffer-name  (current-buffer))))))
+
 (defun ruby-send-buffer ()
   "Send whole buffer to inferior process."
   (interactive)
