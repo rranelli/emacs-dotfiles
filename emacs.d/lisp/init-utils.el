@@ -29,6 +29,17 @@
  ag-highlight-search t
  fill-column 80)
 
+;; nice paren-style highlight ;)
+(setq show-paren-style 'parenthesis)
+(defun expression-style-show-paren ()
+  "make show-paren expression only for lisp modes"
+  (make-variable-buffer-local 'show-paren-style)
+  (setq show-paren-style 'expression))
+(add-hook 'emacs-lisp-mode-hook 'expression-style-show-paren)
+
+;; make cursor type a bar
+(modify-all-frames-parameters '('cursor-type 'bar))
+
 (defadvice shell (after do-not-query-shell-exit
                         first (&optional buffer)
                         activate)
