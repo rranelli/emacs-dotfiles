@@ -12,12 +12,14 @@
     (config-xterm-256color-terminal-frame frame)))
 
 ;; -- X frame --
+(setq theme-loaded nil)
 (defun config-x-frame (frame)
   "Configure x FRAME."
 
   (global-hl-line-mode 1)
   (toggle-transparency frame)
-  (apply-window-system-color-theme)
+  (unless theme-loaded
+    (apply-window-system-color-theme))
   (config-powerline frame))
 
 (defun toggle-transparency (&optional frame)
@@ -39,11 +41,12 @@
 
   (set-face-attribute 'cursor nil :background "cyan")
 
-  (load-theme 'solarized-dark t))
+  (load-theme 'solarized-dark t)
+  (setq theme-loaded t))
 
 (defun config-powerline (frame)
   "Set up powerline faces for FRAME."
-  (require 'powerline)
+  (load-file (expand-file-name "vendor/powerline.el" user-emacs-directory))
 
   (setq powerline-arrow-shape 'arrow
         powerline-color1 "grey22"
