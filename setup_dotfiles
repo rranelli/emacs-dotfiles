@@ -11,7 +11,7 @@ def make_path(*args):
     return '/'.join(args)
 
 scriptpath = os.path.dirname(os.path.realpath(__file__))
-dirname = make_path(scriptpath, 'emacs.d')
+dirname = scriptpath
 
 homedir  = os.path.expanduser('~')
 dot_emacs_dir = make_path(homedir, '.emacs.d')

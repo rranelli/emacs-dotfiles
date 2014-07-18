@@ -53,6 +53,9 @@
 
 (define-key dired-mode-map (kbd "M-o") 'other-window)
 
+;; Better registers
+
+
 ;; indentation
 (global-set-key (kbd "C-I") 'indent-region)
 (global-set-key (kbd "C-c i") 'esk-indent-buffer)

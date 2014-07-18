@@ -19,21 +19,23 @@
             (mapcar (lambda (filename) (concat org-dir filename)) org-files))
 
       ;; loading org custom
-      (load "org-mode-custom.el")
+      (require 'org-mode-custom)
       ;; Setting up babel support for languages
       (org-babel-do-load-languages 'org-babel-load-languages
                                    '((sql . t)))
 
-      ;; make org beautifull
-      (setq
-       org-odd-levels-only t
-       org-hide-leading-stars t
-       org-startup-indented t)
-
-      ;; Setting up fonfitication
       (setq org-src-fontify-natively t)
-      (add-hook 'sql-mode-hook (lambda () (sql-highlight-mysql-keywords))))
-  (message "skipping org-mode load"))
+      (add-hook 'sql-mode-hook (lambda () (sql-highlight-mysql-keywords)))
+
+  ;; make org beautifull
+  (setq
+   org-odd-levels-only t
+   org-hide-leading-stars t
+   org-startup-indented t)
+
+  ;; Setting up fonfitication
+
+  (message "skipping org-mode load")))
 
 (provide 'init-org)
 ;;; init-org.el ends here

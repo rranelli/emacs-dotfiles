@@ -57,17 +57,20 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
+;; -- vendor packages --
+(require 'better-registers)
+(require 'uniquify)
+(require 'linum)
+(require 'dirtree)
+(require 'whitespace)
+
 ;; -- Utility packages --
 (require 'cl)
 (require 'ido)
 (require 'ffap)
-(require 'uniquify)
-(require 'ansi-color)
 (require 'recentf)
-(require 'linum)
-(require 'whitespace)
+(require 'ansi-color)
 (require 'dired-x)
-(require 'dirtree)
 (require 'iso-transl) ;; makes dead-keys work
 
 (provide 'init-packages)

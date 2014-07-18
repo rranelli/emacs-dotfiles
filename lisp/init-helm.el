@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (require 'helm-config)
-;;(require 'helm-ls-git)
+(require 'helm-ls-git)
 
 (helm-mode t)
 
