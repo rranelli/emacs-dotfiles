@@ -53,8 +53,8 @@
 
 (define-key dired-mode-map (kbd "M-o") 'other-window)
 
-;; Better registers
-
+;; open project
+(global-set-key (kbd "C-c C-p") 'open-project)
 
 ;; indentation
 (global-set-key (kbd "C-I") 'indent-region)
