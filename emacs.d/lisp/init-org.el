@@ -7,13 +7,17 @@
 (if  (file-exists-p "~/Dropbox/org/life.org")
     ;; Set up org-agenda files
     (progn
-      (setq org-user-agenda-files '("~/Dropbox/org/diary.org"
-                                    "~/Dropbox/org/life.org"
-                                    "~/Dropbox/org/study.org"
-                                    "~/Dropbox/org/refile.org"
-                                    "~/Dropbox/org/eengsoft.org"
-                                    "~/Dropbox/org/locaweb.org"
-                                    ))
+      (defvar org-dir "~/Dropbox/org/")
+      (defvar org-files '("diary.org"
+                          "life.org"
+                          "study.org"
+                          "refile.org"
+                          "eengsoft.org"
+                          "locaweb.org"))
+
+      (setq org-user-agenda-files
+            (mapcar (lambda (filename) (concat org-dir filename)) org-files))
+
       ;; loading org custom
       (load "org-mode-custom.el")
       ;; Setting up babel support for languages
