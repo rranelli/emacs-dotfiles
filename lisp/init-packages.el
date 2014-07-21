@@ -13,6 +13,7 @@
 
 (when (not package-archive-contents)
   (package-refresh-contents))
+
 (defvar my-packages
   '(
     ;; general configuration
@@ -50,6 +51,7 @@
     sml-mode
     org-mime
     fuzzy
+    lispxmp
     )
   "A list of packages to ensure are installed at launch.")
 

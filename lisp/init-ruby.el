@@ -18,8 +18,6 @@
 (add-to-list 'auto-mode-alist '("\\Vagrantfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
 
-(autoload 'inf-ruby-keys "inf-ruby")
-
 ;; don't indent parenthesis in a weird way
 (setq ruby-deep-indent-paren-style nil)
 

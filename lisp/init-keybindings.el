@@ -32,7 +32,7 @@
 (global-set-key (kbd "C-;") 'ace-jump-word-mode)
 (global-set-key (kbd "M-<left>") 'smartscan-symbol-go-backward)
 (global-set-key (kbd "M-<right>") 'smartscan-symbol-go-forward)
-(global-set-key (kbd "M-\"") 'smartscan-symbol-replace)
+(global-set-key (kbd "C-M-'") 'smartscan-symbol-replace)
 
 (global-set-key (kbd "M-m") 'new-line-below)
 
