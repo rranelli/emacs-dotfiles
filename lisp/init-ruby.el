@@ -1,13 +1,10 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(require 'rhtml-mode)
 (require 'ruby-electric)
 (require 'rspec-mode)
 (require 'ac-robe)
 (require 'robe)
-
-(add-hook 'rhtml-mode-hook 'rinari-launch)
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
@@ -54,7 +51,6 @@
 ;; hook auxiliary modes to ruby mode
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)
-(add-hook 'ruby-mode-hook 'rinari-launch)
 (add-hook 'ruby-mode-hook 'rspec-mode)
 
 (add-hook 'robe-mode-hook

@@ -24,6 +24,7 @@
     starter-kit-bindings
     starter-kit-lisp
     graphviz-dot-mode
+    ido-vertical-mode
     ;; general editing tools
     ag
     smartscan
