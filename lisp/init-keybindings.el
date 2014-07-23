@@ -6,6 +6,9 @@
 (global-unset-key (kbd "C-x z"))
 (global-unset-key (kbd "C-z"))
 
+;; join lines!
+(global-set-key (kbd "C-z") 'join-line)
+
 ;; compilation
 (global-set-key (kbd "C-c ,c") 'compile)
 
@@ -16,6 +19,13 @@
 ;; evaluation
 (define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
 (define-key emacs-lisp-mode-map (kbd "C-c C-e") 'esk-eval-and-replace)
+
+;; better search
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(define-key isearch-mode-map (kbd "C-o")
+  (lambda () (interactive)
+    (let ((case-fold-search isearch-case-fold-search))
+      (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
 
 ;; movement and editing
 (global-set-key (kbd "M-n") 'next5)

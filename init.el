@@ -24,6 +24,7 @@
 (require 'init-ac)
 (require 'init-yas)
 (require 'init-ruby)
+(require 'init-lisp)
 (require 'init-org)
 (require 'init-helm)
 (require 'init-keybindings)
