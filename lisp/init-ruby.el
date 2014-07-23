@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (require 'ruby-electric)
+(require 'inf-ruby)
 (require 'rspec-mode)
 (require 'ac-robe)
 (require 'robe)
@@ -63,8 +64,14 @@
 (setq rinari-tags-file-name "TAGS")
 
 ;; -- keybindings --
-(define-key ruby-mode-map (kbd "C-c s r") 'ruby-send-buffer)
 (define-key rspec-mode-map (kbd "C-c , y") 'rspec-find-spec-or-target-other-window)
+
+(define-key ruby-mode-map (kbd "C-c s b") 'ruby-send-buffer)
+(define-key ruby-mode-map (kbd "C-c s r") 'ruby-send-region)
+
+(define-key ruby-mode-map (kbd "C-c s v") 'ruby-refactor-extract-local-variable)
+(define-key ruby-mode-map (kbd "C-c s m") 'ruby-refactor-extract-to-method)
+(define-key ruby-mode-map (kbd "C-c s l") 'ruby-refactor-extract-to-let)
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here

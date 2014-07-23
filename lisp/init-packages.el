@@ -21,11 +21,9 @@
     git-timemachine
     flycheck
     starter-kit
-    starter-kit-bindings
-    starter-kit-lisp
     graphviz-dot-mode
     ido-vertical-mode
-    ;; general editing tools
+    fuzzy
     ag
     smartscan
     helm
@@ -41,19 +39,16 @@
     color-theme-sanityinc-solarized
     color-theme-sanityinc-tomorrow
     ;; ruby packages
-    starter-kit-ruby
     inf-ruby
     rinari
     robe
     rspec-mode
     rhtml-mode
+    ruby-refactor
     ;; other packages
     haskell-mode
     sml-mode
-    org-mime
-    fuzzy
-    lispxmp
-    )
+    org-mime)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
