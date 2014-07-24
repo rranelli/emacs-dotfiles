@@ -11,6 +11,8 @@
   "Save all buffers before magit status."
   (save-some-buffers t))
 
+(global-set-key (kbd "C-c g") 'magit-status)
+
 ;; magit showlevels redefinition
 (define-key magit-mode-map (kbd "M-1") 'delete-other-windows)
 (define-key magit-mode-map (kbd "M-2") 'split-window-vertically)

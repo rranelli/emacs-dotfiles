@@ -8,6 +8,8 @@
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'emacs-lisp-mode-hook 'remove-elc-on-save)
 
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+
 (defun remove-elc-on-save ()
   "If you're saving an elisp file, the .elc is probably useless."
   (make-local-variable 'after-save-hook)

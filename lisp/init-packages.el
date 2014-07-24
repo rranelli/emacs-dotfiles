@@ -47,8 +47,7 @@
     ruby-refactor
     ;; other packages
     haskell-mode
-    sml-mode
-    org-mime)
+    sml-mode)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
