@@ -37,6 +37,7 @@
     anzu
     diminish
     wrap-region
+    markdown-mode+
     ;; themes
     solarized-theme
     color-theme-sanityinc-solarized
