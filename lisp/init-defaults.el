@@ -36,7 +36,6 @@
  pcomplete-ignore-case t
  ;; highlight ag matches
  ag-highlight-search t
- fill-column 80
  ;; more itens to recentf
  recentf-max-saved-items 250
  ;; more memory. it's the distant future
@@ -49,6 +48,9 @@
  abbrev-mode t
  ;; no more two spaces to end sentences. Jeez.
  sentence-end-double-space nil)
+
+;; 70 columns??? WTF!
+(set-fill-column 100)
 
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
