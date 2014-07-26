@@ -87,8 +87,8 @@
     ;; math/unicode symbols
     ("8bes" "bundle exec rspec")
     ("8be" "bundle exec")
-    ("8gpl" "git pull")
     ("8rdbm" "bundle exec rake db:migrate db:rollback && bundle exec rake db:migrate")
+    ("8bejs" "bundle exec jekyll serve --watch")
     ))
 
 ;; -- some automodes --
