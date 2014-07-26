@@ -111,6 +111,8 @@
   (interactive "*")
   (uniquify-all-lines-region (point-min) (point-max)))
 
+;; -- misc --
+
 ;; open project ;)
 (defvar locaprojects "~/locaweb/")
 (defun open-project (arg)

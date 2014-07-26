@@ -38,6 +38,7 @@
     diminish
     wrap-region
     markdown-mode+
+    yaml-mode
     ;; themes
     solarized-theme
     color-theme-sanityinc-solarized
