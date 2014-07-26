@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+(diminish 'paredit-mode "Par")
+(diminish 'eldoc-mode)
+
 (define-key lisp-mode-shared-map (kbd "RET") 'reindent-then-newline-and-indent)
 
 ;; eldoc hooks!

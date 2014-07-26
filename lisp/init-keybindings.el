@@ -20,16 +20,9 @@
 (define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
 (define-key emacs-lisp-mode-map (kbd "C-c C-e") 'esk-eval-and-replace)
 
-;; better search
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(define-key isearch-mode-map (kbd "C-o")
-  (lambda () (interactive)
-    (let ((case-fold-search isearch-case-fold-search))
-      (occur (if isearch-regexp isearch-string (regexp-quote isearch-string))))))
-
 ;; movement and editing
-(global-set-key (kbd "M-n") 'next5)
-(global-set-key (kbd "M-p") 'prev5)
+(global-set-key (kbd "M-n") (lambda () (interactive) (next-line 5)))
+(global-set-key (kbd "M-p") (lambda () (interactive) (previous-line 5)))
 (global-set-key (kbd "C-x m") 'shell)
 (global-set-key (kbd "C-x C-m") 'eshell)
 (global-set-key (kbd "C-q") 'comment-or-uncomment-region)
@@ -40,10 +33,6 @@
 (global-set-key (kbd "M-u") 'zap-to-char)
 
 (global-set-key (kbd "C-;") 'ace-jump-word-mode)
-(global-set-key (kbd "M-<left>") 'smartscan-symbol-go-backward)
-(global-set-key (kbd "M-<right>") 'smartscan-symbol-go-forward)
-(global-set-key (kbd "C-M-'") 'smartscan-symbol-replace)
-
 (global-set-key (kbd "M-m") 'new-line-below)
 
 ;; window and buffer manipulation

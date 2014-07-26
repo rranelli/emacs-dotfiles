@@ -15,7 +15,7 @@
 (require 'cl)
 (require 'init-packages)
 (require 'init-custom-defuns)
-(require 'init-utils)
+(require 'init-defaults)
 (require 'init-path)
 
 ;; Init everything else
@@ -25,6 +25,7 @@
 (require 'init-yas)
 (require 'init-ruby)
 (require 'init-lisp)
+(require 'init-isearch)
 (require 'init-org)
 (require 'init-helm)
 (require 'init-keybindings)

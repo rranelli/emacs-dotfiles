@@ -45,20 +45,21 @@
   (setq theme-loaded t))
 
 (defun config-powerline (frame)
-  "Set up powerline faces for FRAME."
-  (load-file (expand-file-name "vendor/powerline.el" user-emacs-directory))
+  ;; "Set up powerline faces for FRAME."
+  ;; (load-file (expand-file-name "vendor/powerline.el" user-emacs-directory))
 
-  (setq powerline-arrow-shape 'arrow
-        powerline-color1 "grey22"
-        powerline-color2 "#002b36"
-        powerline-column 50)
+  ;; (setq powerline-arrow-shape 'arrow
+  ;;       powerline-color1 "grey22"
+  ;;       powerline-color2 "#002b36"
+  ;;       powerline-column 50)
 
-  (set-face-attribute 'mode-line frame
-                      :background "DeepSkyBlue4"
-                      :foreground "Snow"
-                      :box nil)
-  (set-face-attribute 'mode-line-inactive frame
-                      :box nil))
+  ;; (set-face-attribute 'mode-line frame
+  ;;                     :background "DeepSkyBlue4"
+  ;;                     :foreground "Snow"
+  ;;                     :box nil)
+  ;; (set-face-attribute 'mode-line-inactive frame
+  ;;                     :box nil)
+  )
 
 ;; -- Terminal frame --
 ;; Use the functions bellow if not working from a 256color terminal.

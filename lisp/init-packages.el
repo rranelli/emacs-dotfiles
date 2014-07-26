@@ -34,6 +34,9 @@
     auto-complete
     ace-jump-mode
     pretty-symbols
+    anzu
+    diminish
+    wrap-region
     ;; themes
     solarized-theme
     color-theme-sanityinc-solarized
@@ -68,6 +71,7 @@
 (require 'recentf)
 (require 'ansi-color)
 (require 'dired-x)
+(require 'paredit)
 (require 'iso-transl) ;; makes dead-keys work
 
 (provide 'init-packages)

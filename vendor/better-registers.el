@@ -99,7 +99,7 @@
 
 ;(define-key better-registers-map [f1] 'better-registers-play-macro-if-not-playing)
 ;(define-key better-registers-map [S-f1] 'better-registers-toggle-macro-recording)
-(define-key better-registers-map "\C-l" 'better-registers-jump-to-register)
+(define-key better-registers-map "\C-j" 'better-registers-jump-to-register)
 (define-key better-registers-map "\C-xj" 'better-registers-jump-to-register)
 (define-key better-registers-map "\C-r" ;Shadow C-r global
   better-registers-r-map)

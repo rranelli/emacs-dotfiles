@@ -3,15 +3,6 @@
 ;;; Code:
 
 ;; -- movement --
-(defun next5()
-  "Move five lines forward."
-  (interactive)
-  (next-line 5))
-
-(defun prev5()
-  "Move five lines backward."
-  (interactive)
-  (previous-line 5))
 
 (defun move-smart-beginning-of-line ()
   "Move to beginning of line or to beginning of indentation depending on POINT."
@@ -60,6 +51,7 @@
          (this-buffer (window-buffer this))
          (other-buffer (window-buffer other)))
     (set-window-buffer other this-buffer)
+
     (set-window-buffer this other-buffer)))
 
 (defun bury-compile-buffer-p (&optional buffer string)
