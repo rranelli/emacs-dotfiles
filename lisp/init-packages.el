@@ -15,8 +15,7 @@
   (package-refresh-contents))
 
 (defvar my-packages
-  '(
-    ;; general configuration
+  '(;; general configuration
     magit
     git-timemachine
     flycheck
@@ -43,6 +42,7 @@
     solarized-theme
     color-theme-sanityinc-solarized
     color-theme-sanityinc-tomorrow
+    gruvbox-theme
     ;; ruby packages
     inf-ruby
     rinari

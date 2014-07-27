@@ -14,9 +14,6 @@
 (global-flycheck-mode t)
 (wrap-region-global-mode)
 
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-
 (setq pretty-symbol-categories '(lambda relational))
 
 ;; -- Variables --
@@ -28,6 +25,11 @@
  make-backup-files nil
  auto-save-default nil
  backup-inhibited t
+ ;; set initial mode
+ initial-major-mode 'emacs-lisp-mode
+ initial-scratch-message "This be scratch Buffer."
+ ;; underline at next line
+ x-underline-at-descent-line t
  suggest-key-bindings t
  column-number-mode t
  show-trailing-whitespace t
@@ -54,25 +56,6 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'pretty-symbols-mode)
-
-;; nice paren-style highlight, but with buffer local configuration ;)
-(defun expression-style-show-paren ()
-  "make show-paren expression only for lisp modes"
-  (make-variable-buffer-local 'show-paren-style)
-  (setq show-paren-style 'expression))
-(add-hook 'emacs-lisp-mode-hook 'expression-style-show-paren)
-
-;; make cursor type a bar
-(modify-all-frames-parameters (list (cons 'cursor-type 'bar)))
-
-;; A saner ediff
-(setq ediff-diff-options "-w")
-(setq ediff-split-window-function 'split-window-horizontally)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-
-;; Nic says eval-expression-print-level needs to be set to nil (turned off) so
-;; that you can always see what's happening.
-(setq eval-expression-print-level nil)
 
 (defadvice shell (after do-not-query-shell-exit
                         first (&optional buffer)

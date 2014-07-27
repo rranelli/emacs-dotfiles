@@ -19,7 +19,7 @@
 (require 'init-path)
 
 ;; Init everything else
-(require 'init-frame-hooks)
+(require 'init-appearance)
 (require 'init-magit)
 (require 'init-ac)
 (require 'init-yas)
