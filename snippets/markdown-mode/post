@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: post
+# --
+---
+language: brasileiro
+layout: post
+title: ${1:title}
+---
+
+$0

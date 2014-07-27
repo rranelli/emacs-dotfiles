@@ -46,11 +46,9 @@
 (setq-default
  display-buffer-reuse-frames t
  abbrev-mode t
+ fill-column 100
  ;; no more two spaces to end sentences. Jeez.
  sentence-end-double-space nil)
-
-;; 70 columns??? WTF!
-(set-fill-column 100)
 
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)

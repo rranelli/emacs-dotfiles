@@ -27,6 +27,7 @@
 (require 'init-lisp)
 (require 'init-isearch)
 (require 'init-org)
+(require 'init-writting)
 (require 'init-helm)
 (require 'init-keybindings)
 
