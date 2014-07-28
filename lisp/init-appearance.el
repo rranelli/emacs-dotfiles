@@ -45,7 +45,7 @@
   (toggle-transparency frame)
 
   (load-theme chosen-theme t)
-  (when powerline-p (config-powerline frame))
+  (when powerline-p (config-powerline))
 
   (set-face-attribute 'cursor frame :background cursor-color)
   (when set-mode-line-faces-p
@@ -71,7 +71,7 @@
         (toggle--transparency (selected-frame) min-transp max-transp)
       (toggle--transparency frame min-transp max-transp))))
 
-(defun config-powerline (&optional frame)
+(defun config-powerline ()
   "Set up powerline faces for FRAME."
   (load-file (expand-file-name "vendor/powerline.el" user-emacs-directory))
 
@@ -80,8 +80,8 @@
         powerline-color2 "#002b36"
         powerline-column 50)
 
-  (set-face-attribute 'mode-line frame :box nil)
-  (set-face-attribute 'mode-line-inactive frame :box nil))
+  (set-face-attribute 'mode-line nil :box nil)
+  (set-face-attribute 'mode-line-inactive nil :box nil))
 
 ;; -- Terminal frame --
 ;; Use the functions bellow if not working from a 256color terminal.
