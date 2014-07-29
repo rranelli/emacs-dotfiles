@@ -1,7 +1,6 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-
 (require 'org-faces)
 
 (when  (file-exists-p "~/Dropbox/org/life.org")
@@ -39,7 +38,10 @@
     (add-hook 'org-mode-hook 'ido-vertical-mode)
     (add-hook 'org-agenda-mode-hook 'ido-vertical-mode)
 
-    (message "skipping org-mode load")))
+    ;; remove key from agenda
+    (define-key org-agenda-mode-map (kbd "C-c C-p") nil))
+
+  (message "skipping org-mode load"))
 
 (provide 'init-org)
 ;;; init-org.el ends here
