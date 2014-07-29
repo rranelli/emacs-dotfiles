@@ -12,6 +12,7 @@
                         "life.org"
                         "study.org"
                         "refile.org"
+                        "opensource.org"
                         "locaweb.org"
                         "emacs.org"))
 
