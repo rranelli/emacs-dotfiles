@@ -3,6 +3,8 @@
 ;;; Code:
 (require 'magit)
 
+(diminish 'magit-auto-revert-mode)
+
 ;;(setq magit-status-buffer-switch-function 'switch-to-buffer)
 (setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-only)
 
