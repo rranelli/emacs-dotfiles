@@ -49,6 +49,12 @@
   (interactive)
   (ruby-send-region (point-min) (point-max)))
 
+(defun rspec-spec-or-target-other-window-no-change-window ()
+  "Just like rspec-find-spec-or-target-other-window but does not change the current window."
+  (interactive)
+  (rspec-find-spec-or-target-other-window)
+  (other-window 1))
+
 ;; hook auxiliary modes to ruby mode
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)
@@ -64,7 +70,8 @@
 (setq rinari-tags-file-name "TAGS")
 
 ;; -- keybindings --
-(define-key rspec-mode-map (kbd "C-c , y") 'rspec-find-spec-or-target-other-window)
+(define-key rspec-mode-map (kbd "C-c , y") 'rspec-spec-or-target-other-window-no-change-window)
+(define-key rspec-mode-map (kbd "C-c , u") 'rspec-find-spec-or-target-other-window)
 
 (define-key ruby-mode-map (kbd "C-c s b") 'ruby-send-buffer)
 (define-key ruby-mode-map (kbd "C-c s r") 'ruby-send-region)
