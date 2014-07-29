@@ -42,12 +42,13 @@
   "Configure x FRAME."
 
   (global-hl-line-mode 1)
+  (set-face-attribute 'cursor frame :background cursor-color)
+
   (toggle-transparency frame)
 
   (load-theme chosen-theme t)
   (when powerline-p (config-powerline))
 
-  (set-face-attribute 'cursor frame :background cursor-color)
   (when set-mode-line-faces-p
     (set-face-attribute 'mode-line frame
                         :background mode-line-background

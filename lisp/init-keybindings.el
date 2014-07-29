@@ -5,6 +5,7 @@
 ;; unset irritant suspend-frame
 (global-unset-key (kbd "C-x z"))
 (global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-M-z"))
 
 ;; join lines!
 (global-set-key (kbd "C-z") 'join-line)
