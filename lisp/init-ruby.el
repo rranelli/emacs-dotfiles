@@ -73,12 +73,12 @@
 (define-key rspec-mode-map (kbd "C-c , y") 'rspec-spec-or-target-other-window-no-change-window)
 (define-key rspec-mode-map (kbd "C-c , u") 'rspec-find-spec-or-target-other-window)
 
-(define-key ruby-mode-map (kbd "C-c s b") 'ruby-send-buffer)
-(define-key ruby-mode-map (kbd "C-c s r") 'ruby-send-region)
+(define-key ruby-mode-map (kbd "C-c r b") 'ruby-send-buffer)
+(define-key ruby-mode-map (kbd "C-c r r") 'ruby-send-region)
 
-(define-key ruby-mode-map (kbd "C-c s v") 'ruby-refactor-extract-local-variable)
-(define-key ruby-mode-map (kbd "C-c s m") 'ruby-refactor-extract-to-method)
-(define-key ruby-mode-map (kbd "C-c s l") 'ruby-refactor-extract-to-let)
+(define-key ruby-mode-map (kbd "C-c r v") 'ruby-refactor-extract-local-variable)
+(define-key ruby-mode-map (kbd "C-c r m") 'ruby-refactor-extract-to-method)
+(define-key ruby-mode-map (kbd "C-c r l") 'ruby-refactor-extract-to-let)
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here

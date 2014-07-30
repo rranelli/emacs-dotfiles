@@ -8,7 +8,7 @@
 (global-unset-key (kbd "C-M-z"))
 
 ;; join lines!
-(global-set-key (kbd "C-z") 'join-line)
+(global-set-key (kbd "C-\\") 'join-line)
 
 ;; compilation
 (global-set-key (kbd "C-c ,c") 'compile)
@@ -20,12 +20,19 @@
 ;; evaluation
 (define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
 (define-key emacs-lisp-mode-map (kbd "C-c C-e") 'esk-eval-and-replace)
+(define-key emacs-lisp-mode-map (kbd "C-c C-v") 'eval-buffer)
+
+;; indentation
+(global-set-key (kbd "C-I") 'indent-region)
+(global-set-key (kbd "C-c i") 'esk-indent-buffer)
+
+;; commands
+(global-set-key (kbd "C-x C-m") 'shell)
+(global-set-key (kbd "C-x m") 'execute-extended-command)
 
 ;; movement and editing
 (global-set-key (kbd "M-n") (lambda () (interactive) (next-line 5)))
 (global-set-key (kbd "M-p") (lambda () (interactive) (previous-line 5)))
-(global-set-key (kbd "C-x m") 'shell)
-(global-set-key (kbd "C-x C-m") 'eshell)
 (global-set-key (kbd "C-q") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-a") 'move-smart-beginning-of-line)
 (global-set-key (kbd "C-h") 'backward-delete-char)
@@ -51,6 +58,7 @@
 (global-set-key (kbd "C-c t") 'git-project-dirtree)
 (global-set-key (kbd "C-c -") 'swap-buffers-in-windows)
 
+;; other mode compatibilities
 (define-key dired-mode-map (kbd "M-o") 'other-window)
 
 (provide 'init-keybindings)
