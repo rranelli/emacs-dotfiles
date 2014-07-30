@@ -47,7 +47,5 @@
 (define-key helm-find-files-map (kbd "C-i") 'helm-execute-persistent-action)
 (define-key helm-find-files-map (kbd "C-h") 'helm-find-files-sensitive-backspace)
 
-(define-key helm-map (kbd "C-;") 'helm-select-action)
-
 (provide 'init-helm)
 ;;; init-helm.el ends here
