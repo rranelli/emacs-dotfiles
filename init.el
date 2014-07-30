@@ -1,7 +1,6 @@
 ;;; Package --- Summary
 ;;; Commentary:
 ;;; Code:
-
 (let ((minver 23))
   (unless (>= emacs-major-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
@@ -27,10 +26,10 @@
 (require 'init-lisp)
 (require 'init-isearch)
 (require 'init-project-utils)
-(require 'init-org)
 (require 'init-writting)
 (require 'init-helm)
 (require 'init-keybindings)
+(require 'init-org)
 
 ;; -- custom --
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
