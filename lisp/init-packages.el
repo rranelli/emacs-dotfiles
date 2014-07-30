@@ -53,6 +53,7 @@
     rspec-mode
     rhtml-mode
     ruby-refactor
+    ruby-block
     ;; other packages
     haskell-mode
     sml-mode)

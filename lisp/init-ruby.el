@@ -6,9 +6,13 @@
 (require 'rspec-mode)
 (require 'ac-robe)
 (require 'robe)
+(require 'ruby-block)
+
 
 (diminish 'ruby-electric-mode)
 (diminish 'auto-fill-function)
+;;(add-hook 'ruby-mode-hook (lambda () (diminish 'ruby-block-mode)))
+(diminish 'ruby-block-mode)
 
 ;; auto modes
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
@@ -20,6 +24,11 @@
 (add-to-list 'auto-mode-alist '("\\Vagrantfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\Godfile$" . ruby-mode))
+
+;; toggle ruby-block highlight to both keyword and line
+(ruby-block-mode t)
+(setq ruby-block-highlight-toggle 'overlay)
+(setq ruby-block-highlight-face 'show-paren-match)
 
 ;; don't indent parenthesis in a weird way
 (setq ruby-deep-indent-paren-style nil)
