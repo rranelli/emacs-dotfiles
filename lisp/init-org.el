@@ -39,7 +39,7 @@
     (add-hook 'org-agenda-mode-hook 'ido-vertical-mode)
 
     ;; remove key from agenda
-    (define-key org-agenda-mode-map (kbd "C-c C-p") nil))
+    (define-key org-agenda-mode-map (kbd "C-c p") nil))
 
   (message "skipping org-mode load"))
 

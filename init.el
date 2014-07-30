@@ -26,6 +26,7 @@
 (require 'init-ruby)
 (require 'init-lisp)
 (require 'init-isearch)
+(require 'init-project-utils)
 (require 'init-org)
 (require 'init-writting)
 (require 'init-helm)

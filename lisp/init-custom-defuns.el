@@ -114,11 +114,7 @@
 ;; -- misc --
 
 ;; open project ;)
-(defvar locaprojects "~/locaweb/")
-(defun open-project (arg)
-  "Get locaweb project ARG."
-  (interactive (list (read-directory-name "Which loca project?: " locaprojects)))
-  (find-file arg))
+
 
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here

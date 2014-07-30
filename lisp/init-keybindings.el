@@ -53,12 +53,5 @@
 
 (define-key dired-mode-map (kbd "M-o") 'other-window)
 
-;; open project
-(global-set-key (kbd "C-c C-p") 'open-project)
-
-;; indentation
-(global-set-key (kbd "C-I") 'indent-region)
-(global-set-key (kbd "C-c i") 'esk-indent-buffer)
-
 (provide 'init-keybindings)
 ;;; init-keybindings ends here

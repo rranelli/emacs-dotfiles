@@ -36,8 +36,6 @@
  ;; ignore case completion on emacs lisp and find files
  eshell-cmpl-ignore-case t
  pcomplete-ignore-case t
- ;; highlight ag matches
- ag-highlight-search t
  ;; more itens to recentf
  recentf-max-saved-items 250
  ;; more memory. it's the distant future
@@ -80,4 +78,4 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 
 (provide 'init-defaults)
-;;; init-utils.el ends here
+;;; init-defaults.el ends here
