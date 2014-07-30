@@ -7,6 +7,10 @@
 (require 'ac-robe)
 (require 'robe)
 
+(diminish 'ruby-electric-mode)
+(diminish 'auto-fill-function)
+
+;; auto modes
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.jbuilder$" . ruby-mode))
@@ -15,6 +19,7 @@
 (add-to-list 'auto-mode-alist '("\\Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\Vagrantfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\Godfile$" . ruby-mode))
 
 ;; don't indent parenthesis in a weird way
 (setq ruby-deep-indent-paren-style nil)

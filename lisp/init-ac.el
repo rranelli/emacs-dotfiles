@@ -1,10 +1,11 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories (expand-file-name "ac-dict" user-emacs-directory))
 (ac-config-default)
+
+(diminish 'auto-complete-mode)
 
 (setq ac-auto-start 4)
 (setq ac-auto-show-menu 0.5)

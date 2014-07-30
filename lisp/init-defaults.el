@@ -1,7 +1,6 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-
 (diminish 'abbrev-mode)
 
 ;; -- Mode preferences --
