@@ -42,15 +42,18 @@
   "Configure x FRAME."
 
   (global-hl-line-mode 1)
-  (set-face-attribute 'cursor frame :background cursor-color)
+
+  ;; frame is set as nil in face in order to work for every frame
+  (set-face-attribute 'cursor nil :background cursor-color)
 
   (toggle-transparency frame)
 
   (load-theme chosen-theme t)
   (when powerline-p (config-powerline))
 
-  (when set-mode-line-faces-p
-    (set-face-attribute 'mode-line frame
+    (when set-mode-line-faces-p
+      ;; frame is set to nil in face in order for it to run for all frames when a new frame is created
+      (set-face-attribute 'mode-line nil
                         :background mode-line-background
                         :foreground mode-line-foreground))
 

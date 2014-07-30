@@ -28,8 +28,8 @@
 (require 'init-project-utils)
 (require 'init-writting)
 (require 'init-helm)
-(require 'init-keybindings)
 (require 'init-org)
+(require 'init-keybindings)
 
 ;; -- custom --
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
