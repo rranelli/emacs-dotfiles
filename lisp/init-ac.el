@@ -31,7 +31,6 @@
 (define-key ac-complete-mode-map "\C-p" 'ac-previous)
 
 ;; complete with tab, return and \C-m
-(define-key ac-complete-mode-map "\s" 'ac-complete)
 (define-key ac-complete-mode-map "\r" 'ac-complete)
 (define-key ac-complete-mode-map "\C-m" 'ac-complete)
 
