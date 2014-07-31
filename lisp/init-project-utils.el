@@ -10,12 +10,20 @@
 (defun open-loca-project (arg)
   "Open locaweb project starting at ARG."
   (interactive (list (read-directory-name "Which loca project?: " loca-projects-dir)))
-  (find-file arg))
+
+  (let ((prev-dir default-directory))
+    (cd arg)
+    (helm-browse-project)
+    (unwind-protect (cd prev-dir))))
 
 (defun open-code-project (arg)
   "Open code project starting at ARG."
   (interactive (list (read-directory-name "Which code project?: " code-projects-dir)))
-  (find-file arg))
+
+  (let ((prev-dir default-directory))
+    (cd arg)
+    (helm-browse-project)
+    (unwind-protect (cd prev-dir))))
 
 (global-set-key (kbd "C-c p l") 'open-loca-project)
 (global-set-key (kbd "C-c p c") 'open-code-project)
