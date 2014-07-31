@@ -22,9 +22,9 @@
 
 ;; -- ag config --
 (setq
- ag-highlight-search t
- ag-reuse-window t
- ag-reuse-buffers t)
+ ag-highlight-search t ;; highlight the matches
+ ag-reuse-window nil   ;; do not use the same window for the search result
+ ag-reuse-buffers t)   ;; use the same buffer for many searches
 
 (global-set-key (kbd "C-c s a") 'ag-project)
 (global-set-key (kbd "C-c s g") 'ag-regexp)
