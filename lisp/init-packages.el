@@ -54,6 +54,7 @@
     rhtml-mode
     ruby-refactor
     ruby-block
+    rubocop
     ;; other packages
     haskell-mode
     sml-mode)

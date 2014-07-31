@@ -8,7 +8,6 @@
 (require 'robe)
 (require 'ruby-block)
 
-
 (diminish 'ruby-electric-mode)
 (diminish 'auto-fill-function)
 ;;(add-hook 'ruby-mode-hook (lambda () (diminish 'ruby-block-mode)))
