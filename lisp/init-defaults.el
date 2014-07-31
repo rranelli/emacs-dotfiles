@@ -12,6 +12,7 @@
 (smartscan-mode t)
 (global-flycheck-mode t)
 (wrap-region-global-mode)
+(ido-vertical-mode)
 
 (setq pretty-symbol-categories '(lambda relational))
 

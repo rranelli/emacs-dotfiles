@@ -37,10 +37,6 @@
        org-hide-leading-stars t
        org-startup-indented t)
 
-      ;; add hook for nice ido-vertical-mode
-      (add-hook 'org-mode-hook 'ido-vertical-mode)
-      (add-hook 'org-agenda-mode-hook 'ido-vertical-mode)
-
       ;; remove key from agenda
       (define-key org-agenda-mode-map (kbd "C-c p") nil))
 
