@@ -6,6 +6,7 @@
 (global-unset-key (kbd "C-x z"))
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-M-z"))
+(global-unset-key (kbd "C-x C-z"))
 
 ;; join lines!
 (global-set-key (kbd "C-\\") 'join-line)

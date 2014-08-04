@@ -37,8 +37,10 @@
        org-hide-leading-stars t
        org-startup-indented t)
 
-      ;; remove key from agenda
-      (define-key org-agenda-mode-map (kbd "C-c p") nil))
+      ;; removing useless conflict keys on org-mode.
+      (define-key org-agenda-mode-map (kbd "C-c p") nil)
+
+      (define-key org-mode-map (kbd "M-h") nil))
 
   (message "skipping org-mode load"))
 
