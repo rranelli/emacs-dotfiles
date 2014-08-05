@@ -93,5 +93,27 @@
 (define-key ruby-mode-map (kbd "C-c r m") 'ruby-refactor-extract-to-method)
 (define-key ruby-mode-map (kbd "C-c r l") 'ruby-refactor-extract-to-let)
 
+;; ruby-electric playing nice with wrap region
+(defadvice ruby-electric-quote (around first ()
+                                       activate)
+  "Make electric quote play nice with wrap region."
+  (if (use-region-p)
+      (wrap-region-trigger arg (string last-command-event))
+    ad-do-it))
+
+(defadvice ruby-electric-curlies (around first ()
+                                         activate)
+  "Make electric quote play nice with wrap region."
+  (if (use-region-p)
+      (wrap-region-trigger arg (string last-command-event))
+    ad-do-it))
+
+(defadvice ruby-electric-matching-char (around first ()
+                                               activate)
+  "Make electric quote play nice with wrap region."
+  (if (use-region-p)
+      (wrap-region-trigger arg (string last-command-event))
+    ad-do-it))
+
 (provide 'init-ruby)
 ;;; init-ruby.el ends here

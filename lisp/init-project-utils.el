@@ -30,6 +30,5 @@
 (global-set-key (kbd "C-c s g") 'ag-regexp)
 (global-set-key (kbd "C-c s r") 'ag-project-regexp)
 
-
 (provide 'init-project-utils)
 ;;; init-project-utils.el ends here
