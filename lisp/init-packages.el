@@ -55,6 +55,7 @@
     ruby-refactor
     ruby-block
     rubocop
+    undo-tree
     ;; other packages
     haskell-mode
     sml-mode)
