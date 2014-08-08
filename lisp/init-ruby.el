@@ -52,6 +52,29 @@
       (indent-line-to indent)
       (when (> offset 0) (forward-char offset)))))
 
+;; ruby-electric playing nice with wrap region
+(defadvice ruby-electric-quote (around first ()
+                                       activate)
+  "Make electric quote play nice with wrap region."
+  (if (use-region-p)
+      (wrap-region-trigger arg (string last-command-event))
+    ad-do-it))
+
+(defadvice ruby-electric-curlies (around first ()
+                                         activate)
+  "Make electric quote play nice with wrap region."
+  (if (use-region-p)
+      (wrap-region-trigger arg (string last-command-event))
+    ad-do-it))
+
+(defadvice ruby-electric-matching-char (around first ()
+                                               activate)
+  "Make electric quote play nice with wrap region."
+  (if (use-region-p)
+      (wrap-region-trigger arg (string last-command-event))
+    ad-do-it))
+
+;; -- Rspec stuff --
 (defadvice rspec-compile
   (before rspec-save-before-compile (A-FILE-OR-DIR &optional opts) activate)
   "Save current buffer before running spec.  This remove the annoying save confirmation."
@@ -83,8 +106,10 @@
 (setq rinari-tags-file-name "TAGS")
 
 ;; -- keybindings --
-(define-key rspec-mode-map (kbd "C-c , y") 'rspec-spec-or-target-other-window-no-change-window)
-(define-key rspec-mode-map (kbd "C-c , u") 'rspec-find-spec-or-target-other-window)
+(define-key rspec-mode-verifiable-keymap (kbd "y") 'rspec-spec-or-target-other-window-no-change-window)
+(define-key rspec-mode-verifiable-keymap (kbd "u") 'rspec-find-spec-or-target-other-window)
+(define-key rspec-mode-verifiable-keymap (kbd "e") 'rspec-find-spec-or-target-find-example-other-window)
+(define-key rspec-mode-verifiable-keymap (kbd "w") 'rspec-toggle-spec-and-target-find-example)
 
 (define-key ruby-mode-map (kbd "C-c r b") 'ruby-send-buffer)
 (define-key ruby-mode-map (kbd "C-c r r") 'ruby-send-region)
@@ -93,27 +118,43 @@
 (define-key ruby-mode-map (kbd "C-c r m") 'ruby-refactor-extract-to-method)
 (define-key ruby-mode-map (kbd "C-c r l") 'ruby-refactor-extract-to-let)
 
-;; ruby-electric playing nice with wrap region
-(defadvice ruby-electric-quote (around first ()
-                                       activate)
-  "Make electric quote play nice with wrap region."
-  (if (use-region-p)
-      (wrap-region-trigger arg (string last-command-event))
-    ad-do-it))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; the following stuff will probably be merged into rspec-mode
+(defun rspec--toggle-spec-and-target-find-method (toggle-function)
+  (defun get-method-name ()
+    (save-excursion
+      (end-of-line)
+      (search-backward-regexp "\\(?:describe ['\"][#\\.]\\(.*\\)['\"] do\\|def \\(?:self\\)?\\(.*\\)[ (\\$]\\)")
+      (if (match-string 1)
+          (match-string 1)
+        (match-string 2))))
 
-(defadvice ruby-electric-curlies (around first ()
-                                         activate)
-  "Make electric quote play nice with wrap region."
-  (if (use-region-p)
-      (wrap-region-trigger arg (string last-command-event))
-    ad-do-it))
+  (condition-case ex
+      (let ((target-regexp (if (rspec-buffer-is-spec-p)
+                               (format "def \\(self\\)?\\.?%s" (get-method-name))
+                             (format "describe ['\"]#?%s['\"]" (get-method-name)))))
+        (funcall toggle-function)
+        (if (string-match-p target-regexp (buffer-string))
+            (progn
+              (beginning-of-buffer)
+              (search-forward-regexp target-regexp))))
+    ('error (message "No method/spec definition before point"))))
 
-(defadvice ruby-electric-matching-char (around first ()
-                                               activate)
-  "Make electric quote play nice with wrap region."
-  (if (use-region-p)
-      (wrap-region-trigger arg (string last-command-event))
-    ad-do-it))
+(defun rspec-toggle-spec-and-target-find-example ()
+  "Just like rspec-toggle-spec-and-target but tries to toggle between
+the specific example and method given the current point."
+  (interactive)
+  (rspec--toggle-spec-and-target-find-method 'rspec-toggle-spec-and-target))
+
+(defun rspec-find-spec-or-target-find-example-other-window ()
+  "Finds in the other window the spec or the target file, and tries
+  to find the corresponding example or method given the current
+  point."
+  (interactive)
+  (rspec--toggle-spec-and-target-find-method 'rspec-find-spec-or-target-other-window))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
