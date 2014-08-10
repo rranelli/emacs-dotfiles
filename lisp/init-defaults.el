@@ -27,7 +27,7 @@
  backup-inhibited t
  ;; set initial mode
  initial-major-mode 'emacs-lisp-mode
- initial-scratch-message "This be scratch Buffer."
+ initial-scratch-message ";;This be scratch Buffer."
  ;; underline at next line
  x-underline-at-descent-line t
  suggest-key-bindings t
