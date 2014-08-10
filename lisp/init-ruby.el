@@ -103,7 +103,7 @@
           (lambda () (add-to-list 'ac-sources 'ac-source-yasnippet)))
 
 ;; -- keybindings --
-r(define-key rspec-mode-verifiable-keymap (kbd "y") 'rspec-spec-or-target-other-window-no-change-window)
+(define-key rspec-mode-verifiable-keymap (kbd "y") 'rspec-spec-or-target-other-window-no-change-window)
 (define-key rspec-mode-verifiable-keymap (kbd "u") 'rspec-find-spec-or-target-other-window)
 (define-key rspec-mode-verifiable-keymap (kbd "e") 'rspec-find-spec-or-target-find-example-other-window)
 (define-key rspec-mode-verifiable-keymap (kbd "w") 'rspec-toggle-spec-and-target-find-example)
