@@ -46,6 +46,7 @@
     color-theme-sanityinc-solarized
     color-theme-sanityinc-tomorrow
     gruvbox-theme
+    zenburn-theme
     ;; ruby packages
     inf-ruby
     rinari

@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; Customizations
-(defcustom chosen-theme 'solarized-dark
+(defcustom chosen-theme 'zenburn
   "Theme chosen to be initialized." :group 'init-appearance)
 
 (defcustom chosen-terminal-theme 'gruvbox
@@ -16,11 +16,21 @@
 (defvar set-mode-line-faces-p t)
 (defvar powerline-p t)
 
-(defcustom mode-line-background "DeepSkyBlue4"
+;; Solarized: DeepSkyBlue4
+(defcustom mode-line-background "#5F7F5F"
   "Background for the mode-line." :group 'init-appearance)
 
+;; Solarized: Snow
 (defcustom mode-line-foreground "Snow"
   "Background for the mode-line." :group 'init-appearance)
+
+;; Solarized: "CadetBlue4"
+(defcustom powerline-color-arrow "Gray50"
+  "Powerline-color-1." :group 'init-appearance)
+
+;; Solarized "#002b36"
+(defcustom powerline-color-other "#3F3F3F"
+  "Powerline-color-1." :group 'init-appearance)
 
 (defvar paren-highlight-style 'expression)
 
@@ -80,8 +90,8 @@
   (load-file (expand-file-name "vendor/powerline.el" user-emacs-directory))
 
   (setq powerline-arrow-shape 'arrow-14
-        powerline-color1 "CadetBlue4"
-        powerline-color2 "#002b36"
+        powerline-color1 powerline-color-arrow
+        powerline-color2 powerline-color-other
         powerline-column 50)
 
   (set-face-attribute 'mode-line nil :box nil)
