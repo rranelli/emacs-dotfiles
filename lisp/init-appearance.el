@@ -2,50 +2,78 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Customizations
-(defcustom chosen-theme 'zenburn
+;; themes
+(defcustom chosen-x-theme 'zenburn
   "Theme chosen to be initialized." :group 'init-appearance)
 
 (defcustom chosen-terminal-theme 'gruvbox
   "Theme chosen to be initialized in terminal sessions." :group 'init-appearance)
 
-(defcustom cursor-color "sky blue"
-  "Cursor color to be applied when loading themes." :group 'init-appearance)
-
 ;; modeline stuff
 (defvar set-mode-line-faces-p t)
-(defvar powerline-p t)
+(defvar use-powerline-p t)
 
-;; Solarized: DeepSkyBlue4
-(defcustom mode-line-background "#5F7F5F"
-  "Background for the mode-line." :group 'init-appearance)
+;; support
+(defun get-color-config (config-name)
+  "Gets the configuration from the config list by CONFIG-NAME."
+  (let* ((color-settings
+          '((mode-line-background . '((zenburn . "#5F7F5F")
+                                      (gruvbox . "#5F7F5F")
+                                      (solarized-dark . "DeepSkyBlue4")))
 
-;; Solarized: Snow
-(defcustom mode-line-foreground "Snow"
-  "Background for the mode-line." :group 'init-appearance)
+            (mode-line-foreground . '((zenburn . "Snow")
+                                      (gruvbox . "Snow")
+                                      (solarized-dark . "Snow")))
 
-;; Solarized: "CadetBlue4"
-(defcustom powerline-color-arrow "Gray50"
-  "Powerline-color-1." :group 'init-appearance)
+            (powerline-arrow . '((zenburn . "Gray50")
+                                 (gruvbox . "Gray50")
+                                 (solarized-dark . "CadetBlue4")))
 
-;; Solarized "#002b36"
-(defcustom powerline-color-other "#3F3F3F"
-  "Powerline-color-1." :group 'init-appearance)
+            (powerline-other . '((zenburn . "#3F3F3F")
+                                 (gruvbox . "#3F3F3F")
+                                 (solarized-dark . "#002b36")))
 
+            (cursor . '((zenburn . "SkyBlue")
+                        (gruvbox . "SkyBlue")
+                        (solarized-dark . "SkyBlue")))))
+
+         (themed-assoc (eval (cdr (assoc config-name color-settings))))
+         (color (cdr (assoc chosen-theme themed-assoc))))
+    color))
+
+;; nice paren-style highlight, but with buffer local configuration ;)
 (defvar paren-highlight-style 'expression)
+(defun expression-style-show-paren ()
+  "Make show-paren expression only for lisp modes"
+  (make-variable-buffer-local 'show-paren-style)
+  (setq show-paren-style paren-highlight-style))
+(add-hook 'emacs-lisp-mode-hook 'expression-style-show-paren)
 
-;; -- frame config dispatch --
+;; make cursor type a bar
+(modify-all-frames-parameters (list (cons 'cursor-type 'bar)))
+
+;; -- hooks --
+(add-hook 'after-make-frame-functions 'config-frame-appearance)
+
+;; ===========================
+;; == frame config dispatch ==
+;; ===========================
+
+(defvar chosen-theme chosen-x-theme
+  "Chosen theme.")
+
 (defun config-frame-appearance (&optional frame)
   "Configure FRAME with specific settings for terminal or x."
   (interactive)
-  (defun load-appearance (frame force-reload)
-    (if (display-graphic-p frame)
-        (config-x-frame frame)
-      (config-xterm-256color-terminal-frame frame)))
+  (cl-flet
+      ((load-appearance (frame force-reload)
+                        (if (display-graphic-p frame)
+                            (config-x-frame frame)
+                          (config-xterm-256color-terminal-frame frame))))
 
-  (if (called-interactively-p 'any)
-      (load-appearance (selected-frame) t)
-    (load-appearance frame nil)))
+    (if (called-interactively-p 'any)
+        (load-appearance (selected-frame) t)
+      (load-appearance frame nil))))
 
 ;; -- config frames
 (defun config-x-frame (frame)
@@ -54,18 +82,20 @@
   (global-hl-line-mode 1)
 
   ;; frame is set as nil in face in order to work for every frame
-  (set-face-attribute 'cursor nil :background cursor-color)
+  (set-face-attribute 'cursor nil :background (get-color-config 'cursor))
 
   (toggle-transparency frame)
 
+  (setq chosen-theme chosen-x-theme)
   (load-theme chosen-theme t)
-  (when powerline-p (config-powerline))
 
-    (when set-mode-line-faces-p
-      ;; frame is set to nil in face in order for it to run for all frames when a new frame is created
-      (set-face-attribute 'mode-line nil
-                        :background mode-line-background
-                        :foreground mode-line-foreground))
+  (when use-powerline-p (config-powerline))
+
+  (when set-mode-line-faces-p
+    ;; frame is set to nil in face in order for it to run for all frames when a new frame is created
+    (set-face-attribute 'mode-line nil
+                        :background (get-color-config 'mode-line-background)
+                        :foreground (get-color-config 'mode-line-foreground)))
 
   (setq theme-loaded t))
 
@@ -90,15 +120,24 @@
   (load-file (expand-file-name "vendor/powerline.el" user-emacs-directory))
 
   (setq powerline-arrow-shape 'arrow-14
-        powerline-color1 powerline-color-arrow
-        powerline-color2 powerline-color-other
+        powerline-color1 (get-color-config 'powerline-arrow)
+        powerline-color2 (get-color-config 'powerline-other)
         powerline-column 50)
 
   (set-face-attribute 'mode-line nil :box nil)
   (set-face-attribute 'mode-line-inactive nil :box nil))
 
+;; -- xterm256colors terminal frame --
+(defun config-xterm-256color-terminal-frame (frame)
+  "Set specific faces for a 256 color terminal FRAME."
+  (load-theme chosen-terminal-theme t)
+
+  (set-face-attribute 'helm-selection frame :background "black")
+  (set-face-attribute 'helm-ff-directory frame :background "black")
+
+  (set-face-attribute 'magit-diff-add nil :foreground "white" :background "#005f00"))
+
 ;; -- Terminal frame --
-;; Use the functions bellow if not working from a 256color terminal.
 (defun config-terminal-frame (frame)
   "Configure terminal FRAME."
   (set-terminal-faces frame)
@@ -115,28 +154,6 @@
   (set-face-attribute 'magit-branch frame :background "black")
   (set-face-attribute 'magit-log-head-label-remote frame :foreground "black")
   (set-face-attribute 'magit-log-head-label-local frame :foreground "red" :background "black"))
-
-(defun config-xterm-256color-terminal-frame (frame)
-  "Set specific faces for a 256 color terminal FRAME."
-  (load-theme chosen-terminal-theme t)
-
-  (set-face-attribute 'helm-selection frame :background "black")
-  (set-face-attribute 'helm-ff-directory frame :background "black")
-
-  (set-face-attribute 'magit-diff-add nil :foreground "white" :background "#005f00"))
-
-;; nice paren-style highlight, but with buffer local configuration ;)
-(defun expression-style-show-paren ()
-  "Make show-paren expression only for lisp modes"
-  (make-variable-buffer-local 'show-paren-style)
-  (setq show-paren-style paren-highlight-style))
-(add-hook 'emacs-lisp-mode-hook 'expression-style-show-paren)
-
-;; make cursor type a bar
-(modify-all-frames-parameters (list (cons 'cursor-type 'bar)))
-
-;; -- hooks --
-(add-hook 'after-make-frame-functions 'config-frame-appearance)
 
 (provide 'init-appearance)
 ;;; init-appearance.el ends here
