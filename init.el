@@ -29,6 +29,7 @@
 (require 'init-writting)
 (require 'init-helm)
 (require 'init-org)
+(require 'init-neotree)
 (require 'init-keybindings)
 
 ;; -- custom --

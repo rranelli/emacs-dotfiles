@@ -26,7 +26,6 @@
     helm-ls-git
     yasnippet
     smooth-scrolling
-    dirtree
     auto-complete
     ace-jump-mode
     pretty-symbols
@@ -36,6 +35,7 @@
     markdown-mode+
     undo-tree
     yaml-mode
+    neotree
     ;; themes
     solarized-theme
     color-theme-sanityinc-solarized

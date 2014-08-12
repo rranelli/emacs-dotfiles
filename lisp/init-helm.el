@@ -22,15 +22,6 @@
       (helm-find-files-up-one-level 1)
     (backward-delete-char 1)))
 
-(defun git-project-dirtree ()
-  "Open dirtree using the git root."
-  (interactive)
-  (dirtree (helm-ls-git-root-dir) "")
-  (let* ((width (window-width (frame-selected-window)))
-         (desired-width 38)
-         (delta (- desired-width width)))
-    (window-resize (frame-selected-window) delta t)))
-
 ;; keybindings
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
