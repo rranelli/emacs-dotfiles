@@ -1,22 +1,16 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(unless (string-match "^8" (org-version))
-  (message "This version of Org mode is no longer supported")
-  (ignore-errors
-    (package-install 'org)))
-
 (if (file-exists-p "~/Dropbox/org/life.org")
     ;; Set up org-agenda files
-    (progn
-      (defvar org-dir "~/Dropbox/org/")
-      (defvar org-files '("diary.org"
-                          "life.org"
-                          "study.org"
-                          "refile.org"
-                          "opensource.org"
-                          "locaweb.org"
-                          "emacs.org"))
+    (let ((org-dir "~/Dropbox/org/")
+          (org-files '("diary.org"
+                       "life.org"
+                       "study.org"
+                       "refile.org"
+                       "opensource.org"
+                       "locaweb.org"
+                       "emacs.org")))
 
       (setq org-user-agenda-files
             (mapcar (lambda (filename) (concat org-dir filename)) org-files))
@@ -39,7 +33,6 @@
 
       ;; removing useless conflict keys on org-mode.
       (define-key org-agenda-mode-map (kbd "C-c p") nil)
-
       (define-key org-mode-map (kbd "M-h") nil))
 
   (message "skipping org-mode load"))
