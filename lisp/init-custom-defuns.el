@@ -73,8 +73,8 @@
        (string-match "compilation" (buffer-name buffer))
        (string-match "finished" string)
        (not (with-current-buffer buffer
-            (goto-char 1)
-            (search-forward "warning" nil t))))
+              (goto-char 1)
+              (search-forward "warning" nil t))))
       (run-with-timer
        1
        nil
@@ -112,9 +112,7 @@
   (uniquify-all-lines-region (point-min) (point-max)))
 
 ;; -- misc --
-
-;; open project ;)
-
+(defun noop () (interactive) nil)
 
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here
