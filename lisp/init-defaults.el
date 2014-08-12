@@ -1,7 +1,6 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(diminish 'abbrev-mode)
 
 ;; -- Mode preferences --
 (winner-mode 1)
@@ -13,7 +12,13 @@
 (global-flycheck-mode t)
 (wrap-region-global-mode)
 (ido-vertical-mode)
+(global-undo-tree-mode)
 
+;; diminish
+(diminish 'undo-tree-mode)
+(diminish 'abbrev-mode)
+
+;; add pretty symbols for lambdas and relationals
 (setq pretty-symbol-categories '(lambda relational))
 
 ;; -- Variables --
