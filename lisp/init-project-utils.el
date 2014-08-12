@@ -13,23 +13,14 @@
 (defvar code-projects-dir "~/code/")
 
 ;; custom open project. Should probably start using projectile
-(defun open-loca-project (arg)
-  "Open locaweb project starting at ARG."
-  (interactive (list (read-directory-name "Which loca project?: " loca-projects-dir)))
-  (open--project arg))
-
-(defun open-code-project (arg)
-  "Open code project starting at ARG."
-  (interactive (list (read-directory-name "Which code project?: " code-projects-dir)))
-  (open--project arg))
-
-(defun open--project (path)
-  "Opens project at path."
-  (find-file path)
-  (find-file (cdr (car (ffip-project-files))))
-  (delete-other-windows)
-  (neotree-git-project)
-  (other-window -1))
+(defun open--project (base-path)
+  "Open project at path, starting at BASE-PATH."
+  (let ((path (read-directory-name "Which project?: " base-path)))
+    (find-file path)
+    (find-file (cdr (car (ffip-project-files))))
+    (delete-other-windows)
+    (neotree-git-project)
+    (other-window -1)))
 
 ;; ===============
 ;; -- ag config --
@@ -58,9 +49,10 @@
   (interactive)
   (let ((project-dir (ffip-project-root))
         (file-name (buffer-file-name)))
-    (when project-dir
-      (neotree-dir project-dir)
-      (neotree-find file-name)
+    (if project-dir
+        (progn
+          (neotree-dir project-dir)
+          (neotree-find file-name))
       (message "Could not find git project root."))))
 
 (define-key neotree-mode-map (kbd "$") 'neotree-change-root)
@@ -74,8 +66,8 @@
 ;; ==========================
 (defvar project-global-map
   (let ((map (make-sparse-keymap)))
-    (define-key map "l" 'open-loca-project)
-    (define-key map "c" 'open-code-project)
+    (define-key map "l" (lambda () (interactive) (open--project loca-projects-dir)))
+    (define-key map "c" (lambda () (interactive) (open--project code-projects-dir)))
     (define-key map "m" 'magit-status)
     map))
 
