@@ -44,6 +44,8 @@
   ad-do-it
   (pop-to-buffer (neo-global--get-buffer)))
 
+;; ==========================================================
+;; maybe will be merged into a the core
 (defun neotree-git-project ()
   "Open dirtree using the git root."
   (interactive)
@@ -54,6 +56,7 @@
           (neotree-dir project-dir)
           (neotree-find file-name))
       (message "Could not find git project root."))))
+;; ==========================================================
 
 (define-key neotree-mode-map (kbd "$") 'neotree-change-root)
 (define-key neotree-mode-map (kbd "c") 'neotree-create-node)
