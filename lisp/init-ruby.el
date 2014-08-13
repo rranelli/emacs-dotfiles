@@ -10,7 +10,6 @@
 
 (diminish 'ruby-electric-mode)
 (diminish 'auto-fill-function)
-;;(add-hook 'ruby-mode-hook (lambda () (diminish 'ruby-block-mode)))
 (diminish 'ruby-block-mode)
 
 ;; auto modes
@@ -114,48 +113,6 @@
 (define-key ruby-mode-map (kbd "C-c r v") 'ruby-refactor-extract-local-variable)
 (define-key ruby-mode-map (kbd "C-c r m") 'ruby-refactor-extract-to-method)
 (define-key ruby-mode-map (kbd "C-c r l") 'ruby-refactor-extract-to-let)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; the following stuff will probably be merged into rspec-mode
-(defun rspec--toggle-spec-and-target-find-method (toggle-function)
-  (cl-labels
-      ((get-spec-name ()
-                      (save-excursion
-                        (end-of-line)
-                        (search-backward-regexp "\\(?:describe\\|context\\) ['\"][#\\.]\\(.*\\)['\"] do")
-                        (match-string 1)))
-       (get-method-name ()
-                        (save-excursion
-                          (end-of-line)
-                          (search-backward-regexp "def \\(?:self\\)?\\(.?[_a-zA-Z]+\\)")
-                          (match-string 1))))
-    (condition-case ex
-        (let ((target-regexp (if (rspec-buffer-is-spec-p)
-                                 (format "def \\(self\\)?\\.?%s" (get-spec-name))
-                               (format "describe ['\"]#?%s['\"]" (get-method-name)))))
-          (funcall toggle-function)
-          (if (string-match-p target-regexp (buffer-string))
-              (progn
-                (beginning-of-buffer)
-                (search-forward-regexp target-regexp))
-            (message "No matching method/spec.")))
-      ('search-failed (message "No method/spec definition before point.")))))
-
-(defun rspec-toggle-spec-and-target-find-example ()
-  "Just like rspec-toggle-spec-and-target but tries to toggle between
-the specific example and method given the current point."
-  (interactive)
-  (rspec--toggle-spec-and-target-find-method 'rspec-toggle-spec-and-target))
-
-(defun rspec-find-spec-or-target-find-example-other-window ()
-  "Finds in the other window the spec or the target file, and tries
-  to find the corresponding example or method given the current
-  point."
-  (interactive)
-  (rspec--toggle-spec-and-target-find-method 'rspec-find-spec-or-target-other-window))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
