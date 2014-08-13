@@ -107,12 +107,15 @@
 (define-key rspec-mode-verifiable-keymap (kbd "e") 'rspec-find-spec-or-target-find-example-other-window)
 (define-key rspec-mode-verifiable-keymap (kbd "w") 'rspec-toggle-spec-and-target-find-example)
 
-(define-key ruby-mode-map (kbd "C-c r b") 'ruby-send-buffer)
-(define-key ruby-mode-map (kbd "C-c r r") 'ruby-send-region)
-
-(define-key ruby-mode-map (kbd "C-c r v") 'ruby-refactor-extract-local-variable)
-(define-key ruby-mode-map (kbd "C-c r m") 'ruby-refactor-extract-to-method)
-(define-key ruby-mode-map (kbd "C-c r l") 'ruby-refactor-extract-to-let)
+(defvar ruby-mode-custom-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "b") 'ruby-send-buffer)
+    (define-key map (kbd "r") 'ruby-send-region)
+    (define-key map (kbd "v") 'ruby-refactor-extract-local-variable)
+    (define-key map (kbd "m") 'ruby-refactor-extract-to-method)
+    (define-key map (kbd "l") 'ruby-refactor-extract-to-let)
+    map))
+(define-key ruby-mode-map (kbd "C-c r") ruby-mode-custom-map)
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
