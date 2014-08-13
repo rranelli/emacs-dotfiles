@@ -23,6 +23,16 @@
 (add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\Godfile$" . ruby-mode))
 
+;; hook auxiliary modes to ruby mode
+(add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'ruby-mode-hook 'ruby-electric-mode)
+(add-hook 'ruby-mode-hook 'rspec-mode)
+
+(add-hook 'robe-mode-hook
+          (lambda () (add-to-list 'ac-sources 'ac-source-robe)))
+(add-hook 'ruby-mode-hook
+          (lambda () (add-to-list 'ac-sources 'ac-source-yasnippet)))
+
 ;; toggle ruby-block highlight to both keyword and line
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle 'overlay)
@@ -33,6 +43,12 @@
 
 ;; do not add encoding automagically
 (setq ruby-insert-encoding-magic-comment nil)
+
+;; inf ruby stuff
+(defun ruby-send-buffer ()
+  "Send whole buffer to inferior process."
+  (interactive)
+  (ruby-send-region (point-min) (point-max)))
 
 ;; Fix annoying sole close paren. Thanks to Mr. DGutov
 (defadvice ruby-indent-line (after unindent-closing-paren activate)
@@ -79,27 +95,11 @@
   "Save current buffer before running spec.  This remove the annoying save confirmation."
   (save-some-buffers (lambda () (string-match "\\.rb" (buffer-name  (current-buffer))))))
 
-(defun ruby-send-buffer ()
-  "Send whole buffer to inferior process."
-  (interactive)
-  (ruby-send-region (point-min) (point-max)))
-
 (defun rspec-spec-or-target-other-window-no-change-window ()
   "Just like rspec-find-spec-or-target-other-window but does not change the current window."
   (interactive)
   (rspec-find-spec-or-target-other-window)
   (other-window 1))
-
-;; hook auxiliary modes to ruby mode
-(add-hook 'ruby-mode-hook 'robe-mode)
-(add-hook 'ruby-mode-hook 'ruby-electric-mode)
-(add-hook 'ruby-mode-hook 'rspec-mode)
-
-(add-hook 'robe-mode-hook
-          (lambda () (add-to-list 'ac-sources 'ac-source-robe)))
-
-(add-hook 'ruby-mode-hook
-          (lambda () (add-to-list 'ac-sources 'ac-source-yasnippet)))
 
 ;; -- keybindings --
 (define-key rspec-mode-verifiable-keymap (kbd "y") 'rspec-spec-or-target-other-window-no-change-window)

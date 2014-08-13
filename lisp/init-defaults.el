@@ -69,13 +69,10 @@
 
 ;; -- Abbrev --
 (define-abbrev-table 'global-abbrev-table
-  '(
-    ;; math/unicode symbols
-    ("8bes" "bundle exec rspec")
+  '(("8bes" "bundle exec rspec")
     ("8be" "bundle exec")
     ("8rdbm" "bundle exec rake db:migrate db:rollback && bundle exec rake db:migrate")
-    ("8bejs" "bundle exec jekyll serve --watch")
-    ))
+    ("8bejs" "bundle exec jekyll serve --watch")))
 
 ;; -- some automodes --
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
