@@ -33,6 +33,11 @@
 (add-hook 'ruby-mode-hook
           (lambda () (add-to-list 'ac-sources 'ac-source-yasnippet)))
 
+;; fix for rspec and pry
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
+(setenv "PAGER" (executable-find "cat"))
+;; add <Pry.config.pager = false if ENV["EMACS"]> to .pryrc
+
 ;; toggle ruby-block highlight to both keyword and line
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle 'overlay)
