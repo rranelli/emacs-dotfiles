@@ -56,6 +56,49 @@
           (neotree-dir project-dir)
           (neotree-find file-name))
       (message "Could not find git project root."))))
+
+;; ==========================================================
+(defun neotree-delete-node ()
+  (interactive)
+  (catch 'end
+    (let* ((filename (neo-buffer--get-filename-current-line))
+           (buffer (find-buffer-visiting filename)))
+      (if (null filename) (throw 'end nil))
+      (if (not (file-exists-p filename)) (throw 'end nil))
+      (if (not (yes-or-no-p (format "Do you really want to delete %S?"
+                                    filename)))
+          (throw 'end nil))
+      (if (file-directory-p filename)
+          (progn
+            (if (neo-path--has-subfile-p filename)
+                (if (yes-or-no-p (format
+                                  "%S is a directory, delete it recursively?"
+                                  filename)))
+              (delete-directory filename)))
+        (progn
+          (delete-file filename)
+          (when buffer
+            (kill-buffer-ask buffer))))
+      (message "%S deleted." filename)
+      (neo-buffer--refresh t)
+      filename)))
+
+(defun neo-buffer--rename-node ()
+  "Rename current node as another path."
+  (interactive)
+  (let* ((current-path (neo-buffer--get-filename-current-line))
+         (buffer (find-buffer-visiting current-path))
+         to-path
+         msg)
+    (unless (null current-path)
+      (setq msg (format "Rename [%s] to: " (neo-path--file-short-name current-path)))
+      (setq to-path (read-file-name msg (file-name-directory current-path)))
+      (if buffer
+          (with-current-buffer buffer
+            (set-visited-file-name to-path nil t)))
+      (rename-file current-path to-path)
+      (neo-buffer--refresh t)
+      (message "Rename successed."))))
 ;; ==========================================================
 
 (define-key neotree-mode-map (kbd "$") 'neotree-change-root)
