@@ -22,6 +22,16 @@
     (neotree-git-project)
     (other-window -1)))
 
+(defun open-loca-project ()
+  "Open locaweb project."
+  (interactive)
+  (open--project loca-projects-dir))
+
+(defun open-code-project ()
+  "Open personal project."
+  (interactive)
+  (open--project loca-projects-dir))
+
 ;; ===============
 ;; -- ag config --
 ;; ===============
@@ -112,8 +122,8 @@
 ;; ==========================
 (defvar project-global-map
   (let ((map (make-sparse-keymap)))
-    (define-key map "l" (lambda () (interactive) (open--project loca-projects-dir)))
-    (define-key map "c" (lambda () (interactive) (open--project code-projects-dir)))
+    (define-key map "l" 'open-loca-project)
+    (define-key map "c" 'open-code-project)
     (define-key map "m" 'magit-status)
     map))
 
