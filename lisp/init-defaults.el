@@ -4,14 +4,12 @@
 
 ;; -- Mode preferences --
 (winner-mode 1)
-(ido-mode t)
 (menu-bar-mode -1)
 (blink-cursor-mode t)
 (delete-selection-mode t)
 (smartscan-mode t)
 (global-flycheck-mode t)
 (wrap-region-global-mode)
-(ido-vertical-mode)
 (global-undo-tree-mode)
 
 ;; diminish

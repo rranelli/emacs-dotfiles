@@ -69,7 +69,6 @@
 
 ;; -- Utility packages --
 (require 'cl)
-(require 'ido)
 (require 'ffap)
 (require 'recentf)
 (require 'ansi-color)
