@@ -11,6 +11,7 @@
 (global-flycheck-mode t)
 (wrap-region-global-mode)
 (global-undo-tree-mode)
+(ido-vertical-mode)
 
 ;; diminish
 (diminish 'undo-tree-mode)

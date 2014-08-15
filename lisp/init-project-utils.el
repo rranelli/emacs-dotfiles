@@ -30,7 +30,7 @@
 (defun open-code-project ()
   "Open personal project."
   (interactive)
-  (open--project loca-projects-dir))
+  (open--project code-projects-dir))
 
 ;; ===============
 ;; -- ag config --
