@@ -55,6 +55,8 @@
   ad-do-it
   (pop-to-buffer (neo-global--get-buffer)))
 
+(setq neo-persist-show nil)
+
 ;; ==========================================================
 ;; maybe will be merged into a the core
 (defun neotree-git-project ()
