@@ -20,6 +20,7 @@
     (find-file (cdr (car (ffip-project-files))))
     (delete-other-windows)
     (neotree-git-project)
+    (magit-branch-manager)
     (other-window -1)))
 
 (defun open-loca-project ()
