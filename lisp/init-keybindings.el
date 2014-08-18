@@ -31,7 +31,6 @@
 (global-set-key (kbd "C-x C-m") 'shell)
 (global-set-key (kbd "C-x m") 'execute-extended-command)
 
-
 ;; movement and editing
 (global-set-key (kbd "M-n") (lambda () (interactive) (next-line 5)))
 (global-set-key (kbd "M-p") (lambda () (interactive) (previous-line 5)))

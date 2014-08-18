@@ -26,9 +26,9 @@
 (defun get-color-config (config-name)
   "Gets the configuration from the config list by CONFIG-NAME."
   (let* ((color-settings
-          '((zenburn . '((mode-line-background . "#5F7F5F" )
-                         (mode-line-foreground . "Snow")
-                         (powerline-arrow . "Gray50")
+          '((zenburn . '((mode-line-background . "Gray33" )
+                         (mode-line-foreground . "#8FB28F")
+                         (powerline-arrow . "Gray20")
                          (powerline-other . "#3F3F3F")
                          (cursor . "SkyBlue")))
 
