@@ -83,6 +83,7 @@
     (define-key map "c" 'open-code-project)
     (define-key map "m" 'magit-status)
     (define-key map "b" 'magit-branch-manager)
+    (define-key map "n" 'magit-log)
     map))
 
 (defvar ag-global-map
