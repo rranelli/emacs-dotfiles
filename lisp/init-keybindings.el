@@ -61,6 +61,7 @@
 ;; other mode compatibilities
 (define-key dired-mode-map (kbd "M-o") 'other-window)
 (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
+(define-key text-mode-map (kbd "M-r") 'paredit-splice-sexp)
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here
