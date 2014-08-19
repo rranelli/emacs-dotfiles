@@ -61,20 +61,22 @@
     (package-install p)))
 
 ;; -- vendor packages --
-(require 'better-registers)
-(require 'uniquify)
-(require 'linum)
-(require 'dirtree)
-(require 'whitespace)
+(defvar vendor-libs
+  '(cl
+    better-registers
+    uniquify
+    linum
+    whitespace
+    ffap
+    recentf
+    ansi-color
+    dired-x
+    paredit
+    iso-transl
+    yaml-mode))
 
-;; -- Utility packages --
-(require 'cl)
-(require 'ffap)
-(require 'recentf)
-(require 'ansi-color)
-(require 'dired-x)
-(require 'paredit)
-(require 'iso-transl) ;; makes dead-keys work
+(dolist (lib vendor-libs)
+  (require lib))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
