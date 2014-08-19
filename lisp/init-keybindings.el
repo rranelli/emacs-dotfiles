@@ -60,6 +60,7 @@
 
 ;; other mode compatibilities
 (define-key dired-mode-map (kbd "M-o") 'other-window)
+(define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here
