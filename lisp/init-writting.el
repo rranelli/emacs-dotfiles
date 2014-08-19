@@ -5,7 +5,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.md$" . gfm-mode))
 
-;; selecting the dictionary from the post definition
 (defun select-proper-dictionary-language ()
   "Change Ispell dictionary if a tag language: LANGUAGE is found in file."
   (let* ((lang-regexp "-+\nlanguage: ?\\(\\w+\\)\\(?:\n.*\\)*-+\n")

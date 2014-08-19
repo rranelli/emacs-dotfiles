@@ -18,7 +18,7 @@
 (diminish 'abbrev-mode)
 
 ;; add pretty symbols for lambdas and relationals
-(setq pretty-symbol-categories '(lambda relational))
+(setq pretty-symbol-categories '(lambda))
 
 ;; -- Variables --
 (setq
