@@ -12,10 +12,12 @@ The modularization is probably a good example of how to keep your init files cle
 - Emacs24.3 or greater.
 
 *** Installation
-
 To install, clone this repo to and run =./setup_dotfiles=. This will create symbolic links from the
 repository to the =~/.emacs.d/= directory.
-=git clone https://github.com/rranelli/emacs-dotfiles/ && ./emacs-dotfiles/setup_dotfiles=
+
+#+BEGIN_SRC sh
+git clone https://github.com/rranelli/emacs-dotfiles/ && ./emacs-dotfiles/setup_dotfiles
+#+END_SRC
 
 *** Other very nice configurations.
 I have started using Emacs with =emacs-starter-kit=, but =emacs-prelude= and Purcell's
