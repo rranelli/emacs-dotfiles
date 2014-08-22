@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'zenburn
+(defcustom chosen-x-theme 'soothe
   "Theme chosen to be initialized." :group 'init-appearance)
 
 (defcustom chosen-terminal-theme 'gruvbox
@@ -12,37 +12,53 @@
 (defvar chosen-theme chosen-x-theme
   "Chosen theme to be used at the config loaders.")
 
-;; variables
-(defcustom set-mode-line-faces-p t
-  "Define if specific faces should be set for the modeline." :group 'init-appearance)
-
-(defcustom use-powerline-p t
-  "Define if powerline should be loaded." :group 'init-appearance)
-
-(defcustom paren-highlight-style 'expression
-  "Type of paren-highlighting." :group 'init-appearance)
-
 ;; support
 (defun get-color-config (config-name)
   "Gets the configuration from the config list by CONFIG-NAME."
   (let* ((color-settings
-          '((zenburn . '((mode-line-background . "Gray33" )
-                         (mode-line-foreground . "#8FB28F")
-                         (powerline-arrow . "Gray20")
-                         (powerline-other . "#3F3F3F")
-                         (cursor . "SkyBlue")))
-
-            (gruvbox . '((mode-line-background . "#5F7F5F" )
-                         (mode-line-foreground . "Snow")
-                         (powerline-arrow . "Gray50")
-                         (powerline-other . "#3F3F3F")
-                         (cursor . "SkyBlue")))
-
-            (solarized-dark . '((mode-line-background . "DeepSkyBlue4" )
-                                (mode-line-foreground . "Snow")
-                                (powerline-arrow . "CadetBlue4")
-                                (powerline-other . "#002b36")
-                                (cursor . "Skyblue")))))
+          '((zenburn
+             . '((mode-line-background . "Gray33" )
+                 (mode-line-foreground . "#8FB28F")
+                 (powerline-arrow . "Gray20")
+                 (powerline-other . "#3F3F3F")
+                 (cursor . "SkyBlue")
+                 (use-powerline-p . t)
+                 (set-mode-line-faces-p . nil)
+                 (paren-highlight-style . parenthesis)
+                 (custom-faces-fn . (lambda ()))))
+            (gruvbox
+             . '((mode-line-background . "#5F7F5F" )
+                 (mode-line-foreground . "Snow")
+                 (powerline-arrow . "Gray50")
+                 (powerline-other . "#3F3F3F")
+                 (cursor . "SkyBlue")
+                 (use-powerline-p . t)
+                 (set-mode-line-faces-p . t)
+                 (paren-highlight-style . parenthesis)
+                 (custom-faces-fn . (lambda ()
+                                      (set-face-attribute 'helm-selection nil :background "Gray20")))))
+            (soothe
+             . '((mode-line-background . "#5F7F5F" )
+                 (mode-line-foreground . "Snow")
+                 (powerline-arrow . "Gray50")
+                 (powerline-other . "#3F3F3F")
+                 (cursor . "SkyBlue")
+                 (use-powerline-p . t)
+                 (set-mode-line-faces-p . t)
+                 (paren-highlight-style . parenthesis)
+                 (custom-faces-fn . (lambda ()
+                                      (set-face-attribute 'highlight nil :foreground nil)
+                                      (set-face-attribute 'helm-selection nil :background "Gray20")))))
+            (solarized-dark
+             . '((mode-line-background . "DeepSkyBlue4" )
+                 (mode-line-foreground . "Snow")
+                 (powerline-arrow . "CadetBlue4")
+                 (powerline-other . "#002b36")
+                 (cursor . "Skyblue")
+                 (use-powerline-p . t)
+                 (set-mode-line-faces-p . t)
+                 (paren-highlight-style . expression)
+                 (custom-faces-fn . (lambda ()))))))
 
          (themed-assoc (eval (cdr (assoc chosen-theme color-settings))))
          (color (cdr (assoc config-name themed-assoc))))
@@ -50,9 +66,9 @@
 
 ;; nice paren-style highlight, but with buffer local configuration ;)
 (defun expression-style-show-paren ()
-  "Make show-paren expression only for lisp modes"
+  "Make show-paren expression only for LISP modes."
   (make-variable-buffer-local 'show-paren-style)
-  (setq show-paren-style paren-highlight-style))
+  (setq show-paren-style (get-color-config 'paren-highlight-style)))
 (add-hook 'emacs-lisp-mode-hook 'expression-style-show-paren)
 
 ;; make cursor type a bar
@@ -61,7 +77,6 @@
 ;; ===========================
 ;; == frame config dispatch ==
 ;; ===========================
-
 (defun config-frame-appearance (&optional frame)
   "Configure FRAME with specific settings for terminal or x."
   (interactive)
@@ -70,7 +85,6 @@
                         (if (display-graphic-p frame)
                             (config-x-frame frame)
                           (config-xterm-256color-terminal-frame frame))))
-
     (if (called-interactively-p 'any)
         (load-appearance (selected-frame) t)
       (load-appearance frame nil))))
@@ -89,13 +103,14 @@
   (setq chosen-theme chosen-x-theme)
   (load-theme chosen-theme t)
 
-  (when use-powerline-p (config-powerline))
-
-  (when set-mode-line-faces-p
+  (when (get-color-config 'use-powerline-p)
+    (config-powerline))
+  (when (get-color-config 'get-mode-line-faces-p)
     ;; frame is set to nil in face in order for it to run for all frames when a new frame is created
     (set-face-attribute 'mode-line nil
                         :background (get-color-config 'mode-line-background)
                         :foreground (get-color-config 'mode-line-foreground)))
+  (funcall (get-color-config 'custom-faces-fn))
 
   (setq theme-loaded t))
 
@@ -154,6 +169,7 @@
   (set-face-attribute 'magit-branch frame :background "black")
   (set-face-attribute 'magit-log-head-label-remote frame :foreground "black")
   (set-face-attribute 'magit-log-head-label-local frame :foreground "red" :background "black"))
+
 
 ;; load the configuration
 (add-hook 'after-make-frame-functions 'config-frame-appearance)
