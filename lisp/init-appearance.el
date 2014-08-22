@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'soothe
+(defcustom chosen-x-theme 'gruvbox
   "Theme chosen to be initialized." :group 'init-appearance)
 
 (defcustom chosen-terminal-theme 'gruvbox
@@ -25,12 +25,13 @@
                  (use-powerline-p . t)
                  (set-mode-line-faces-p . nil)
                  (paren-highlight-style . parenthesis)
-                 (custom-faces-fn . (lambda ()))))
+                 (custom-faces-fn . (lambda ()
+                                      ))))
             (gruvbox
-             . '((mode-line-background . "#5F7F5F" )
+             . '((mode-line-background . "peru" )
                  (mode-line-foreground . "Snow")
-                 (powerline-arrow . "Gray50")
-                 (powerline-other . "#3F3F3F")
+                 (powerline-arrow . "Gray20")
+                 (powerline-other . "#282828")
                  (cursor . "SkyBlue")
                  (use-powerline-p . t)
                  (set-mode-line-faces-p . t)
@@ -48,7 +49,8 @@
                  (paren-highlight-style . parenthesis)
                  (custom-faces-fn . (lambda ()
                                       (set-face-attribute 'highlight nil :foreground nil)
-                                      (set-face-attribute 'helm-selection nil :background "Gray20")))))
+                                      (set-face-attribute 'helm-selection nil :background "Gray20")
+                                      (set-face-attribute 'helm-ff-directory frame :background "black")))))
             (solarized-dark
              . '((mode-line-background . "DeepSkyBlue4" )
                  (mode-line-foreground . "Snow")
@@ -58,7 +60,8 @@
                  (use-powerline-p . t)
                  (set-mode-line-faces-p . t)
                  (paren-highlight-style . expression)
-                 (custom-faces-fn . (lambda ()))))))
+                 (custom-faces-fn . (lambda ()
+                                      ))))))
 
          (themed-assoc (eval (cdr (assoc chosen-theme color-settings))))
          (color (cdr (assoc config-name themed-assoc))))
@@ -95,40 +98,37 @@
 
   (global-hl-line-mode 1)
 
-  ;; frame is set as nil in face in order to work for every frame
-  (set-face-attribute 'cursor nil :background (get-color-config 'cursor))
-
   (toggle-transparency frame)
 
   (setq chosen-theme chosen-x-theme)
   (load-theme chosen-theme t)
 
+  (set-face-attribute 'cursor nil :background (get-color-config 'cursor))
   (when (get-color-config 'use-powerline-p)
     (config-powerline))
-  (when (get-color-config 'get-mode-line-faces-p)
+  (when (get-color-config 'set-mode-line-faces-p)
     ;; frame is set to nil in face in order for it to run for all frames when a new frame is created
     (set-face-attribute 'mode-line nil
                         :background (get-color-config 'mode-line-background)
                         :foreground (get-color-config 'mode-line-foreground)))
+
   (funcall (get-color-config 'custom-faces-fn))
 
   (setq theme-loaded t))
 
-(defun toggle-transparency (&optional frame)
+(defun toggle-transparency (&optional frame force-transp)
   "Toggle frame transparency for FRAME.  Use selected frame if frame not given."
   (interactive)
-  (defun other--thing (thing first second)
-    (if (equal thing first) second first))
-
-  (defun toggle--transparency (frame min-transp max-transp)
-    (let ((transp (frame-parameter frame 'alpha)))
-      (set-frame-parameter frame 'alpha (other--thing transp min-transp max-transp))))
-
-  (let ((max-transp '(100 100))
-        (min-transp '(95 95)))
-    (if (called-interactively-p 'any)
-        (toggle--transparency (selected-frame) min-transp max-transp)
-      (toggle--transparency frame min-transp max-transp))))
+  (cl-flet ((other--thing (thing first second)
+                          (if (equal thing first) second first))
+            (toggle--transparency (frame min-transp max-transp)
+                                  (let ((transp (frame-parameter frame 'alpha)))
+                                    (set-frame-parameter frame 'alpha (other--thing transp min-transp max-transp)))))
+    (let ((max-transp '(100 100))
+          (min-transp '(95 95)))
+      (if (called-interactively-p 'any)
+          (toggle--transparency (selected-frame) min-transp max-transp)
+        (toggle--transparency frame min-transp max-transp)))))
 
 (defun config-powerline ()
   "Set up powerline faces for FRAME."
