@@ -32,7 +32,8 @@
 
 (defun org-jekyll-prepend-date-to-file-name ()
   (let* ((org-jekyll-file-name (buffer-file-name))
-         (is-org-jekyll-file-p (string= (file-name-extension org-jekyll-file-name) "org"))
+         (org-jekyll-is-org-file-p (string= (file-name-extension org-jekyll-file-name) "org"))
+         (org-jekyll-is-date-prepended nil)
 
          (org-jekyll-file-name-nondirectory (file-name-nondirectory org-jekyll-file-name))
          (org-jekyll-file-directory (file-name-directory org-jekyll-file-name))
@@ -44,13 +45,13 @@
                                     current-date
                                     "-"
                                     org-jekyll-file-name-nondirectory)))
-    (when is-org-jekyll-file-p
+    (when org-jekyll-is-org-file-p
       (set-visited-file-name org-jekyll-file-name-new t t)
       (rename-file org-jekyll-file-name org-jekyll-file-name-new t))))
 
 (defun org-jekyll-promote-draft-to-post ()
   (let* ((org-jekyll-file-name (buffer-file-name))
-         (is-org-jekyll-file-p (string= (file-name-extension org-jekyll-file-name) "org"))
+         (org-jekyll-is-org-file-p (string= (file-name-extension org-jekyll-file-name) "org"))
          (is-org-jekyll-draft-file-p (string-match "/_drafts/" org-jekyll-file-name))
 
          (md-file-name (replace-regexp-in-string "/_drafts" "" org-jekyll-file-name))
@@ -59,7 +60,7 @@
          (org-jekyll-file-name-new (replace-regexp-in-string "/_drafts" "/_posts" org-jekyll-file-name))
          (md-file-name-new (replace-regexp-in-string "/_drafts" "/_posts" md-file-name)))
     (when (and
-           is-org-jekyll-file-p
+           org-jekyll-is-org-file-p
            is-org-jekyll-draft-file-p)
       (set-visited-file-name org-jekyll-file-name-new t t)
       (rename-file org-jekyll-file-name org-jekyll-file-name-new t))))
@@ -70,13 +71,13 @@
 (add-hook 'markdown-mode-hook 'select-proper-dictionary-language)
 (add-hook 'markdown-mode-hook
           (lambda () (add-hook 'after-save-hook 'select-proper-dictionary-language nil 'make-it-local)))
+
 (add-hook 'org-jekyll-mode-hook 'select-proper-dictionary-language)
 (add-hook 'org-jekyll-mode-hook
           (lambda () (add-hook 'after-save-hook 'select-proper-dictionary-language nil 'make-it-local)))
 
 ;; -- keybindings --
-(define-key text-mode-map (kbd "C-c w p") 'org-jekyll-publish-org-as-markdown)
-(define-key text-mode-map (kbd "C-c w v") 'org-jekyll-preview-org-as-markdown)
+(define-key text-mode-map (kbd "C-c w p") 'org-jekyll-publish-org-to-jekyll)
 (define-key text-mode-map (kbd "C-c w s c") 'flyspell-buffer)
 (define-key text-mode-map (kbd "C-c w s t") 'flyspell-mode)
 
