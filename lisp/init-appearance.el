@@ -119,7 +119,7 @@
 (defun toggle-transparency (&optional frame force-transp)
   "Toggle frame transparency for FRAME.  Use selected frame if frame not given."
   (interactive)
-  (cl-flet ((other--thing (thing first second)
+  (cl-labels ((other--thing (thing first second)
                           (if (equal thing first) second first))
             (toggle--transparency (frame min-transp max-transp)
                                   (let ((transp (frame-parameter frame 'alpha)))
