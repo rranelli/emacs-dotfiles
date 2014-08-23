@@ -28,7 +28,7 @@
     init-lisp
     init-isearch
     init-project-utils
-    init-writting
+    init-writing
     init-helm
     init-org
     init-keybindings))
