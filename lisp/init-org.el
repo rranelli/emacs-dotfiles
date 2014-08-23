@@ -37,25 +37,5 @@
 
   (message "skipping org-mode load"))
 
-(defun org-insert-src-block (src-code-type)
-  "Insert a `SRC-CODE-TYPE' type source code block in `org-mode'."
-  (interactive
-   (let ((src-code-types
-          '("emacs-lisp" "python" "C" "sh" "java" "js" "clojure" "C++" "css"
-            "calc" "asymptote" "dot" "gnuplot" "ledger" "lilypond" "mscgen"
-            "octave" "oz" "plantuml" "R" "sass" "screen" "sql" "awk" "ditaa"
-            "haskell" "latex" "lisp" "matlab" "ocaml" "org" "perl" "ruby"
-            "scheme" "sqlite")))
-     (list (ido-completing-read "Source code type: " src-code-types))))
-  (newline-and-indent)
-  (insert (format "#+BEGIN_SRC %s\n" src-code-type))
-  (newline-and-indent)
-  (insert "#+END_SRC\n")
-  (previous-line 2)
-  (org-edit-src-code))
-
-(define-key org-mode-map (kbd "C-c o s") 'org-insert-src-block)
-(define-key org-src-mode-map (kbd "C-c C-c") 'org-edit-src-exit)
-
 (provide 'init-org)
 ;;; init-org.el ends here

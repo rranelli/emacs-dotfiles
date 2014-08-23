@@ -2,12 +2,16 @@
 # name: blog
 # key: blog
 # --
+#+AUTHOR: Renan Ranelli (renanranelli@gmail.com)
+#+OPTIONS: toc:nil n:3
 #+STARTUP: showall indent
+#+STARTUP: oddeven
 #+STARTUP: hidestars
 #+BEGIN_HTML
 ---
+language: brasileiro
 layout: default
 title: ${1:title}
-excerpt: ${2:excerpt}
 ---
+#+END_HTML
 $0
