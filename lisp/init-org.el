@@ -55,6 +55,7 @@
   (org-edit-src-code))
 
 (define-key org-mode-map (kbd "C-c o s") 'org-insert-src-block)
+(define-key org-src-mode-map (kbd "C-c C-c") 'org-edit-src-exit)
 
 (provide 'init-org)
 ;;; init-org.el ends here
