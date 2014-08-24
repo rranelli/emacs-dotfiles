@@ -65,6 +65,18 @@
       (set-visited-file-name org-jekyll-file-name-new t t)
       (rename-file org-jekyll-file-name org-jekyll-file-name-new t))))
 
+(defun org-jekyll-new-draft ()
+  "Open new draft file."
+  (interactive)
+  (let* ((post-title (read-string "post title: "))
+        (post-title-dashed (replace-regexp-in-string " " "-" post-title))
+        (drafts-template-path "org/_drafts/%s.org"))
+    (find-file (concat (ffip-project-root) (format drafts-template-path post-title-dashed)))
+
+    (insert "blog")
+    (yas-expand)
+    (insert post-title)))
+
 ;; -- hooks --
 ;; nested hooks are amazing!
 ;; ref: (http://stackoverflow.com/questions/6138029/how-to-add-a-hook-to-only-run-in-a-particular-mode)
@@ -78,6 +90,7 @@
 
 ;; -- keybindings --
 (define-key text-mode-map (kbd "C-c w p") 'org-jekyll-publish-org-to-jekyll)
+(define-key text-mode-map (kbd "C-c w n") 'org-jekyll-new-draft)
 (define-key text-mode-map (kbd "C-c w s c") 'flyspell-buffer)
 (define-key text-mode-map (kbd "C-c w s t") 'flyspell-mode)
 
