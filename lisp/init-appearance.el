@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'gruvbox
+(defcustom chosen-x-theme 'zenburn
   "Theme chosen to be initialized." :group 'init-appearance)
 
 (defcustom chosen-terminal-theme 'gruvbox
@@ -17,18 +17,18 @@
   "Gets the configuration from the config list by CONFIG-NAME."
   (let* ((color-settings
           '((zenburn
-             . '((mode-line-background . "Gray33" )
+             . '((mode-line-background . "Gray33")
                  (mode-line-foreground . "#8FB28F")
                  (powerline-arrow . "Gray20")
                  (powerline-other . "#3F3F3F")
                  (cursor . "SkyBlue")
                  (use-powerline-p . t)
                  (set-mode-line-faces-p . nil)
-                 (paren-highlight-style . parenthesis)
+                 (paren-highlight-style . expression)
                  (custom-faces-fn . (lambda ()
                                       ))))
             (gruvbox
-             . '((mode-line-background . "peru" )
+             . '((mode-line-background . "peru")
                  (mode-line-foreground . "Snow")
                  (powerline-arrow . "Gray20")
                  (powerline-other . "#282828")
@@ -39,7 +39,7 @@
                  (custom-faces-fn . (lambda ()
                                       (set-face-attribute 'helm-selection nil :background "Gray20")))))
             (soothe
-             . '((mode-line-background . "#5F7F5F" )
+             . '((mode-line-background . "#5F7F5F")
                  (mode-line-foreground . "Snow")
                  (powerline-arrow . "Gray50")
                  (powerline-other . "#3F3F3F")
@@ -52,7 +52,7 @@
                                       (set-face-attribute 'helm-selection nil :background "Gray20")
                                       (set-face-attribute 'helm-ff-directory frame :background "black")))))
             (solarized-dark
-             . '((mode-line-background . "DeepSkyBlue4" )
+             . '((mode-line-background . "DeepSkyBlue4")
                  (mode-line-foreground . "Snow")
                  (powerline-arrow . "CadetBlue4")
                  (powerline-other . "#002b36")
@@ -98,7 +98,7 @@
 
   (global-hl-line-mode 1)
 
-  (toggle-transparency frame)
+  (toggle-transparency frame t)
 
   (setq chosen-theme chosen-x-theme)
   (load-theme chosen-theme t)
@@ -120,10 +120,12 @@
   "Toggle frame transparency for FRAME.  Use selected frame if frame not given."
   (interactive)
   (cl-labels ((other--thing (thing first second)
-                          (if (equal thing first) second first))
-            (toggle--transparency (frame min-transp max-transp)
-                                  (let ((transp (frame-parameter frame 'alpha)))
-                                    (set-frame-parameter frame 'alpha (other--thing transp min-transp max-transp)))))
+                            (if (equal thing first) second first))
+              (toggle--transparency (frame min-transp max-transp)
+                                    (let ((transp (frame-parameter frame 'alpha)))
+                                      (if force-transp
+                                          (set-frame-parameter frame 'alpha min-transp)
+                                        (set-frame-parameter frame 'alpha (other--thing transp min-transp max-transp))))))
     (let ((max-transp '(100 100))
           (min-transp '(95 95)))
       (if (called-interactively-p 'any)
