@@ -29,7 +29,7 @@
       (setq
        org-odd-levels-only t
        org-hide-leading-stars t
-       org-startup-indented t)
+       org-startup-indented nil)
 
       ;; removing useless conflict keys on org-mode.
       (define-key org-agenda-mode-map (kbd "C-c p") nil)
