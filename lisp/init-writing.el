@@ -51,7 +51,7 @@
 
 (defun org-jekyll-promote-draft-to-post ()
   (let* ((org-jekyll-file-name (buffer-file-name))
-         (org-jekyll-is-org-file-p (string= (file-name-extension org-jekyll-file-name) "org"))
+         (is-org-jekyll-file-p (string= (file-name-extension org-jekyll-file-name) "org"))
          (is-org-jekyll-draft-file-p (string-match "/_drafts/" org-jekyll-file-name))
 
          (md-file-name (replace-regexp-in-string "/_drafts" "" org-jekyll-file-name))
@@ -60,7 +60,7 @@
          (org-jekyll-file-name-new (replace-regexp-in-string "/_drafts" "/_posts" org-jekyll-file-name))
          (md-file-name-new (replace-regexp-in-string "/_drafts" "/_posts" md-file-name)))
     (when (and
-           org-jekyll-is-org-file-p
+           is-org-jekyll-file-p
            is-org-jekyll-draft-file-p)
       (set-visited-file-name org-jekyll-file-name-new t t)
       (rename-file org-jekyll-file-name org-jekyll-file-name-new t))))
@@ -69,15 +69,15 @@
   "Open new draft file."
   (interactive)
   (let* ((post-title (read-string "post title: "))
-        (post-title-dashed (replace-regexp-in-string " " "-" post-title))
-        (drafts-template-path "org/_drafts/%s.org"))
+         (post-title-dashed (replace-regexp-in-string " " "-" post-title))
+         (drafts-template-path "org/_drafts/%s.org"))
     (find-file (concat (ffip-project-root) (format drafts-template-path post-title-dashed)))
 
     (insert "blog")
     (yas-expand)
     (insert post-title)))
 
-;; -- hooks --
+;; -- hooks --p
 ;; nested hooks are amazing!
 ;; ref: (http://stackoverflow.com/questions/6138029/how-to-add-a-hook-to-only-run-in-a-particular-mode)
 (add-hook 'markdown-mode-hook 'select-proper-dictionary-language)
@@ -90,9 +90,10 @@
 
 ;; -- keybindings --
 (define-key text-mode-map (kbd "C-c w p") 'org-jekyll-publish-org-to-jekyll)
-(define-key text-mode-map (kbd "C-c w n") 'org-jekyll-new-draft)
 (define-key text-mode-map (kbd "C-c w s c") 'flyspell-buffer)
 (define-key text-mode-map (kbd "C-c w s t") 'flyspell-mode)
+
+(define-key global-map (kbd "C-c w n") 'org-jekyll-new-draft)
 
 (provide 'init-writing)
 ;;; init-markdown.el ends here
