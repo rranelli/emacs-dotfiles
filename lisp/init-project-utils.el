@@ -68,11 +68,17 @@
           (neotree-find file-name))
       (message "Could not find git project root."))))
 
-(define-key neotree-mode-map (kbd "$") 'neotree-change-root)
-(define-key neotree-mode-map (kbd "c") 'neotree-create-node)
-(define-key neotree-mode-map (kbd "d") 'neotree-delete-node)
-(define-key neotree-mode-map (kbd "r") 'neotree-rename-node)
-(define-key neotree-mode-map (kbd "C-x C-s") 'noop)
+;; =================================================
+;; maybe will be merged into neotree
+(let ((map neotree-mode-map))
+  (define-key map (kbd "$") 'neotree-change-root)
+  (define-key map (kbd "c") 'neotree-create-node)
+  (define-key map (kbd "+") 'neotree-create-node)
+  (define-key map (kbd "d") 'neotree-delete-node)
+  (define-key map (kbd "r") 'neotree-rename-node)
+  (define-key map (kbd "e") 'neotree-enter)
+  (define-key map (kbd "C-x C-s") 'noop))
+;; =================================================
 
 ;; ==========================
 ;; -- project utils keymap --
@@ -99,7 +105,6 @@
     (define-key map "d" 'neotree-dir)
     (define-key map "f" 'neotree-find)
     map))
-
 (define-key global-map (kbd "C-c p") project-global-map)
 
 (provide 'init-project-utils)
