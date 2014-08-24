@@ -16,8 +16,11 @@
 (defun open--project (base-path)
   "Open project at path, starting at BASE-PATH."
   (let ((path (read-directory-name "Which project?: " base-path)))
-    (find-file path)
-    (find-file (cdr (car (ffip-project-files))))
+    (if (file-exists-p (expand-file-name "Gemfile" path))
+        (find-file (expand-file-name "Gemfile" path))
+      (progn
+        (find-file path)
+        (find-file (cdr (car (ffip-project-files))))))
     (delete-other-windows)
     (neotree-git-project)
     (magit-branch-manager)
