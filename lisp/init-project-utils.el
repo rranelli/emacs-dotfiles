@@ -44,17 +44,6 @@
 ;; ====================
 ;; -- neotree config --
 ;; ====================
-
-(defadvice neotree-show (around neotree-show-jump-advice activate)
-  "Go to neotree after showing it."
-  ad-do-it
-  (pop-to-buffer (neo-global--get-buffer)))
-
-(defadvice neotree-dir (around neotree-show-jump-advice activate)
-  "Go to neotree after showing it."
-  ad-do-it
-  (pop-to-buffer (neo-global--get-buffer)))
-
 (setq neo-persist-show nil)
 
 (defun neotree-git-project ()
