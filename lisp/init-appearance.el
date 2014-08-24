@@ -3,16 +3,14 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'zenburn
+(defcustom chosen-x-theme 'gruvbox
   "Theme chosen to be initialized." :group 'init-appearance)
-
 (defcustom chosen-terminal-theme 'gruvbox
   "Theme chosen to be initialized in terminal sessions." :group 'init-appearance)
-
 (defvar chosen-theme chosen-x-theme
   "Chosen theme to be used at the config loaders.")
 
-;; support
+;; configuration
 (defun get-color-config (config-name)
   "Gets the configuration from the config list by CONFIG-NAME."
   (let* ((color-settings
@@ -21,7 +19,7 @@
                  (mode-line-foreground . "#8FB28F")
                  (powerline-arrow . "Gray20")
                  (powerline-other . "#3F3F3F")
-                 (cursor . "SkyBlue")
+                 (cursor . nil)
                  (use-powerline-p . t)
                  (set-mode-line-faces-p . nil)
                  (paren-highlight-style . expression)
@@ -32,14 +30,18 @@
                  (mode-line-foreground . "Snow")
                  (powerline-arrow . "Gray20")
                  (powerline-other . "#282828")
-                 (cursor . "SkyBlue")
+                 (cursor . nil)
                  (use-powerline-p . t)
                  (set-mode-line-faces-p . t)
                  (paren-highlight-style . parenthesis)
                  (custom-faces-fn . (lambda ()
-                                      (set-face-attribute 'helm-selection nil :background "Gray20")))))
+                                      (set-face-attribute 'helm-selection nil
+                                                          :background "Gray20")
+                                      (set-face-attribute 'helm-ff-directory nil
+                                                          :background "#282828"
+                                                          :foreground "#fb4934")))))
             (soothe
-             . '((mode-line-background . "#5F7F5F")
+             . '((mode-line-background . "peru")
                  (mode-line-foreground . "Snow")
                  (powerline-arrow . "Gray50")
                  (powerline-other . "#3F3F3F")
@@ -48,9 +50,12 @@
                  (set-mode-line-faces-p . t)
                  (paren-highlight-style . parenthesis)
                  (custom-faces-fn . (lambda ()
-                                      (set-face-attribute 'highlight nil :foreground nil)
-                                      (set-face-attribute 'helm-selection nil :background "Gray20")
-                                      (set-face-attribute 'helm-ff-directory frame :background "black")))))
+                                      (set-face-attribute 'highlight nil
+                                                          :foreground nil)
+                                      (set-face-attribute 'helm-selection nil
+                                                          :background "Gray20")
+                                      (set-face-attribute 'helm-ff-directory nil
+                                                          :background "black")))))
             (solarized-dark
              . '((mode-line-background . "DeepSkyBlue4")
                  (mode-line-foreground . "Snow")
@@ -74,9 +79,6 @@
   (setq show-paren-style (get-color-config 'paren-highlight-style)))
 (add-hook 'emacs-lisp-mode-hook 'expression-style-show-paren)
 
-;; make cursor type a bar
-(modify-all-frames-parameters (list (cons 'cursor-type 'bar)))
-
 ;; ===========================
 ;; == frame config dispatch ==
 ;; ===========================
@@ -96,14 +98,18 @@
 (defun config-x-frame (frame)
   "Configure x FRAME."
 
-  (global-hl-line-mode 1)
-
-  (toggle-transparency frame t)
-
   (setq chosen-theme chosen-x-theme)
   (load-theme chosen-theme t)
 
-  (set-face-attribute 'cursor nil :background (get-color-config 'cursor))
+  ;; make cursor type a bar
+  (modify-all-frames-parameters (list (cons 'cursor-type 'bar)))
+
+  (global-hl-line-mode 1)
+  (toggle-transparency frame t)
+
+  (when (get-color-config 'cursor)
+    (set-face-attribute 'cursor nil
+                        :background (get-color-config 'cursor)))
   (when (get-color-config 'use-powerline-p)
     (config-powerline))
   (when (get-color-config 'set-mode-line-faces-p)
@@ -111,7 +117,6 @@
     (set-face-attribute 'mode-line nil
                         :background (get-color-config 'mode-line-background)
                         :foreground (get-color-config 'mode-line-foreground)))
-
   (funcall (get-color-config 'custom-faces-fn))
 
   (setq theme-loaded t))
@@ -141,18 +146,24 @@
         powerline-color2 (get-color-config 'powerline-other)
         powerline-column 50)
 
-  (set-face-attribute 'mode-line nil :box nil)
-  (set-face-attribute 'mode-line-inactive nil :box nil))
+  (set-face-attribute 'mode-line nil
+                      :box nil)
+  (set-face-attribute 'mode-line-inactive nil
+                      :box nil))
 
 ;; -- xterm256colors terminal frame --
 (defun config-xterm-256color-terminal-frame (frame)
   "Set specific faces for a 256 color terminal FRAME."
   (load-theme chosen-terminal-theme t)
 
-  (set-face-attribute 'helm-selection frame :background "black")
-  (set-face-attribute 'helm-ff-directory frame :background "black")
+  (set-face-attribute 'helm-selection frame
+                      :background "black")
+  (set-face-attribute 'helm-ff-directory frame
+                      :background "black")
 
-  (set-face-attribute 'magit-diff-add nil :foreground "white" :background "#005f00"))
+  (set-face-attribute 'magit-diff-add nil
+                      :foreground "white"
+                      :background "#005f00"))
 
 ;; -- Terminal frame --
 (defun config-terminal-frame (frame)
@@ -162,15 +173,26 @@
 
 (defun set-terminal-faces (frame)
   "Set specific faces for a terminal FRAME.  This thing is hard as hell."
-  (set-face-attribute 'helm-selection frame :background "black")
-  (set-face-attribute 'helm-match frame :foreground "blue")
-  (set-face-attribute 'helm-source-header frame :foreground "white" :background "blue")
+  (set-face-attribute 'helm-selection frame
+                      :background "black")
+  (set-face-attribute 'helm-match frame
+                      :foreground "blue")
+  (set-face-attribute 'helm-source-header frame
+                      :foreground "white"
+                      :background "blue")
 
-  (set-face-attribute 'mode-line frame :foreground "black" :background "white" :box nil)
+  (set-face-attribute 'mode-line frame
+                      :foreground "black"
+                      :background "white"
+                      :box nil)
 
-  (set-face-attribute 'magit-branch frame :background "black")
-  (set-face-attribute 'magit-log-head-label-remote frame :foreground "black")
-  (set-face-attribute 'magit-log-head-label-local frame :foreground "red" :background "black"))
+  (set-face-attribute 'magit-branch frame
+                      :background "black")
+  (set-face-attribute 'magit-log-head-label-remote frame
+                      :foreground "black")
+  (set-face-attribute 'magit-log-head-label-local frame
+                      :foreground "red"
+                      :background "black"))
 
 
 ;; load the configuration
