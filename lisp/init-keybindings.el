@@ -28,7 +28,7 @@
 (global-set-key (kbd "C-c i") 'esk-indent-buffer)
 
 ;; commands
-(global-set-key (kbd "C-x C-m") 'shell)
+(global-set-key (kbd "C-x C-m") 'new-shell)
 (global-set-key (kbd "C-x m") 'execute-extended-command)
 
 ;; movement and editing

@@ -64,7 +64,11 @@
                         activate)
   "Do not query exit confirmation for shell process buffer."
   (interactive)
-  (set-process-query-on-exit-flag (get-process "shell") nil))
+  (let* ((shell-processes (remove-if-not
+                           (lambda (process) (string-match-p "shell" (process-name process)))
+                           (process-list))))
+    (dolist (p shell-processes)
+      (set-process-query-on-exit-flag p nil))))
 
 ;; -- Abbrev --
 (define-abbrev-table 'global-abbrev-table

@@ -33,15 +33,13 @@
   (interactive)
   (split-window-vertically)
   (other-window 1 nil)
-  (switch-to-next-buffer)
-  )
+  (switch-to-next-buffer))
 
 (defun hsplit-last-buffer ()
   (interactive)
   (split-window-horizontally)
   (other-window 1 nil)
-  (switch-to-next-buffer)
-  )
+  (switch-to-next-buffer))
 
 (defun swap-buffers-in-windows ()
   "Put the buffer from the selected window in next window, and vice versa."
@@ -110,6 +108,13 @@
   "Delete duplicate lines in buffer and keep first occurrence."
   (interactive "*")
   (uniquify-all-lines-region (point-min) (point-max)))
+
+(setq next-shell--count 0)
+(defun new-shell ()
+  "Create shell with given name."
+  (interactive)
+  (setq next-shell--count (1+ next-shell--count))
+  (shell (format "*shell*<%d>" next-shell--count)))
 
 ;; -- misc --
 (defun noop () (interactive) nil)
