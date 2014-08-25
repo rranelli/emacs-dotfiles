@@ -25,7 +25,7 @@
 (defun org-jekyll-export-to-jekyll ()
   (let* ((post-file-org (buffer-file-name))
          (post-file-md (replace-regexp-in-string "\\.org" ".md" post-file-org))
-         (target-file-md (replace-regexp-in-string "/_org" "" post-file-md)))
+         (target-file-md (replace-regexp-in-string "/org" "" post-file-md)))
     (when (string= (file-name-extension post-file-org) "org")
       (org-md-export-to-markdown)
       (rename-file post-file-md target-file-md t))))
@@ -52,18 +52,21 @@
 (defun org-jekyll-promote-draft-to-post ()
   (let* ((org-jekyll-file-name (buffer-file-name))
          (is-org-jekyll-file-p (string= (file-name-extension org-jekyll-file-name) "org"))
-         (is-org-jekyll-draft-file-p (string-match "/_drafts/" org-jekyll-file-name))
+         (is-org-jekyll-draft-file-p (string-match "/_drafts" org-jekyll-file-name))
 
-         (md-file-name (replace-regexp-in-string "/_drafts" "" org-jekyll-file-name))
-         (md-file-exist-p (file-exists-p md-file-name))
+         (md-file-name (replace-regexp-in-string "\\.org" ".md" org-jekyll-file-name))
+         (md-target-file-name (replace-regexp-in-string "/org" "" md-file-name))
+
 
          (org-jekyll-file-name-new (replace-regexp-in-string "/_drafts" "/_posts" org-jekyll-file-name))
-         (md-file-name-new (replace-regexp-in-string "/_drafts" "/_posts" md-file-name)))
+         (md-file-name-new (replace-regexp-in-string "/_drafts" "/_posts" md-target-file-name)))
     (when (and
            is-org-jekyll-file-p
            is-org-jekyll-draft-file-p)
       (set-visited-file-name org-jekyll-file-name-new t t)
-      (rename-file org-jekyll-file-name org-jekyll-file-name-new t))))
+      (rename-file org-jekyll-file-name org-jekyll-file-name-new t)
+
+      (rename-file md-target-file-name md-file-name-new))))
 
 (defun org-jekyll-new-draft ()
   "Open new draft file."
