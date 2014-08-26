@@ -116,7 +116,8 @@
   (cl-flet ((get-dir-name-last (path)
                                (string-match "/\\([^/]*\\)/$" path)
                                (match-string 1 path)))
-    (let* ((dir-name-last (get-dir-name-last (ffip-project-root)))
+    (let* ((project-root (ffip-project-root))
+           (dir-name-last (when project-root (get-dir-name-last project-root)))
            (shell-name (if dir-name-last
                            dir-name-last
                          (progn
