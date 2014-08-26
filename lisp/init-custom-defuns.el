@@ -113,8 +113,16 @@
 (defun new-shell ()
   "Create shell with given name."
   (interactive)
-  (setq next-shell--count (1+ next-shell--count))
-  (shell (format "*shell*<%d>" next-shell--count)))
+  (cl-flet ((get-dir-name-last (path)
+                               (string-match "/\\([^/]*\\)/$" path)
+                               (match-string 1 path)))
+    (let* ((dir-name-last (get-dir-name-last (ffip-project-root)))
+           (shell-name (if dir-name-last
+                           dir-name-last
+                         (progn
+                           (setq next-shell--count (1+ next-shell--count))
+                           (string next-shell--count)))))
+      (shell (format "shell: <%s>" shell-name)))))
 
 ;; -- misc --
 (defun noop () (interactive) nil)
