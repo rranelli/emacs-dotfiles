@@ -1,24 +1,23 @@
 #+AUTHOR: Renan Ranelli
 
 * A simple, modular and well organized Emacs configuration.
+  This is the Emacs configuration I use and tweak every day. This may probably be a good
+  starting point for people trying to learn Emacs, specially if you do ELisp
+  and Ruby development. There is also some simple stuff for Jekyll and blogging.
 
-This is my emacs configuration structure, I use an tweak every day. This may probably be a good
-starting point for people trying to learn Emacs. Most of the configuration is aimed at Emacs Lisp
-and Ruby development, with some little stuff for Markdown.
-
-The modularization is probably a good example of how to keep your init files clean and sane.
+  The modularization is a good example of how to keep your init files clean and sane.
 
 *** Requirements
-- Emacs24.3 or greater.
+    - Emacs24.3 or greater.
 
 *** Installation
-To install, clone this repo to and run =./setup_dotfiles=. This will create symbolic links from the
-repository to the =~/.emacs.d/= directory.
+    To install, clone this repo to and run =./setup_dotfiles=. This will create symbolic links from the
+    repository to the =~/.emacs.d/= directory.
 
-#+BEGIN_SRC sh
-git clone https://github.com/rranelli/emacs-dotfiles/ && ./emacs-dotfiles/setup_dotfiles
-#+END_SRC
+    #+BEGIN_SRC sh
+    git clone https://github.com/rranelli/emacs-dotfiles/ && ./emacs-dotfiles/setup_dotfiles
+    #+END_SRC
 
 *** Other very nice configurations.
-I have started using Emacs with =emacs-starter-kit=, but =emacs-prelude= and Purcell's
-[[https://github.com/purcell/emacs.d][emacs.d]] provides a good soft start.
+    I have started using Emacs with [[https://github.com/technomancy/emacs-starter-kit][emacs-starter-kit]], but [[https://github.com/bbatsov/prelude][Emacs Prelude]] and Purcell's
+    [[https://github.com/purcell/emacs.d][emacs.d]] are also good choices.
