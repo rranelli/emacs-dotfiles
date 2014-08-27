@@ -36,6 +36,7 @@
     undo-tree
     yaml-mode
     neotree
+    expand-region
     ;; themes
     solarized-theme
     color-theme-sanityinc-solarized
