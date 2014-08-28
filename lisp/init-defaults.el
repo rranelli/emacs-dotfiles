@@ -20,6 +20,10 @@
 ;; add pretty symbols for lambdas and relationals
 (setq pretty-symbol-categories '(lambda))
 
+;; add backticks and equals to wrap-region
+(wrap-region-add-wrapper "`" "`")
+(wrap-region-add-wrapper "=" "=")
+
 ;; -- Variables --
 (setq
  ;; please, share the clipboard
@@ -50,7 +54,7 @@
 (setq-default
  display-buffer-reuse-frames t
  abbrev-mode t
- fill-column 100
+ fill-column 80
  ;; no more two spaces to end sentences. Jeez.
  sentence-end-double-space nil)
 
