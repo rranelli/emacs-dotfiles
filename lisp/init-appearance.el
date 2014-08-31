@@ -12,7 +12,7 @@
 (defvar chosen-theme chosen-x-theme
   "Chosen theme to be used at the config loaders.")
 
-(defcustom min-transp '(90 90)
+(defcustom min-transp '(87 87)
   "Minimum transparency for Emacs in X."
   :group 'init-appearance)
 
@@ -46,22 +46,7 @@
                                       (set-face-attribute 'helm-ff-directory nil
                                                           :background "#282828"
                                                           :foreground "#fb4934")))))
-            (soothe
-             . '((mode-line-background . "peru")
-                 (mode-line-foreground . "Snow")
-                 (powerline-arrow . "Gray50")
-                 (powerline-other . "#3F3F3F")
-                 (cursor . "SkyBlue")
-                 (use-powerline-p . t)
-                 (set-mode-line-faces-p . t)
-                 (paren-highlight-style . parenthesis)
-                 (custom-faces-fn . (lambda ()
-                                      (set-face-attribute 'highlight nil
-                                                          :foreground nil)
-                                      (set-face-attribute 'helm-selection nil
-                                                          :background "Gray20")
-                                      (set-face-attribute 'helm-ff-directory nil
-                                                          :background "black")))))
+
             (solarized-dark
              . '((mode-line-background . "DeepSkyBlue4")
                  (mode-line-foreground . "Snow")

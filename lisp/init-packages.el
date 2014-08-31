@@ -41,7 +41,6 @@
     solarized-theme
     color-theme-sanityinc-solarized
     color-theme-sanityinc-tomorrow
-    soothe-theme
     gruvbox-theme
     zenburn-theme
     ;; ruby packages
