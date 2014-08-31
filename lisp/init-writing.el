@@ -23,6 +23,7 @@
   (org-jekyll-promote-draft-to-post))
 
 (defun org-jekyll-export-to-jekyll ()
+  (interactive)
   (let* ((post-file-org (buffer-file-name))
          (post-file-md (replace-regexp-in-string "\\.org" ".md" post-file-org))
          (target-file-md (replace-regexp-in-string "/org" "" post-file-md)))
@@ -93,6 +94,7 @@
 
 ;; -- keybindings --
 (define-key text-mode-map (kbd "C-c w p") 'org-jekyll-publish-org-to-jekyll)
+(define-key text-mode-map (kbd "C-c w e") 'org-jekyll-export-to-jekyll)
 (define-key text-mode-map (kbd "C-c w s c") 'flyspell-buffer)
 (define-key text-mode-map (kbd "C-c w s t") 'flyspell-mode)
 
