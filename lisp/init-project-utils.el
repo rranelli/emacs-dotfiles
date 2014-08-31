@@ -9,32 +9,47 @@
 ;; ==============
 
 ;; variables
-(defvar loca-projects-dir "~/locaweb/")
-(defvar code-projects-dir "~/code/")
+(defvar project-sources
+  '("~/code/"
+    "~/locaweb/"))
 
-;; custom open project. Should probably start using projectile
-(defun open--project (base-path)
-  "Open project at path, starting at BASE-PATH."
-  (let ((path (read-directory-name "Which project?: " base-path)))
-    (if (file-exists-p (expand-file-name "Gemfile" path))
-        (find-file (expand-file-name "Gemfile" path))
-      (progn
-        (find-file path)
-        (find-file (cdr (car (ffip-project-files))))))
+(defun helm-open-project ()
+  "Bring up a Spotify search interface in helm."
+  (interactive)
+  (helm :sources '(helm-source-list-projects)
+	:buffer "*helm-list-projects*"))
+
+(defvar helm-source-list-projects
+  '((name . "Open Project")
+    (volatile)
+    (delayed)
+    (candidates . list--projects)
+    (action-transformer . open--project)))
+
+(defun list--projects ()
+  "Lists all projects given project sources."
+  (cl-labels ((dir-to-files (dir)
+			  (if (file-exists-p dir)
+			      (directory-files dir t directory-files-no-dot-files-regexp)))
+	    (flatten (x)
+		     (cond ((null x) nil)
+			   ((listp x) (append (car x) (flatten (cdr x)))))))
+    (progn (flatten (mapcar #'dir-to-files  project-sources)))))
+
+(defun open--project (actions path)
+  "Do nothing with ACTIONS. Open project given PATH."
+  ;; TODO: Add default file get.
+  (let ((default-file (if (file-exists-p (expand-file-name "Gemfile" path))
+			  (expand-file-name "Gemfile" path)
+			path)))
+    (find-file default-file)
     (delete-other-windows)
     (neotree-git-project)
     (magit-branch-manager)
-    (other-window -1)))
-
-(defun open-loca-project ()
-  "Open locaweb project."
-  (interactive)
-  (open--project loca-projects-dir))
-
-(defun open-code-project ()
-  "Open personal project."
-  (interactive)
-  (open--project code-projects-dir))
+    (split-window-vertically)
+    (other-window 1)
+    (magit-status path)
+    (other-window -2)))
 
 ;; ===============
 ;; -- ag config --
@@ -77,11 +92,10 @@
 ;; ==========================
 (defvar project-global-map
   (let ((map (make-sparse-keymap)))
-    (define-key map "l" 'open-loca-project)
-    (define-key map "c" 'open-code-project)
+    (define-key map "c" 'helm-open-project)
     (define-key map "m" 'magit-status)
     (define-key map "b" 'magit-branch-manager)
-    (define-key map "n" 'magit-log)
+    (define-key map "l" 'magit-log)
     map))
 
 (defvar ag-global-map
@@ -97,6 +111,7 @@
     (define-key map "d" 'neotree-dir)
     (define-key map "f" 'neotree-find)
     map))
+
 (define-key global-map (kbd "C-c p") project-global-map)
 
 (provide 'init-project-utils)
