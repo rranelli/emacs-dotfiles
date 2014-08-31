@@ -113,6 +113,20 @@
                          "out-of-project")))
       (shell (format "shell: <%s>" shell-name)))))
 
+(defun wrap-region-replace-wrapper ()
+  (interactive)
+  (let* ((wrapper-to-replace (string (read-char "Which wrapper to replace?")))
+         (wrapper-replace-by (string (read-char "Replace by?")))
+         (right-char-to-replace (wrap-region-wrapper-right (wrap-region-find wrapper-to-replace)))
+         (right-char-to-replace-by (wrap-region-wrapper-right (wrap-region-find wrapper-replace-by))))
+    (save-excursion
+      (re-search-backward wrapper-to-replace)
+      (forward-sexp)
+      (save-excursion
+        (replace-match wrapper-replace-by))
+      (re-search-backward right-char-to-replace)
+      (replace-match right-char-to-replace-by))))
+
 ;; -- misc --
 (defun noop () "Does nothing." (interactive) nil)
 
