@@ -5,7 +5,6 @@
 (require 'find-file-in-project)
 
 ;; -- movement --
-
 (defun move-smart-beginning-of-line ()
   "Move to beginning of line or to beginning of indentation depending on POINT."
   (interactive)
@@ -20,7 +19,6 @@
   (newline))
 
 ;; -- window management --
-
 (defun maximize-window-vertically ()
   "Maximizes the current window vertically the same way vi does."
   (interactive)
@@ -79,16 +77,13 @@
        buffer)))
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
-;; -- utilities --
-
-;; shows current file name in the minibuffer
+;; -- editing utils --
 (defun show-file-name ()
   "Show the full path filename in the minibuffer."
   (interactive)
   (message (buffer-file-name))
   (kill-new (file-truename buffer-file-name)))
 
-;; Uniquifty lines
 (defun uniquify-all-lines-region (start end)
   "Find duplicate lines in region START to END keeping first occurrence."
   (interactive "*r")
@@ -134,8 +129,6 @@ With prefix P, don't widen, just narrow even if buffer is already narrowed."
         ((derived-mode-p 'org-mode)
          (org-narrow-to-subtree))
         (t (narrow-to-defun))))
-
-
 
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here
