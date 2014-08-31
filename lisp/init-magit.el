@@ -5,13 +5,17 @@
 
 (diminish 'magit-auto-revert-mode)
 
-;;(setq magit-status-buffer-switch-function 'switch-to-buffer)
+;; Always open magit in the same window
+(setq magit-status-buffer-switch-function 'switch-to-buffer)
+
+;; Don't add remote prefix when creating a tracking branch
 (setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-only)
 
 (defadvice magit-status
   (before magit-save-before-status activate)
   "Save all buffers before magit status."
   (save-some-buffers t))
+
 
 (global-set-key (kbd "C-c g") 'magit-status)
 
