@@ -37,6 +37,7 @@
     yaml-mode
     neotree
     expand-region
+    better-registers
     ;; themes
     solarized-theme
     color-theme-sanityinc-solarized
