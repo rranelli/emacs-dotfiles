@@ -109,7 +109,6 @@
   (interactive "*")
   (uniquify-all-lines-region (point-min) (point-max)))
 
-(setq next-shell--count 0)
 (defun new-shell ()
   "Create shell with given name."
   (interactive)
@@ -120,9 +119,7 @@
            (dir-name-last (when project-root (get-dir-name-last project-root)))
            (shell-name (if dir-name-last
                            dir-name-last
-                         (progn
-                           (setq next-shell--count (1+ next-shell--count))
-                           (string next-shell--count)))))
+                         "out-of-project")))
       (shell (format "shell: <%s>" shell-name)))))
 
 ;; -- misc --
