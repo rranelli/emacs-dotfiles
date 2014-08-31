@@ -4,11 +4,17 @@
 
 ;; themes
 (defcustom chosen-x-theme 'gruvbox
-  "Theme chosen to be initialized." :group 'init-appearance)
+  "Theme chosen to be initialized."
+  :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
-  "Theme chosen to be initialized in terminal sessions." :group 'init-appearance)
+  "Theme chosen to be initialized in terminal sessions."
+  :group 'init-appearance)
 (defvar chosen-theme chosen-x-theme
   "Chosen theme to be used at the config loaders.")
+
+(defcustom min-transp '(90 90)
+  "Minimum transparency for Emacs in X."
+  :group 'init-appearance)
 
 ;; configuration
 (defun get-color-config (config-name)
@@ -122,7 +128,9 @@
   (setq theme-loaded t))
 
 (defun toggle-transparency (&optional frame force-transp)
-  "Toggle frame transparency for FRAME.  Use selected frame if frame not given."
+  "Toggle frame transparency for FRAME.
+Use selected frame if frame not given.
+If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp."
   (interactive)
   (cl-labels ((other--thing (thing first second)
                             (if (equal thing first) second first))
@@ -131,8 +139,7 @@
                                       (if force-transp
                                           (set-frame-parameter frame 'alpha min-transp)
                                         (set-frame-parameter frame 'alpha (other--thing transp min-transp max-transp))))))
-    (let ((max-transp '(100 100))
-          (min-transp '(95 95)))
+    (let ((max-transp '(100 100)))
       (if (called-interactively-p 'any)
           (toggle--transparency (selected-frame) min-transp max-transp)
         (toggle--transparency frame min-transp max-transp)))))
