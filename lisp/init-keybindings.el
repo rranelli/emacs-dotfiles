@@ -61,9 +61,15 @@
 (global-set-key (kbd "C-x n n") 'narrow-or-widen-dwim)
 
 ;; other mode compatibilities
+(define-key better-registers-map (kbd "<f1>") nil)
+
 (define-key dired-mode-map (kbd "M-o") 'other-window)
 (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
 (define-key text-mode-map (kbd "M-r") 'paredit-splice-sexp)
+
+(define-key markdown-mode-map (kbd "C-c C-f") nil)
+(define-key org-mode-map (kbd "C-c C-f") nil)
+(define-key shell-mode-map (kbd "C-c C-f") nil)
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here
