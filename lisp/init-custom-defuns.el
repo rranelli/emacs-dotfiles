@@ -1,6 +1,8 @@
 ;;; package -- summary
 ;;; Commentary:
 ;;; Code:
+(require 'cl)
+(require 'find-file-in-project)
 
 ;; -- movement --
 
@@ -30,12 +32,14 @@
   (shrink-window 180 nil))
 
 (defun vsplit-last-buffer ()
+  "Vertically split window showing last buffer."
   (interactive)
   (split-window-vertically)
   (other-window 1 nil)
   (switch-to-next-buffer))
 
 (defun hsplit-last-buffer ()
+  "Horizontally split window showing last buffer."
   (interactive)
   (split-window-horizontally)
   (other-window 1 nil)
@@ -57,13 +61,6 @@
   (not (string-match "rspec" (buffer-name buffer))))
 
 ;; -- compilation utils --
-
-(defun dedicate-compilation-buffer-window (buffer string)
-  "Workaround to make a dedicated Window for the compilation BUFFER."
-  (with-current-buffer buffer
-    (make-window-undedicated buffer)
-    (make-window-dedicated buffer)))
-
 (defun bury-compile-buffer-if-successful (buffer string)
   "Bury a compilation buffer (as BUFFER) if succeeded without warnings (given by STRING argument)."
   (if (and
@@ -80,7 +77,6 @@
                     (progn (delete-window (get-buffer-window buf))
                            (bury-buffer buf))))
        buffer)))
-
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
 ;; -- utilities --
@@ -123,7 +119,7 @@
       (shell (format "shell: <%s>" shell-name)))))
 
 ;; -- misc --
-(defun noop () (interactive) nil)
+(defun noop () "Does nothing." (interactive) nil)
 
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here
