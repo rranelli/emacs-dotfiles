@@ -2,20 +2,25 @@
 ;;; Commentary:
 ;;; Code:
 
+;; diminish
+(diminish 'undo-tree-mode)
+(diminish 'abbrev-mode)
+
 ;; -- Mode preferences --
 (winner-mode 1)
-(menu-bar-mode -1)
 (blink-cursor-mode t)
 (delete-selection-mode t)
+(show-paren-mode 1)
 (smartscan-mode t)
 (global-flycheck-mode t)
 (wrap-region-global-mode)
 (global-undo-tree-mode)
+(ido-mode t)
 (ido-vertical-mode)
 
-;; diminish
-(diminish 'undo-tree-mode)
-(diminish 'abbrev-mode)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
 
 ;; add pretty symbols for lambdas and relationals
 (setq pretty-symbol-categories '(lambda))
@@ -49,7 +54,19 @@
  ;; more memory. it's the distant future
  gc-cons-threshold 20000000
  ;; Real emacs knights don't use shift to mark things
- shift-select-mode nil)
+ shift-select-mode nil
+ visible-bell t
+ save-place t)
+
+(setq
+ ido-enable-prefix nil
+ ido-enable-flex-matching t
+ ido-auto-merge-work-directories-length nil
+ ido-create-new-buffer 'always
+ ido-use-filename-at-point 'guess
+ ido-use-virtual-buffers t
+ ido-handle-duplicate-virtual-buffers 2
+ ido-max-prospects 10)
 
 (setq-default
  display-buffer-reuse-frames t
@@ -62,6 +79,8 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'pretty-symbols-mode)
+(add-hook 'prog-mode-hook 'idle-highlight-mode)
+(add-hook 'prog-mode-hook 'custom-add-watchwords)
 
 (defadvice shell (after do-not-query-shell-exit
                         first (&optional buffer)
@@ -80,6 +99,12 @@
     ("8be" "bundle exec")
     ("8rdbm" "bundle exec rake db:migrate db:rollback && bundle exec rake db:migrate")
     ("8bejs" "bundle exec jekyll serve --watch")))
+
+;; -- more fontlock --
+(defun custom-add-watchwords ()
+  (font-lock-add-keywords
+   nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
+          1 font-lock-warning-face t))))
 
 ;; -- some automodes --
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))

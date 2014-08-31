@@ -16,10 +16,10 @@
     magit
     git-timemachine
     flycheck
-    starter-kit
     graphviz-dot-mode
     ido-vertical-mode
     fuzzy
+    s
     ag
     smartscan
     helm
@@ -38,6 +38,10 @@
     neotree
     expand-region
     better-registers
+    smex
+    paredit
+    idle-highlight-mode
+    find-file-in-project
     ;; themes
     solarized-theme
     color-theme-sanityinc-solarized
@@ -68,12 +72,15 @@
     better-registers
     uniquify
     linum
+    paredit
+    smex
     whitespace
     ffap
+    find-file-in-project
+    neotree
     recentf
     ansi-color
     dired-x
-    paredit
     iso-transl
     yaml-mode))
 

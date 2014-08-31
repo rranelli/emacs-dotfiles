@@ -20,12 +20,13 @@
 
 ;; evaluation
 (define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
-(define-key emacs-lisp-mode-map (kbd "C-c C-e") 'esk-eval-and-replace)
+(define-key emacs-lisp-mode-map (kbd "C-c C-e") 'eval-and-replace)
 (define-key emacs-lisp-mode-map (kbd "C-c C-v") 'eval-buffer)
 
 ;; indentation
 (global-set-key (kbd "C-I") 'indent-region)
-(global-set-key (kbd "C-c i") 'esk-indent-buffer)
+(global-set-key (kbd "C-c i") (lambda () (interactive)
+				(indent-region (point-min) (point-max))))
 
 ;; commands
 (global-set-key (kbd "C-x C-m") 'new-shell)
