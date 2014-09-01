@@ -2,10 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; diminish
-(diminish 'undo-tree-mode)
-(diminish 'abbrev-mode)
-
 ;; -- Mode preferences --
 (winner-mode 1)
 (blink-cursor-mode t)
@@ -110,6 +106,10 @@
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+
+;; diminish
+(diminish 'undo-tree-mode)
+(diminish 'abbrev-mode)
 
 (provide 'init-defaults)
 ;;; init-defaults.el ends here
