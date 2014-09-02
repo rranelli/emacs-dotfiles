@@ -46,6 +46,8 @@
 (global-set-key (kbd "C-;") 'ace-jump-word-mode)
 (global-set-key (kbd "M-m") 'new-line-below)
 
+(global-set-key (kbd "M-j") 'better-registers-jump-to-registe)
+
 ;; window and buffer manipulation
 (global-set-key (kbd "C->") 'maximize-window-vertically)
 (global-set-key (kbd "C-<") 'minimize-window-vertically)
@@ -63,6 +65,7 @@
 
 ;; other mode compatibilities
 (define-key better-registers-map (kbd "<f1>") nil)
+(define-key better-registers-map (kbd "C-j") nil)
 
 (define-key dired-mode-map (kbd "M-o") 'other-window)
 (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)

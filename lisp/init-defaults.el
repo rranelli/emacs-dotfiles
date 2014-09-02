@@ -18,6 +18,8 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
+(smex-initialize)
+
 ;; add pretty symbols for lambdas and relationals
 (setq pretty-symbol-categories '(lambda))
 
@@ -52,7 +54,11 @@
  ;; Real emacs knights don't use shift to mark things
  shift-select-mode nil
  visible-bell t
- save-place t)
+ save-place t
+ whitespace-style '(face trailing lines-tail tabs)
+ whitespace-line-column 80
+ ;; no more two spaces to end sentences. Jeez.
+ sentence-end-double-space nil)
 
 (setq
  ido-enable-prefix nil
@@ -67,9 +73,10 @@
 (setq-default
  display-buffer-reuse-frames t
  abbrev-mode t
- fill-column 80
- ;; no more two spaces to end sentences. Jeez.
- sentence-end-double-space nil)
+ fill-column 80)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+(defalias 'auto-tail-revert-mode 'tail-mode)
 
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
