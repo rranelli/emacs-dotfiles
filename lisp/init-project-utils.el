@@ -1,8 +1,6 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(require 'find-file-in-project)
-(require 'neotree)
 
 ;; ==============
 ;; -- projects --
@@ -62,7 +60,11 @@
 ;; ====================
 ;; -- neotree config --
 ;; ====================
-(setq neo-persist-show nil)
+(setq
+ neo-persist-show nil
+ neo-keymap-style-consise t)
+
+(define-key neotree-mode-map (kbd "C-x C-s") 'noop)
 
 (defun neotree-git-project ()
   "Open dirtree using the git root."
@@ -75,18 +77,6 @@
           (neotree-find file-name))
       (message "Could not find git project root."))))
 
-;; =================================================
-;; maybe will be merged into neotree
-(let ((map neotree-mode-map))
-  (define-key map (kbd "$") 'neotree-change-root)
-  (define-key map (kbd "c") 'neotree-create-node)
-  (define-key map (kbd "+") 'neotree-create-node)
-  (define-key map (kbd "d") 'neotree-delete-node)
-  (define-key map (kbd "r") 'neotree-rename-node)
-  (define-key map (kbd "e") 'neotree-enter)
-  (define-key map (kbd "C-x C-s") 'noop))
-;; =================================================
-
 ;; ==========================
 ;; -- project utils keymap --
 ;; ==========================
@@ -96,6 +86,7 @@
     (define-key map "m" 'magit-status)
     (define-key map "b" 'magit-branch-manager)
     (define-key map "l" 'magit-log)
+    (define-key map "i" 'git-timemachine)
     map))
 
 (defvar ag-global-map
