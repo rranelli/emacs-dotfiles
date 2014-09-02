@@ -82,7 +82,7 @@
 ;; ==========================
 (defvar project-global-map
   (let ((map (make-sparse-keymap)))
-    (define-key map "c" 'helm-open-project)
+    (define-key map "c" 'helm-rr-open-project)
     (define-key map "m" 'magit-status)
     (define-key map "b" 'magit-branch-manager)
     (define-key map "l" 'magit-log)

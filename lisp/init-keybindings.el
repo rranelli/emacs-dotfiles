@@ -44,6 +44,7 @@
 (global-set-key (kbd "M-E") 'er/expand-region)
 
 (global-set-key (kbd "C-;") 'ace-jump-word-mode)
+(global-set-key (kbd "C-:") 'ace-jump-char-mode)
 (global-set-key (kbd "M-m") 'new-line-below)
 
 (global-set-key (kbd "M-j") 'better-registers-jump-to-registe)
