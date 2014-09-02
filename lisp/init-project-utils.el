@@ -11,7 +11,7 @@
   '("~/code/"
     "~/locaweb/"))
 
-(defun helm-open-project ()
+(defun helm-rr-open-project ()
   "Bring up a Spotify search interface in helm."
   (interactive)
   (helm :sources '(helm-source-list-projects)
@@ -21,26 +21,26 @@
   '((name . "Open Project")
     (volatile)
     (delayed)
-    (candidates . list--projects)
-    (action-transformer . open--project)))
+    (candidates . rr-list-projects)
+    (action-transformer . rr-open-project)))
 
-(defun list--projects ()
+(defun rr-list-projects ()
   "Lists all projects given project sources."
   (cl-labels ((dir-to-files (dir)
-			  (if (file-exists-p dir)
-			      (directory-files dir t directory-files-no-dot-files-regexp)))
-	    (flatten (x)
-		     (cond ((null x) nil)
-			   ((listp x) (append (car x) (flatten (cdr x)))))))
+			    (if (file-exists-p dir)
+				(directory-files dir t directory-files-no-dot-files-regexp)))
+	      (flatten (x)
+		       (cond ((null x) nil)
+			     ((listp x) (append (car x) (flatten (cdr x)))))))
     (progn (flatten (mapcar #'dir-to-files  project-sources)))))
 
-(defun open--project (actions path)
+(defun rr-open-project (actions path)
   "Do nothing with ACTIONS. Open project given PATH."
   ;; TODO: Add default file get.
-  (let ((default-file (if (file-exists-p (expand-file-name "Gemfile" path))
-			  (expand-file-name "Gemfile" path)
-			path)))
-    (find-file default-file)
+  (cl-flet ((find-default-file () (if (file-exists-p (expand-file-name "Gemfile" path))
+				      (expand-file-name "Gemfile" path)
+				    path)))
+    (find-file (find-default-file))
     (delete-other-windows)
     (neotree-git-project)
     (magit-branch-manager)
