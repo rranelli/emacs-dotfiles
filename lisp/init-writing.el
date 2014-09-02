@@ -9,10 +9,9 @@
   "Change Ispell dictionary if a tag language: LANGUAGE is found in file."
   (let* ((lang-regexp "-+\nlanguage: ?\\(\\w+\\)\\(?:\n.*\\)*-+\n")
          (text (buffer-string))
-         (lang (progn
-                 (string-match lang-regexp text)
-                 (match-string 1 text))))
-    (when lang
+	 (lang-p (string-match lang-regexp text))
+	 (lang (match-string-no-properties 1 text)))
+    (when lang-p
       (ispell-change-dictionary lang))))
 
 (defun org-jekyll-publish-org-to-jekyll ()
