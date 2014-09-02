@@ -82,6 +82,8 @@
     ansi-color
     dired-x
     iso-transl
+    dash
+    s
     yaml-mode))
 
 (dolist (lib vendor-libs)
