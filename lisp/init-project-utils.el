@@ -43,11 +43,7 @@
     (find-file (find-default-file))
     (delete-other-windows)
     (neotree-git-project)
-    (magit-branch-manager)
-    (split-window-vertically)
-    (other-window 1)
-    (magit-status path)
-    (other-window -2)))
+    (other-window 1)))
 
 ;; ===============
 ;; -- ag config --
