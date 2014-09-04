@@ -12,7 +12,6 @@
 
 (defvar my-packages
   '(;; general configuration
-    org
     magit
     git-timemachine
     flycheck
@@ -67,7 +66,7 @@
     (package-install p)))
 
 ;; -- vendor packages --
-(defvar vendor-libs
+(defvar libs-to-require
   '(cl
     better-registers
     uniquify
@@ -86,7 +85,7 @@
     s
     yaml-mode))
 
-(dolist (lib vendor-libs)
+(dolist (lib libs-to-require)
   (require lib))
 
 (provide 'init-packages)

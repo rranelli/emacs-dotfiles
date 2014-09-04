@@ -17,13 +17,26 @@
 
       ;; loading org custom
       (require 'org-mode-custom)
+
       ;; Setting up babel support for languages
-      (org-babel-do-load-languages 'org-babel-load-languages
-                                   '((sql . t)))
+      (org-babel-do-load-languages'org-babel-load-languages
+       '((emacs-lisp . t)
+	 (dot . t)
+	 (ditaa . t)
+	 (R . t)
+	 (python . t)
+	 (ruby . t)
+	 (gnuplot . t)
+	 (clojure . t)
+	 (sh . t)
+	 (ledger . t)
+	 (org . t)
+	 (plantuml . t)
+	 (latex . t)
+	 (sql . t)))
 
       ;; Setting up fonfitication
       (setq org-src-fontify-natively t)
-      (add-hook 'sql-mode-hook (lambda () (sql-highlight-mysql-keywords)))
 
       ;; make org beautifull
       (setq

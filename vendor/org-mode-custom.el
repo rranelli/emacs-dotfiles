@@ -22,26 +22,10 @@
 
 ;; Custom Key Bindings
 (global-set-key (kbd "<f12>") 'org-agenda)
-(global-set-key (kbd "<f5>") 'bh/org-todo)
-(global-set-key (kbd "<S-f5>") 'bh/widen)
-(global-set-key (kbd "<f7>") 'bh/set-truncate-lines)
-(global-set-key (kbd "<f8>") 'org-cycle-agenda-files)
-(global-set-key (kbd "<f9> <f9>") 'bh/show-org-agenda)
-(global-set-key (kbd "<f9> b") 'bbdb)
-(global-set-key (kbd "<f9> c") 'calendar)
-(global-set-key (kbd "<f9> f") 'boxquote-insert-file)
-(global-set-key (kbd "<f9> g") 'gnus)
-(global-set-key (kbd "<f9> h") 'bh/hide-other)
-(global-set-key (kbd "<f9> n") 'bh/toggle-next-task-display)
-(global-set-key (kbd "<f9> w") 'widen)
-
 (global-set-key (kbd "<f9> I") 'bh/punch-in)
 (global-set-key (kbd "<f9> O") 'bh/punch-out)
 
 (global-set-key (kbd "<f9> o") 'bh/make-org-scratch)
-
-(global-set-key (kbd "<f9> r") 'boxquote-region)
-(global-set-key (kbd "<f9> s") 'bh/switch-to-scratch)
 
 (global-set-key (kbd "<f9> t") 'bh/insert-inactive-timestamp)
 (global-set-key (kbd "<f9> T") 'bh/toggle-insert-inactive-timestamp)
@@ -138,12 +122,12 @@
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
 ;; Remove empty LOGBOOK drawers on clock out
-;; (defun bh/remove-empty-drawer-on-clock-out ()
-;;   (interactive)
-;;   (save-excursion
-;;     (beginning-of-line 0)
-;;     (org-remove-empty-drawer-at "LOGBOOK"  (point) )))
-;; (add-hook 'org-clock-out-hook 'bh/remove-empty-drawer-on-clock-out 'append)
+(defun bh/remove-empty-drawer-on-clock-out ()
+  (interactive)
+  (save-excursion
+    (beginning-of-line 0)
+    (org-remove-empty-drawer-at "LOGBOOK"  (point) )))
+(add-hook 'org-clock-out-hook 'bh/remove-empty-drawer-on-clock-out 'append)
 
                                         ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
 (setq org-refile-targets (quote ((nil :maxlevel . 9)
@@ -161,12 +145,6 @@
                                         ; Use IDO for both buffer and file completion and ido-everywhere to t
 (setq org-completion-use-ido t)
 (setq ido-max-directory-size 100000)
-;; (setq ido-everywhere t)
-;; (ido-mode (quote both))
-;;                                         Use the current window when visiting files and buffers with ido
-;;(setq ido-default-file-method 'selected-window)
-;;(setq ido-default-buffer-method 'selected-window)
-;;                                         ; Use the current window for indirect buffer display
 (setq org-indirect-buffer-display 'current-window)
 
 ;;;; Refile settings
@@ -790,25 +768,7 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
       (org-display-inline-images)
     (error nil)))
 
-(org-babel-do-load-languages
- (quote org-babel-load-languages)
- (quote ((emacs-lisp . t)
-         (dot . t)
-         (ditaa . t)
-         (R . t)
-         (python . t)
-         (ruby . t)
-         (gnuplot . t)
-         (clojure . t)
-         (sh . t)
-         (ledger . t)
-         (org . t)
-         (plantuml . t)
-         (latex . t))))
 
-                                        ; Do not prompt to confirm evaluation
-                                        ; This may be dangerous - make sure you understand the consequences
-                                        ; of setting this -- see the docstring for details
 (setq org-confirm-babel-evaluate nil)
 
                                         ; Use fundamental mode when editing plantuml blocks with C-c '
@@ -835,173 +795,6 @@ Skip project and sub-project tasks, habits, and loose non-project tasks."
                                         ; Increase default number of headings to export
 (setq org-export-headline-levels 6)
 
-                                        ; List of projects
-                                        ; norang       - http://www.norang.ca/
-                                        ; doc          - http://doc.norang.ca/
-                                        ; org-mode-doc - http://doc.norang.ca/org-mode.html and associated files
-                                        ; org          - miscellaneous todo lists for publishing
-(setq org-publish-project-alist
-                                        ;
-                                        ; http://www.norang.ca/  (norang website)
-                                        ; norang-org are the org-files that generate the content
-                                        ; norang-extra are images and css files that need to be included
-                                        ; norang is the top-level project that gets published
-      (quote (("norang-org"
-               :base-directory "~/Dropbox/www.norang.ca"
-               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs"
-               :recursive t
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function org-html-publish-to-html
-               :style-include-default nil
-               :section-numbers nil
-               :table-of-contents nil
-               :html-head "<link rel=\"stylesheet\" href=\"norang.css\" type=\"text/css\" />"
-               :author-info nil
-               :creator-info nil)
-              ("norang-extra"
-               :base-directory "~/Dropbox/www.norang.ca/"
-               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs"
-               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
-               :publishing-function org-publish-attachment
-               :recursive t
-               :author nil)
-              ("norang"
-               :components ("norang-org" "norang-extra"))
-                                        ;
-                                        ; http://doc.norang.ca/  (norang website)
-                                        ; doc-org are the org-files that generate the content
-                                        ; doc-extra are images and css files that need to be included
-                                        ; doc is the top-level project that gets published
-              ("doc-org"
-               :base-directory "~/Dropbox/doc.norang.ca/"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
-               :recursive nil
-               :section-numbers nil
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function (org-html-publish-to-html org-org-publish-to-org)
-               :style-include-default nil
-               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
-               :author-info nil
-               :creator-info nil)
-              ("doc-extra"
-               :base-directory "~/Dropbox/doc.norang.ca/"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
-               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
-               :publishing-function org-publish-attachment
-               :recursive nil
-               :author nil)
-              ("doc"
-               :components ("doc-org" "doc-extra"))
-              ("doc-private-org"
-               :base-directory "~/Dropbox/doc.norang.ca/private"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs/private"
-               :recursive nil
-               :section-numbers nil
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function (org-html-publish-to-html org-org-publish-to-org)
-               :style-include-default nil
-               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
-               :auto-sitemap t
-               :sitemap-filename "index.html"
-               :sitemap-title "Norang Private Documents"
-               :sitemap-style "tree"
-               :author-info nil
-               :creator-info nil)
-              ("doc-private-extra"
-               :base-directory "~/Dropbox/doc.norang.ca/private"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs/private"
-               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
-               :publishing-function org-publish-attachment
-               :recursive nil
-               :author nil)
-              ("doc-private"
-               :components ("doc-private-org" "doc-private-extra"))
-                                        ;
-                                        ; Miscellaneous pages for other websites
-                                        ; org are the org-files that generate the content
-              ("org-org"
-               :base-directory "~/Dropbox/org/"
-               :publishing-directory "/ssh:www-data@www:~/org"
-               :recursive t
-               :section-numbers nil
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function org-html-publish-to-html
-               :style-include-default nil
-               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
-               :author-info nil
-               :creator-info nil)
-                                        ;
-                                        ; http://doc.norang.ca/  (norang website)
-                                        ; org-mode-doc-org this document
-                                        ; org-mode-doc-extra are images and css files that need to be included
-                                        ; org-mode-doc is the top-level project that gets published
-                                        ; This uses the same target directory as the 'doc' project
-              ("org-mode-doc-org"
-               :base-directory "~/Dropbox/org-mode-doc/"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
-               :recursive t
-               :section-numbers nil
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function (org-html-publish-to-html)
-               :plain-source t
-               :htmlized-source t
-               :style-include-default nil
-               :html-head "<link rel=\"stylesheet\" href=\"/org.css\" type=\"text/css\" />"
-               :author-info nil
-               :creator-info nil)
-              ("org-mode-doc-extra"
-               :base-directory "~/Dropbox/org-mode-doc/"
-               :publishing-directory "/ssh:www-data@www:~/doc.norang.ca/htdocs"
-               :base-extension "css\\|pdf\\|png\\|jpg\\|gif\\|org"
-               :publishing-function org-publish-attachment
-               :recursive t
-               :author nil)
-              ("org-mode-doc"
-               :components ("org-mode-doc-org" "org-mode-doc-extra"))
-                                        ;
-                                        ; http://doc.norang.ca/  (norang website)
-                                        ; org-mode-doc-org this document
-                                        ; org-mode-doc-extra are images and css files that need to be included
-                                        ; org-mode-doc is the top-level project that gets published
-                                        ; This uses the same target directory as the 'doc' project
-              ("tmp-org"
-               :base-directory "/tmp/publish/"
-               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs/tmp"
-               :recursive t
-               :section-numbers nil
-               :table-of-contents nil
-               :base-extension "org"
-               :publishing-function (org-html-publish-to-html org-org-publish-to-org)
-               :html-head "<link rel=\"stylesheet\" href=\"http://doc.norang.ca/org.css\" type=\"text/css\" />"
-               :plain-source t
-               :htmlized-source t
-               :style-include-default nil
-               :auto-sitemap t
-               :sitemap-filename "index.html"
-               :sitemap-title "Test Publishing Area"
-               :sitemap-style "tree"
-               :author-info t
-               :creator-info t)
-              ("tmp-extra"
-               :base-directory "/tmp/publish/"
-               :publishing-directory "/ssh:www-data@www:~/www.norang.ca/htdocs/tmp"
-               :base-extension "css\\|pdf\\|png\\|jpg\\|gif"
-               :publishing-function org-publish-attachment
-               :recursive t
-               :author nil)
-              ("tmp"
-               :components ("tmp-org" "tmp-extra")))))
-
-                                        ; I'm lazy and don't want to remember the name of the project to publish when I modify
-                                        ; a file that is part of a project.  So this function saves the file, and publishes
-                                        ; the project that includes this file
-                                        ;
-                                        ; It's bound to C-S-F12 so I just edit and hit C-S-F12 when I'm done and move on to the next thing
 (defun bh/save-then-publish (&optional force)
   (interactive "P")
   (save-buffer)
@@ -1842,10 +1635,6 @@ Late deadlines first, then scheduled, then non-late deadlines"
 (set-charset-priority 'unicode)
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
-;; commenting because things go wrong in windows
-;; setq org-time-clocksum-format
-;; (quote (:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t)))
-
 (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
 
 (setq org-emphasis-alist (quote (("*" bold "<b>" "</b>")
@@ -1857,7 +1646,4 @@ Late deadlines first, then scheduled, then non-late deadlines"
 (setq org-use-sub-superscripts nil)
 
 (setq org-odd-levels-only nil)
-
-(run-at-time "00:59" 3600 'org-save-all-org-buffers)
-
 (provide 'org-mode-custom)

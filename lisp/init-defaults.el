@@ -86,6 +86,8 @@
 (add-hook 'prog-mode-hook 'idle-highlight-mode)
 (add-hook 'prog-mode-hook 'custom-add-watchwords)
 
+(add-hook 'sql-mode-hook 'sql-highlight-mysql-keywords)
+
 (defadvice shell (after do-not-query-shell-exit
                         first (&optional buffer)
                         activate)
