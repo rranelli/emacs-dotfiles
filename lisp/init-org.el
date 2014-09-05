@@ -1,19 +1,17 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(if (file-exists-p "~/Dropbox/org/life.org")
-    ;; Set up org-agenda files
-    (let ((org-dir "~/Dropbox/org/")
-          (org-files '("diary.org"
-                       "life.org"
-                       "study.org"
-                       "refile.org"
-                       "opensource.org"
-                       "locaweb.org"
-                       "emacs.org")))
 
-      (setq org-user-agenda-files
-            (mapcar (lambda (filename) (concat org-dir filename)) org-files))
+(defcustom rr-org-files-directory "~/Dropbox/org/"
+  "Directory for org files."
+  :group 'init-orggg)
+
+(if (file-exists-p rr-org-files-directory)
+    ;; Set up org-agenda files
+    (let* ((dir-files (directory-files rr-org-files-directory t directory-files-no-dot-files-regexp))
+	   (org-files (remove-if #'(lambda (name) (string-match "archive" name)) dir-files)))
+
+      (setq org-user-agenda-files org-files)
 
       ;; loading org custom
       (require 'org-mode-custom)
@@ -46,9 +44,9 @@
 
       ;; removing useless conflict keys on org-mode.
       (define-key org-agenda-mode-map (kbd "C-c p") nil)
-      (define-key org-mode-map (kbd "M-h") nil))
-
-  (message "skipping org-mode load"))
+      (define-key org-mode-map (kbd "M-h") nil)
+      (message "Org-mode config loaded."))
+  (message "skipping org-mode load."))
 
 (provide 'init-org)
 ;;; init-org.el ends here
