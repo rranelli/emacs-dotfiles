@@ -47,7 +47,7 @@
 (global-set-key (kbd "C-:") 'ace-jump-char-mode)
 (global-set-key (kbd "M-m") 'new-line-below)
 
-(global-set-key (kbd "M-j") 'better-registers-jump-to-registe)
+(global-set-key (kbd "M-j") 'better-registers-jump-to-register)
 
 ;; window and buffer manipulation
 (global-set-key (kbd "C->") 'maximize-window-vertically)
