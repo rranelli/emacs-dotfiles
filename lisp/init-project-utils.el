@@ -40,10 +40,7 @@
   (cl-flet ((find-default-file () (if (file-exists-p (expand-file-name "Gemfile" path))
 				      (expand-file-name "Gemfile" path)
 				    path)))
-    (find-file (find-default-file))
-    (delete-other-windows)
-    (neotree-git-project)
-    (other-window 1)))
+    (find-file (find-default-file))))
 
 ;; ===============
 ;; -- ag config --
