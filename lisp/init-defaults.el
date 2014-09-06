@@ -82,6 +82,7 @@
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'text-mode-hook 'auto-fill-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'pretty-symbols-mode)
 (add-hook 'prog-mode-hook 'idle-highlight-mode)
