@@ -6,11 +6,9 @@
 (require 'rspec-mode)
 (require 'ac-robe)
 (require 'robe)
-(require 'ruby-block)
 
 (diminish 'ruby-electric-mode)
 (diminish 'auto-fill-function)
-(diminish 'ruby-block-mode)
 
 ;; auto modes
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
@@ -36,12 +34,6 @@
 ;; fix for rspec and pry
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)
 (setenv "PAGER" (executable-find "cat"))
-;; add <Pry.config.pager = false if ENV["EMACS"]> to .pryrc
-
-;; toggle ruby-block highlight to both keyword and line
-(ruby-block-mode t)
-(setq ruby-block-highlight-toggle 'overlay)
-(setq ruby-block-highlight-face 'show-paren-match)
 
 ;; don't indent parenthesis in a weird way
 (setq ruby-deep-indent-paren-style nil)
@@ -96,7 +88,7 @@
 
 ;; -- Rspec stuff --
 (defadvice rspec-compile
-  (before rspec-save-before-compile (A-FILE-OR-DIR &optional opts) activate)
+    (before rspec-save-before-compile (A-FILE-OR-DIR &optional opts) activate)
   "Save current buffer before running spec.  This remove the annoying save confirmation."
   (save-some-buffers (lambda () (string-match "\\.rb" (buffer-name  (current-buffer))))))
 
