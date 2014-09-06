@@ -87,8 +87,8 @@
 (add-hook 'markdown-mode-hook
           (lambda () (add-hook 'after-save-hook 'select-proper-dictionary-language nil 'make-it-local)))
 
-(add-hook 'org-jekyll-mode-hook 'select-proper-dictionary-language)
-(add-hook 'org-jekyll-mode-hook
+(add-hook 'org-mode-hook 'select-proper-dictionary-language)
+(add-hook 'org-mode-hook
           (lambda () (add-hook 'after-save-hook 'select-proper-dictionary-language nil 'make-it-local)))
 
 ;; -- keybindings --
