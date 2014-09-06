@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (require 'markdown-mode)
+(require 'ox-gfm)
 
 (add-to-list 'auto-mode-alist '("\\.md$" . gfm-mode))
 
@@ -27,7 +28,7 @@
          (post-file-md (replace-regexp-in-string "\\.org" ".md" post-file-org))
          (target-file-md (replace-regexp-in-string "/org" "" post-file-md)))
     (when (string= (file-name-extension post-file-org) "org")
-      (org-md-export-to-markdown)
+      (org-gfm-export-to-markdown)
       (rename-file post-file-md target-file-md t))))
 
 (defun org-jekyll-prepend-date-to-file-name ()
