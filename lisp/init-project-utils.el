@@ -58,7 +58,8 @@
 ;; ====================
 (setq
  neo-persist-show nil
- neo-keymap-style-consise t)
+ neo-keymap-style-consise t
+ neo-keymap-style 'concise)
 
 (define-key neotree-mode-map (kbd "C-x C-s") 'noop)
 
