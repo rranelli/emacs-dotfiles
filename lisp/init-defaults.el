@@ -32,6 +32,7 @@
  ;; please, share the clipboard
  x-select-enable-clipboard t
  save-abbrevs nil
+ uniquify-buffer-name-style 'forward
  ;; no backups
  make-backup-files nil
  auto-save-default nil
