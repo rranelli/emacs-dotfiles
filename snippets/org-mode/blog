@@ -10,7 +10,7 @@
 #+BEGIN_HTML
 ---
 language: brasileiro
-layout: default
+layout: post
 title: ${1:title}
 ---
 #+END_HTML
