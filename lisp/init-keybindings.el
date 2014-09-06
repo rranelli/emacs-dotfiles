@@ -76,5 +76,9 @@
 (define-key org-mode-map (kbd "C-c C-f") nil)
 (define-key shell-mode-map (kbd "C-c C-f") nil)
 
+(define-key sgml-mode-map (kbd "C-c C-f") nil)
+(define-key sgml-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
+(define-key sgml-mode-map (kbd "C-M-b") 'sgml-skip-tag-backward)
+
 (provide 'init-keybindings)
 ;;; init-keybindings ends here
