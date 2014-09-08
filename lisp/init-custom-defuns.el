@@ -133,16 +133,26 @@
 
 (defun narrow-or-widen-dwim (p)
   "If the buffer is narrowed, it widens. Otherwise, it narrows intelligently.
-Intelligently means: region, subtree, or defun, whichever applies first.
-With prefix P, don't widen, just narrow even if buffer is already narrowed."
+Intelligently means: region, org-src-block, org-subtree, or defun,
+whichever applies first.
+Narrowing to org-src-block actually calls `org-edit-src-code'.
+
+With prefix P, don't widen, just narrow even if buffer is already
+narrowed."
   (interactive "P")
   (declare (interactive-only))
   (cond ((and (buffer-narrowed-p) (not p))
          (widen))
         ((region-active-p)
          (narrow-to-region (region-beginning) (region-end)))
+        ((and (boundp 'org-src-mode) org-src-mode (not p)) ; <-- Added
+         (org-edit-src-exit))
         ((derived-mode-p 'org-mode)
-         (org-narrow-to-subtree))
+         (cond ((org-in-src-block-p)
+                (org-edit-src-code))
+               ((org-at-block-p)
+                (org-narrow-to-block))
+               (t (org-narrow-to-subtree))))
         (t (narrow-to-defun))))
 
 (defun insert-lorem ()

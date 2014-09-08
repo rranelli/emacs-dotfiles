@@ -48,3 +48,4 @@
 ;; Finish!
 (message  "All is sane, and init.el got to its end")
 ;;; init.el ends here
+(put 'set-goal-column 'disabled nil)

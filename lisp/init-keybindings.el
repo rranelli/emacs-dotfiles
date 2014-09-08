@@ -62,7 +62,8 @@
 (global-set-key (kbd "C-x 2") 'vsplit-last-buffer)
 (global-set-key (kbd "C-x 3") 'hsplit-last-buffer)
 (global-set-key (kbd "C-c -") 'swap-buffers-in-windows)
-(global-set-key (kbd "C-x n n") 'narrow-or-widen-dwim)
+
+(define-key ctl-x-map "n" 'narrow-or-widen-dwim)
 
 ;; other mode compatibilities
 (define-key better-registers-map (kbd "<f1>") nil)
