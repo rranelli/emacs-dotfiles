@@ -41,6 +41,7 @@
     paredit
     idle-highlight-mode
     find-file-in-project
+    bash-completion
     ;; themes
     solarized-theme
     color-theme-sanityinc-solarized

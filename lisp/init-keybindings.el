@@ -29,7 +29,6 @@
 				(indent-region (point-min) (point-max))))
 
 ;; commands
-(global-set-key (kbd "C-x C-m") 'new-shell)
 (global-set-key (kbd "C-x m") 'execute-extended-command)
 
 ;; movement and editing
@@ -75,7 +74,6 @@
 
 (define-key markdown-mode-map (kbd "C-c C-f") nil)
 (define-key org-mode-map (kbd "C-c C-f") nil)
-(define-key shell-mode-map (kbd "C-c C-f") nil)
 
 (define-key sgml-mode-map (kbd "C-c C-f") nil)
 (define-key sgml-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)

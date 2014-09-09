@@ -98,22 +98,6 @@
   (interactive "*")
   (uniquify-all-lines-region (point-min) (point-max)))
 
-(defun new-shell (arg)
-  "Create shell with given name. If ARG is present, open a new shell regardless ."
-  (interactive "P")
-  (cl-flet ((get-dir-name-last (path)
-                               (string-match "/\\([^/]*\\)/$" path)
-                               (match-string 1 path)))
-    (let* ((project-root (ffip-project-root))
-           (dir-name-last (when project-root (get-dir-name-last project-root)))
-	   (project-name (format "<%s>" (if dir-name-last
-					    dir-name-last
-					  "out-of-project")))
-           (shell-name (if arg
-			   (format " [%s]" (read-string "Shell name: "))
-			 "")))
-      (shell (format "shell: %s%s" project-name shell-name)))))
-
 (defun wrap-region-replace-wrapper ()
   (interactive)
   (let* ((wrapper-to-replace (string (read-char "Which wrapper to replace?")))

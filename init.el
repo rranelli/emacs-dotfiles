@@ -31,6 +31,7 @@
     init-writing
     init-helm
     init-org
+    init-shell
     init-keybindings))
 (dolist (file init-files)
   (require file))
@@ -46,6 +47,9 @@
   (server-start))
 
 ;; Finish!
-(message  "All is sane, and init.el got to its end")
+(message
+ "===========================
+All is sane, and init.el got to its end
+===========================")
 ;;; init.el ends here
 (put 'set-goal-column 'disabled nil)

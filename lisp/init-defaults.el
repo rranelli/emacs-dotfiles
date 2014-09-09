@@ -90,17 +90,6 @@
 
 (add-hook 'sql-mode-hook 'sql-highlight-mysql-keywords)
 
-(defadvice shell (after do-not-query-shell-exit
-                        first (&optional buffer)
-                        activate)
-  "Do not query exit confirmation for shell process buffer."
-  (interactive)
-  (let* ((shell-processes (remove-if-not
-                           (lambda (process) (string-match-p "shell" (process-name process)))
-                           (process-list))))
-    (dolist (p shell-processes)
-      (set-process-query-on-exit-flag p nil))))
-
 ;; -- Abbrev --
 (define-abbrev-table 'global-abbrev-table
   '(("8bes" "bundle exec rspec")
@@ -112,7 +101,7 @@
 (defun custom-add-watchwords ()
   (font-lock-add-keywords
    nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
-          1 font-lock-warning-face t))))
+	  1 font-lock-warning-face t))))
 
 ;; -- some automodes --
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
