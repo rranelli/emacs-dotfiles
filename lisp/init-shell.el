@@ -40,17 +40,23 @@
     (let* ((project-root (ffip-project-root))
 	   (in-project-p (stringp project-root))
            (dir-name-last (when project-root (get-dir-name-last project-root)))
+
 	   (project-name (format "<%s>" (if in-project-p
 					    dir-name-last
 					  "out-of-project")))
-           (shell-name (if arg
-			   (format " [%s]" (read-string "Shell name: "))
-			 "")))
-      (shell (format "shell: %s%s" project-name shell-name))
-      (when in-project-p
+           (custom-name (if arg
+			    (format " [%s]" (read-string "Shell name: "))
+			  ""))
+	   (shell-name (format "shell: %s%s" project-name custom-name))
+
+	   (shell-exists-p (bufferp (get-buffer shell-name))))
+
+      (shell shell-name)
+      (when (and
+	     in-project-p
+	     (not shell-exists-p))
 	(insert (format "cd %s" project-root))
-	(comint-send-input nil t)
-	))))
+	(comint-send-input nil t)))))
 
 ;; -- keybindings --
 (global-set-key (kbd "C-x C-m") 'new-shell)
