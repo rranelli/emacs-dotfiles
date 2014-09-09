@@ -45,6 +45,7 @@
       ;; removing useless conflict keys on org-mode.
       (define-key org-agenda-mode-map (kbd "C-c p") nil)
       (define-key org-mode-map (kbd "M-h") nil)
+
       (message "Org-mode config loaded."))
   (message "skipping org-mode load."))
 

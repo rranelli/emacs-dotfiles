@@ -73,7 +73,7 @@
 (define-key text-mode-map (kbd "M-r") 'paredit-splice-sexp)
 
 (define-key markdown-mode-map (kbd "C-c C-f") nil)
-(define-key org-mode-map (kbd "C-c C-f") nil)
+(define-key markdown-mode-map (kbd "M-h") nil)
 
 (define-key sgml-mode-map (kbd "C-c C-f") nil)
 (define-key sgml-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)

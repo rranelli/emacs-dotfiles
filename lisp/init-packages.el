@@ -83,6 +83,7 @@
     iso-transl
     dash
     s
+    sgml-mode
     yaml-mode))
 
 (dolist (lib libs-to-require)
