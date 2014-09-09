@@ -88,5 +88,15 @@
 (dolist (lib libs-to-require)
   (require lib))
 
+(defun rr-update-packages ()
+  "Update installed Emacs packages."
+  (interactive)
+  (package-list-packages)
+  (package-menu-mark-upgrades)
+  (package-menu-execute t)
+  (kill-buffer))
+
+(rr-update-packages)
+
 (provide 'init-packages)
 ;;; init-packages.el ends here
