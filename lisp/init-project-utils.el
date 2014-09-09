@@ -76,24 +76,23 @@
 ;; ==========================
 (defvar project-global-map
   (let ((map (make-sparse-keymap)))
+    ;; general utils
     (define-key map "c" 'helm-rr-open-project)
+    (define-key map "n" 'rr-show-file-name)
+
+    ;; git
     (define-key map "m" 'magit-status)
     (define-key map "b" 'magit-branch-manager)
     (define-key map "l" 'magit-log)
     (define-key map "i" 'git-timemachine)
-    map))
 
-(defvar ag-global-map
-  (let ((map project-global-map))
+    ;; ag
     (define-key map "s" 'ag-project)
     (define-key map "a" 'ag-project-regexp)
-    map))
 
-(defvar neotree-global-map
-  (let ((map project-global-map))
+    ;; neotree
     (define-key map "g" 'neotree-git-project)
     (define-key map "t" 'neotree-toggle)
-    (define-key map "d" 'neotree-dir)
     (define-key map "f" 'neotree-find)
     map))
 

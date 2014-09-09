@@ -76,7 +76,7 @@
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
 ;; -- editing utils --
-(defun show-file-name ()
+(defun rr-show-file-name ()
   "Show the full path filename in the minibuffer."
   (interactive)
   (message (buffer-file-name))
