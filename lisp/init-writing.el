@@ -99,6 +99,7 @@
 (define-key text-mode-map (kbd "C-c w s t") 'flyspell-mode)
 
 (define-key global-map (kbd "C-c w n") 'org-jekyll-new-draft)
+(define-key markdown-mode-map (kbd "C-c w b") 'markdown-insert-gfm-code-block)
 
 (provide 'init-writing)
 ;;; init-markdown.el ends here
