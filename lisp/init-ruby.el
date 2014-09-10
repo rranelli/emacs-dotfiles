@@ -36,7 +36,12 @@
 (setenv "PAGER" (executable-find "cat"))
 
 ;; don't indent parenthesis in a weird way
+(setq ruby-align-chained-calls nil)
+(setq ruby-align-to-stmt-keywords t)
+(setq ruby-deep-indent-paren nil)
 (setq ruby-deep-indent-paren-style nil)
+;; this should be fixed, and smie would go t...
+(setq ruby-use-smie nil)
 
 ;; do not add encoding automagically
 (setq ruby-insert-encoding-magic-comment nil)
@@ -47,7 +52,7 @@
   (interactive)
   (ruby-send-region (point-min) (point-max)))
 
-;; Fix annoying sole close paren. Thanks to Mr. DGutov
+;; Fix annoying sole close paren. Thanks to Mr. DGutov. Not needed in emacs 24.4
 (defadvice ruby-indent-line (after unindent-closing-paren activate)
   "Indent sole parenthesis in loca's way."
   (let ((column (current-column))
@@ -113,45 +118,6 @@
     (define-key map (kbd "l") 'ruby-refactor-extract-to-let)
     map))
 (define-key ruby-mode-map (kbd "C-c r") ruby-mode-custom-map)
-
-
-;; ===================================================================
-;; will be merged probably
-(defcustom rspec-snippets-fg-syntax 1
-  "When 0, use full syntax for FactoryGirl snippets. When 1, use full syntax if
-FactoryGirl::Syntax::Methods is not included in the spec_helper file, and uses the concise syntax
-otherwise. When 2, use the concise syntax."
-  :type 'boolean
-  :group 'rspec-mode)
-
-(defun rspec-project-root (&optional directory)
-  "Finds the root directory of the project by walking the directory tree until it finds a rake file."
-  (let ((directory (file-name-as-directory (or directory default-directory))))
-    (cond ((rspec-root-directory-p directory)
-           (error "Could not determine the project root."))
-          ((file-exists-p (expand-file-name "Rakefile" directory)) directory)
-          ((file-exists-p (expand-file-name "Gemfile" directory)) directory)
-          (t (rspec-project-root (file-name-directory (directory-file-name directory)))))))
-
-(defun rspec--include-fg-syntax-methods-p ()
-  "Check wether FactoryGirl::Syntax::Methods is included in spec_helper"
-  (with-temp-buffer
-    (let* ((root-path (rspec-project-root))
-           (spec-helper-path (concat root-path "spec/spec_helper.rb"))
-           (uses-factory-girl-regexp "include +FactoryGirl::Syntax::Methods"))
-      (with-temp-buffer
-        (insert-file-contents spec-helper-path)
-        (cond
-         ((= 0 rspec-snippets-fg-syntax) nil)
-         ((= 1 rspec-snippets-fg-syntax) (re-search-forward uses-factory-girl-regexp nil t))
-         ((= 2 rspec-snippets-fg-syntax) t))))))
-
-(defun rspec-snippets-fg-method-prefix (method)
-  "Return FactoryGirl method for snippet aware of FactoryGirl::Syntax::Methods inclusion in the spec_helper file."
-  (if (rspec--include-fg-syntax-methods-p)
-      method
-    (concat "FactoryGirl." method)))
-;; ======================================================================
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
