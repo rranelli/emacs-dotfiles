@@ -70,8 +70,8 @@
        1
        nil
        (lambda (buf) (if (get-buffer-window buf)
-                    (progn (delete-window (get-buffer-window buf))
-                           (bury-buffer buf))))
+			 (progn (delete-window (get-buffer-window buf))
+				(bury-buffer buf))))
        buffer)))
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
@@ -151,6 +151,7 @@ narrowed."
           "culpa qui officia deserunt mollit anim id est laborum."))
 
 (defun sudo-edit (&optional arg)
+"Edit file as sudo. ARG as point."
   (interactive "p")
   (if (or arg (not buffer-file-name))
       (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
@@ -168,7 +169,12 @@ narrowed."
     (error (message "Invalid expression")
            (insert (current-kill 0)))))
 
-;; don't know why, but starter kit added this
+(defun rr-format-json (start end)
+  "Format json and replace region between START and END."
+  (interactive "r")
+  (shell-command-on-region start end "python -m json.tool" t t))
+
+;; don't know why, but starter kit added this monkey patch
 (defun vc-git-annotate-command (file buf &optional rev)
   (let ((name (file-relative-name file)))
     (vc-git-command buf 0 name "blame" "-w" rev)))
