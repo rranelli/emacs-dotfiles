@@ -20,6 +20,7 @@
 (global-set-key (kbd "C-c g") 'magit-status)
 
 ;; magit showlevels redefinition
+(define-key magit-mode-map (kbd "s") 'magit-status)
 (define-key magit-mode-map (kbd "M-1") 'delete-other-windows)
 (define-key magit-mode-map (kbd "M-2") 'split-window-vertically)
 (define-key magit-mode-map (kbd "M-3") 'split-window-horizontally)
