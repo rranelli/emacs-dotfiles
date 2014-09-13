@@ -70,8 +70,8 @@
        1
        nil
        (lambda (buf) (if (get-buffer-window buf)
-		    (progn (delete-window (get-buffer-window buf))
-			   (bury-buffer buf))))
+			 (progn (delete-window (get-buffer-window buf))
+				(bury-buffer buf))))
        buffer)))
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
@@ -98,19 +98,27 @@
   (interactive "*")
   (uniquify-all-lines-region (point-min) (point-max)))
 
-(defun wrap-region-replace-wrapper ()
+(defun wrap-region-replace ()
   (interactive)
-  (let* ((wrapper-to-replace (string (read-char "Which wrapper to replace?")))
-	 (wrapper-replace-by (string (read-char "Replace by?")))
-	 (right-char-to-replace (wrap-region-wrapper-right (wrap-region-find wrapper-to-replace)))
-	 (right-char-to-replace-by (wrap-region-wrapper-right (wrap-region-find wrapper-replace-by))))
+  (let* ((left-char-to-replace (string (read-char "Which wrapper to replace?")))
+	 (new-left-char (string (read-char "Replace by?")))
+	 (original-is-wrapper-p (wrap-region-find left-char-to-replace))
+	 (new-is-wrapper-p (wrap-region-find new-left-char))
+
+	 (right-char-to-replace (if original-is-wrapper-p
+				    (wrap-region-wrapper-right (wrap-region-find left-char-to-replace))
+				  left-char-to-replace))
+
+	 (new-right-char (if new-is-wrapper-p
+			     (wrap-region-wrapper-right (wrap-region-find new-left-char))
+			   new-left-char)))
     (save-excursion
-      (re-search-backward wrapper-to-replace)
+      (re-search-backward left-char-to-replace)
       (forward-sexp)
       (save-excursion
-	(replace-match wrapper-replace-by))
+	(replace-match new-left-char))
       (re-search-backward right-char-to-replace)
-      (replace-match right-char-to-replace-by))))
+      (replace-match new-right-char))))
 
 (defun rr-strip-whitespace ()
   (interactive)
