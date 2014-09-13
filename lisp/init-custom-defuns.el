@@ -45,9 +45,9 @@
   "Put the buffer from the selected window in next window, and vice versa."
   (interactive)
   (let* ((this (selected-window))
-         (other (next-window))
-         (this-buffer (window-buffer this))
-         (other-buffer (window-buffer other)))
+	 (other (next-window))
+	 (this-buffer (window-buffer this))
+	 (other-buffer (window-buffer other)))
     (set-window-buffer other this-buffer)
 
     (set-window-buffer this other-buffer)))
@@ -64,14 +64,14 @@
        (string-match "compilation" (buffer-name buffer))
        (string-match "finished" string)
        (not (with-current-buffer buffer
-              (goto-char 1)
-              (search-forward "warning" nil t))))
+	      (goto-char 1)
+	      (search-forward "warning" nil t))))
       (run-with-timer
        1
        nil
        (lambda (buf) (if (get-buffer-window buf)
-			 (progn (delete-window (get-buffer-window buf))
-				(bury-buffer buf))))
+		    (progn (delete-window (get-buffer-window buf))
+			   (bury-buffer buf))))
        buffer)))
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
@@ -88,10 +88,10 @@
   (save-excursion
     (let ((end (copy-marker end)))
       (while
-          (progn
-            (goto-char start)
-            (re-search-forward "^\\(.*\\)\n\\(\\(.*\n\\)*\\)\\1\n" end t))
-        (replace-match "\\1\n\\2")))))
+	  (progn
+	    (goto-char start)
+	    (re-search-forward "^\\(.*\\)\n\\(\\(.*\n\\)*\\)\\1\n" end t))
+	(replace-match "\\1\n\\2")))))
 
 (defun uniquify-all-lines-buffer ()
   "Delete duplicate lines in buffer and keep first occurrence."
@@ -101,16 +101,23 @@
 (defun wrap-region-replace-wrapper ()
   (interactive)
   (let* ((wrapper-to-replace (string (read-char "Which wrapper to replace?")))
-         (wrapper-replace-by (string (read-char "Replace by?")))
-         (right-char-to-replace (wrap-region-wrapper-right (wrap-region-find wrapper-to-replace)))
-         (right-char-to-replace-by (wrap-region-wrapper-right (wrap-region-find wrapper-replace-by))))
+	 (wrapper-replace-by (string (read-char "Replace by?")))
+	 (right-char-to-replace (wrap-region-wrapper-right (wrap-region-find wrapper-to-replace)))
+	 (right-char-to-replace-by (wrap-region-wrapper-right (wrap-region-find wrapper-replace-by))))
     (save-excursion
       (re-search-backward wrapper-to-replace)
       (forward-sexp)
       (save-excursion
-        (replace-match wrapper-replace-by))
+	(replace-match wrapper-replace-by))
       (re-search-backward right-char-to-replace)
       (replace-match right-char-to-replace-by))))
+
+(defun rr-strip-whitespace ()
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (replace-regexp " +" " " nil (point-min) (point-max)))
+  (indent-region (point-min) (point-max)))
 
 ;; -- misc --
 (defun noop () "Does nothing." (interactive) nil)
@@ -126,32 +133,32 @@ narrowed."
   (interactive "P")
   (declare (interactive-only))
   (cond ((and (buffer-narrowed-p) (not p))
-         (widen))
-        ((region-active-p)
-         (narrow-to-region (region-beginning) (region-end)))
-        ((and (boundp 'org-src-mode) org-src-mode (not p)) ; <-- Added
-         (org-edit-src-exit))
-        ((derived-mode-p 'org-mode)
-         (cond ((org-in-src-block-p)
-                (org-edit-src-code))
-               ((org-at-block-p)
-                (org-narrow-to-block))
-               (t (org-narrow-to-subtree))))
-        (t (narrow-to-defun))))
+	 (widen))
+	((region-active-p)
+	 (narrow-to-region (region-beginning) (region-end)))
+	((and (boundp 'org-src-mode) org-src-mode (not p)) ; <-- Added
+	 (org-edit-src-exit))
+	((derived-mode-p 'org-mode)
+	 (cond ((org-in-src-block-p)
+		(org-edit-src-code))
+	       ((org-at-block-p)
+		(org-narrow-to-block))
+	       (t (org-narrow-to-subtree))))
+	(t (narrow-to-defun))))
 
 (defun insert-lorem ()
   "Insert a lorem ipsum."
   (interactive)
   (insert "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do "
-          "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim"
-          "ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut "
-          "aliquip ex ea commodo consequat. Duis aute irure dolor in "
-          "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla "
-          "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in "
-          "culpa qui officia deserunt mollit anim id est laborum."))
+	  "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim"
+	  "ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut "
+	  "aliquip ex ea commodo consequat. Duis aute irure dolor in "
+	  "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla "
+	  "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in "
+	  "culpa qui officia deserunt mollit anim id est laborum."))
 
 (defun sudo-edit (&optional arg)
-"Edit file as sudo. ARG as point."
+  "Edit file as sudo. ARG as point."
   (interactive "p")
   (if (or arg (not buffer-file-name))
       (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
@@ -165,9 +172,9 @@ narrowed."
     (kill-sexp))
   (condition-case nil
       (prin1 (eval (read (current-kill 0)))
-             (current-buffer))
+	     (current-buffer))
     (error (message "Invalid expression")
-           (insert (current-kill 0)))))
+	   (insert (current-kill 0)))))
 
 (defun rr-format-json (start end)
   "Format json and replace region between START and END."
