@@ -108,7 +108,6 @@
 	 (right-char-to-replace (if original-is-wrapper-p
 				    (wrap-region-wrapper-right (wrap-region-find left-char-to-replace))
 				  left-char-to-replace))
-
 	 (new-right-char (if new-is-wrapper-p
 			     (wrap-region-wrapper-right (wrap-region-find new-left-char))
 			   new-left-char)))
@@ -183,11 +182,6 @@ narrowed."
 	     (current-buffer))
     (error (message "Invalid expression")
 	   (insert (current-kill 0)))))
-
-(defun rr-format-json (start end)
-  "Format json and replace region between START and END."
-  (interactive "r")
-  (shell-command-on-region start end "python -m json.tool" t t))
 
 ;; don't know why, but starter kit added this monkey patch
 (defun vc-git-annotate-command (file buf &optional rev)
