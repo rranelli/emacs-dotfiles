@@ -33,9 +33,9 @@
 ;; helm better navigation
 (define-key helm-find-files-map (kbd "<backspace>") 'helm-find-files-sensitive-backspace)
 (define-key helm-find-files-map (kbd "<DEL>") 'helm-find-files-sensitive-backspace)
-(define-key helm-find-files-map (kbd "<tab>") 'helm-execute-persistent-action)
-(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-(define-key helm-find-files-map (kbd "C-i") 'helm-execute-persistent-action)
+;; (define-key helm-find-files-map (kbd "<tab>") 'helm-execute-persistent-action)
+;; (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
+;; (define-key helm-find-files-map (kbd "C-i") 'helm-execute-persistent-action)
 (define-key helm-find-files-map (kbd "C-h") 'helm-find-files-sensitive-backspace)
 
 (provide 'init-helm)
