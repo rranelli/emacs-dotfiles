@@ -93,13 +93,17 @@
           (lambda () (add-hook 'after-save-hook 'select-proper-dictionary-language nil 'make-it-local)))
 
 ;; -- keybindings --
-(define-key text-mode-map (kbd "C-c w p") 'org-jekyll-publish-org-to-jekyll)
-(define-key text-mode-map (kbd "C-c w e") 'org-jekyll-export-to-jekyll)
-(define-key text-mode-map (kbd "C-c w s c") 'flyspell-buffer)
-(define-key text-mode-map (kbd "C-c w s t") 'flyspell-mode)
+(defvar org-jekyll-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "p") 'org-jekyll-publish-org-to-jekyll)
+    (define-key map (kbd "e") 'org-jekyll-export-to-jekyll)
+    (define-key map (kbd "s c") 'flyspell-buffer)
+    (define-key map (kbd "s t") 'flyspell-mode)
+    (define-key map (kbd "n") 'org-jekyll-new-draft)
+    (define-key map (kbd "f") 'org-jekyll-fill-post)
+    map))
 
-(define-key global-map (kbd "C-c w n") 'org-jekyll-new-draft)
-(define-key markdown-mode-map (kbd "C-c w b") 'markdown-insert-gfm-code-block)
+(define-key global-map (kbd "C-c w") 'org-jekyll-mode-map)
 
 (provide 'init-writing)
 ;;; init-markdown.el ends here
