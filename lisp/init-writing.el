@@ -80,10 +80,11 @@
     (yas-expand)
     (insert post-title)))
 
-(defun org-jekyll-fill-post ()
+(defun org-jekyll-fill ()
   (interactive)
   (save-excursion
-    (re-search-backward "END_HTML")
+    (beginning-of-buffer)
+    (re-search-forward "END_HTML" nil t)
     (fill-region (point) (point-max))))
 
 ;; -- hooks --p
@@ -105,10 +106,11 @@
     (define-key map (kbd "s c") 'flyspell-buffer)
     (define-key map (kbd "s t") 'flyspell-mode)
     (define-key map (kbd "n") 'org-jekyll-new-draft)
-    (define-key map (kbd "f") 'org-jekyll-fill-post)
+    (define-key map (kbd "f") 'org-jekyll-fill)
+    (define-key map (kbd "r") 'fill-region)
     map))
 
-(define-key global-map (kbd "C-c w") 'org-jekyll-mode-map)
+(define-key global-map (kbd "C-c w") org-jekyll-mode-map)
 
 (provide 'init-writing)
 ;;; init-markdown.el ends here
