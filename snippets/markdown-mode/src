@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: src
 # --
-```${1:language}
-```
+\`\`\`${1:name}
+$0
+\`\`\`
