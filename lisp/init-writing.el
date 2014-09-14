@@ -3,7 +3,6 @@
 ;;; Code:
 (require 'markdown-mode)
 (require 'ox-gfm)
-
 (add-to-list 'auto-mode-alist '("\\.md$" . gfm-mode))
 
 (defun select-proper-dictionary-language ()
@@ -80,6 +79,12 @@
     (insert "blog")
     (yas-expand)
     (insert post-title)))
+
+(defun org-jekyll-fill-post ()
+  (interactive)
+  (save-excursion
+    (re-search-backward "END_HTML")
+    (fill-region (point) (point-max))))
 
 ;; -- hooks --p
 ;; nested hooks are amazing!
