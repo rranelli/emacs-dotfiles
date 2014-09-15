@@ -42,6 +42,7 @@
     idle-highlight-mode
     find-file-in-project
     bash-completion
+    popup
     ;; themes
     solarized-theme
     color-theme-sanityinc-solarized
