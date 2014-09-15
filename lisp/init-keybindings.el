@@ -67,6 +67,8 @@
 ;; other mode compatibilities
 (define-key better-registers-map (kbd "<f1>") nil)
 (define-key better-registers-map (kbd "C-j") nil)
+(define-key better-registers-map (kbd "C-x r") nil)
+(define-key better-registers-map (kbd "C-x r") nil)
 
 (define-key dired-mode-map (kbd "M-o") 'other-window)
 (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
