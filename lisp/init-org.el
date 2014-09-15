@@ -4,7 +4,7 @@
 
 (defcustom rr-org-files-directory "~/Dropbox/org/"
   "Directory for org files."
-  :group 'init-orggg)
+  :group 'init-org)
 
 (if (file-exists-p rr-org-files-directory)
     ;; Set up org-agenda files

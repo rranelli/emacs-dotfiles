@@ -90,7 +90,6 @@
 ;; -- hooks --p
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'text-mode-hook 'electric-pair-mode)
 
 ;; nested hooks are amazing!
 ;; ref: (http://stackoverflow.com/questions/6138029/how-to-add-a-hook-to-only-run-in-a-particular-mode)
