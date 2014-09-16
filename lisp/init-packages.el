@@ -77,7 +77,6 @@
     whitespace
     ffap
     find-file-in-project
-    neotree
     recentf
     ansi-color
     dired-x
