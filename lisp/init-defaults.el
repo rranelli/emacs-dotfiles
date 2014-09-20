@@ -13,6 +13,7 @@
 (global-undo-tree-mode)
 (ido-mode t)
 (ido-vertical-mode)
+(global-auto-revert-mode nil)
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
