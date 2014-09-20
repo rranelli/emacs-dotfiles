@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(defcustom rr-org-files-directory "~/Dropbox/org/"
+(defcustom rr-org-files-directory "~/Copy/org/"
   "Directory for org files."
   :group 'init-org)
 
