@@ -1,7 +1,6 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(require 'helm-config)
 (require 'helm-ls-git)
 
 (helm-mode t)
