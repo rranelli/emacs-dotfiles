@@ -46,6 +46,12 @@
       (define-key org-agenda-mode-map (kbd "C-c p") nil)
       (define-key org-mode-map (kbd "M-h") nil)
 
+      ;; set-up encryption
+      (require 'org-crypt)
+      (org-crypt-use-before-save-magic)
+      (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+      (setq org-crypt-key nil)
+
       (message "Org-mode config loaded."))
   (message "skipping org-mode load."))
 
