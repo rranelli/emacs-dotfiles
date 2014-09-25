@@ -82,10 +82,19 @@
 
 (defun org-jekyll-fill ()
   (interactive)
-  (save-excursion
-    (beginning-of-buffer)
-    (re-search-forward "END_HTML" nil t)
-    (fill-region (point) (point-max))))
+  (cl-labels ((no-code-fill ()
+			    (set-mark (point))
+			    (re-search-forward "\\(#\\+begin_src\\)" nil t)
+			    (if (match-string 1)
+				(progn
+				  (fill-region (mark) (point))
+				  (re-search-forward "#\\+end_src" nil t)
+				  (no-code-fill))
+			      (fill-region (point) (point-max)))))
+    (save-excursion
+      (beginning-of-buffer)
+      (re-search-forward "END_HTML" nil t)
+      (no-code-fill))))
 
 ;; -- hooks --p
 (add-hook 'text-mode-hook 'auto-fill-mode)
