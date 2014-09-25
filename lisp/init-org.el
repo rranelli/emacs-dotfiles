@@ -46,6 +46,8 @@
       (define-key org-agenda-mode-map (kbd "C-c p") nil)
       (define-key org-mode-map (kbd "M-h") nil)
 
+      (define-key org-mode-map (kbd "C-c C-f") nil)
+
       ;; set-up encryption
       (require 'org-crypt)
       (org-crypt-use-before-save-magic)
