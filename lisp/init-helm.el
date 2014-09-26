@@ -11,7 +11,8 @@
 (setq helm-split-window-in-side-p t
       helm-exit-idle-delay 0.01
       helm-ff-transformer-show-only-basename nil
-      helm-ls-git-show-abs-or-relative 'relative)
+      helm-ls-git-show-abs-or-relative 'relative
+      helm-buffer-max-length nil)
 
 ;; helpers for more familiar helm find-file navigation
 (defun helm-find-files-sensitive-backspace ()
@@ -32,9 +33,6 @@
 ;; helm better navigation
 (define-key helm-find-files-map (kbd "<backspace>") 'helm-find-files-sensitive-backspace)
 (define-key helm-find-files-map (kbd "<DEL>") 'helm-find-files-sensitive-backspace)
-;; (define-key helm-find-files-map (kbd "<tab>") 'helm-execute-persistent-action)
-;; (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
-;; (define-key helm-find-files-map (kbd "C-i") 'helm-execute-persistent-action)
 (define-key helm-find-files-map (kbd "C-h") 'helm-find-files-sensitive-backspace)
 
 (provide 'init-helm)
