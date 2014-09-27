@@ -6,6 +6,7 @@
   "Directory for org files."
   :group 'init-org)
 
+;; make org beautifull
 (if (file-exists-p rr-org-files-directory)
     ;; Set up org-agenda files
     (let* ((dir-files (directory-files rr-org-files-directory t directory-files-no-dot-files-regexp))
@@ -17,6 +18,8 @@
       (require 'org-mode-custom)
 
       ;; Setting up babel support for languages
+      (setq org-src-fontify-natively t)
+
       (org-babel-do-load-languages'org-babel-load-languages
        '((emacs-lisp . t)
 	 (dot . t)
@@ -33,20 +36,10 @@
 	 (latex . t)
 	 (sql . t)))
 
-      ;; Setting up fonfitication
-      (setq org-src-fontify-natively t)
-
-      ;; make org beautifull
       (setq
        org-odd-levels-only t
        org-hide-leading-stars t
        org-startup-indented nil)
-
-      ;; removing useless conflict keys on org-mode.
-      (define-key org-agenda-mode-map (kbd "C-c p") nil)
-      (define-key org-mode-map (kbd "M-h") nil)
-
-      (define-key org-mode-map (kbd "C-c C-f") nil)
 
       ;; set-up encryption
       (require 'org-crypt)
@@ -54,8 +47,12 @@
       (setq org-tags-exclude-from-inheritance (quote ("crypt")))
       (setq org-crypt-key nil)
 
-      (message "Org-mode config loaded."))
-  (message "skipping org-mode load."))
+      ;; setup keybindings
+      (expose-bindings org-agenda-mode-map '("C-c p"))
+      (expose-bindings org-mode-map '("M-h" "C-c C-f"))
+
+      (message "Org-mode agenda config loaded."))
+  (message "skipping org-mode agenda load."))
 
 (provide 'init-org)
 ;;; init-org.el ends here

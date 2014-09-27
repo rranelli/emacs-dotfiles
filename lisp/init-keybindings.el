@@ -65,21 +65,18 @@
 (define-key ctl-x-map "n" 'narrow-or-widen-dwim)
 
 ;; other mode compatibilities
-(define-key better-registers-map (kbd "<f1>") nil)
-(define-key better-registers-map (kbd "C-j") nil)
-(define-key better-registers-map (kbd "C-x r") nil)
-(define-key better-registers-map (kbd "C-x r") nil)
+(expose-bindings dired-mode-map '("M-o"))
+(expose-bindings yaml-mode-map '("C-m"))
+(expose-bindings text-mode-map '("M-r"))
 
-(define-key dired-mode-map (kbd "M-o") 'other-window)
-(define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
-(define-key text-mode-map (kbd "M-r") 'paredit-splice-sexp)
+(expose-bindings better-registers-map
+		 '("<f1>" "C-j" "C-x r" "C-x r"))
 
-(define-key markdown-mode-map (kbd "C-c C-f") nil)
-(define-key markdown-mode-map (kbd "M-h") nil)
+(expose-bindings markdown-mode-map
+		 '("C-c C-f" "M-h"))
 
-(define-key sgml-mode-map (kbd "C-c C-f") nil)
-(define-key sgml-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
-(define-key sgml-mode-map (kbd "C-M-b") 'sgml-skip-tag-backward)
+(expose-bindings sgml-mode-map
+		 '("C-c C-f" "C-M-f" "C-M-b"))
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here

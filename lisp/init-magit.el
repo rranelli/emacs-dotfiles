@@ -21,13 +21,12 @@
 
 ;; magit showlevels redefinition
 (define-key magit-mode-map (kbd "s") 'magit-status)
-(define-key magit-mode-map (kbd "M-1") 'delete-other-windows)
-(define-key magit-mode-map (kbd "M-2") 'split-window-vertically)
-(define-key magit-mode-map (kbd "M-3") 'split-window-horizontally)
 (define-key magit-mode-map (kbd "C-1") 'magit-show-level-1-all)
 (define-key magit-mode-map (kbd "C-2") 'magit-show-level-2-all)
 (define-key magit-mode-map (kbd "C-3") 'magit-show-level-3-all)
 (define-key magit-mode-map (kbd "C-4") 'magit-show-level-4-all)
+
+(expose-bindings magit-mode-map '("M-1" "M-2" "M-3"))
 
 (provide 'init-magit)
 ;;; init-magit.el ends here

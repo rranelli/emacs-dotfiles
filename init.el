@@ -7,8 +7,6 @@
 
 (require 'cl)
 
-(defconst *spell-check-support-enabled* nil)
-
 ;; --- bootstrapping ---
 (let* ((lisp-dir (expand-file-name "lisp" user-emacs-directory))
        (vendor-dir (expand-file-name "vendor" user-emacs-directory)))
@@ -19,6 +17,7 @@
   '(init-packages
     init-custom-defuns
     init-defaults
+    init-keybindings
     init-path
     init-appearance
     init-magit
@@ -31,8 +30,8 @@
     init-writing
     init-helm
     init-org
-    init-shell
-    init-keybindings))
+    init-shell))
+
 (dolist (file init-files)
   (require file))
 

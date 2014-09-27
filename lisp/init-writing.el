@@ -1,7 +1,6 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(require 'markdown-mode)
 (require 'ox-gfm)
 (add-to-list 'auto-mode-alist '("\\.md$" . gfm-mode))
 

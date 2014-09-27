@@ -60,7 +60,11 @@
 
 ;; -- keybindings --
 (global-set-key (kbd "C-x C-m") 'new-shell)
-(define-key shell-mode-map (kbd "C-c C-f") nil)
+
+(expose-bindings shell-mode-map '("C-c C-f"))
+(add-hook 'term-mode-hook
+	  (lambda ()
+	    (expose-bindings term-raw-map '("M-k" "M-o" "M-1" "M-2" "M-3" "M-i"))))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

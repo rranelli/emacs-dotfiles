@@ -82,6 +82,8 @@
     dired-x
     iso-transl
     dash
+    markdown-mode
+    ox-gfm
     s
     sgml-mode
     yaml-mode))

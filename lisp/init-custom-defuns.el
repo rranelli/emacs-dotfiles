@@ -183,6 +183,22 @@ narrowed."
     (error (message "Invalid expression")
 	   (insert (current-kill 0)))))
 
+(defun macroexpand-point (sexp)
+  "Expands macro at point/region containing SEXP."
+  (interactive (list (sexp-at-point)))
+  (with-output-to-temp-buffer "*el-macroexpansion*"
+    (pp (macroexpand sexp)))
+  (with-current-buffer "*el-macroexpansion*" (emacs-lisp-mode)))
+
+;; Keybindings macros
+(defmacro expose-global-keybinding (binding map)
+  "Un-overrides BINDING in MAP."
+  (list 'define-key map binding (list 'lookup-key (list 'current-global-map) binding)))
+
+(defmacro expose-bindings (map bindings)
+  (list 'dolist (list 'bnd bindings)
+	(list 'expose-global-keybinding (list 'kbd 'bnd) map)))
+
 ;; don't know why, but starter kit added this monkey patch
 (defun vc-git-annotate-command (file buf &optional rev)
   (let ((name (file-relative-name file)))

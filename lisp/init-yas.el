@@ -16,6 +16,7 @@
 ;; -- keybindings --
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
+
 (global-set-key (kbd "M-y") 'yas-expand)
 
 (define-key yas-minor-mode-map (kbd "C-c y n") 'yas-new-snippet)
