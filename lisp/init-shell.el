@@ -64,7 +64,7 @@
 (expose-bindings shell-mode-map '("C-c C-f"))
 (add-hook 'term-mode-hook
 	  (lambda ()
-	    (expose-bindings term-raw-map '("M-k" "M-o" "M-1" "M-2" "M-3" "M-i"))))
+	    (expose-bindings term-raw-map '("M-k" "M-o" "M-1" "M-2" "M-3" "M-i" "M-l"))))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
