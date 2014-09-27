@@ -16,8 +16,8 @@
 (defvar init-files
   '(init-packages
     init-custom-defuns
-    init-defaults
     init-keybindings
+    init-defaults
     init-path
     init-appearance
     init-magit

@@ -16,9 +16,6 @@
     (when (string= (buffer-name (window-buffer win)) "*Completions*")
       (kill-buffer "*Completions*")))
   output)
-(add-hook 'comint-preoutput-filter-functions 'kill-completion-window-buffer)
-
-(add-hook 'sql-mode-hook 'sql-highlight-mysql-keywords)
 
 (defadvice shell (after do-not-query-shell-exit
 			first (&optional buffer)
@@ -27,6 +24,17 @@
   (interactive)
   (let* ((shell-processes (remove-if-not
 			   (lambda (process) (string-match-p "shell" (process-name process)))
+			   (process-list))))
+    (dolist (p shell-processes)
+      (set-process-query-on-exit-flag p nil))))
+
+(defadvice term (after do-not-query-term-exit
+			first (&optional buffer)
+			activate)
+  "Do not query exit confirmation for shell process buffer."
+  (interactive)
+  (let* ((shell-processes (remove-if-not
+			   (lambda (process) (string-match-p "terminal" (process-name process)))
 			   (process-list))))
     (dolist (p shell-processes)
       (set-process-query-on-exit-flag p nil))))
@@ -58,8 +66,12 @@
 	(insert (format "cd %s" project-root))
 	(comint-send-input nil t)))))
 
+;; hooks
+(add-hook 'comint-preoutput-filter-functions 'kill-completion-window-buffer)
+
 ;; -- keybindings --
 (global-set-key (kbd "C-x C-m") 'new-shell)
+(global-set-key (kbd "C-x C-M-M") (lambda () (interactive) (term "/bin/bash")))
 
 (expose-bindings shell-mode-map '("C-c C-f"))
 (add-hook 'term-mode-hook
