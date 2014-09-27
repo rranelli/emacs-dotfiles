@@ -192,12 +192,11 @@ narrowed."
 
 ;; Keybindings macros
 (defmacro expose-global-keybinding (binding map)
-  "Un-overrides BINDING in MAP."
-  (list 'define-key map binding (list 'lookup-key (list 'current-global-map) binding)))
+  `(define-key ,map ,binding `,(lookup-key `,(current-global-map) ,binding)))
 
 (defmacro expose-bindings (map bindings)
-  (list 'dolist (list 'bnd bindings)
-	(list 'expose-global-keybinding (list 'kbd 'bnd) map)))
+  `(dolist (bnd ,bindings)
+     `,(expose-global-keybinding `,(kbd bnd) ,map)))
 
 ;; don't know why, but starter kit added this monkey patch
 (defun vc-git-annotate-command (file buf &optional rev)
