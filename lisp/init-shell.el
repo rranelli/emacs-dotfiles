@@ -78,5 +78,7 @@
 	  (lambda ()
 	    (expose-bindings term-raw-map '("M-k" "M-o" "M-1" "M-2" "M-3" "M-i" "M-l"))))
 
+(expose-bindings sh-mode-map '("C-c C-f"))
+
 (provide 'init-shell)
 ;;; init-shell.el ends here
