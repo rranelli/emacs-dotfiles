@@ -59,7 +59,8 @@
     rubocop
     ;; other packages
     haskell-mode
-    sml-mode)
+    sml-mode
+    cider)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
