@@ -22,7 +22,9 @@
 (smex-initialize)
 
 ;; add pretty symbols for lambdas and relationals
-(setq pretty-symbol-categories '(lambda))
+(setq pretty-symbol-categories '(lambda nil))
+(add-to-list 'pretty-symbol-patterns
+	     `(?λ lambda "\\<fn\\>" (clojure-mode)))
 
 ;; add backticks and equals to wrap-region
 (wrap-region-add-wrapper "`" "`")
