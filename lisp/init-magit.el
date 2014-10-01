@@ -26,6 +26,8 @@
 (define-key magit-mode-map (kbd "C-3") 'magit-show-level-3-all)
 (define-key magit-mode-map (kbd "C-4") 'magit-show-level-4-all)
 
+(define-key magit-mode-map (kbd "C-x C-s") 'noop)
+
 (expose-bindings magit-mode-map '("M-1" "M-2" "M-3"))
 
 (provide 'init-magit)
