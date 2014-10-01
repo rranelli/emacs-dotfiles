@@ -61,6 +61,7 @@
     ;; other packages
     haskell-mode
     sml-mode
+    wanderlust
     cider)
   "A list of packages to ensure are installed at launch.")
 

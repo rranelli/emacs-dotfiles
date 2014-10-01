@@ -12,30 +12,65 @@
       ;;for non ascii-characters in folder-names
       elmo-imap4-use-modified-utf7 t)
 
-;; SMTP
-(setq wl-smtp-connection-type 'starttls
-      wl-smtp-posting-port 587
-      wl-smtp-authenticate-type "plain"
-      wl-smtp-posting-user "renanranelli"
-      wl-smtp-posting-server "smtp.gmail.com"
-      wl-local-domain "gmail.com"
-      wl-message-id-domain "smtp.gmail.com")
+(setq wl-batch-prefetch-folder-list "%INBOX")
 
-(setq wl-from "Renan Ranelli <renanranelli@gmail.com>"
+;; Accounts
+(setq
+ wl-template-default-name "gmail"
 
-      ;;all system folders (draft, trash, spam, etc) are placed in the
-      ;;[Gmail]-folder, except inbox. "%" means it's an IMAP-folder
-      wl-default-folder "%inbox"
-      wl-draft-folder   "%[Gmail]/Drafts"
-      wl-trash-folder   "%[Gmail]/Trash"
-      wl-fcc            "%[Gmail]/Sent"
+ wl-draft-config-matchone t
+ wl-draft-reply-buffer-style 'full
+ wl-dispose-folder-alist
+ '((".*gmail" . "%[Gmail]/Trash:\"renanranelli@gmail.com\"/clear@imap.gmail.com:993!")
+   (".*locaweb" . remove))
 
-      ;; mark sent messages as read (sent messages get sent back to you and
-      ;; placed in the folder specified by wl-fcc)
-      wl-fcc-force-as-read t
+ wl-template-alist
+ '(("gmail"
+    (wl-from . "Renan Ranelli <renanranelli@gmail.com>")
+    ("From" . wl-from)
+    (wl-fcc . "%[Gmail]/Sent")
+    (wl-trash-folder . "%[Gmail]/Trash:\"renanranelli@gmail.com\"/clear@imap.gmail.com:993!")
+    (wl-smtp-connection-type . 'starttls)
+    (wl-smtp-posting-port . 587)
+    (wl-smtp-authenticate-type . "plain")
+    (wl-local-domain . "gmail.com")
+    (wl-smtp-posting-user . "renanranelli@gmail.com")
+    (wl-smtp-posting-server . "smtp.gmail.com")
+    (wl-message-id-domain . "smtp.gmail.com"))
+   ("locaweb"
+    (wl-from . "Renan Ranelli <renan.ranelli@locaweb.com.br>")
+    ("From" . wl-from)
+    ("Fcc" . "%sent items:\"renan.ranelli\"/clear@outlook.locaweb.com.br:993!")
+    (wl-smtp-connection-type . 'starttls)
+    (wl-smtp-posting-port . 587)
+    (wl-smtp-authenticate-type . "login")
+    (wl-smtp-posting-user . "renan.ranelli")
+    (wl-local-domain . "locaweb.com.br")
+    (wl-smtp-posting-server . "outlook.locaweb.com.br")
+    (wl-message-id-domain . "outlook.locaweb.com.br")))
 
-      ;;for when auto-completing foldernames
-      wl-default-spec "%")
+ wl-draft-config-alist '(((string-match "locaweb" wl-draft-parent-folder)
+			  (template . "locaweb"))
+			 ((string-match "." wl-draft-parent-folder)
+			  (template . "gmail"))))
+
+;; Set header fields to show
+(setq
+ wl-message-ignored-field-list '("^.*:")
+ wl-message-visible-field-list
+ '("^\\(To\\|Cc\\):"
+   "^Subject:"
+   "^\\(From\\|Reply-To\\):"
+   "^Organization:"
+   "^Message-Id:"
+   "^\\(Posted\\|Date\\):"))
+
+(setq
+ ;; do not limit summary width
+ wl-summary-width 180
+ ;; dont know what that is
+ wl-message-buffer-prefetch-depth 0)
+
 
 (provide 'init-mail)
 ;;; init-mail.el ends here

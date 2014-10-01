@@ -31,6 +31,7 @@
     init-writing
     init-org
     init-helm
+    init-mail
     init-shell))
 
 (dolist (file init-files)
