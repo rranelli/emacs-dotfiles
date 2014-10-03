@@ -9,7 +9,6 @@
 (show-paren-mode 1)
 (smartscan-mode t)
 (global-flycheck-mode t)
-(wrap-region-global-mode)
 (global-undo-tree-mode)
 (ido-mode t)
 (ido-vertical-mode)
@@ -26,9 +25,14 @@
 (add-to-list 'pretty-symbol-patterns
 	     `(?λ lambda "\\<fn\\>" (clojure-mode)))
 
-;; add backticks and equals to wrap-region
+;; -- Wrap Region --
+(wrap-region-global-mode)
+
 (wrap-region-add-wrapper "`" "`")
 (wrap-region-add-wrapper "=" "=")
+(wrap-region-add-wrapper "*" "*")
+(wrap-region-add-wrapper "/" "/")
+(wrap-region-add-wrapper "_" "_")
 
 ;; -- Variables --
 (setq
