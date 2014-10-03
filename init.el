@@ -25,6 +25,7 @@
     init-yas
     init-ruby
     init-lisp
+    init-clojure
     init-isearch
     init-project-utils
     init-writing
