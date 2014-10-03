@@ -23,5 +23,8 @@
 	  (lambda ()
 	    (expose-bindings flyspell-mode-map '("C-;"))))
 
+(expose-bindings markdown-mode-map '("C-:" "C-c C-f" "C-;"))
+(expose-bindings flyspell-mode-map '("C-:" "C-;" "C-c C-f"))
+
 (provide 'init-writing)
 ;;; init-markdown.el ends here
