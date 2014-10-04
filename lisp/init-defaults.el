@@ -22,8 +22,6 @@
 
 ;; add pretty symbols for lambdas and relationals
 (setq pretty-symbol-categories '(lambda nil))
-(add-to-list 'pretty-symbol-patterns
-	     `(?λ lambda "\\<fn\\>" (clojure-mode)))
 
 ;; -- Wrap Region --
 (wrap-region-global-mode)

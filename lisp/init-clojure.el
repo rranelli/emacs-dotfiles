@@ -3,6 +3,10 @@
 ;;; Code:
 (require 'cider)
 
+;; -- pretty lambda --
+(add-to-list 'pretty-symbol-patterns
+	     `(?λ lambda "\\<fn\\>" (clojure-mode)))
+
 ;; -- bindings --
 (expose-bindings cider-mode-map '("C-c C-f"))
 
