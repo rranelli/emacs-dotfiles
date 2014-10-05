@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: quote
+# key: quote
+# binding: direct-keybinding
+# --
+#+begin_quote
+$0
+
+@@html:<div align="right"><i>@@
+
+Author
+
+@@html:</i></div>@@
+#+end_quote
