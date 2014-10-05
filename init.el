@@ -29,22 +29,25 @@
     init-isearch
     init-project-utils
     init-writing
-    init-helm
     init-org
+    init-helm
     init-shell))
 
 (dolist (file init-files)
   (require file))
 
 ;; -- custom --
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
+(let ((custom-file (expand-file-name "custom.el" user-emacs-directory)))
+  (when (file-exists-p custom-file)
+    (load custom-file)))
 
 ;; -- auto start server --
 (require 'server)
 (unless (server-running-p)
   (server-start))
+
+;; test to see if this works
+(setq helm-buffer-max-length nil)
 
 ;; Finish!
 (message

@@ -4,7 +4,6 @@
 (require 'helm-ls-git)
 
 (helm-mode t)
-
 (diminish 'helm-mode)
 
 ;; the following configuratin makes helm-find WAY better
