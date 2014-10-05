@@ -123,5 +123,8 @@
 
 (define-key global-map (kbd "C-c w") org-jekyll-mode-map)
 
+;; TODO: make org-jekyll a minor mode
+(define-key org-mode-map (kbd "C-c i") 'org-jekyll-fill)
+
 (provide 'init-writing)
 ;;; init-markdown.el ends here
