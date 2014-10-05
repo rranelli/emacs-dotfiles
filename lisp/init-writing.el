@@ -13,6 +13,17 @@
     (when lang-p
       (ispell-change-dictionary lang))))
 
+(defun org-jekyll-view-md ()
+  "Goes to exported markdown file"
+  (interactive)
+  (find-file (org-jekyll-get-md-filename)))
+
+(defun org-jekyll-get-md-filename ()
+  "Finds target markdown file."
+  (let* ((post-file-org (buffer-file-name))
+         (post-file-md (replace-regexp-in-string "\\.org" ".md" post-file-org)))
+    (replace-regexp-in-string "/org" "" post-file-md)))
+
 (defun org-jekyll-publish-org-to-jekyll ()
   "Renames draft prepending date, export to markdown and promote it to Jekyll's post folder."
   (interactive)
@@ -24,7 +35,7 @@
   (interactive)
   (let* ((post-file-org (buffer-file-name))
          (post-file-md (replace-regexp-in-string "\\.org" ".md" post-file-org))
-         (target-file-md (replace-regexp-in-string "/org" "" post-file-md)))
+         (target-file-md (org-jekyll-get-md-filename)))
     (when (string= (file-name-extension post-file-org) "org")
       (org-gfm-export-to-markdown)
       (rename-file post-file-md target-file-md t))))
@@ -119,6 +130,7 @@
     (define-key map (kbd "n") 'org-jekyll-new-draft)
     (define-key map (kbd "f") 'org-jekyll-fill)
     (define-key map (kbd "r") 'fill-region)
+    (define-key map (kbd "t") 'org-jekyll-view-md)
     map))
 
 (define-key global-map (kbd "C-c w") org-jekyll-mode-map)
