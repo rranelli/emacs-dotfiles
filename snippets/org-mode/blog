@@ -4,7 +4,6 @@
 # --
 #+AUTHOR: Renan Ranelli (renanranelli@gmail.com)
 #+OPTIONS: toc:nil n:3
-#+STARTUP: showall indent
 #+STARTUP: oddeven
 #+STARTUP: hidestars
 #+BEGIN_HTML
@@ -14,4 +13,7 @@ layout: post
 title: ${1:title}
 ---
 #+END_HTML
+
+* <p hidden>$1<p hidden>
+
 $0
