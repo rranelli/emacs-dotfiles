@@ -100,7 +100,5 @@
   (package-menu-execute t)
   (kill-buffer))
 
-(rr-update-packages)
-
 (provide 'init-packages)
 ;;; init-packages.el ends here
