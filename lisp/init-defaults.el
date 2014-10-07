@@ -65,7 +65,8 @@
  whitespace-style '(face trailing lines-tail tabs)
  whitespace-line-column 80
  ;; no more two spaces to end sentences. Jeez.
- sentence-end-double-space nil)
+ sentence-end-double-space nil
+ tramp-default-method "ssh")
 
 (setq
  ido-enable-prefix nil
