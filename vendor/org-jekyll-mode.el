@@ -40,9 +40,12 @@
       (rename-file post-file-md target-file-md t))))
 
 (defun org-jekyll-prepend-date-to-file-name ()
-  (let* ((org-jekyll-file-name (buffer-file-name))
-         (org-jekyll-is-org-file-p (string= (file-name-extension org-jekyll-file-name) "org"))
-         (org-jekyll-is-date-prepended nil)
+  (let* ((org-jekyll-file-name
+	  (buffer-file-name))
+         (org-jekyll-is-org-file-p
+	  (string= (file-name-extension org-jekyll-file-name) "org"))
+         (org-jekyll-is-date-prepended
+	  (string-match "[0-9]\\{2\\}-[0-9]\\{2\\}-[0-9]\\{4\\}-.*" org-jekyll-file-name))
 
          (org-jekyll-file-name-nondirectory (file-name-nondirectory org-jekyll-file-name))
          (org-jekyll-file-directory (file-name-directory org-jekyll-file-name))
@@ -54,7 +57,9 @@
                                     current-date
                                     "-"
                                     org-jekyll-file-name-nondirectory)))
-    (when org-jekyll-is-org-file-p
+    (when (and
+	   org-jekyll-is-org-file-p
+	   (not org-jekyll-is-date-prepended))
       (set-visited-file-name org-jekyll-file-name-new t t)
       (rename-file org-jekyll-file-name org-jekyll-file-name-new t))))
 
