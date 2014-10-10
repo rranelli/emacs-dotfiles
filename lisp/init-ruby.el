@@ -105,10 +105,10 @@
   (other-window 1))
 
 ;; -- keybindings --
-(define-key rspec-mode-verifiable-keymap (kbd "y") 'rspec-spec-or-target-other-window-no-change-window)
-(define-key rspec-mode-verifiable-keymap (kbd "u") 'rspec-find-spec-or-target-other-window)
-(define-key rspec-mode-verifiable-keymap (kbd "e") 'rspec-find-spec-or-target-find-example-other-window)
-(define-key rspec-mode-verifiable-keymap (kbd "w") 'rspec-toggle-spec-and-target-find-example)
+(define-key rspec-mode-keymap (kbd "y") 'rspec-spec-or-target-other-window-no-change-window)
+(define-key rspec-mode-keymap (kbd "u") 'rspec-find-spec-or-target-other-window)
+(define-key rspec-mode-keymap (kbd "e") 'rspec-find-spec-or-target-find-example-other-window)
+(define-key rspec-mode-keymap (kbd "w") 'rspec-toggle-spec-and-target-find-example)
 
 (defvar ruby-mode-custom-map
   (let ((map (make-sparse-keymap)))
