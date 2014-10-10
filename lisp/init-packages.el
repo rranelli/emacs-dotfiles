@@ -79,6 +79,7 @@
     ffap
     find-file-in-project
     recentf
+    saveplace
     ansi-color
     dired-x
     iso-transl

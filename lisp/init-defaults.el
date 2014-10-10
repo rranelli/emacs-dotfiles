@@ -81,6 +81,7 @@
 (setq-default
  display-buffer-reuse-frames t
  abbrev-mode t
+ save-place t
  fill-column 80)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
