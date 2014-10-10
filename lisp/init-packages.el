@@ -85,6 +85,7 @@
     visual-basic-mode
     iso-transl
     dash
+    flyspell
     markdown-mode
     ox-gfm
     s
