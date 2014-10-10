@@ -3,6 +3,8 @@
 ;;; Code:
 (require 'helm-ls-git)
 
+(require 'helm-config)
+
 (helm-mode t)
 (diminish 'helm-mode)
 

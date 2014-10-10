@@ -1,7 +1,6 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-
 (diminish 'paredit-mode "Par")
 (diminish 'eldoc-mode)
 
@@ -22,7 +21,10 @@
               (if (file-exists-p (concat buffer-file-name "c"))
                   (delete-file (concat buffer-file-name "c"))))))
 
+;; -- keybindings --
 (define-key emacs-lisp-mode-map (kbd "M-.") 'find-function-at-point)
+
+(define-key paredit-mode-map (kbd "M-h") 'paredit-backward-kill-word)
 
 (provide 'init-lisp)
 ;;; init-lisp.el ends here
