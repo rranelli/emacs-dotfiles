@@ -46,13 +46,9 @@
 (unless (server-running-p)
   (server-start))
 
-;; test to see if this works
-(setq helm-buffer-max-length nil)
-
 ;; Finish!
 (message
  "======================================
 All is sane, and init.el got to its end
 ========================================")
 ;;; init.el ends here
-(put 'set-goal-column 'disabled nil)
