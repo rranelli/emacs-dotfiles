@@ -30,6 +30,7 @@
           (lambda () (add-to-list 'ac-sources 'ac-source-robe)))
 (add-hook 'ruby-mode-hook
           (lambda () (add-to-list 'ac-sources 'ac-source-yasnippet)))
+(add-hook 'ruby-mode-hook 'superword-mode)
 
 ;; fix for rspec and pry
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)

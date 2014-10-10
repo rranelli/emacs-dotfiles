@@ -12,6 +12,7 @@
 
 ;; -- hooks --
 (add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'clojure-mode-hook 'superword-mode)
 
 (provide 'init-clojure)
 ;;; init-clojure.el ends here

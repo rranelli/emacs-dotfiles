@@ -12,6 +12,7 @@
 (add-hook 'emacs-lisp-mode-hook 'remove-elc-on-save)
 
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'superword-mode)
 
 (defun remove-elc-on-save ()
   "If you're saving an elisp file, the .elc is probably useless."
