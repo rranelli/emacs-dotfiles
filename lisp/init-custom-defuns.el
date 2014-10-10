@@ -70,8 +70,8 @@
        1
        nil
        (lambda (buf) (if (get-buffer-window buf)
-			 (progn (delete-window (get-buffer-window buf))
-				(bury-buffer buf))))
+		    (progn (delete-window (get-buffer-window buf))
+			   (bury-buffer buf))))
        buffer)))
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
@@ -128,6 +128,13 @@
 
 ;; -- misc --
 (defun noop () "Does nothing." (interactive) nil)
+
+(defun nxml-pretty-format (begin end)
+  "Pretty prints xml"
+  (interactive "r")
+  (save-excursion
+    (shell-command-on-region (point-min) (point-max) "xmllint --format -" (buffer-name) t)
+    (indent-region begin end)))
 
 (defun narrow-or-widen-dwim (p)
   "If the buffer is narrowed, it widens. Otherwise, it narrows intelligently.
