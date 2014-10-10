@@ -6,9 +6,10 @@
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+	     '("e6h" . "http://www.e6h.org/packages/"))
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(package-refresh-contents)
 
 (defvar my-packages
   '(;; general configuration
