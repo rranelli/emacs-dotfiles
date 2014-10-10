@@ -82,6 +82,7 @@
     saveplace
     ansi-color
     dired-x
+    visual-basic-mode
     iso-transl
     dash
     markdown-mode
