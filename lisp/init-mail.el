@@ -3,6 +3,9 @@
 ;;; Code:
 (autoload 'wl "wl" "Wanderlust" t)
 
+;; In order to save your passwords, run
+;; `elmo-passwd-alist-save' interactively
+
 (setq elmo-imap4-default-server "imap.gmail.com"
       elmo-imap4-default-user "renanranelli@gmail.com"
       elmo-imap4-default-authenticate-type 'clear
@@ -12,11 +15,9 @@
       ;;for non ascii-characters in folder-names
       elmo-imap4-use-modified-utf7 t)
 
-(setq wl-batch-prefetch-folder-list "%INBOX")
-
 ;; Accounts
 (setq
- wl-template-default-name "gmail"
+ wl-template-default-name "locaweb"
 
  wl-draft-config-matchone t
  wl-draft-reply-buffer-style 'full
@@ -61,8 +62,6 @@
  '("^\\(To\\|Cc\\):"
    "^Subject:"
    "^\\(From\\|Reply-To\\):"
-   "^Organization:"
-   "^Message-Id:"
    "^\\(Posted\\|Date\\):"))
 
 (setq
