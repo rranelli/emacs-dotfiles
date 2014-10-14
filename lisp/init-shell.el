@@ -73,14 +73,14 @@
 (global-set-key (kbd "C-x C-m") 'new-shell)
 (global-set-key (kbd "C-x C-M-M") (lambda () (interactive) (term "/bin/bash")))
 
-(expose-bindings shell-mode-map '("C-c C-f"))
+(expose-bindings shell-mode-map bindings-to-expose)
 (add-hook 'term-mode-hook
 	  (lambda ()
-	    (expose-bindings term-raw-map '("M-k" "M-o" "M-1" "M-2" "M-3" "M-i" "M-l"))))
+	    (expose-bindings term-raw-map bindings-to-expose)))
 
 (add-hook 'sh-mode-hook
 	  (lambda ()
-	    (expose-bindings sh-mode-map '("C-c C-f"))))
+	    (expose-bindings sh-mode-map bindings-to-expose)))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

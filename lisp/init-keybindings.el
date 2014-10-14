@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+(defvar bindings-to-expose
+  '("C-c C-f" "C-M-f" "C-M-b" "M-h" "M-k" "M-o" "M-1" "M-2" "M-3" "M-i" "M-l")
+  "Custom keybindings to expose on every mode.")
+
 ;; unset irritant suspend-frame
 (global-unset-key (kbd "C-x z"))
 (global-unset-key (kbd "C-z"))
@@ -73,11 +77,8 @@
 (expose-bindings better-registers-map
 		 '("<f1>" "C-j" "C-x r" "C-x r"))
 
-(expose-bindings markdown-mode-map
-		 '("C-c C-f" "M-h"))
-
-(expose-bindings sgml-mode-map
-		 '("C-c C-f" "C-M-f" "C-M-b"))
+(expose-bindings markdown-mode-map bindings-to-expose)
+(expose-bindings sgml-mode-map bindings-to-expose)
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here

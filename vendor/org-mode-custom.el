@@ -36,8 +36,6 @@
 (global-set-key (kbd "C-<f9>") 'previous-buffer)
 (global-set-key (kbd "M-<f9>") 'org-toggle-inline-images)
 (global-set-key (kbd "C-<f10>") 'next-buffer)
-(global-set-key (kbd "<f11>") 'org-clock-goto)
-(global-set-key (kbd "C-<f11>") 'org-clock-in)
 (global-set-key (kbd "C-s-<f12>") 'bh/save-then-publish)
 (global-set-key (kbd "C-c c") 'org-capture)
 

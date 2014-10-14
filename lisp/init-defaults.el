@@ -107,7 +107,7 @@
 (defun custom-add-watchwords ()
   (font-lock-add-keywords
    nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
-	  1 font-lock-warning-face t))))
+	1 font-lock-warning-face t))))
 
 ;; -- some automodes --
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
@@ -119,6 +119,20 @@
 ;; diminish
 (diminish 'undo-tree-mode)
 (diminish 'abbrev-mode)
+
+(defvar bindings-to-expose
+  '("C-c C-f"
+    "C-M-f"
+    "C-M-b"
+    "M-h"
+    "M-k"
+    "M-o"
+    "M-1"
+    "M-2"
+    "M-3"
+    "M-i"
+    "M-l")
+  "Custom keybindings to expose on every mode.")
 
 (provide 'init-defaults)
 ;;; init-defaults.el ends here

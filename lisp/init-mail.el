@@ -2,9 +2,18 @@
 ;;; Commentary:
 ;;; Code:
 (autoload 'wl "wl" "Wanderlust" t)
+(require 'wl)
 
 ;; In order to save your passwords, run
 ;; `elmo-passwd-alist-save' interactively
+
+(setq
+ ;; do not limit summary width
+ wl-summary-width 180
+ ;; dont know what that is
+ wl-message-buffer-prefetch-depth 0
+ ;; do not split large attachments in many messages
+ mime-edit-sbplit-message nil)
 
 (setq elmo-imap4-default-server "imap.gmail.com"
       elmo-imap4-default-user "renanranelli@gmail.com"
@@ -18,6 +27,8 @@
 ;; Accounts
 (setq
  wl-template-default-name "locaweb"
+
+wl-default-spec "%INBOX: "
 
  wl-draft-config-matchone t
  wl-draft-reply-buffer-style 'full
@@ -64,12 +75,36 @@
    "^\\(From\\|Reply-To\\):"
    "^\\(Posted\\|Date\\):"))
 
-(setq
- ;; do not limit summary width
- wl-summary-width 180
- ;; dont know what that is
- wl-message-buffer-prefetch-depth 0)
+;; sorting backwards
+(defun wl-summary-overview-entity-compare-by-rdate (x y)
+  (not (wl-summary-overview-entity-compare-by-date x y)))
+(add-to-list 'wl-summary-sort-specs 'rdate)
 
+(defun wl-summary-sort-by-rdate ()
+  (interactive)
+  (wl-summary-rescan "rdate")
+  (goto-char (point-min)))
+
+(defun wl-fill-cleanup-fuckedup-message ()
+  "Cleans up a fucked up message"
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (forward-sentence)
+    (read-only-mode -1)
+    (fill-region (point) (point-max))
+    (rr-strip-whitespace)
+    (read-only-mode 1)))
+
+;; -- bindings --
+(define-key global-map (kbd "<f11>") 'wl)
+
+(define-key mime-view-mode-default-map (kbd "q") 'delete-window)
+(define-key mime-view-mode-default-map (kbd "n") 'mime-preview-next-line-entity)
+(define-key mime-view-mode-default-map (kbd "p") 'mime-preview-previous-line-entity)
+
+(expose-bindings wl-summary-mode-map bindings-to-expose)
+(expose-bindings wl-template-mode-map bindings-to-expose)
 
 (provide 'init-mail)
 ;;; init-mail.el ends here
