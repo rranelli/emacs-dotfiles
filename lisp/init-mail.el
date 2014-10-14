@@ -28,7 +28,7 @@
 (setq
  wl-template-default-name "locaweb"
 
-wl-default-spec "%INBOX: "
+ wl-default-spec "%INBOX: "
 
  wl-draft-config-matchone t
  wl-draft-reply-buffer-style 'full
@@ -99,9 +99,17 @@ wl-default-spec "%INBOX: "
 ;; -- bindings --
 (define-key global-map (kbd "<f11>") 'wl)
 
-(define-key mime-view-mode-default-map (kbd "q") 'delete-window)
-(define-key mime-view-mode-default-map (kbd "n") 'mime-preview-next-line-entity)
-(define-key mime-view-mode-default-map (kbd "p") 'mime-preview-previous-line-entity)
+(add-hook 'mime-view-mode-hook
+	  (lambda ()
+	    (local-set-key (kbd "q") (lambda ()
+				       (interactive)
+	    			       (mime-preview-quit)
+	    			       (wl-summary-toggle-disp-msg)))
+	    (local-set-key (kbd "n") 'mime-preview-next-line-entity)
+	    (local-set-key (kbd "p") 'mime-preview-previous-line-entity)
+	    (local-set-key (kbd "C-c m f") 'wl-fill-cleanup-fuckedup-message)))
+
+(define-key wl-summary-mode-map (kbd "RET") 'wl-summary-jump-to-current-message)
 
 (expose-bindings wl-summary-mode-map bindings-to-expose)
 (expose-bindings wl-template-mode-map bindings-to-expose)
