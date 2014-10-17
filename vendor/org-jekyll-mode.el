@@ -88,7 +88,7 @@
   (let* ((post-title (read-string "post title: "))
          (post-title-dashed (replace-regexp-in-string " " "-" post-title))
          (drafts-template-path "org/_drafts/%s.org"))
-    (find-file (concat (ffip-project-root) (format drafts-template-path post-title-dashed)))
+    (find-file (expand-file-name (format drafts-template-path post-title-dashed) (ffip-project-root)))
 
     (insert "blog")
     (yas-expand)
@@ -96,19 +96,20 @@
 
 (defun org-jekyll-fill ()
   (interactive)
-  (cl-labels ((no-code-fill ()
-			    (set-mark (point))
-			    (re-search-forward "\\(#\\+begin_src\\)" nil t)
-			    (if (match-string 1)
-				(progn
-				  (fill-region (mark) (point))
-				  (re-search-forward "#\\+end_src" nil t)
-				  (no-code-fill))
-			      (fill-region (point) (point-max)))))
+  (cl-labels ((fill-and-ignore-block
+	       ()
+	       (let ((start (point)))
+		 (re-search-forward "\\(#\\+begin_\\)" nil t)
+		 (if (match-string 1)
+		     (progn
+		       (fill-region start (point))
+		       (re-search-forward "#\\+end_" nil t)
+		       (fill-and-ignore-block))
+		   (fill-region (point) (point-max))))))
     (save-excursion
       (beginning-of-buffer)
       (re-search-forward "END_HTML" nil t)
-      (no-code-fill))))
+      (fill-and-ignore-block))))
 
 ;; --  Keybindings --
 ;;;###autoload
