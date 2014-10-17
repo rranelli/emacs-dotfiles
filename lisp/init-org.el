@@ -10,7 +10,10 @@
 (if (file-exists-p rr-org-files-directory)
     ;; Set up org-agenda files
     (let* ((dir-files (directory-files rr-org-files-directory t directory-files-no-dot-files-regexp))
-	   (org-files (remove-if #'(lambda (name) (string-match "archive" name)) dir-files)))
+	   (org-files (remove-if
+		       #'(lambda (name) (or
+				    (string-match "archive" name)
+				    (string-match "^\\.#" name))) dir-files)))
 
       (setq org-user-agenda-files org-files)
 
