@@ -26,16 +26,13 @@
       (org-babel-do-load-languages'org-babel-load-languages
        '((emacs-lisp . t)
 	 (dot . t)
-	 (ditaa . t)
-	 (R . t)
 	 (python . t)
 	 (ruby . t)
-	 (gnuplot . t)
+	 (haskell . t)
+	 (java . t)
 	 (clojure . t)
 	 (sh . t)
-	 (ledger . t)
 	 (org . t)
-	 (plantuml . t)
 	 (latex . t)
 	 (sql . t)))
 
