@@ -111,7 +111,12 @@
 	  ("Subject" ("\\[PRB[0-9]+\\] - \\[" . ,junk-folder))
 	  ("From" ("info@locaweb.com.br" . ,junk-folder))
 	  ("From" ("continuous.integration@locaweb.com.br" . ,junk-folder))
-	  ("Subject" ("\\[Ger\\. Mudanças\\] - Changes para Implantação" . ,prb-folder)))))
+	  ("From" ("billing@softaculous.com" . ,junk-folder))
+	  ("From" ("gitlab@code.locaweb.com.br" . ,junk-folder))
+	  ("From" ("reporting_service@locaweb.com.br" . ,junk-folder))
+	  ("From" ("no-reply@slack.com" . ,junk-folder))
+	  ("From" ("reservadesala@locaweb.com.br" . ,junk-folder))
+	  ("Subject" ("\\[Ger\\. Mudanças\\]" . ,prb-folder)))))
 
 ;; -- bindings --
 (define-key global-map (kbd "<f11>") 'wl)
