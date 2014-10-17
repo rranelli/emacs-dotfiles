@@ -109,6 +109,7 @@
 	`(("Subject" ("Confirmação de contratação de produtos" . ,junk-folder))
 	  ("Subject" ("\\[PRB[0-9]+\\] - \\[HOSP\\]" . ,prb-folder))
 	  ("Subject" ("\\[PRB[0-9]+\\] - \\[" . ,junk-folder))
+	  ("Subject" ("\\[Ger\\. Mudanças\\]" . ,prb-folder))
 	  ("From" ("info@locaweb.com.br" . ,junk-folder))
 	  ("From" ("continuous.integration@locaweb.com.br" . ,junk-folder))
 	  ("From" ("billing@softaculous.com" . ,junk-folder))
@@ -116,7 +117,7 @@
 	  ("From" ("reporting_service@locaweb.com.br" . ,junk-folder))
 	  ("From" ("no-reply@slack.com" . ,junk-folder))
 	  ("From" ("reservadesala@locaweb.com.br" . ,junk-folder))
-	  ("Subject" ("\\[Ger\\. Mudanças\\]" . ,prb-folder)))))
+	  ("To" ("scrum-hospedagem@locaweb.com.br" . ,junk-folder)))))
 
 ;; -- bindings --
 (define-key global-map (kbd "<f11>") 'wl)
