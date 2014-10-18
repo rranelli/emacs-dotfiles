@@ -46,6 +46,7 @@
 (global-set-key (kbd "M-u") 'zap-to-char)
 (global-set-key (kbd "M-E") 'er/expand-region)
 (global-set-key (kbd "C-T") 'transpose-sexps)
+(global-set-key (kbd "C-Q") 'quoted-insert)
 
 (global-set-key (kbd "C-;") 'ace-jump-word-mode)
 (global-set-key (kbd "C-:") 'ace-jump-char-mode)
