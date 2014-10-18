@@ -23,6 +23,7 @@
     init-magit
     init-ac
     init-yas
+    init-haskell
     init-ruby
     init-lisp
     init-clojure
