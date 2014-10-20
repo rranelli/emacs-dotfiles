@@ -52,28 +52,28 @@
 
     (set-window-buffer this other-buffer)))
 
-(defun bury-compile-buffer-p (&optional buffer string)
-  "Check if BUFFER must be buried based on STRING."
-  (not (string-match "rspec" (buffer-name buffer))))
+;; (defun bury-compile-buffer-p (&optional buffer string)
+;;   "Check if BUFFER must be buried based on STRING."
+;;   (not (string-match "rspec" (buffer-name buffer))))
 
-;; -- compilation utils --
-(defun bury-compile-buffer-if-successful (buffer string)
-  "Bury a compilation buffer (as BUFFER) if succeeded without warnings (given by STRING argument)."
-  (if (and
-       (bury-compile-buffer-p buffer string)
-       (string-match "compilation" (buffer-name buffer))
-       (string-match "finished" string)
-       (not (with-current-buffer buffer
-	      (goto-char 1)
-	      (search-forward "warning" nil t))))
-      (run-with-timer
-       1
-       nil
-       (lambda (buf) (if (get-buffer-window buf)
-		    (progn (delete-window (get-buffer-window buf))
-			   (bury-buffer buf))))
-       buffer)))
-(add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
+;; ;; -- compilation utils --
+;; (defun bury-compile-buffer-if-successful (buffer string)
+;;   "Bury a compilation buffer (as BUFFER) if succeeded without warnings (given by STRING argument)."
+;;   (if (and
+;;        (bury-compile-buffer-p buffer string)
+;;        (string-match "compilation" (buffer-name buffer))
+;;        (string-match "finished" string)
+;;        (not (with-current-buffer buffer
+;; 	      (goto-char 1)
+;; 	      (search-forward "warning" nil t))))
+;;       (run-with-timer
+;;        1
+;;        nil
+;;        (lambda (buf) (if (get-buffer-window buf)
+;; 		    (progn (delete-window (get-buffer-window buf))
+;; 			   (bury-buffer buf))))
+;;        buffer)))
+;; (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
 ;; -- editing utils --
 (defun rr-show-file-name ()
