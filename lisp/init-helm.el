@@ -13,7 +13,7 @@
       helm-exit-idle-delay 0.01
       helm-ff-transformer-show-only-basename nil
       helm-ls-git-show-abs-or-relative 'relative
-      helm-buffer-max-length nil)
+      helm-buffer-max-length 45)
 
 ;; helpers for more familiar helm find-file navigation
 (defun helm-find-files-sensitive-backspace ()
