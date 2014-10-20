@@ -2,9 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Keybindings macros
 (defvar bindings-to-expose
   '("M-x" "C-c C-f" "C-M-f" "C-M-b" "M-h" "M-k" "M-o" "M-1" "M-2" "M-3" "M-i" "M-l")
   "Custom keybindings to expose on every mode.")
+
+(defmacro expose-global-keybinding (binding map)
+  `(define-key ,map ,binding `,(lookup-key `,(current-global-map) ,binding)))
+
+(defmacro expose-bindings (map bindings)
+  `(dolist (bnd ,bindings)
+     `,(expose-global-keybinding `,(kbd bnd) ,map)))
 
 ;; unset irritant suspend-frame
 (global-unset-key (kbd "C-x z"))

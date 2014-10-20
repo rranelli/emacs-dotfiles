@@ -214,14 +214,6 @@ narrowed."
     (pp (macroexpand sexp)))
   (with-current-buffer "*el-macroexpansion*" (emacs-lisp-mode)))
 
-;; Keybindings macros
-(defmacro expose-global-keybinding (binding map)
-  `(define-key ,map ,binding `,(lookup-key `,(current-global-map) ,binding)))
-
-(defmacro expose-bindings (map bindings)
-  `(dolist (bnd ,bindings)
-     `,(expose-global-keybinding `,(kbd bnd) ,map)))
-
 ;; don't know why, but starter kit added this monkey patch
 (defun vc-git-annotate-command (file buf &optional rev)
   (let ((name (file-relative-name file)))
