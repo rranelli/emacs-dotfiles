@@ -16,6 +16,7 @@
 (defvar init-files
   '(init-packages
     init-custom-defuns
+    init-edit-defuns
     init-keybindings
     init-defaults
     init-path

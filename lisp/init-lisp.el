@@ -12,6 +12,25 @@
 
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
+(defun eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (if (> (point) (mark))
+      (backward-kill-sexp)
+    (kill-sexp))
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+	     (current-buffer))
+    (error (message "Invalid expression")
+	   (insert (current-kill 0)))))
+
+(defun macroexpand-point (sexp)
+  "Expands macro at point/region containing SEXP."
+  (interactive (list (sexp-at-point)))
+  (with-output-to-temp-buffer "*el-macroexpansion*"
+    (pp (macroexpand sexp)))
+  (with-current-buffer "*el-macroexpansion*" (emacs-lisp-mode)))
+
 (defun remove-elc-on-save ()
   "If you're saving an elisp file, the .elc is probably useless."
   (make-local-variable 'after-save-hook)
