@@ -35,6 +35,8 @@
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)
 (setenv "PAGER" (executable-find "cat"))
 
+(setq rspec-use-rake-when-possible nil)
+
 ;; don't indent parenthesis in a weird way
 (setq ruby-align-chained-calls nil)
 (setq ruby-align-to-stmt-keywords t)
