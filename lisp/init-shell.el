@@ -71,7 +71,7 @@
 
 ;; -- keybindings --
 (global-set-key (kbd "C-x C-m") 'new-shell)
-(global-set-key (kbd "C-x C-M-M") (lambda () (interactive) (term "/bin/bash")))
+(global-set-key (kbd "C-x C-M") (lambda () (interactive) (term "/bin/bash")))
 
 (expose-bindings shell-mode-map bindings-to-expose)
 (add-hook 'term-mode-hook
