@@ -70,7 +70,7 @@
 (add-hook 'comint-preoutput-filter-functions 'kill-completion-window-buffer)
 
 ;; -- keybindings --
-(global-set-key (kbd "C-x C-m") 'new-shell)
+(global-set-key (kbd "C-x RET") 'new-shell)
 (global-set-key (kbd "C-x C-M") (lambda () (interactive) (term "/bin/bash")))
 
 (expose-bindings shell-mode-map bindings-to-expose)
