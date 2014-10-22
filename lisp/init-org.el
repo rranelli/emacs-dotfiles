@@ -51,11 +51,6 @@
       (expose-bindings org-agenda-mode-map '("C-c p"))
       (expose-bindings org-mode-map '("M-h" "C-c C-f"))
 
-      (add-hook 'org-agenda-mode-hook
-		(lambda ()
-		  (add-hook 'auto-save-hook 'org-save-all-org-buffers nil t)
-		  (auto-save-mode)))
-
       (message "Org-mode agenda config loaded."))
   (message "skipping org-mode agenda load."))
 
