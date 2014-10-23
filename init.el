@@ -22,6 +22,7 @@
     init-yas
     init-haskell
     init-ruby
+    init-java
     init-lisp
     init-clojure
     init-isearch

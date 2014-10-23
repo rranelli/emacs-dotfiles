@@ -55,14 +55,6 @@
 ;; -- misc --
 (defun noop () "Does nothing." (interactive) nil)
 
-(defun rr-maven-test ()
-  "Run maven test task."
-  (interactive)
-  (compile (format
-	    "cd %s && mvn test; cat %s/target/surefire-reports/*.txt"
-	    (ffip-project-root)
-	    (ffip-project-root))))
-
 (defun nxml-pretty-format (begin end)
   "Pretty prints xml"
   (interactive "r")

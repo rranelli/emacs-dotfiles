@@ -62,6 +62,7 @@
     haskell-mode
     sml-mode
     wanderlust
+    javadoc-lookup
     cider)
   "A list of packages to ensure are installed at launch.")
 
