@@ -73,8 +73,10 @@ line instead."
   (interactive)
   (save-excursion
     (goto-char (point-min))
-    (replace-regexp " +" " " nil (point-min) (point-max)))
+    (replace-regexp "\\(\s\\|\t\\)+" " " nil (point-min) (point-max)))
   (indent-region (point-min) (point-max)))
+
+
 
 (provide 'init-edit-defuns)
 ;;; init-edit-defuns.el ends here
