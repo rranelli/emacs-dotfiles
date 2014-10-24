@@ -36,10 +36,14 @@
 	 (latex . t)
 	 (sql . t)))
 
+      ;; prettify org
       (setq
        org-odd-levels-only t
        org-hide-leading-stars t
        org-startup-indented nil)
+
+      ;; adding a hook to save org stuff more frequently
+      (add-hook 'after-save-hook 'org-save-all-org-buffers)
 
       ;; set-up encryption
       (require 'org-crypt)

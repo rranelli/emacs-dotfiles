@@ -23,10 +23,6 @@
 ;; join lines!
 (global-set-key (kbd "C-\\") 'join-line)
 
-;; save EVERYTHING!
-(global-set-key (kbd "C-x C-s") #'(lambda () (interactive) (save-some-buffers t)))
-(global-set-key (kbd "C-x s") 'save-buffer)
-
 ;; compilation
 (global-set-key (kbd "C-c ,c") 'compile)
 
