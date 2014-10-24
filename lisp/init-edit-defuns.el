@@ -73,7 +73,7 @@ line instead."
   (interactive)
   (save-excursion
     (goto-char (point-min))
-    (replace-regexp "\\(\s\\|\t\\)+" " " nil (point-min) (point-max)))
+    (replace-regexp "[\s\t]+" " " nil (point-min) (point-max)))
   (indent-region (point-min) (point-max)))
 
 
