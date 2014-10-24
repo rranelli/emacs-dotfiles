@@ -31,6 +31,8 @@
 (global-set-key (kbd "C-c C-f") 'helm-browse-project)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
+(global-set-key (kbd "C-x p") 'helm-apropos)
+
 ;; helm better navigation
 (define-key helm-find-files-map (kbd "<backspace>") 'helm-find-files-sensitive-backspace)
 (define-key helm-find-files-map (kbd "<DEL>") 'helm-find-files-sensitive-backspace)
