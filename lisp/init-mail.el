@@ -119,6 +119,13 @@
 	  ("From" ("reservadesala@locaweb.com.br" . ,junk-folder))
 	  ("To" ("scrum-hospedagem@locaweb.com.br" . ,junk-folder)))))
 
+;; -- view images and stuff --
+(require 'w3m)
+(require 'mime-w3m)
+(setq w3m-default-display-inline-images t)
+(setq mime-w3m-safe-url-regexp ".*")
+(add-hook 'wl-init-hook 'mime-w3m-insinuate)
+
 ;; -- bindings --
 (define-key global-map (kbd "<f11>") 'wl)
 
