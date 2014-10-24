@@ -44,6 +44,7 @@
     find-file-in-project
     bash-completion
     popup
+    nginx-mode
     ;; themes
     solarized-theme
     color-theme-sanityinc-solarized
