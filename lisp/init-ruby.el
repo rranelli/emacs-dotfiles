@@ -37,6 +37,8 @@
 
 (setq rspec-use-rake-when-possible nil)
 
+;; -- GODAMMIT RUBY INDENTATION!!! --
+
 ;; don't indent parenthesis in a weird way
 (setq ruby-align-chained-calls nil)
 (setq ruby-align-to-stmt-keywords t)
@@ -48,28 +50,11 @@
 ;; do not add encoding automagically
 (setq ruby-insert-encoding-magic-comment nil)
 
-;; inf ruby stuff
+;; Interactive ruby development
 (defun ruby-send-buffer ()
   "Send whole buffer to inferior process."
   (interactive)
   (ruby-send-region (point-min) (point-max)))
-
-;; Fix annoying sole close paren. Thanks to Mr. DGutov. Not needed in emacs 24.4
-(defadvice ruby-indent-line (after unindent-closing-paren activate)
-  "Indent sole parenthesis in loca's way."
-  (let ((column (current-column))
-        indent offset)
-    (save-excursion
-      (back-to-indentation)
-      (let ((state (syntax-ppss)))
-        (setq offset (- column (current-column)))
-        (when (and (eq (char-after) ?\))
-                   (not (zerop (car state))))
-          (goto-char (cadr state))
-          (setq indent (current-indentation)))))
-    (when indent
-      (indent-line-to indent)
-      (when (> offset 0) (forward-char offset)))))
 
 ;; ruby-electric playing nice with wrap region
 (defadvice ruby-electric-quote (around first ()
