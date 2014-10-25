@@ -10,10 +10,12 @@
 (defun rr-maven-test ()
   "Run maven test task."
   (interactive)
-  (compile (format
-	    "cd %s && mvn test; cat %s/target/surefire-reports/*.txt"
-	    (ffip-project-root)
-	    (ffip-project-root))))
+  (let ((mvn-root (ffip-project-root)))
+    (compile (format
+	      "cd %s && mvn test; cat %s/target/surefire-reports/*.txt"
+	      mvn-root
+	      mvn-root))))
+
 (define-bindings java-mode-map
   '(("C-c j c" . rr-maven-test)
     ("C-c j d" . javadoc-lookup)
