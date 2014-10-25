@@ -14,6 +14,13 @@
   `(dolist (bnd ,bindings)
      `,(expose-global-keybinding `,(kbd bnd) ,map)))
 
+(defun define-bindings (keymap binding-alist)
+"Define keys for KEYMAP given a BINDING-ALIST."
+  (dolist (p binding-alist)
+    (let ((key (car p))
+	  (command (cdr p)))
+      (define-key keymap (kbd key) command))))
+
 ;; unset irritant suspend-frame
 (global-unset-key (kbd "C-x z"))
 (global-unset-key (kbd "C-z"))

@@ -14,8 +14,11 @@
 	    "cd %s && mvn test; cat %s/target/surefire-reports/*.txt"
 	    (ffip-project-root)
 	    (ffip-project-root))))
+(define-bindings java-mode-map
+  '(("C-c j c" . rr-maven-test)
+    ("C-c j d" . javadoc-lookup)
+    ("C-c j s" . sort-java-imports)
+    ("C-c j i" . add-java-import)))
 
-(define-key java-mode-map (kbd "C-c j a") 'rr-maven-test)
-(define-key java-mode-map (kbd "C-c j d") 'javadoc-lookup)
 (provide 'init-java)
 ;;; init-java.el ends here
