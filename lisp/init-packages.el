@@ -93,6 +93,7 @@
     markdown-mode
     ox-gfm
     s
+    sh-script
     sgml-mode
     yaml-mode))
 

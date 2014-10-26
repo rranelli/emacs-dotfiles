@@ -7,6 +7,9 @@
   '("M-x" "C-c C-f" "C-M-f" "C-M-b" "M-h" "M-k" "M-o" "M-1" "M-2" "M-3" "M-i" "M-l")
   "Custom keybindings to expose on every mode.")
 
+(defun expose-rr-default-bindings (mode-map)
+    (expose-bindings mode-map bindings-to-expose))
+
 (defmacro expose-global-keybinding (binding map)
   `(define-key ,map ,binding `,(lookup-key `,(current-global-map) ,binding)))
 
@@ -93,8 +96,9 @@
 (expose-bindings better-registers-map
 		 '("<f1>" "C-j" "C-x r" "C-x r"))
 
-(expose-bindings markdown-mode-map bindings-to-expose)
-(expose-bindings sgml-mode-map bindings-to-expose)
+(expose-rr-default-bindings markdown-mode-map)
+(expose-rr-default-bindings sgml-mode-map)
+(expose-rr-default-bindings sh-mode-map)
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here
