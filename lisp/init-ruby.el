@@ -38,14 +38,29 @@
 (setq rspec-use-rake-when-possible nil)
 
 ;; -- GODAMMIT RUBY INDENTATION!!! --
-
 ;; don't indent parenthesis in a weird way
 (setq ruby-align-chained-calls nil)
 (setq ruby-align-to-stmt-keywords t)
 (setq ruby-deep-indent-paren nil)
 (setq ruby-deep-indent-paren-style nil)
-;; this should be fixed, and smie would go t...
 (setq ruby-use-smie nil)
+
+(defadvice ruby-indent-line (after unindent-closing-paren activate)
+  "Indent sole parenthesis in loca's way."
+  (let ((column (current-column))
+        indent offset)
+    (save-excursion
+      (back-to-indentation)
+      (let ((state (syntax-ppss)))
+        (setq offset (- column (current-column)))
+        (when (and (eq (char-after) ?\))
+                   (not (zerop (car state))))
+          (goto-char (cadr state))
+          (setq indent (current-indentation)))))
+    (when indent
+      (indent-line-to indent)
+      (when (> offset 0) (forward-char offset)))))
+;; ------------------------------------
 
 ;; do not add encoding automagically
 (setq ruby-insert-encoding-magic-comment nil)
