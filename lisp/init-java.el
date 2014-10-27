@@ -7,7 +7,7 @@
 (javadoc-add-artifacts [com.nullprogram native-guide "0.2"]
                        [org.apache.commons commons-math3 "3.0"])
 
-(defun rr-maven-test ()
+(defun rr-maven-test-all ()
   "Run maven test task."
   (interactive)
   (let ((mvn-root (ffip-project-root)))
@@ -17,7 +17,7 @@
 	      mvn-root))))
 
 (define-bindings java-mode-map
-  '(("C-c j c" . rr-maven-test)
+  '(("C-c , a" . rr-maven-test-all)
     ("C-c j d" . javadoc-lookup)
     ("C-c j s" . sort-java-imports)
     ("C-c j i" . add-java-import)))
