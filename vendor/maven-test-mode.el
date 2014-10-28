@@ -47,6 +47,8 @@
 ;; If you want maven-test-mode to be enabled automatically with java-mdoe, add this to your .emacs:
 ;; (add-hook 'java-mode-hook 'maven-test-mode)
 ;;
+;; Check the full list of available keybindings at `maven-test-mode-map'
+;;
 ;;; Change Log:
 ;;
 ;; 0.1 - First release
@@ -54,6 +56,20 @@
 ;;; Code:
 (require 's)
 (require 'find-file-in-project)
+
+;;; Customization
+;;
+(defcustom maven-test-test-to-class-subs
+  '(("/src/test/" . "/src/main/")
+    ("Test.java" . ".java"))
+  "Patterns to substitute into test's filename to jump to the associated class."
+  :group 'maven-test)
+
+(defcustom maven-test-class-to-test-subs
+  '(("/src/main/" . "/src/test/")
+    (".java" . "Test.java"))
+  "Patterns to substitute into class' filename to jump to the associated test."
+  :group 'maven-test)
 
 ;;; Keybindings
 ;;
@@ -63,6 +79,8 @@
     (define-key map (kbd  "C-c , a") 'maven-test-all)
     (define-key map (kbd  "C-c , v") 'maven-test-file)
     (define-key map (kbd  "C-c , s") 'maven-test-method)
+    (define-key map (kbd  "C-c , i") 'maven-test-install)
+    (define-key map (kbd  "C-c , C") 'maven-test-clean-install)
     (define-key map (kbd  "C-c , r") 'recompile)
     (define-key map (kbd  "C-c , t") 'maven-test-toggle-between-test-and-class)
     (define-key map (kbd  "C-c , y") 'maven-test-toggle-between-test-and-class-other-window)
@@ -74,6 +92,16 @@
   "Run maven test task."
   (interactive)
   (compile (maven-test-all-command)))
+
+(defun maven-test-install ()
+  "Run maven build task."
+  (interactive)
+  (compile (maven-test-format-task "install")))
+
+(defun maven-test-clean-test-all ()
+  "Run maven clean and test task."
+  (interactive)
+  (compile (maven-test-format-task "clean test -q")))
 
 (defun maven-test-file ()
   "Run maven test task for current file."
@@ -92,18 +120,18 @@
 
 (defun maven-test-all-command ()
   (maven-test-wrap-command-with-surefire-results
-   (maven-test-format-task)))
+   (maven-test-format-task "test -q")))
 
 (defun maven-test-file-command ()
   (maven-test-wrap-command-with-surefire-results
    (s-concat
-    (maven-test-format-task)
+    (maven-test-format-task "test -q")
     (maven-test-class-name-from-buffer))))
 
 (defun maven-test-method-command ()
   (maven-test-wrap-command-with-surefire-results
    (s-concat
-    (maven-test-format-task)
+    (maven-test-format-task "test -q")
     (maven-test-class-name-from-buffer)
     (maven-test-get-prev-test-method-name))))
 
@@ -115,8 +143,8 @@
 
 ;;; Command formatting
 ;;
-(defun maven-test-format-task ()
-  (format "cd %s && mvn test" (ffip-project-root)))
+(defun maven-test-format-task (task)
+  (format "cd %s && mvn %s" (ffip-project-root) task))
 
 (defun maven-test-format-show-surefire-reports ()
   (format ";cat %s/target/surefire-reports/*.txt" (ffip-project-root)))
@@ -138,14 +166,6 @@
 ;;
 (defun maven-test-is-test-file-p ()
   (string-match "/src/test/" (buffer-file-name)))
-
-(defvar maven-test-test-to-class-subs
-  '(("/src/test/" . "/src/main/")
-    ("Test.java" . ".java")))
-
-(defvar maven-test-class-to-test-subs
-  '(("/src/main/" . "/src/test/")
-    (".java" . "Test.java")))
 
 (defun maven-test-toggle-between-test-and-class ()
   (interactive)
