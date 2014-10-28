@@ -4,6 +4,21 @@
 (require 's)
 (require 'find-file-in-project)
 
+;;; Keybindings
+;;
+;;;###autoload
+(defvar maven-test-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd  "C-c , a") 'maven-test-all)
+    (define-key map (kbd  "C-c , v") 'maven-test-file)
+    (define-key map (kbd  "C-c , s") 'maven-test-method)
+    (define-key map (kbd  "C-c , r") 'recompile)
+    (define-key map (kbd  "C-c , t") 'maven-test-toggle-between-test-and-class)
+    (define-key map (kbd  "C-c , y") 'maven-test-toggle-between-test-and-class-other-window)
+    map))
+
+;;; Test commands
+;;
 (defun maven-test-all ()
   "Run maven test task."
   (interactive)
@@ -31,6 +46,8 @@
 	    (maven-test-get-prev-test-method-name)
 	    (maven-test-format-show-surefire-reports))))
 
+;;; Command formatting
+;;
 (defun maven-test-format-task ()
   (format "cd %s && mvn test" (ffip-project-root)))
 
@@ -50,17 +67,32 @@
     (re-search-backward "void \\(test[a-zA-Z]+\\) *() *{")
     (s-concat "#" (match-string 1))))
 
-;;;###autoload
-(defvar maven-test-mode-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd  "C-c , a") 'maven-test-all)
-    (define-key map (kbd  "C-c , v") 'maven-test-file)
-    (define-key map (kbd  "C-c , s") 'maven-test-method)
-    (define-key map (kbd  "C-c , r") 'recompile)
-    (define-key map (kbd  "C-c j d") 'javadoc-lookup)
-    (define-key map (kbd  "C-c j s") 'sort-java-imports)
-    (define-key map (kbd  "C-c j i") 'add-java-import)
-    map))
+;;; Toggle between test and class
+;;
+(defun maven-test-is-test-file-p ()
+  (string-match "/src/test/" (buffer-file-name)))
+
+(defvar maven-test-test-to-class-subs
+  '(("/src/test/" . "/src/main/")
+    ("Test.java" . ".java")))
+
+(defvar maven-test-class-to-test-subs
+  '(("/src/main/" . "/src/test/")
+    (".java" . "Test.java")))
+
+(defun maven-test-toggle-between-test-and-class ()
+  (interactive)
+  (maven-test--toggle-between-test-and-class #'find-file))
+
+(defun maven-test-toggle-between-test-and-class-other-window ()
+  (interactive)
+  (maven-test--toggle-between-test-and-class #'find-file-other-window))
+
+(defun maven-test--toggle-between-test-and-class (func)
+  (let* ((subs (if (maven-test-is-test-file-p)
+		   maven-test-test-to-class-subs
+		 maven-test-class-to-test-subs)))
+    (funcall func (s-replace-all subs (buffer-file-name)))))
 
 ;;;###autoload
 (define-minor-mode maven-test-mode
