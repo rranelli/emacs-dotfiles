@@ -23,7 +23,7 @@
       (helm-find-files-up-one-level 1)
     (backward-delete-char 1)))
 
-;; keybindings
+;; -- keybindings --
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "M-l") 'helm-buffers-list)
@@ -31,7 +31,7 @@
 (global-set-key (kbd "C-c C-f") 'helm-browse-project)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
-(global-set-key (kbd "C-x p") 'helm-apropos)
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
 
 ;; helm better navigation
 (define-key helm-find-files-map (kbd "<backspace>") 'helm-find-files-sensitive-backspace)
