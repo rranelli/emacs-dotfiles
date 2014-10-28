@@ -164,7 +164,9 @@
 
 (defun maven-test-get-prev-test-method-name ()
   (save-excursion
-    (re-search-backward "void \\(test[a-zA-Z]+\\) *() *{")
+    (or
+     (re-search-backward "void \\(test[a-zA-Z]+\\) *() *{" nil t)
+     (error "No test method definition before point."))
     (s-concat "#" (match-string 1))))
 
 (defun maven-test--test-task ()
