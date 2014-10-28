@@ -1,5 +1,56 @@
-;;; package -- Summary
+;;; maven-test-mode.el -- Run maven tests from emacs
+
+;; Copyright (C) 2014 Renan Ranelli <http://rranelli.com>
+;; Author: Renan Ranelli
+;; URL: http://github.com/rranelli/maven-test-mode
+;; Created: 2014
+;; Version: 0.1
+;; Keywords: java maven test
+;; Package-Requires: ((s "1.9.0") (find-file-in-project "3.3"))
+
+;; This file is NOT part of GNU Emacs.
+;;
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; See <http://www.gnu.org/licenses/> for a copy of the GNU General
+;; Public License.
+
 ;;; Commentary:
+;;
+;; This minor mode provides some enhancements to java-mode in order to use maven
+;; test tasks with little effort. It's largely based on the philosophy of
+;; `rspec-mode' by Peter Williams. Namely, it provides the following
+;; capabilities:
+;;
+;;  * toggle back and forth between a test and it's class (bound to `\C-c ,t`)
+;;
+;;  * verify the test class associated with the current buffer (bound to `\C-c ,v`)
+;;
+;;  * verify the test defined in the current buffer if it is a test file (bound
+;;    to `\C-c ,v`)
+;;
+;;  * verify the test method defined at the point of the current buffer (bound
+;;    to `\C-c ,s`)
+;;
+;;  * re-run the last verification process (bound to `\C-c ,r`)
+;;
+;;  * run tests for entire project (bound to `\C-c ,a`)
+;;
+;; If you want maven-test-mode to be enabled automatically with java-mdoe, add this to your .emacs:
+;; (add-hook 'java-mode-hook 'maven-test-mode)
+;;
+;;; Change Log:
+;;
+;; 0.1 - First release
+
 ;;; Code:
 (require 's)
 (require 'find-file-in-project)
