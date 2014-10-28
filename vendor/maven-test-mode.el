@@ -71,6 +71,11 @@
   "Patterns to substitute into class' filename to jump to the associated test."
   :group 'maven-test)
 
+(defcustom maven-test-test-task-options
+  "-q"
+  "Options to add to the test task."
+  :group 'maven-test)
+
 ;;; Keybindings
 ;;
 ;;;###autoload
@@ -101,7 +106,7 @@
 (defun maven-test-clean-test-all ()
   "Run maven clean and test task."
   (interactive)
-  (compile (maven-test-format-task "clean test -q")))
+  (compile (maven-test-format-task "clean test")))
 
 (defun maven-test-file ()
   "Run maven test task for current file."
@@ -120,18 +125,18 @@
 
 (defun maven-test-all-command ()
   (maven-test-wrap-command-with-surefire-results
-   (maven-test-format-task "test -q")))
+   (maven-test-format-task (maven-test--test-task))))
 
 (defun maven-test-file-command ()
   (maven-test-wrap-command-with-surefire-results
    (s-concat
-    (maven-test-format-task "test -q")
+    (maven-test-format-task (maven-test--test-task))
     (maven-test-class-name-from-buffer))))
 
 (defun maven-test-method-command ()
   (maven-test-wrap-command-with-surefire-results
    (s-concat
-    (maven-test-format-task "test -q")
+    (maven-test-format-task (maven-test--test-task))
     (maven-test-class-name-from-buffer)
     (maven-test-get-prev-test-method-name))))
 
@@ -161,6 +166,9 @@
   (save-excursion
     (re-search-backward "void \\(test[a-zA-Z]+\\) *() *{")
     (s-concat "#" (match-string 1))))
+
+(defun maven-test--test-task ()
+  (format "test %s" maven-test-test-task-options))
 
 ;;; Toggle between test and class
 ;;
