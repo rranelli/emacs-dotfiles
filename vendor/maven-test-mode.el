@@ -22,29 +22,45 @@
 (defun maven-test-all ()
   "Run maven test task."
   (interactive)
-  (compile (s-concat
-	    (maven-test-format-clear-surefire-reports)
-	    (maven-test-format-task)
-	    (maven-test-format-show-surefire-reports))))
+  (compile (maven-test-all-command)))
 
 (defun maven-test-file ()
   "Run maven test task for current file."
   (interactive)
-  (compile (s-concat
-	    (maven-test-format-clear-surefire-reports)
-	    (maven-test-format-task)
-	    (maven-test-class-name-from-buffer)
-	    (maven-test-format-show-surefire-reports))))
+  (save-excursion
+    (unless (maven-test-is-test-file-p)
+      (maven-test-toggle-between-test-and-class))
+    (compile (maven-test-file-command))))
 
 (defun maven-test-method ()
   "Run maven test task for current method"
   (interactive)
-  (compile (s-concat
-	    (maven-test-format-clear-surefire-reports)
-	    (maven-test-format-task)
-	    (maven-test-class-name-from-buffer)
-	    (maven-test-get-prev-test-method-name)
-	    (maven-test-format-show-surefire-reports))))
+  (unless (maven-test-is-test-file-p)
+    (error "Not visiting test file."))
+  (compile (maven-test-method-command)))
+
+(defun maven-test-all-command ()
+  (maven-test-wrap-command-with-surefire-results
+   (maven-test-format-task)))
+
+(defun maven-test-file-command ()
+  (maven-test-wrap-command-with-surefire-results
+   (s-concat
+    (maven-test-format-task)
+    (maven-test-class-name-from-buffer))))
+
+(defun maven-test-method-command ()
+  (maven-test-wrap-command-with-surefire-results
+   (s-concat
+    (maven-test-format-task)
+    (maven-test-class-name-from-buffer)
+    (maven-test-get-prev-test-method-name))))
+
+(defun maven-test-wrap-command-with-surefire-results (command)
+  (s-concat
+   (maven-test-format-clear-surefire-reports)
+   command
+   (maven-test-format-show-surefire-reports)))
 
 ;;; Command formatting
 ;;
