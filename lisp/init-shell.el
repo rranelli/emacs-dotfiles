@@ -29,8 +29,8 @@
       (set-process-query-on-exit-flag p nil))))
 
 (defadvice term (after do-not-query-term-exit
-			first (&optional buffer)
-			activate)
+		       first (&optional buffer)
+		       activate)
   "Do not query exit confirmation for shell process buffer."
   (interactive)
   (let* ((shell-processes (remove-if-not
@@ -42,28 +42,28 @@
 (defun new-shell (arg)
   "Create shell with given name. If ARG is present, open a new shell regardless ."
   (interactive "P")
-  (cl-flet ((get-dir-name-last (path)
-                               (string-match "/\\([^/]*\\)/$" path)
-                               (match-string 1 path)))
-    (let* ((project-root (ffip-project-root))
-	   (in-project-p (stringp project-root))
-           (dir-name-last (when project-root (get-dir-name-last project-root)))
+  (let* ((project-root (ffip-project-root))
+	 (in-project-p (stringp project-root))
+	 (dir-name (when project-root
+			  (file-name-base (directory-file-name project-root))))
 
-	   (project-name (format "<%s>" (if in-project-p
-					    dir-name-last
-					  "out-of-project")))
-           (custom-name (if arg
-			    (format " [%s]" (read-string "Shell name: "))
-			  ""))
-	   (shell-name (format "shell: %s%s" project-name custom-name))
+	 (project-name (format "<%s>" (if in-project-p
+					  dir-name
+					"out-of-project")))
+	 (custom-name (if arg
+			  (format " [%s]" (read-string "Shell name: "))
+			""))
+	 (shell-name (format "shell: %s%s" project-name custom-name))
 
-	   (shell-exists-p (bufferp (get-buffer shell-name))))
+	 (shell-exists-p (bufferp (get-buffer shell-name))))
 
-      (shell shell-name)
-      (when (and
-	     in-project-p
-	     (not shell-exists-p))
-	(insert (format "cd %s" project-root))))))
+    (shell shell-name)
+    (when (and
+	   in-project-p
+	   (not shell-exists-p))
+      (insert (format
+	       "cd %s # Press [RET] to go to root"
+	       project-root)))))
 
 ;; hooks
 (add-hook 'comint-preoutput-filter-functions 'kill-completion-window-buffer)
