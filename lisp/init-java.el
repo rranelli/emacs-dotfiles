@@ -3,7 +3,7 @@
 ;;; Code:
 (require 'cc-mode)
 (require 'javadoc-lookup)
-(require 'maven-test-mode)
+;; (require 'maven-test-mode)
 
 (javadoc-add-artifacts [com.nullprogram native-guide "0.2"]
                        [org.apache.commons commons-math3 "3.0"])
@@ -15,7 +15,9 @@
     ("C-c j i" . add-java-import)))
 
 ;; -- hooks --
-(add-hook 'java-mode-hook 'maven-test-mode)
+;; (add-hook 'java-mode-hook 'maven-test-mode)
+
+;;(maven-test-add-regexps-for-stack-trace-jump)
 
 (provide 'init-java)
 ;;; init-java.el ends here
