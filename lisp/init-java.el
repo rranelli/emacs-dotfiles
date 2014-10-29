@@ -5,8 +5,7 @@
 (require 'javadoc-lookup)
 ;; (require 'maven-test-mode)
 
-(javadoc-add-artifacts [com.nullprogram native-guide "0.2"]
-                       [org.apache.commons commons-math3 "3.0"])
+;; (javadoc-add-artifacts [com.nullprogram native-guide "0.2"])
 
 ;; -- keybindings --
 (define-bindings java-mode-map
