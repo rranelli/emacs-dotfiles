@@ -18,6 +18,7 @@
 
 
 (global-set-key (kbd "C-c g") 'magit-status)
+(global-set-key (kbd "<f8>") 'magit-status)
 
 ;; magit showlevels redefinition
 (define-key magit-mode-map (kbd "s") 'magit-status)

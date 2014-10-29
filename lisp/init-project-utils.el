@@ -82,17 +82,16 @@
     (define-key map "n" 'rr-show-file-name)
 
     ;; git
-    (define-key map "g" 'magit-status)
     (define-key map "b" 'magit-branch-manager)
     (define-key map "l" 'magit-log)
-    (define-key map "i" 'git-timemachine)
+    (define-key map "m" 'git-timemachine)
 
     ;; ag
     (define-key map "s" 'ag-project)
     (define-key map "a" 'ag-project-regexp)
 
     ;; neotree
-    (define-key map "r" 'neotree-git-project)
+    (define-key map "g" 'neotree-git-project)
     (define-key map "t" 'neotree-toggle)
     (define-key map "f" 'neotree-find)
     map))
