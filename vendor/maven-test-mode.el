@@ -44,9 +44,6 @@
 ;;
 ;;  * run tests for entire project (bound to `\C-c ,a`)
 ;;
-;; If you want maven-test-mode to be enabled automatically with java-mdoe, add this to your .emacs:
-;; (add-hook 'java-mode-hook 'maven-test-mode)
-;;
 ;; Check the full list of available keybindings at `maven-test-mode-map'
 ;;
 ;;; Change Log:
@@ -56,19 +53,19 @@
 ;;; Code:
 (require 's)
 (require 'find-file-in-project)
+(require 'compile)
 
 ;;; Customization
 ;;
-(defcustom maven-test-test-to-class-subs
-  '(("/src/test/" . "/src/main/")
-    ("Test.java" . ".java"))
-  "Patterns to substitute into test's filename to jump to the associated class."
-  :group 'maven-test)
-
 (defcustom maven-test-class-to-test-subs
   '(("/src/main/" . "/src/test/")
     (".java" . "Test.java"))
   "Patterns to substitute into class' filename to jump to the associated test."
+  :group 'maven-test)
+
+(defcustom maven-test-test-method-name-re
+  "void \\(test[a-zA-Z]+\\) *() *{"
+  "Pattern to identify the test method name before point"
   :group 'maven-test)
 
 (defcustom maven-test-test-task-options
@@ -85,13 +82,13 @@
     (define-key map (kbd  "C-c , v") 'maven-test-file)
     (define-key map (kbd  "C-c , s") 'maven-test-method)
     (define-key map (kbd  "C-c , i") 'maven-test-install)
-    (define-key map (kbd  "C-c , C") 'maven-test-clean-install)
+    (define-key map (kbd  "C-c , C") 'maven-test-clean-test-all)
     (define-key map (kbd  "C-c , r") 'recompile)
     (define-key map (kbd  "C-c , t") 'maven-test-toggle-between-test-and-class)
     (define-key map (kbd  "C-c , y") 'maven-test-toggle-between-test-and-class-other-window)
     map))
 
-;;; Test commands
+;;; Test functions
 ;;
 (defun maven-test-all ()
   "Run maven test task."
@@ -111,11 +108,15 @@
 (defun maven-test-file ()
   "Run maven test task for current file."
   (interactive)
-  (save-excursion
+  ;; HACK: this cur-file stuff is.
+  (let ((cur-file (buffer-file-name)))
     (unless (maven-test-is-test-file-p)
       (maven-test-toggle-between-test-and-class))
-    (compile (maven-test-file-command))))
+    (compile (maven-test-file-command))
+    (find-file cur-file)))
 
+;;; Test commands
+;;
 (defun maven-test-method ()
   "Run maven test task for current method"
   (interactive)
@@ -124,26 +125,21 @@
   (compile (maven-test-method-command)))
 
 (defun maven-test-all-command ()
-  (maven-test-wrap-command-with-surefire-results
-   (maven-test-format-task (maven-test--test-task))))
+  (s-concat
+   (maven-test-format-task (maven-test--test-task))
+   (maven-test-format-show-surefire-reports)))
 
 (defun maven-test-file-command ()
-  (maven-test-wrap-command-with-surefire-results
-   (s-concat
-    (maven-test-format-task (maven-test--test-task))
-    (maven-test-class-name-from-buffer))))
+  (s-concat
+   (maven-test-format-task (maven-test--test-task))
+   (maven-test-class-name-from-buffer)
+   (maven-test-format-show-surefire-reports)))
 
 (defun maven-test-method-command ()
-  (maven-test-wrap-command-with-surefire-results
-   (s-concat
-    (maven-test-format-task (maven-test--test-task))
-    (maven-test-class-name-from-buffer)
-    (maven-test-get-prev-test-method-name))))
-
-(defun maven-test-wrap-command-with-surefire-results (command)
   (s-concat
-   (maven-test-format-clear-surefire-reports)
-   command
+   (maven-test-format-task (maven-test--test-task))
+   (maven-test-class-name-from-buffer)
+   (maven-test-get-prev-test-method-name)
    (maven-test-format-show-surefire-reports)))
 
 ;;; Command formatting
@@ -152,10 +148,9 @@
   (format "cd %s && mvn %s" (ffip-project-root) task))
 
 (defun maven-test-format-show-surefire-reports ()
-  (format ";cat %s/target/surefire-reports/*.txt" (ffip-project-root)))
-
-(defun maven-test-format-clear-surefire-reports ()
-  (format "rm -rf %s/target/surefire-reports/*.txt;" (ffip-project-root)))
+  (format
+   ";EC=$?; if [[ $EC != 0 ]]; then cat %s/target/surefire-reports/*.txt; exit $EC; fi"
+   (ffip-project-root)))
 
 (defun maven-test-class-name-from-buffer ()
   (let* ((class-file (file-name-base (buffer-file-name)))
@@ -165,7 +160,7 @@
 (defun maven-test-get-prev-test-method-name ()
   (save-excursion
     (or
-     (re-search-backward "void \\(test[a-zA-Z]+\\) *() *{" nil t)
+     (re-search-backward maven-test-test-method-name-re nil t)
      (error "No test method definition before point."))
     (s-concat "#" (match-string 1))))
 
@@ -186,10 +181,18 @@
   (maven-test--toggle-between-test-and-class #'find-file-other-window))
 
 (defun maven-test--toggle-between-test-and-class (func)
+  (funcall func (maven-test-toggle-get-target-filename)))
+
+(defun maven-test-toggle-get-target-filename ()
   (let* ((subs (if (maven-test-is-test-file-p)
-		   maven-test-test-to-class-subs
+		   (maven-test-test-to-class-subs)
 		 maven-test-class-to-test-subs)))
-    (funcall func (s-replace-all subs (buffer-file-name)))))
+    (s-replace-all subs (buffer-file-name))))
+
+(defun maven-test-test-to-class-subs ()
+  (mapcar
+   #'(lambda (e) `(,(cdr e) . ,(car e)))
+   maven-test-class-to-test-subs))
 
 ;;;###autoload
 (define-minor-mode maven-test-mode
@@ -198,6 +201,9 @@
   :keymap maven-test-mode-map
   :lighter "MvnTest"
   :group 'maven-test)
+
+;;;###autoload
+(add-hook 'java-mode-hook 'maven-test-mode)
 
 (provide 'maven-test-mode)
 ;;; maven-test-mode.el ends here.
