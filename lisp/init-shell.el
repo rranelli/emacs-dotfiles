@@ -63,8 +63,7 @@
       (when (and
 	     in-project-p
 	     (not shell-exists-p))
-	(insert (format "cd %s" project-root))
-	(comint-send-input nil t)))))
+	(insert (format "cd %s" project-root))))))
 
 ;; hooks
 (add-hook 'comint-preoutput-filter-functions 'kill-completion-window-buffer)
