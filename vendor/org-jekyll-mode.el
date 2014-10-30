@@ -129,7 +129,10 @@
 (defvar org-jekyll-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c w") org-jekyll-mode-ccw-map)
-    (define-key map (kbd "C-c i") 'org-jekyll-fill)
+    (define-key map (kbd "C-c i") #'(lambda ()
+				      (interactive)
+				      (indent-region (point-min) (point-max))
+				      (org-jekyll-fill)))
     map))
 
 ;;;###autoload
