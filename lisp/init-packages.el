@@ -65,6 +65,7 @@
     wanderlust
     w3m
     javadoc-lookup
+    maven-test-mode
     cider)
   "A list of packages to ensure are installed at launch.")
 

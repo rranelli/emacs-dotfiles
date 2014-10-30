@@ -3,9 +3,9 @@
 ;;; Code:
 (require 'cc-mode)
 (require 'javadoc-lookup)
-;; (require 'maven-test-mode)
+(require 'maven-test-mode)
 
-;; (javadoc-add-artifacts [com.nullprogram native-guide "0.2"])
+(javadoc-add-artifacts [com.nullprogram native-guide "0.2"])
 
 ;; -- keybindings --
 (define-bindings java-mode-map
@@ -14,9 +14,8 @@
     ("C-c j i" . add-java-import)))
 
 ;; -- hooks --
-;; (add-hook 'java-mode-hook 'maven-test-mode)
-
-;;(maven-test-add-regexps-for-stack-trace-jump)
+(maven-test-add-regexps-for-stack-trace-jump)
+(add-hook 'java-mode-hook 'maven-test-mode)
 
 (provide 'init-java)
 ;;; init-java.el ends here
