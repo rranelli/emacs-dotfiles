@@ -10,7 +10,7 @@
 ---
 language: brasileiro
 layout: post
-title: ${1:title}
+title: '${1:title}'
 ---
 #+END_HTML
 
