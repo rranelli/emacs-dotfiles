@@ -23,8 +23,9 @@
 	  (lambda ()
 	    (expose-bindings flyspell-mode-map '("C-;"))))
 
-(expose-bindings markdown-mode-map '("C-:" "C-c C-f" "C-;"))
-(expose-bindings markdown-mode-map bindings-to-expose)
+(add-hook 'markdown-mode-hook #'(lambda ()
+				  (expose-bindings markdown-mode-map bindings-to-expose)
+				  (expose-bindings markdown-mode-map '("C-:" "C-c C-f" "C-;"))))
 (expose-bindings flyspell-mode-map '("C-:" "C-;" "C-c C-f"))
 
 (provide 'init-writing)
