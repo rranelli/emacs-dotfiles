@@ -13,9 +13,5 @@
     ("C-c j s" . sort-java-imports)
     ("C-c j i" . add-java-import)))
 
-;; -- hooks --
-(maven-test-add-regexps-for-stack-trace-jump)
-(add-hook 'java-mode-hook 'maven-test-mode)
-
 (provide 'init-java)
 ;;; init-java.el ends here
