@@ -13,5 +13,8 @@
     ("C-c j s" . sort-java-imports)
     ("C-c j i" . add-java-import)))
 
+(add-hook 'java-mode-hook (lambda ()
+			    (c-set-style "cc-mode")))
+
 (provide 'init-java)
 ;;; init-java.el ends here
