@@ -45,7 +45,7 @@
   (let* ((project-root (ffip-project-root))
 	 (in-project-p (stringp project-root))
 	 (dir-name (when project-root
-			  (file-name-base (directory-file-name project-root))))
+		     (file-name-base (directory-file-name project-root))))
 
 	 (project-name (format "<%s>" (if in-project-p
 					  dir-name
