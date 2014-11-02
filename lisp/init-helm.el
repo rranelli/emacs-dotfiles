@@ -38,5 +38,7 @@
 (define-key helm-find-files-map (kbd "<DEL>") 'helm-find-files-sensitive-backspace)
 (define-key helm-find-files-map (kbd "C-h") 'helm-find-files-sensitive-backspace)
 
+(define-key helm-map (kbd "C-h") 'delete-backward-char)
+
 (provide 'init-helm)
 ;;; init-helm.el ends here
