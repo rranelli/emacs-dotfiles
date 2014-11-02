@@ -98,6 +98,7 @@
 
 (expose-rr-default-bindings markdown-mode-map)
 (expose-rr-default-bindings sgml-mode-map)
+(expose-rr-default-bindings nxml-mode-map)
 (expose-rr-default-bindings sh-mode-map)
 
 (provide 'init-keybindings)

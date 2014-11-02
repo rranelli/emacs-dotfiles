@@ -97,6 +97,7 @@
     s
     sh-script
     sgml-mode
+    nxml-mode
     yaml-mode))
 
 (dolist (lib libs-to-require)
