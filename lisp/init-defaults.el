@@ -66,6 +66,13 @@
  whitespace-line-column 80
  ;; no more two spaces to end sentences. Jeez.
  sentence-end-double-space nil
+ )
+
+;; -- tramp stuff --
+(setq
+ recentf-keep '(file-remote-p file-readable-p)
+ recentf-auto-cleanup 'never
+ tramp-persistency-file-name nil
  tramp-default-method "ssh")
 
 (setq
