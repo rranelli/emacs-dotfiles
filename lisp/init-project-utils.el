@@ -72,23 +72,26 @@
           (neotree-find file-name))
       (message "Could not find git project root."))))
 
-;; ==========================
-;; -- project utils keymap --
-;; ==========================
+;; =====================================
+;; -- extensions to projectile keymap --
+;; =====================================
 (let ((map projectile-command-map))
   ;; general utils
-  (define-key map "c" 'helm-rr-open-project)
+  (define-key map "f" 'helm-rr-open-project)
   (define-key map "n" 'rr-show-file-name)
 
   (define-key map "m" 'git-timemachine)
 
   ;; ag
   (define-key map "s" 'ag-project)
-  (define-key map "a" 'ag-project-regexp)
+  (define-key map "\C-s" 'ag-project-regexp)
 
   ;; neotree
-  (define-key map "t" 'neotree-git-project)
-  (define-key map "f" 'neotree-find))
+  (define-key map "d" 'neotree-git-project)
+  (define-key map "x" 'neotree-find)
+
+  (define-key map "y" 'projectile-find-implementation-or-test-other-window)
+  (define-key map "a" 'projectile-test-project))
 
 (global-set-key (kbd "C-c o") 'helm-rr-open-project)
 (global-set-key (kbd "C-c C-f") 'helm-projectile-find-file)
