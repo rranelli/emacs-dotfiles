@@ -127,19 +127,5 @@
 (diminish 'abbrev-mode)
 (diminish 'wrap-region-mode)
 
-(defvar bindings-to-expose
-  '("C-c C-f"
-    "C-M-f"
-    "C-M-b"
-    "M-h"
-    "M-k"
-    "M-o"
-    "M-1"
-    "M-2"
-    "M-3"
-    "M-i"
-    "M-l")
-  "Custom keybindings to expose on every mode.")
-
 (provide 'init-defaults)
 ;;; init-defaults.el ends here
