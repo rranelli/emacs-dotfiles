@@ -91,7 +91,8 @@
   (define-key map "x" 'neotree-find)
 
   (define-key map "y" 'projectile-find-implementation-or-test-other-window)
-  (define-key map "a" 'projectile-test-project))
+  (define-key map "a" 'projectile-test-project)
+  (define-key map "F" 'helm-projectile-find-file-in-known-projects))
 
 (global-set-key (kbd "C-c o") 'helm-rr-open-project)
 (global-set-key (kbd "C-c C-f") 'helm-projectile-find-file)
