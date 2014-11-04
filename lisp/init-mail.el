@@ -138,7 +138,8 @@
 	    (local-set-key (kbd "n") 'mime-preview-next-line-entity)
 	    (local-set-key (kbd "p") 'mime-preview-previous-line-entity)
 	    (local-set-key (kbd "f") 'wl-fill-cleanup-fuckedup-message)
-	    (local-set-key (kbd "C-c m f") 'wl-fill-cleanup-fuckedup-message)))
+	    (local-set-key (kbd "C-c m f") 'wl-fill-cleanup-fuckedup-message)
+	    (local-set-key (kbd "RET") 'w3m-view-url-with-browse-url)))
 
 (define-key wl-summary-mode-map (kbd "RET") 'wl-summary-jump-to-current-message)
 (define-key wl-summary-mode-map (kbd "O") 'wl-summary-refile-prev-destination)
