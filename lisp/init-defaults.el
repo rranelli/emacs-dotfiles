@@ -65,8 +65,7 @@
  whitespace-style '(face trailing lines-tail tabs)
  whitespace-line-column 80
  ;; no more two spaces to end sentences. Jeez.
- sentence-end-double-space nil
- )
+ sentence-end-double-space nil)
 
 ;; -- tramp stuff --
 (setq
@@ -126,6 +125,7 @@
 ;; diminish
 (diminish 'undo-tree-mode)
 (diminish 'abbrev-mode)
+(diminish 'wrap-region-mode)
 
 (defvar bindings-to-expose
   '("C-c C-f"

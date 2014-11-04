@@ -82,6 +82,7 @@
     paredit
     smex
     whitespace
+    wrap-region
     ffap
     find-file-in-project
     recentf
