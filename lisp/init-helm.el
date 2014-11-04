@@ -1,8 +1,6 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(require 'helm-ls-git)
-
 (require 'helm-config)
 
 (helm-mode t)
@@ -28,7 +26,6 @@
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "M-l") 'helm-buffers-list)
 
-(global-set-key (kbd "C-c C-f") 'helm-browse-project)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (global-set-key (kbd "C-c h") 'helm-command-prefix)

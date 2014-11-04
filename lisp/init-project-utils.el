@@ -1,10 +1,10 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
+(require 'helm-projectile)
 
-;; ==============
-;; -- projects --
-;; ==============
+(projectile-global-mode 1)
+(diminish 'projectile-mode "")
 
 ;; variables
 (defvar project-sources
@@ -75,28 +75,23 @@
 ;; ==========================
 ;; -- project utils keymap --
 ;; ==========================
-(defvar project-global-map
-  (let ((map (make-sparse-keymap)))
-    ;; general utils
-    (define-key map "c" 'helm-rr-open-project)
-    (define-key map "n" 'rr-show-file-name)
+(let ((map projectile-command-map))
+  ;; general utils
+  (define-key map "c" 'helm-rr-open-project)
+  (define-key map "n" 'rr-show-file-name)
 
-    ;; git
-    (define-key map "b" 'magit-branch-manager)
-    (define-key map "l" 'magit-log)
-    (define-key map "m" 'git-timemachine)
+  (define-key map "m" 'git-timemachine)
 
-    ;; ag
-    (define-key map "s" 'ag-project)
-    (define-key map "a" 'ag-project-regexp)
+  ;; ag
+  (define-key map "s" 'ag-project)
+  (define-key map "a" 'ag-project-regexp)
 
-    ;; neotree
-    (define-key map "g" 'neotree-git-project)
-    (define-key map "t" 'neotree-toggle)
-    (define-key map "f" 'neotree-find)
-    map))
+  ;; neotree
+  (define-key map "t" 'neotree-git-project)
+  (define-key map "f" 'neotree-find))
 
-(define-key global-map (kbd "C-c p") project-global-map)
+(global-set-key (kbd "C-c o") 'helm-rr-open-project)
+(global-set-key (kbd "C-c C-f") 'helm-projectile-find-file)
 
 (provide 'init-project-utils)
 ;;; init-project-utils.el ends here

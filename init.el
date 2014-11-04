@@ -15,6 +15,8 @@
     init-edit-defuns
     init-keybindings
     init-defaults
+    init-helm
+    init-project-utils
     init-path
     init-appearance
     init-magit
@@ -26,10 +28,8 @@
     init-lisp
     init-clojure
     init-isearch
-    init-project-utils
     init-writing
     init-org
-    init-helm
     init-mail
     init-shell))
 

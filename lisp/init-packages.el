@@ -23,7 +23,8 @@
     ag
     smartscan
     helm
-    helm-ls-git
+    projectile
+    helm-projectile
     yasnippet
     smooth-scrolling
     auto-complete
