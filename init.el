@@ -9,6 +9,12 @@
   (add-to-list 'load-path lisp-dir)
   (add-to-list 'load-path vendor-dir))
 
+(defun safe-require (feature)
+  "Safely requires FEATURE."
+  (condition-case ex
+      (require feature)
+    ('error (message (format "[ERROR LOADING \"%s\"]: %s" (symbol-name feature) ex)))))
+
 (defvar init-files
   '(init-packages
     init-custom-defuns
@@ -33,8 +39,11 @@
     init-mail
     init-shell))
 
-(dolist (file init-files)
-  (require file))
+(defun rr-load-init-files ()
+  (dolist (file init-files)
+    (safe-require file)))
+
+(rr-load-init-files)
 
 ;; -- custom --
 (let ((custom-file (expand-file-name "custom.el" user-emacs-directory)))
