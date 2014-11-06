@@ -38,7 +38,11 @@
       elmo-imap4-default-stream-type 'ssl
 
       ;;for non ascii-characters in folder-names
-      elmo-imap4-use-modified-utf7 t)
+      elmo-imap4-use-modified-utf7 t
+
+      ;; messge fetching
+      elmo-message-fetch-confirm t
+      elmo-message-fetch-threshold 2500000)
 
 ;; Accounts
 (setq
@@ -129,6 +133,12 @@
 ;; -- bindings --
 (define-key global-map (kbd "<f11>") 'wl)
 
+(define-key w3m-minor-mode-map (kbd "C-m") 'w3m-view-url-with-browse-url)
+(define-key w3m-minor-mode-map (kbd "RET") 'w3m-view-url-with-browse-url)
+
+(define-key wl-summary-mode-map (kbd "RET") 'wl-summary-jump-to-current-message)
+(define-key wl-summary-mode-map (kbd "O") 'wl-summary-refile-prev-destination)
+
 (add-hook 'mime-view-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "q") (lambda ()
@@ -138,14 +148,14 @@
 	    (local-set-key (kbd "n") 'mime-preview-next-line-entity)
 	    (local-set-key (kbd "p") 'mime-preview-previous-line-entity)
 	    (local-set-key (kbd "f") 'wl-fill-cleanup-fuckedup-message)
-	    (local-set-key (kbd "C-c m f") 'wl-fill-cleanup-fuckedup-message)
-	    (local-set-key (kbd "RET") 'w3m-view-url-with-browse-url)))
-
-(define-key wl-summary-mode-map (kbd "RET") 'wl-summary-jump-to-current-message)
-(define-key wl-summary-mode-map (kbd "O") 'wl-summary-refile-prev-destination)
+	    (local-set-key (kbd "C-c m f") 'wl-fill-cleanup-fuckedup-message)))
 
 (expose-bindings wl-summary-mode-map bindings-to-expose)
 (expose-bindings wl-template-mode-map bindings-to-expose)
+
+(defadvice wl-summary-write (after wl-summary-write-select-template activate)
+  "Run wl-template-select when writing a new email"
+  (wl-template-select "locaweb"))
 
 (provide 'init-mail)
 ;;; init-mail.el ends here
