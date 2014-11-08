@@ -105,6 +105,9 @@
   (rspec-find-spec-or-target-other-window)
   (other-window 1))
 
+;; Do not autoscroll
+(setq rspec-auto-scroll nil)
+
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
   (define-bindings map
