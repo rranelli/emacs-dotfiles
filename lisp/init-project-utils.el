@@ -90,6 +90,9 @@
   (define-key map "d" 'neotree-git-project)
   (define-key map "x" 'neotree-find)
 
+  (define-key map "h" 'hl-highlight-thingatpt-local)
+  (define-key map "u" 'hl-unhighlight-all-local)
+
   (define-key map "y" 'projectile-find-implementation-or-test-other-window)
   (define-key map "a" 'projectile-test-project)
   (define-key map "F" 'helm-projectile-find-file-in-known-projects))

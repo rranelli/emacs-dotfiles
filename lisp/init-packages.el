@@ -39,6 +39,7 @@
     neotree
     expand-region
     better-registers
+    hl-anything
     smex
     paredit
     idle-highlight-mode
@@ -97,6 +98,7 @@
     markdown-mode
     ox-gfm
     s
+    hl-anything
     sh-script
     sgml-mode
     nxml-mode
