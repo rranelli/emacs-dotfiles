@@ -7,9 +7,15 @@
 (diminish 'projectile-mode "")
 
 ;; variables
+(defvar default-project-source
+  "~/code/")
+
 (defvar project-sources
-  '("~/code/"
-    "~/locaweb/"))
+  (list
+   default-project-source
+   "~/locaweb/"))
+
+;; helm integration for opening projects
 
 (defun helm-rr-open-project ()
   "Bring up a Spotify search interface in helm."
@@ -41,6 +47,38 @@
 				      (expand-file-name "Gemfile" path)
 				    path)))
     (find-file (find-default-file))))
+
+;; Creating new project
+(defun rr-new-git-project ()
+  (interactive)
+  (let* ((source (ido-completing-read "create new project in which source?: " project-sources))
+	 (project-name (read-input "new project name: "))
+	 (project-dir (file-name-as-directory (expand-file-name project-name source))))
+    (condition-case nil
+	(mkdir project-dir)
+      (error nil))
+
+    (shell-command (format "cd %s; git init" project-dir))
+    (rr-add-gitignore-file project-dir)))
+
+(defun rr-add-gitignore-file (repo-path)
+  (interactive (list
+		(read-directory-name
+		 "Which repository?: "
+		 (if (projectile-project-root)
+		     (projectile-project-root)
+		   (file-name-directory (buffer-file-name))))))
+  (let* ((gitignore-dir (expand-file-name "gitignore/" default-project-source))
+	 (gitignore-files (directory-files
+			   gitignore-dir
+			   nil
+			   directory-files-no-dot-files-regexp))
+	 (gitignore-file (ido-completing-read "choose gitignore file: " gitignore-files)))
+    (if gitignore-file
+	(copy-file
+	 (expand-file-name gitignore-file gitignore-dir)
+	 (expand-file-name ".gitignore" repo-path)
+	 t))))
 
 ;; ===============
 ;; -- ag config --
@@ -79,6 +117,8 @@
   ;; general utils
   (define-key map "f" 'helm-rr-open-project)
   (define-key map "n" 'rr-show-file-name)
+  (define-key map "\C-n" 'rr-new-git-project)
+  (define-key map "\C-g" 'rr-add-gitignore-file)
 
   (define-key map "m" 'git-timemachine)
 
