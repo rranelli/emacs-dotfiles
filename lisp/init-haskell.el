@@ -18,7 +18,9 @@
     ("<delta>" . #X03B4)
     ("''" . #X2033)
     ("'" . #X2032)
-    (".." . #X2026)))
+    (".." . #X2026)
+    ("`elem`" . #X2208)
+    ("elem" . #X2208)))
 
 (eval-after-load 'haskell-font-lock
   '(progn
