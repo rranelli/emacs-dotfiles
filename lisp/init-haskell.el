@@ -20,7 +20,8 @@
     ("'" . #X2032)
     (".." . #X2026)
     ("`elem`" . #X2208)
-    ("elem" . #X2208)))
+    ("elem" . #X2208)
+    ("^" . #X2191)))
 
 (eval-after-load 'haskell-font-lock
   '(progn
