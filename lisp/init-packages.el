@@ -68,6 +68,7 @@
     w3m
     javadoc-lookup
     maven-test-mode
+    restclient
     cider)
   "A list of packages to ensure are installed at launch.")
 
