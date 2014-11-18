@@ -108,6 +108,16 @@
 ;; Do not autoscroll
 (setq rspec-auto-scroll nil)
 
+;; -- misc --
+(defun rr-convert-to-ruby-1.9-hash-syntax ()
+  (interactive)
+  (save-excursion
+    (re-search-backward ":")
+    (delete-char 1)
+    (forward-sexp)
+    (insert ":")
+    (replace-regexp "\s?=>" "")))
+
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
   (define-bindings map
@@ -121,7 +131,8 @@
     ("C-c r r" . ruby-send-region)
     ("C-c r v" . ruby-refactor-extract-local-variable)
     ("C-c r m" . ruby-refactor-extract-to-method)
-    ("C-c r l" . ruby-refactor-extract-to-let)))
+    ("C-c r l" . ruby-refactor-extract-to-let)
+    ("C-c r h" . rr-convert-to-ruby-1.9-hash-syntax)))
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
