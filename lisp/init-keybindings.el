@@ -98,9 +98,11 @@
 
 (expose-rr-default-bindings markdown-mode-map)
 (expose-rr-default-bindings sgml-mode-map)
-(expose-rr-default-bindings nxml-mode-map)
 (expose-rr-default-bindings html-mode-map)
 (expose-rr-default-bindings sh-mode-map)
+
+(add-hook 'nxml-mode-hook (lambda ()
+			    (expose-rr-default-bindings nxml-mode-map)))
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here
