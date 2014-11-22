@@ -5,25 +5,16 @@
 (require 'wl)
 
 ;; I should check something like `http://www.emacswiki.org/emacs/hgw-init-wl.el'
+;; In order to save your passwords, run `elmo-passwd-alist-save' interactively
 
-;; -- preferences --
-
-;; In order to save your passwords, run
-;; `elmo-passwd-alist-save' interactively
 (setq
- ;; do not limit summary width
- wl-summary-width 180
- ;; dont know what that is
- wl-message-buffer-prefetch-depth 0
- ;; do not split large attachments in many messages
- mime-edit-sbplit-message nil
- ;; do not remember mark direction
- wl-summary-move-direction-toggle nil
-
- wl-summary-auto-refile-skip-marks '("!" "$")
-
- ;; Set header fields to show
- wl-message-ignored-field-list '("^.*:")
+ wl-summary-width 180 ;; do not limit summary width
+ wl-message-buffer-prefetch-depth 0 ;; dont know what that is
+ mime-edit-sbplit-message nil ;; do not split large attachments in many messages
+ wl-summary-move-direction-toggle nil ;; do not remember mark direction
+ wl-summary-auto-refile-skip-marks '("$")
+ wl-summary-always-sticky-folder-list '("inbox" "INBOX")
+ wl-message-ignored-field-list '("^.*:") ;; Set header fields to show
  wl-message-visible-field-list
  '("^\\(To\\|Cc\\):"
    "^Subject:"
@@ -36,13 +27,8 @@
       elmo-imap4-default-authenticate-type 'clear
       elmo-imap4-default-port '993
       elmo-imap4-default-stream-type 'ssl
-
-      ;;for non ascii-characters in folder-names
-      elmo-imap4-use-modified-utf7 t
-
-      ;; messge fetching
-      elmo-message-fetch-confirm t
-      elmo-message-fetch-threshold 2500000)
+      elmo-imap4-use-modified-utf7 t      ;;for non ascii-characters in folder-names
+      elmo-message-fetch-confirm nil)      ;; do not ask confirmation for message fetching
 
 ;; Accounts
 (setq
@@ -51,7 +37,7 @@
  wl-draft-config-matchone t
  wl-draft-reply-buffer-style 'full
  wl-dispose-folder-alist
- '((".*gmail" . "%[Gmail]/Trash:\"renanranelli@gmail.com\"/clear@imap.gmail.com:993!")
+ '((".*gmail" . remove)
    (".*locaweb" . remove))
 
  wl-template-alist
@@ -59,7 +45,6 @@
     (wl-from . "Renan Ranelli <renanranelli@gmail.com>")
     ("From" . wl-from)
     (wl-fcc . "%[Gmail]/Sent")
-    (wl-trash-folder . "%[Gmail]/Trash:\"renanranelli@gmail.com\"/clear@imap.gmail.com:993!")
     (wl-smtp-connection-type . 'starttls)
     (wl-smtp-posting-port . 587)
     (wl-smtp-authenticate-type . "plain")
@@ -138,6 +123,9 @@
 
 (define-key wl-summary-mode-map (kbd "RET") 'wl-summary-jump-to-current-message)
 (define-key wl-summary-mode-map (kbd "O") 'wl-summary-refile-prev-destination)
+(define-key wl-summary-mode-map (kbd "q") (lambda ()
+					    (interactive)
+					    (wl-summary-toggle-disp-msg 'off)))
 
 (add-hook 'mime-view-mode-hook
 	  (lambda ()
