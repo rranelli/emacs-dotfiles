@@ -3,4 +3,3 @@
 # ignore elpa
 elpa/
 *.elc
-elpa/
