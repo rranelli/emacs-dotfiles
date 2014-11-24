@@ -9,8 +9,6 @@
 (add-to-list 'package-archives
 	     '("e6h" . "http://www.e6h.org/packages/"))
 
-(package-refresh-contents)
-
 (defvar my-packages
   '(;; general configuration
     magit
@@ -72,9 +70,16 @@
     cider)
   "A list of packages to ensure are installed at launch.")
 
+(setq packaged-contents-refreshed-p nil)
 (dolist (p my-packages)
   (when (not (package-installed-p p))
-    (package-install p)))
+    (condition-case ex
+	(package-install p)
+      ('error (if packaged-contents-refreshed-p
+		  (error ex)
+		(package-refresh-contents)
+		(setq packaged-contents-refreshed-p t)
+		(package-install p))))))
 
 ;; -- vendor packages --
 (defvar libs-to-require
