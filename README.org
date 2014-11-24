@@ -1,5 +1,7 @@
 #+AUTHOR: Renan Ranelli
 
+[[https://travis-ci.org/rranelli/emacs-dotfiles][https://travis-ci.org/rranelli/emacs-dotfiles.svg]]
+
 * A simple, modular and well organized Emacs configuration.
   This is the Emacs configuration I use and tweak every day. This may probably be a good
   starting point for people trying to learn Emacs, specially if you do ELisp

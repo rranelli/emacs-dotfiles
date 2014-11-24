@@ -12,8 +12,5 @@ install:
   sudo apt-get update -qq &&
   sudo apt-get install -qq emacs24 emacs24-el;
 
-before_script:
-  make .downloads
-
 script:
   make test
