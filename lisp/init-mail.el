@@ -69,16 +69,6 @@
 			 ((string-match "." wl-draft-parent-folder)
 			  (template . "gmail"))))
 
-;; sorting backwards
-(defun wl-summary-overview-entity-compare-by-rdate (x y)
-  (not (wl-summary-overview-entity-compare-by-date x y)))
-(add-to-list 'wl-summary-sort-specs 'rdate)
-
-(defun wl-summary-sort-by-rdate ()
-  (interactive)
-  (wl-summary-rescan "rdate")
-  (goto-char (point-min)))
-
 (defun wl-fill-cleanup-fuckedup-message ()
   "Cleans up a fucked up message"
   (interactive)
