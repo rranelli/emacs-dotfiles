@@ -64,6 +64,8 @@
     (wl-smtp-posting-server . "outlook.locaweb.com.br")
     (wl-message-id-domain . "outlook.locaweb.com.br")))
 
+ wl-default-spec "% "
+
  wl-draft-config-alist '(((string-match "locaweb" wl-draft-parent-folder)
 			  (template . "locaweb"))
 			 ((string-match "." wl-draft-parent-folder)
