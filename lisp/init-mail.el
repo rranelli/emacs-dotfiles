@@ -27,8 +27,8 @@
       elmo-imap4-default-authenticate-type 'clear
       elmo-imap4-default-port '993
       elmo-imap4-default-stream-type 'ssl
-      elmo-imap4-use-modified-utf7 t      ;;for non ascii-characters in folder-names
-      elmo-message-fetch-confirm nil)      ;; do not ask confirmation for message fetching
+      elmo-imap4-use-modified-utf7 t ;;for non ascii-characters in folder-names
+      elmo-message-fetch-confirm nil) ;; do not ask confirmation for message fetching
 
 ;; Accounts
 (setq
@@ -110,21 +110,25 @@
 ;; -- bindings --
 (define-key global-map (kbd "<f11>") 'wl)
 
-(define-key w3m-minor-mode-map (kbd "C-m") 'w3m-view-url-with-browse-url)
-(define-key w3m-minor-mode-map (kbd "RET") 'w3m-view-url-with-browse-url)
+(define-bindings w3m-minor-mode-map
+  '(("C-m" . w3m-view-url-with-browse-url)
+    ("RET" . 'w3m-view-url-with-browse-url)))
 
-(define-key wl-summary-mode-map (kbd "RET") 'wl-summary-jump-to-current-message)
-(define-key wl-summary-mode-map (kbd "O") 'wl-summary-refile-prev-destination)
-(define-key wl-summary-mode-map (kbd "q") (lambda ()
-					    (interactive)
-					    (wl-summary-toggle-disp-msg 'off)))
+(define-bindings wl-summary-mode-map
+  '(("RET" . wl-summary-jump-to-current-message)
+    ("n" . next-line)
+    ("p" . previous-line)
+    ("O" . wl-summary-refile-prev-destination)
+    ("q" . (lambda ()
+	     (interactive)
+	     (wl-summary-toggle-disp-msg 'off)))))
 
 (add-hook 'mime-view-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "q") (lambda ()
 				       (interactive)
-	    			       (mime-preview-quit)
-	    			       (wl-summary-toggle-disp-msg)))
+				       (mime-preview-quit)
+				       (wl-summary-toggle-disp-msg)))
 	    (local-set-key (kbd "n") 'mime-preview-next-line-entity)
 	    (local-set-key (kbd "p") 'mime-preview-previous-line-entity)
 	    (local-set-key (kbd "f") 'wl-fill-cleanup-fuckedup-message)
