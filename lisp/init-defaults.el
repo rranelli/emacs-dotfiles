@@ -110,7 +110,8 @@
   '(("8bes" "bundle exec rspec")
     ("8be" "bundle exec")
     ("8rdbm" "bundle exec rake db:migrate db:rollback && bundle exec rake db:migrate")
-    ("8bejs" "bundle exec jekyll serve --watch")))
+    ("8bejs" "bundle exec jekyll serve --watch")
+    ("mode-comment" "#-*- mode: <desired-mode>;-*-")))
 
 ;; -- more fontlock --
 (defun custom-add-watchwords ()
