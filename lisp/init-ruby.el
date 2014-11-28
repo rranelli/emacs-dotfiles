@@ -11,15 +11,18 @@
 (diminish 'auto-fill-function)
 
 ;; auto modes
-(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.jbuilder$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\GuardFile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\Rakefile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\Vagrantfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\Gemfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\Godfile$" . ruby-mode))
+(dolist (fp '("\\.rb$"
+	      "\\.ru$"
+	      "\\.jbuilder$"
+	      "\\.gemspec$"
+	      "\\GuardFile$"
+	      "\\Rakefile$"
+	      "\\Vagrantfile$"
+	      "\\Gemfile$"
+	      "\\Godfile$"
+	      "\\Godfile$"
+	      "\\.god$"))
+  (add-to-list 'auto-mode-alist `(,fp . ruby-mode)))
 
 ;; hook auxiliary modes to ruby mode
 (add-hook 'ruby-mode-hook 'robe-mode)
