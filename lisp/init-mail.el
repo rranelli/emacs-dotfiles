@@ -111,11 +111,11 @@
 (define-key global-map (kbd "<f11>") 'wl)
 
 (define-bindings w3m-minor-mode-map
-  '(("C-m" . w3m-view-url-with-browse-url)
-    ("RET" . 'w3m-view-url-with-browse-url)))
+  `(("C-m" . w3m-view-url-with-browse-url)
+    ("RET" . w3m-view-url-with-browse-url)))
 
 (define-bindings wl-summary-mode-map
-  '(("RET" . wl-summary-jump-to-current-message)
+  `(("RET" . wl-summary-jump-to-current-message)
     ("n" . next-line)
     ("p" . previous-line)
     ("O" . wl-summary-refile-prev-destination)
