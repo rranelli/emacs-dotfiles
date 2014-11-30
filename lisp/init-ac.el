@@ -23,8 +23,7 @@
             (add-to-list 'ac-ignores "for")
             (add-to-list 'ac-ignores "rescue")
             (add-to-list 'ac-ignores "fail")
-            (add-to-list 'ac-ignores "while")
-            ))
+            (add-to-list 'ac-ignores "while")))
 
 ;; -- keybindings --
 ;; navigate by C-n C-p in completion options
