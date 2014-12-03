@@ -1,0 +1,4 @@
+#name: file-mode-comment
+#key: fm
+# --
+"#-*- mode: $0;-*-"
