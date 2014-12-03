@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 (require 'package)
+(require 'auto-package-update)
+
 (package-initialize)
 
 (add-to-list 'package-archives
@@ -70,17 +72,6 @@
     cider)
   "A list of packages to ensure are installed at launch.")
 
-(setq packaged-contents-refreshed-p nil)
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (condition-case ex
-	(package-install p)
-      ('error (if packaged-contents-refreshed-p
-		  (error ex)
-		(package-refresh-contents)
-		(setq packaged-contents-refreshed-p t)
-		(package-install p))))))
-
 ;; -- vendor packages --
 (defvar libs-to-require
   '(cl
@@ -110,16 +101,24 @@
     nxml-mode
     yaml-mode))
 
+;; package loading
+(setq packaged-contents-refreshed-p nil)
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (condition-case ex
+	(package-install p)
+      ('error (if packaged-contents-refreshed-p
+		  (error ex)
+		(package-refresh-contents)
+		(setq packaged-contents-refreshed-p t)
+		(package-install p))))))
+
+;; vendor loading
 (dolist (lib libs-to-require)
   (require lib))
 
-(defun rr-update-packages ()
-  "Update installed Emacs packages."
-  (interactive)
-  (package-list-packages)
-  (package-menu-mark-upgrades)
-  (package-menu-execute t)
-  (kill-buffer))
+;; Automagically updateing packages
+(rr-update-packages-if-needed)
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
