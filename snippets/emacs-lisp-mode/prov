@@ -1,0 +1,5 @@
+#name: prov
+#key: prov
+# --
+(provide '`(file-name-base (buffer-file-name))`)
+;;; `(file-name-base (buffer-file-name))`.el ends here
