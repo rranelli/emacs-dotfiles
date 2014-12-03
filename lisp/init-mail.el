@@ -10,7 +10,7 @@
 (setq
  wl-summary-width 180 ;; do not limit summary width
  wl-message-buffer-prefetch-depth 0 ;; dont know what that is
- mime-edit-sbplit-message nil ;; do not split large attachments in many messages
+ mime-edit-split-message nil ;; do not split large attachments in many messages
  wl-summary-move-direction-toggle nil ;; do not remember mark direction
  wl-summary-auto-refile-skip-marks '("$")
  wl-summary-always-sticky-folder-list '("inbox" "INBOX")
