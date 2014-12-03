@@ -36,7 +36,6 @@
 (setq
  ;; please, share the clipboard
  x-select-enable-clipboard t
- save-abbrevs nil
  uniquify-buffer-name-style 'forward
  ;; no backups
  make-backup-files nil
@@ -89,7 +88,6 @@
 
 (setq-default
  display-buffer-reuse-frames t
- abbrev-mode t
  save-place t
  fill-column 80)
 
@@ -104,14 +102,6 @@
 (add-hook 'prog-mode-hook 'custom-add-watchwords)
 
 (add-hook 'sql-mode-hook 'sql-highlight-mysql-keywords)
-
-;; -- Abbrev --
-(define-abbrev-table 'global-abbrev-table
-  '(("8bes" "bundle exec rspec")
-    ("8be" "bundle exec")
-    ("8rdbm" "bundle exec rake db:migrate db:rollback && bundle exec rake db:migrate")
-    ("8bejs" "bundle exec jekyll serve --watch")
-    ("mode-comment" "#-*- mode: <desired-mode>;-*-")))
 
 ;; -- more fontlock --
 (defun custom-add-watchwords ()
