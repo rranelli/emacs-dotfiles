@@ -118,7 +118,7 @@
   (require lib))
 
 ;; Automagically updateing packages
-(rr-update-packages-if-needed)
+(apu-update-packages-if-needed)
 
 (provide 'init-packages)
 ;;; init-packages.el ends here

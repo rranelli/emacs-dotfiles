@@ -7,31 +7,31 @@
 ;;
 ;;; Customization
 ;;
-(defcustom rr-last-update-day-filename
+(defcustom apu-last-update-day-filename
   ".last-package-update-day"
   "Name of the file in which the last update day is going to be stored."
   :group 'init-packages
   :type 'string)
 
-(defcustom rr-package-update-interval
+(defcustom apu-package-update-interval
   7
   "Interval in DAYS for automatic package update."
   :group 'init-packages
   :type 'int)
 
-(defvar rr-last-update-day-path
-  (expand-file-name rr-last-update-day-filename user-emacs-directory))
+(defvar apu-last-update-day-path
+  (expand-file-name apu-last-update-day-filename user-emacs-directory))
 
 ;;
 ;;; File read/write
 ;;
-(defun rr-read-file-contents (file)
+(defun apu-read-file-contents (file)
   (when (file-exists-p file)
     (with-temp-buffer
       (insert-file-contents file)
       (buffer-string))))
 
-(defun rr-write-string-to-file (file string)
+(defun apu-write-string-to-file (file string)
   (with-temp-buffer
     (insert string)
     (when (file-writable-p file)
@@ -42,33 +42,33 @@
 ;;
 ;;; Update day read/write functions
 ;;
-(defun rr-today-day ()
+(defun apu-today-day ()
   (time-to-days (current-time)))
 
-(defun rr-write-current-day ()
-  (rr-write-string-to-file
-   rr-last-update-day-path
-   (int-to-string (rr-today-day))))
+(defun apu-write-current-day ()
+  (apu-write-string-to-file
+   apu-last-update-day-path
+   (int-to-string (apu-today-day))))
 
-(defun rr-read-last-update-day ()
+(defun apu-read-last-update-day ()
   (string-to-int
-   (rr-read-file-contents rr-last-update-day-path)))
+   (apu-read-file-contents apu-last-update-day-path)))
 
 ;;
 ;;; Package update
 ;;
-(defun rr-should-update-packages-p ()
+(defun apu-should-update-packages-p ()
   (or
-   (not (file-exists-p rr-last-update-day-path))
-   (let* ((last-update-day (rr-read-last-update-day))
-	  (days-since (- (rr-today-day) last-update-day)))
-     (and (not (= last-update-day (rr-today-day)))
+   (not (file-exists-p apu-last-update-day-path))
+   (let* ((last-update-day (apu-read-last-update-day))
+	  (days-since (- (apu-today-day) last-update-day)))
+     (and (not (= last-update-day (apu-today-day)))
 	  (=
 	   0
-	   (mod days-since rr-package-update-interval))))))
+	   (mod days-since apu-package-update-interval))))))
 
 ;;;###autoload
-(defun rr-update-packages ()
+(defun apu-update-packages ()
   "Update installed Emacs packages."
   (interactive)
   (save-excursion
@@ -78,10 +78,10 @@
     (package-menu-execute t)
     (kill-buffer)))
 
-(defun rr-update-packages-if-needed ()
-  (when (rr-should-update-packages-p)
-    (rr-update-packages)
-    (rr-write-current-day)
+(defun apu-update-packages-if-needed ()
+  (when (apu-should-update-packages-p)
+    (apu-update-packages)
+    (apu-write-current-day)
     (message "[PACKAGES UPDATED]")))
 
 (provide 'auto-package-update)
