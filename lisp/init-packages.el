@@ -11,6 +11,8 @@
 (add-to-list 'package-archives
 	     '("e6h" . "http://www.e6h.org/packages/"))
 
+(setq save-abbrevs nil)
+
 (defvar my-packages
   '(;; general configuration
     magit
