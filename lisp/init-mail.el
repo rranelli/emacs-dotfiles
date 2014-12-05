@@ -84,10 +84,13 @@
 
 ;; -- auto refile configuration --
 (let ((junk-folder "%Junk:\"renan.ranelli\"/clear@outlook.locaweb.com.br:993!")
-      (prb-folder "%PRBs:\"renan.ranelli\"/clear@outlook.locaweb.com.br:993!"))
+      (prb-folder "%PRBs:\"renan.ranelli\"/clear@outlook.locaweb.com.br:993!")
+      (archive-folder "%[Gmail]/All Mail:renanranelli/clear@imap.gmail.com:993!")
+      (gmail-trash "%[Gmail]/Trash:renanranelli/clear@imap.gmail.com:993!"))
   (setq wl-refile-rule-alist
-	;; (field (regexp . target) ...)
-	`(("Subject" ("Confirmação de contratação de produtos" . ,junk-folder))
+	`(
+	  ;; rules for work mail
+	  ("Subject" ("Confirmação de contratação de produtos" . ,junk-folder))
 	  ("Subject" ("\\[PRB[0-9]+\\] - \\[HOSP\\]" . ,prb-folder))
 	  ("Subject" ("\\[PRB[0-9]+\\] - " . ,junk-folder))
 	  ("Subject" ("\\[Ger\\. Mudanças\\]" . ,junk-folder))
@@ -98,7 +101,10 @@
 	  ("From" ("reporting_service@locaweb.com.br" . ,junk-folder))
 	  ("From" ("no-reply@slack.com" . ,junk-folder))
 	  ("From" ("reservadesala@locaweb.com.br" . ,junk-folder))
-	  ("To" ("scrum-hospedagem@locaweb.com.br" . ,junk-folder)))))
+	  ("To" ("scrum-hospedagem@locaweb.com.br" . ,junk-folder))
+	  ;; rules for personal mail
+	  ("From" ("enews@automation.com" . ,gmail-trash))
+	  ("From" (".*@newsletter.lojascolombo.com.br" . ,gmail-trash)))))
 
 ;; -- view images and stuff --
 (require 'w3m)
