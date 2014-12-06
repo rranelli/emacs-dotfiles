@@ -23,6 +23,7 @@
 
 (eval-after-load 'haskell-font-lock
   '(progn
+     (remove-alist 'haskell-font-lock-symbols-alist "()")
      (mapcar
       (lambda (entry) (add-to-list 'haskell-font-lock-symbols-alist entry))
       rr-haskell-font-lock-extra-symbols)
