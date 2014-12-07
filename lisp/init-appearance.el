@@ -45,7 +45,9 @@
                                                           :background "Gray20")
                                       (set-face-attribute 'helm-ff-directory nil
                                                           :background "#282828"
-                                                          :foreground "#fb4934")))))
+                                                          :foreground "#fb4934")
+				      (set-face-attribute 'wl-highlight-summary-refiled-face nil
+                                                          :foreground "dark turquoise")))))
 
             (solarized-dark
              . '((mode-line-background . "DeepSkyBlue4")

@@ -15,7 +15,6 @@
     init-helm
     init-project-utils
     init-path
-    init-appearance
     init-magit
     init-ac
     init-yas
@@ -27,8 +26,9 @@
     init-isearch
     init-writing
     init-org
+    init-shell
     init-mail
-    init-shell))
+    init-appearance))
 
 (defun safe-require (feature)
   "Safely requires FEATURE."
