@@ -104,7 +104,17 @@
 	  ("To" ("scrum-hospedagem@locaweb.com.br" . ,junk-folder))
 	  ;; rules for personal mail
 	  ("From" ("enews@automation.com" . ,gmail-trash))
-	  ("From" (".*@newsletter.lojascolombo.com.br" . ,gmail-trash)))))
+	  ("From" (".*@newsletter.lojascolombo.com.br" . ,gmail-trash))
+	  ("From" ("info@huinforma.com.br" . ,gmail-trash))
+	  ("From" ("Control Global" . ,gmail-trash))
+	  ("From" ("mail-comsol-br@comsol.com" . ,gmail-trash))
+	  (("From" "Subject")
+	   (".*@mail.goodreads.com" . ,gmail-trash)
+	   ("newsletter" . ,gmail-trash))
+	  (("Subject" "From")
+	   ("Extrato Semanil" . ,gmail-trash)
+	   ("Citibank.brazil@citi.com" . ,gmail-trash)
+	   ))))
 
 ;; -- view images and stuff --
 (require 'w3m)

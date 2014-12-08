@@ -43,7 +43,7 @@
 ;; -- GODAMMIT RUBY INDENTATION!!! --
 ;; don't indent parenthesis in a weird way
 (setq ruby-align-chained-calls nil)
-(setq ruby-align-to-stmt-keywords t)
+(setq ruby-align-to-stmt-keywords nil)
 (setq ruby-deep-indent-paren nil)
 (setq ruby-deep-indent-paren-style nil)
 (setq ruby-use-smie nil)
