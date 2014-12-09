@@ -28,7 +28,7 @@
   "Finds target markdown file."
   (let* ((post-file-org (buffer-file-name))
          (post-file-md (replace-regexp-in-string "\\.org" ".md" post-file-org)))
-    (replace-regexp-in-string "/org" "" post-file-md)))
+    (replace-regexp-in-string "/org/" "/" post-file-md)))
 
 (defun org-jekyll-get-org-file-from-md-filename ()
   (let* ((post-file-md (buffer-file-name))
