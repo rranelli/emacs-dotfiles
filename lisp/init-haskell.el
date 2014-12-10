@@ -3,6 +3,8 @@
 ;;; Code:
 (setq haskell-font-lock-symbols t)
 
+(setq haskell-program-name "ghci") ;; ghci rules !
+
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook 'inf-haskell-mode)
 
