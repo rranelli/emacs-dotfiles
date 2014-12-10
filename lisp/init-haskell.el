@@ -14,6 +14,10 @@
 (add-hook 'haskell-mode-hook 'paredit-mode)
 (remove-hook 'haskell-mode-hook 'pretty-symbols-mode)
 
+(add-hook 'haskell-mode-hook (lambda ()
+			       (make-local-variable 'flycheck-display-errors-delay)
+			       (setq flycheck-display-errors-delay 3600)))
+
 ;; this is some ugly hack I hope will not be necessary in the future
 (unless (boundp 'haskell-mode-after-save-handler)
   (defun haskell-mode-after-save-handler ()
