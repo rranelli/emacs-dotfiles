@@ -6,8 +6,10 @@
 (require 'rspec-mode)
 (require 'ac-robe)
 (require 'robe)
+(require 'rubocop)
 
 (diminish 'ruby-electric-mode)
+(diminish 'rubocop-mode)
 (diminish 'auto-fill-function)
 
 ;; auto modes
@@ -28,6 +30,7 @@
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'ruby-electric-mode)
 (add-hook 'ruby-mode-hook 'rspec-mode)
+(add-hook 'ruby-mode-hook 'rubocop-mode)
 
 (add-hook 'robe-mode-hook
           (lambda () (add-to-list 'ac-sources 'ac-source-robe)))
