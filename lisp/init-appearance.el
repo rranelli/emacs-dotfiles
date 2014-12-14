@@ -131,6 +131,14 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
           (toggle--transparency (selected-frame) min-transp max-transp)
         (toggle--transparency frame min-transp max-transp)))))
 
+(defun rr-set-transparency (&optional desired-transp frame)
+  (interactive)
+  (unless frame
+    (setq frame (selected-frame)))
+  (unless desired-transp
+    (setq desired-transp (read-number "Desired transparency: " (car min-transp))))
+  (set-frame-parameter frame 'alpha `(,desired-transp ,desired-transp)))
+
 (defun config-powerline ()
   "Set up powerline faces for FRAME."
   (load-file (expand-file-name "vendor/powerline.el" user-emacs-directory))
