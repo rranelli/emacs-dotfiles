@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 (require 'package)
-(require 'auto-package-update)
-
 (package-initialize)
 
 (add-to-list 'package-archives
@@ -19,6 +17,7 @@
     graphviz-dot-mode
     ido-vertical-mode
     fuzzy
+    auto-package-update
     s
     ag
     smartscan
@@ -117,7 +116,8 @@
 (dolist (lib libs-to-require)
   (require lib))
 
-;; Automagically updateing packages
+;; Automagically updating packages
+(require 'auto-package-update)
 (apu-update-packages-if-needed)
 
 (provide 'init-packages)
