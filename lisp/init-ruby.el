@@ -122,7 +122,8 @@
     (delete-char 1)
     (forward-sexp)
     (insert ":")
-    (replace-regexp "\s?=>" "")))
+    (re-search-forward "\s?=>")
+    (replace-regexp "\s?=>" "" nil (line-beginning-position) (point))))
 
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
