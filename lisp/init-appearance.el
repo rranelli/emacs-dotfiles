@@ -6,7 +6,7 @@
 (defcustom chosen-x-theme 'gruvbox
   "Theme chosen to be initialized."
   :group 'init-appearance)
-(defcustom chosen-terminal-theme 'gruvbox
+(defcustom chosen-terminal-theme 'zenburn
   "Theme chosen to be initialized in terminal sessions."
   :group 'init-appearance)
 (defvar chosen-theme chosen-x-theme
