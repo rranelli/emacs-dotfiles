@@ -17,7 +17,7 @@
     graphviz-dot-mode
     ido-vertical-mode
     fuzzy
-    auto-package-update
+;;    auto-package-update
     s
     ag
     smartscan
