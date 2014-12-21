@@ -17,7 +17,7 @@
     graphviz-dot-mode
     ido-vertical-mode
     fuzzy
-;;    auto-package-update
+    auto-package-update
     s
     ag
     smartscan
@@ -118,7 +118,7 @@
 
 ;; Automagically updating packages
 (require 'auto-package-update)
-(apu-update-packages-if-needed)
+(auto-package-update-maybe)
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
