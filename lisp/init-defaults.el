@@ -8,7 +8,6 @@
 (delete-selection-mode t)
 (show-paren-mode 1)
 (smartscan-mode t)
-(global-flycheck-mode t)
 (global-undo-tree-mode)
 (ido-mode t)
 (ido-vertical-mode)
@@ -120,6 +119,8 @@
 (diminish 'undo-tree-mode)
 (diminish 'abbrev-mode)
 (diminish 'wrap-region-mode)
+
+(global-flycheck-mode t)
 
 (provide 'init-defaults)
 ;;; init-defaults.el ends here
