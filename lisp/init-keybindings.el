@@ -8,7 +8,7 @@
   "Custom keybindings to expose on every mode.")
 
 (defun expose-rr-default-bindings (mode-map)
-    (expose-bindings mode-map bindings-to-expose))
+  (expose-bindings mode-map bindings-to-expose))
 
 (defmacro expose-global-keybinding (binding map)
   `(define-key ,map ,binding `,(lookup-key `,(current-global-map) ,binding)))
@@ -18,7 +18,7 @@
      `,(expose-global-keybinding `,(kbd bnd) ,map)))
 
 (defun define-bindings (keymap binding-alist)
-"Define keys for KEYMAP given a BINDING-ALIST."
+  "Define keys for KEYMAP given a BINDING-ALIST."
   (dolist (p binding-alist)
     (let ((key (car p))
 	  (command (cdr p)))
@@ -97,9 +97,9 @@
 		 '("<f1>" "C-j" "C-x r" "C-x r"))
 
 (expose-rr-default-bindings markdown-mode-map)
-(expose-rr-default-bindings sgml-mode-map)
-(expose-rr-default-bindings html-mode-map)
 (expose-rr-default-bindings sh-mode-map)
+(add-hook 'sgml-mode-hook (lambda () (expose-rr-default-bindings sgml-mode-map)))
+(add-hook 'html-mode-hook (lambda () (expose-rr-default-bindings html-mode-map)))
 
 (add-hook 'nxml-mode-hook (lambda ()
 			    (expose-rr-default-bindings nxml-mode-map)))
