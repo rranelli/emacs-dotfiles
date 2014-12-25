@@ -8,6 +8,7 @@
           '(lambda () (yas-minor-mode)))
 
 (setq yas-snippet-dirs (expand-file-name "snippets" user-emacs-directory))
+(setq yas-prompt-functions (delete 'yas-x-prompt yas-prompt-functions))
 
 ;; add to autocomplete
 (if (require 'init-ac)
@@ -21,6 +22,7 @@
 
 (define-key yas-minor-mode-map (kbd "C-c y n") 'yas-new-snippet)
 (define-key yas-minor-mode-map (kbd "C-c y f") 'yas-visit-snippet-file)
+(define-key yas-minor-mode-map (kbd "C-c y i") 'yas-insert-snippet)
 
 (provide 'init-yas)
 ;;; init-yas.el ends here
