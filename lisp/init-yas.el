@@ -3,15 +3,20 @@
 ;;; Code:
 (require 'yasnippet)
 
+(defcustom rr-yas-snippet-dirs
+  (expand-file-name "snippets" user-emacs-directory)
+  "Directory to load yasnippet's snippet files."
+  :group 'init-yas)
+
 (yas-global-mode 1)
 (add-hook 'prog-mode-hook
           '(lambda () (yas-minor-mode)))
 
-(setq yas-snippet-dirs (expand-file-name "snippets" user-emacs-directory))
+(setq yas-snippet-dirs rr-yas-snippet-dirs)
 (setq yas-prompt-functions (delete 'yas-x-prompt yas-prompt-functions))
 
-;; add to autocomplete
-(if (require 'init-ac)
+;; add to autocomplete sources
+(if (boundp 'ac-sources)
     (add-to-list 'ac-sources ac-source-yasnippet))
 
 ;; -- keybindings --
