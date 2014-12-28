@@ -16,8 +16,8 @@
     init-project-utils
     init-path
     init-magit
-    init-ac
     init-yas
+    init-ac
     init-haskell
     init-ruby
     init-java
