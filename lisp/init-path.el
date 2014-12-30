@@ -2,10 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-
-
 (defun rr-path-rehash ()
-  "Reloads PATH environment variable"
+  "Reloads PATH environment variable."
   (interactive)
   (let ((path (shell-command-to-string ". ~/.bashrc; echo -n $PATH")))
     (setenv "PATH" path)

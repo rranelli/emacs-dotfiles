@@ -18,7 +18,7 @@
 ;; helm integration for opening projects
 
 (defun helm-rr-open-project ()
-  "Bring up a Spotify search interface in helm."
+  "Bring up a Project search interface in helm."
   (interactive)
   (helm :sources '(helm-source-list-projects)
 	:buffer "*helm-list-projects*"))
