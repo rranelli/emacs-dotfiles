@@ -98,11 +98,11 @@
 
 (expose-rr-default-bindings markdown-mode-map)
 (expose-rr-default-bindings sh-mode-map)
+
+(add-hook 'python-mode-hook (lambda () (expose-rr-default-bindings python-mode-map)))
 (add-hook 'sgml-mode-hook (lambda () (expose-rr-default-bindings sgml-mode-map)))
 (add-hook 'html-mode-hook (lambda () (expose-rr-default-bindings html-mode-map)))
-
-(add-hook 'nxml-mode-hook (lambda ()
-			    (expose-rr-default-bindings nxml-mode-map)))
+(add-hook 'nxml-mode-hook (lambda () (expose-rr-default-bindings nxml-mode-map)))
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here
