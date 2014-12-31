@@ -104,5 +104,10 @@
 (add-hook 'html-mode-hook (lambda () (expose-rr-default-bindings html-mode-map)))
 (add-hook 'nxml-mode-hook (lambda () (expose-rr-default-bindings nxml-mode-map)))
 
+
+;; makefile
+(add-hook 'makefile-mode-hook
+	  (lambda () (define-key makefile-mode-map (kbd "TAB") 'self-insert-command)))
+
 (provide 'init-keybindings)
 ;;; init-keybindings ends here
