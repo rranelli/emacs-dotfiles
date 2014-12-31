@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'gruvbox
+(defcustom chosen-x-theme 'tsdh-dark
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'zenburn
@@ -27,6 +27,7 @@
 		 (paren-highlight-style . expression)
 		 (custom-faces-fn . (lambda ()
 				      ))))
+
     (gruvbox . '((mode-line-background . "peru")
 		 (mode-line-foreground . "Snow")
 		 (powerline-arrow . "Gray20")
@@ -43,6 +44,7 @@
 							  :foreground "#fb4934")
 				      (set-face-attribute 'wl-highlight-summary-refiled-face nil
 							  :foreground "dark turquoise")))))
+
     (solarized-dark . '((mode-line-background . "DeepSkyBlue4")
 			(mode-line-foreground . "Snow")
 			(powerline-arrow . "CadetBlue4")
@@ -51,7 +53,19 @@
 			(use-powerline-p . t)
 			(set-mode-line-faces-p . t)
 			(paren-highlight-style . expression)
-			(custom-faces-fn . (lambda ())))))
+			(custom-faces-fn . (lambda ()))))
+
+    (tsdh-dark . '((mode-line-background . "Gray33")
+		   (mode-line-foreground . "#8FB28F")
+		   (powerline-arrow . "Gray20")
+		   (powerline-other . "#3F3F3F")
+		   (cursor . "Skyblue")
+		   (use-powerline-p . nil)
+		   (set-mode-line-faces-p . nil)
+		   (paren-highlight-style . expression)
+		   (custom-faces-fn . (lambda ()
+					(set-face-attribute 'helm-selection frame
+							    :background "black"))))))
   "Custom color configuration."
   :group 'init-appearance)
 
