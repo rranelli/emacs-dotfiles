@@ -21,6 +21,11 @@
       (helm-find-files-up-one-level 1)
     (backward-delete-char 1)))
 
+;; Jeez, no fuzzy finding please!
+(setq helm-M-x-fuzzy-match nil)
+(setq helm-locate-fuzzy-match nil)
+(setq helm-recentf-fuzzy-match nil)
+
 ;; -- keybindings --
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
