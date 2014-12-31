@@ -47,7 +47,7 @@
 
     (solarized-dark . '((mode-line-background . "DeepSkyBlue4")
 			(mode-line-foreground . "Snow")
-			(powerline-arrow . "CadetBlue4")
+			(powerline-arrow . "#002b36")
 			(powerline-other . "#002b36")
 			(cursor . "Skyblue")
 			(use-powerline-p . t)
