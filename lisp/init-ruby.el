@@ -111,9 +111,6 @@
   (rspec-find-spec-or-target-other-window)
   (other-window 1))
 
-;; Do not autoscroll
-(setq rspec-auto-scroll nil)
-
 ;; -- misc --
 (defun rr-convert-to-ruby-1.9-hash-syntax ()
   (interactive)
