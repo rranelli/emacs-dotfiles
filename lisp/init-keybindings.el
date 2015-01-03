@@ -4,7 +4,19 @@
 
 ;; Keybindings macros
 (defvar bindings-to-expose
-  '("M-x" "C-c C-f" "C-M-f" "C-M-b" "M-h" "M-k" "M-o" "M-1" "M-2" "M-3" "M-i" "M-l")
+  '("M-x"
+    "C-c C-f"
+    "C-M-f"
+    "C-M-b"
+    "M-h"
+    "M-k"
+    "M-o"
+    "M-1"
+    "M-2"
+    "M-3"
+    "M-0"
+    "M-i"
+    "M-l")
   "Custom keybindings to expose on every mode.")
 
 (defun expose-rr-default-bindings (mode-map)
