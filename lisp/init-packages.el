@@ -10,65 +10,63 @@
 (setq save-abbrevs nil)
 
 (defvar my-packages
-  '(;; general configuration
-    magit
-    git-timemachine
-    flycheck
-    graphviz-dot-mode
-    ido-vertical-mode
-    fuzzy
-    auto-package-update
-    s
-    ag
-    smartscan
-    helm
-    projectile
-    helm-projectile
-    yasnippet
-    smooth-scrolling
-    auto-complete
+  '(
     ace-jump-mode
-    pretty-symbols
+    ag
     anzu
-    diminish
-    wrap-region
-    markdown-mode+
-    undo-tree
-    yaml-mode
-    neotree
-    expand-region
-    better-registers
-    hl-anything
-    smex
-    paredit
-    idle-highlight-mode
-    find-file-in-project
+    auto-complete
+    auto-package-update
     bash-completion
-    popup
-    nginx-mode
-    ;; themes
-    solarized-theme
+    better-registers
+    cider
     color-theme-sanityinc-solarized
     color-theme-sanityinc-tomorrow
+    diminish
+    expand-region
+    find-file-in-project
+    flycheck
+    fuzzy
+    git-timemachine
+    graphviz-dot-mode
     gruvbox-theme
-    zenburn-theme
-    ;; ruby packages
+    haskell-mode
+    helm
+    helm-projectile
+    hl-anything
+    idle-highlight-mode
+    ido-vertical-mode
     inf-ruby
+    javadoc-lookup
+    magit
+    markdown-mode+
+    maven-test-mode
+    neotree
+    nginx-mode
+    paredit
+    popup
+    pretty-symbols
+    projectile
+    restclient
+    rhtml-mode
     rinari
     robe
     rspec-mode
-    rhtml-mode
-    ruby-refactor
     rubocop
-    ;; other packages
-    haskell-mode
+    ruby-refactor
+    s
+    smartscan
+    smex
     sml-mode
-    wanderlust
+    smooth-scrolling
+    solarized-theme
+    undo-tree
     w3m
-    javadoc-lookup
-    maven-test-mode
-    restclient
-    cider)
+    wanderlust
+    wrap-region
+    yaml-mode
+    yasnippet
+    zenburn-theme
+    )
   "A list of packages to ensure are installed at launch.")
 
 ;; -- vendor packages --
