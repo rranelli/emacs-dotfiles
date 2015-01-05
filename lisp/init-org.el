@@ -13,7 +13,7 @@
 	   (org-files (remove-if
 		       #'(lambda (name) (or
 				    (string-match "archive" name)
-				    (string-match "^\\.#" name))) dir-files)))
+				    (string-match "\??/\.#" name))) dir-files)))
 
       (setq org-user-agenda-files org-files)
 
