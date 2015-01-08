@@ -4,7 +4,6 @@
 (require 'helm-config)
 
 (helm-mode t)
-(helm-autoresize-mode t)
 (diminish 'helm-mode)
 
 ;; the following configuratin makes helm-find WAY better
