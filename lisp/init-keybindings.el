@@ -49,8 +49,16 @@
 (global-set-key (kbd "C-c ,c") 'compile)
 
 ;; train myself not to use return or backspace
-(define-key prog-mode-map (kbd "<return>") 'ignore)
-(define-key prog-mode-map (kbd "<backspace>") 'ignore)
+(defun rr-disable-backspace-and-return ()
+  (interactive)
+  (define-key prog-mode-map (kbd "<return>") 'ignore)
+  (define-key prog-mode-map (kbd "<backspace>") 'ignore))
+(rr-disable-backspace-and-return)
+
+(defun rr-enable-backspace-and-return ()
+  (interactive)
+  (define-key prog-mode-map (kbd "<return>") 'newline)
+  (define-key prog-mode-map (kbd "<backspace>") 'backward-delete-char))
 
 ;; evaluation
 (define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
@@ -115,7 +123,6 @@
 (add-hook 'sgml-mode-hook (lambda () (expose-rr-default-bindings sgml-mode-map)))
 (add-hook 'html-mode-hook (lambda () (expose-rr-default-bindings html-mode-map)))
 (add-hook 'nxml-mode-hook (lambda () (expose-rr-default-bindings nxml-mode-map)))
-
 
 ;; makefile
 (add-hook 'makefile-mode-hook
