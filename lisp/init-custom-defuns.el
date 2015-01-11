@@ -2,6 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
+;; pop the kill ring after killing word
+(defun pop-kill-ring-after (function)
+  "Advise FUNCTION to pop kill ring after execution."
+  (defadvice pop-kill-ring-after-kill-word (after function activate compile)
+    (pop kill-ring)))
+
+(mapc 'pop-kill-ring-after
+      '(backward-kill-word
+	kill-word))
+
 ;; -- movement --
 (defun move-smart-beginning-of-line ()
   "Move to beginning of line or to beginning of indentation depending on POINT."
