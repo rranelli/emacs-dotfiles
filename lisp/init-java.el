@@ -15,7 +15,8 @@
     ("C-c j i" . add-java-import)))
 
 (add-hook 'java-mode-hook (lambda ()
-			    (c-set-style "cc-mode")))
+			    (c-set-style "cc-mode")
+			    (set (make-local-variable 'c-basic-offset) 2)))
 
 (provide 'init-java)
 ;;; init-java.el ends here
