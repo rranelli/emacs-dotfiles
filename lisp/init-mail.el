@@ -94,6 +94,7 @@
 	  ("Subject" ("\\[PRB[0-9]+\\] - \\[HOSP\\]" . ,prb-folder))
 	  ("Subject" ("\\[PRB[0-9]+\\] - " . ,junk-folder))
 	  ("Subject" ("\\[Ger\\. Mudanças\\]" . ,junk-folder))
+	  ("Subject" ("Build failed in Jenkins:". ,junk-folder))
 	  ("From" ("info@locaweb.com.br" . ,junk-folder))
 	  ("From" ("continuous.integration@locaweb.com.br" . ,junk-folder))
 	  ("From" ("billing@softaculous.com" . ,junk-folder))
