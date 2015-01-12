@@ -1,6 +1,7 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
+(setq helm-projectile-fuzzy-match nil)
 (require 'helm-projectile)
 
 (projectile-global-mode 1)
