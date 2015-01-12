@@ -8,6 +8,7 @@
     "C-c C-f"
     "C-M-f"
     "C-M-b"
+    "C-h"
     "M-h"
     "M-k"
     "M-o"
