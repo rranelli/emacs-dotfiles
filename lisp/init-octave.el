@@ -11,5 +11,8 @@
 (define-key octave-mode-map (kbd "C-c j d") 'octave-help)
 (define-key octave-mode-map (kbd "C-c r b") 'octave-send-buffer)
 
+;; This fixes an issue where the plot hangs.
+(setq inferior-octave-startup-args '("-i"))
+
 (provide 'init-octave)
 ;;; init-octave.el ends here
