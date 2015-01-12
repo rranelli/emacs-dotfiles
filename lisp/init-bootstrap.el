@@ -12,6 +12,7 @@
     init-edit-defuns
     init-keybindings
     init-defaults
+    init-octave
     init-helm
     init-project-utils
     init-path
