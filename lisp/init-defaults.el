@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;; undisable upcase
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
 ;; -- Mode preferences --
 (winner-mode 1)
 (blink-cursor-mode t)
