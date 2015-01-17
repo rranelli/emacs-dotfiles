@@ -75,7 +75,7 @@ regardless."
 (expose-bindings shell-mode-map bindings-to-expose)
 (add-hook 'term-mode-hook
 	  (lambda ()
-	    (expose-bindings term-raw-map bindings-to-expose)))
+	    (expose-bindings term-raw-map (remove "C-h" bindings-to-expose))))
 
 (add-hook 'sh-mode-hook
 	  (lambda ()
