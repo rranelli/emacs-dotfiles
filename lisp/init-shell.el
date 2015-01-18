@@ -33,6 +33,8 @@ PROCESS-NAME."
 (do-not-query-process-kill shell "shell")
 (do-not-query-process-kill term "terminal")
 
+;; new shells
+
 (defun new-shell (arg)
   "Create shell with given name. If ARG is present, open a new shell
 regardless."
@@ -51,6 +53,25 @@ regardless."
       (goto-char (point-max))
       (insert (format "cd %s # [Enter] cds to root" (rr-shell-wd))))))
 
+(defun new-term (arg)
+  "Create a new terminal giving it a nice name.
+If ARG is present, open a new term regardless."
+  (interactive "P")
+  (let* ((custom-name (if arg
+			  (format "[%s]" (read-string "Terminal name: "))
+			""))
+	 (shell-name (format "term: %s %s" (rr-shell-project-name) custom-name))
+	 (shell-exists-p (bufferp (get-buffer shell-name))))
+
+    (if (not shell-exists-p)
+	(progn (term "/bin/bash")
+	       (rename-buffer shell-name)
+	       (term-line-mode)
+	       (goto-char (point-max))
+	       (insert (format "cd %s # [Enter] cds to root" (rr-shell-wd)))
+	       (term-char-mode))
+      (switch-to-buffer shell-name))))
+
 (defun rr-shell-project-name ()
   (file-name-base (directory-file-name (rr-shell-wd))))
 
@@ -66,11 +87,8 @@ regardless."
 (add-hook 'comint-preoutput-filter-functions 'kill-completion-window-buffer)
 
 ;; -- keybindings --
-(global-set-key (kbd "C-x RET") 'new-shell)
-(global-set-key (kbd "C-x C-M-M") #'(lambda ()
-				      (interactive)
-				      (term "/bin/bash")
-				      (rename-buffer (format "term: %s" (rr-shell-project-name)))))
+(global-set-key (kbd "C-x RET") 'new-term)
+(global-set-key (kbd "C-x C-M-M") 'new-shell)
 
 (expose-bindings shell-mode-map bindings-to-expose)
 (add-hook 'term-mode-hook
