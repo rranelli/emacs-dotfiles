@@ -60,17 +60,18 @@ If ARG is present, open a new term regardless."
   (let* ((custom-name (if arg
 			  (format "[%s]" (read-string "Terminal name: "))
 			""))
-	 (shell-name (format "term: %s %s" (rr-shell-project-name) custom-name))
-	 (shell-exists-p (bufferp (get-buffer shell-name))))
+	 (term-name (format "term: %s %s" (rr-shell-project-name) custom-name))
+	 (shell-exists-p (bufferp (get-buffer term-name))))
 
     (if (not shell-exists-p)
 	(progn (term "/bin/bash")
-	       (rename-buffer shell-name)
+	       (rename-buffer term-name)
 	       (term-line-mode)
 	       (goto-char (point-max))
 	       (insert (format "cd %s # [Enter] cds to root" (rr-shell-wd)))
-	       (term-char-mode))
-      (switch-to-buffer shell-name))))
+;;	       (term-char-mode)
+	       )
+      (switch-to-buffer term-name))))
 
 (defun rr-shell-project-name ()
   (file-name-base (directory-file-name (rr-shell-wd))))
