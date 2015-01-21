@@ -2,15 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
-;; pop the kill ring after killing word
-(defun pop-kill-ring-after (function)
-  "Advise FUNCTION to pop kill ring after execution."
-  (defadvice pop-kill-ring-after-kill-word (after function activate compile)
-    (pop kill-ring)))
-
-(mapc 'pop-kill-ring-after
-      '(backward-kill-word
-	kill-word))
+(defun kill-word (arg)
+  ;; -- This monkeypatch fixes the behavior of kill word --
+  ;; now, it will not push to the kill-ring the killed words.
+  (interactive "p")
+  (delete-region (point) (progn (forward-word arg) (point))))
 
 ;; -- movement --
 (defun move-smart-beginning-of-line ()
