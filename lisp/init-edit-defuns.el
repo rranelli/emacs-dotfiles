@@ -49,6 +49,7 @@ line instead."
   (uniquify-all-lines-region (point-min) (point-max)))
 
 (defun wrap-region-replace ()
+  "Replace current wrapper around point by a different one."
   (interactive)
   (let* ((left-char-to-replace (string (read-char "Which wrapper to replace?")))
 	 (new-left-char (string (read-char "Replace by?")))
@@ -62,11 +63,11 @@ line instead."
 			     (wrap-region-wrapper-right (wrap-region-find new-left-char))
 			   new-left-char)))
     (save-excursion
-      (re-search-backward left-char-to-replace)
+      (re-search-backward (regexp-quote left-char-to-replace))
       (forward-sexp)
       (save-excursion
 	(replace-match new-left-char))
-      (re-search-backward right-char-to-replace)
+      (re-search-backward (regexp-quote right-char-to-replace))
       (replace-match new-right-char))))
 
 (defun rr-strip-whitespace ()
