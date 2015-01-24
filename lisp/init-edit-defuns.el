@@ -48,7 +48,7 @@ line instead."
   (interactive "*")
   (uniquify-all-lines-region (point-min) (point-max)))
 
-(defun wrap-region-replace ()
+(defun rr-replace-wrapper-around-point ()
   "Replace current wrapper around point by a different one."
   (interactive)
   (let* ((left-char-to-replace (string (read-char "Which wrapper to replace?")))
