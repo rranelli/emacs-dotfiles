@@ -55,14 +55,13 @@
 	 (this-buffer (window-buffer this))
 	 (other-buffer (window-buffer other)))
     (set-window-buffer other this-buffer)
-
     (set-window-buffer this other-buffer)))
 
 ;; -- misc --
 (defun noop () "Does nothing." (interactive) nil)
 
 (defun nxml-pretty-format (begin end)
-  "Pretty prints xml"
+  "Pretty print xml in region BEGIN to END."
   (interactive "r")
   (save-excursion
     (shell-command-on-region (point-min) (point-max) "xmllint --format -" (buffer-name) t)

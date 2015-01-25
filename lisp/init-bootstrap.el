@@ -1,4 +1,4 @@
-;;; Package --- Summary
+;;; package --- summary
 ;;; Commentary:
 ;;; Code:
 (let* ((lisp-dir (expand-file-name "lisp" user-emacs-directory))

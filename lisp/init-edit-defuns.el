@@ -77,7 +77,5 @@ line instead."
     (replace-regexp "[\s\t]+" " " nil (point-min) (point-max)))
   (indent-region (point-min) (point-max)))
 
-
-
 (provide 'init-edit-defuns)
 ;;; init-edit-defuns.el ends here

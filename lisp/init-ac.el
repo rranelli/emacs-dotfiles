@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-ac.el -- Configures autocompletion
 ;;; Commentary:
 ;;; Code:
 (require 'auto-complete-config)
