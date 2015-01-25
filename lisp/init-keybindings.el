@@ -131,7 +131,9 @@
 
 ;; makefile
 (add-hook 'makefile-mode-hook
-	  (lambda () (define-key makefile-mode-map (kbd "TAB") 'self-insert-command)))
+	  (lambda ()
+	    (define-key makefile-mode-map (kbd "TAB") 'self-insert-command)
+	    (expose-rr-default-bindings makefile-mode-map)))
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here
