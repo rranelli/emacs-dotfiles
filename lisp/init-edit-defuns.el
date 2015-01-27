@@ -51,23 +51,24 @@ line instead."
 (defun rr-replace-wrapper-around-point ()
   "Replace current wrapper around point by a different one."
   (interactive)
-  (let* ((left-char-to-replace (string (read-char "Which wrapper to replace?")))
+  (let* ((left-char (string (read-char "Which wrapper to replace?")))
 	 (new-left-char (string (read-char "Replace by?")))
-	 (original-is-wrapper-p (wrap-region-find left-char-to-replace))
+
+	 (original-is-wrapper-p (wrap-region-find left-char))
 	 (new-is-wrapper-p (wrap-region-find new-left-char))
 
-	 (right-char-to-replace (if original-is-wrapper-p
-				    (wrap-region-wrapper-right (wrap-region-find left-char-to-replace))
-				  left-char-to-replace))
+	 (right-char (if original-is-wrapper-p
+				    (wrap-region-wrapper-right (wrap-region-find left-char))
+				  left-char))
 	 (new-right-char (if new-is-wrapper-p
 			     (wrap-region-wrapper-right (wrap-region-find new-left-char))
 			   new-left-char)))
     (save-excursion
-      (re-search-backward (regexp-quote left-char-to-replace))
+      (re-search-backward (regexp-quote left-char))
       (forward-sexp)
       (save-excursion
 	(replace-match new-left-char))
-      (re-search-backward (regexp-quote right-char-to-replace))
+      (re-search-backward (regexp-quote right-char))
       (replace-match new-right-char))))
 
 (defun rr-strip-whitespace ()
