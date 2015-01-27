@@ -18,11 +18,6 @@
 			       (make-local-variable 'flycheck-display-errors-delay)
 			       (setq flycheck-display-errors-delay 3600)))
 
-;; this is some ugly hack I hope will not be necessary in the future
-(unless (boundp 'haskell-mode-after-save-handler)
-  (defun haskell-mode-after-save-handler ()
-    nil))
-
 (defvar rr-haskell-font-lock-extra-symbols
   '(("<alpha>" . #X03B1)
     ("<beta>" . #X03B2)
