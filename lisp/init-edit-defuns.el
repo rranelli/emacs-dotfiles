@@ -12,8 +12,9 @@
 (defun rr-show-file-name ()
   "Show the full path filename in the minibuffer."
   (interactive)
-  (message (buffer-file-name))
-  (kill-new (file-truename buffer-file-name)))
+  (let ((text (format "%s:%i" (buffer-file-name) (line-number-at-pos))))
+    (message text)
+    (kill-new text)))
 
 (defun uniquify-all-lines-region (start end)
   "Find duplicate lines in region START to END keeping first occurrence."
