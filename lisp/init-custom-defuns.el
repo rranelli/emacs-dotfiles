@@ -16,12 +16,6 @@
       (back-to-indentation)
     (move-beginning-of-line nil)))
 
-(defun new-line-below ()
-  "Make new line bellow current line."
-  (interactive)
-  (move-end-of-line nil)
-  (newline))
-
 ;; -- window management --
 (defun maximize-window-vertically ()
   "Maximizes the current window vertically the same way vi does."
