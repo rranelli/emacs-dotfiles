@@ -129,6 +129,8 @@
 	  (lambda () (expose-rr-default-bindings html-mode-map)))
 (add-hook 'nxml-mode-hook
 	  (lambda () (expose-rr-default-bindings nxml-mode-map)))
+(add-hook 'diff-mode-hook
+	  (lambda () (expose-rr-default-bindings diff-mode-map)))
 
 ;; makefile
 (add-hook 'makefile-mode-hook
