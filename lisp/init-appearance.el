@@ -111,7 +111,6 @@
   ;; make cursor type a bar
   (modify-all-frames-parameters (list (cons 'cursor-type 'bar)))
 
-  (global-hl-line-mode 1)
   (toggle-transparency frame t)
 
   (when (get-color-config 'cursor)
