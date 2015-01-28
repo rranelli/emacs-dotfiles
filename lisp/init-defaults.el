@@ -31,6 +31,7 @@
 (wrap-region-global-mode)
 
 (wrap-region-add-wrapper "`" "`")
+(wrap-region-add-wrapper "|" "|")
 (wrap-region-add-wrapper "=" "=")
 (wrap-region-add-wrapper "*" "*")
 (wrap-region-add-wrapper "/" "/")
