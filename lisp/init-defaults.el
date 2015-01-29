@@ -20,7 +20,6 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
-(hl-highlight-mode)
 
 (smex-initialize)
 
@@ -104,6 +103,8 @@
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'pretty-symbols-mode)
 (add-hook 'prog-mode-hook 'idle-highlight-mode)
+(add-hook 'prog-mode-hook 'hl-highlight-mode)
+(add-hook 'prog-mode-hook 'hl-line-mode)
 (add-hook 'prog-mode-hook 'custom-add-watchwords)
 
 (add-hook 'sql-mode-hook 'sql-highlight-mysql-keywords)
