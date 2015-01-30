@@ -126,6 +126,7 @@
 (diminish 'undo-tree-mode)
 (diminish 'abbrev-mode)
 (diminish 'wrap-region-mode)
+(diminish 'hl-highlight-mode)
 
 (global-flycheck-mode t)
 
