@@ -42,6 +42,7 @@
 (setenv "PAGER" (executable-find "cat"))
 
 (setq rspec-use-rake-when-possible nil)
+(setq rspec-use-spring-when-possible nil)
 
 ;; -- GODAMMIT RUBY INDENTATION!!! --
 ;; don't indent parenthesis in a weird way
