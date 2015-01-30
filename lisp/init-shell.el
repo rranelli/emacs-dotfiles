@@ -69,7 +69,7 @@ If ARG is present, open a new term regardless."
 	       (term-line-mode)
 	       (goto-char (point-max))
 	       (insert (format "cd %s # [Enter] cds to root" (rr-shell-wd)))
-;;	       (term-char-mode)
+	       (term-char-mode)
 	       )
       (switch-to-buffer term-name))))
 
