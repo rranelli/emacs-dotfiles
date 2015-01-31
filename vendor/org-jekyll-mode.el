@@ -104,7 +104,8 @@
     (insert "blog")
     (yas-expand)
     (insert post-title)
-    (org-mode)))
+    (org-mode)
+    (org-jekyll-mode)))
 
 (defun org-jekyll-fill ()
   (interactive)
@@ -153,7 +154,7 @@
   "This minor mode define utilities to use org-mode to write jekyll blog posts."
   :init-value nil
   :keymap org-jekyll-mode-map
-  :lighter "Org-Jekyll"
+  :lighter " Org-Jekyll"
   :group 'org-jekyll)
 
 (provide 'org-jekyll-mode)
