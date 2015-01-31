@@ -100,6 +100,7 @@
 
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'pretty-symbols-mode)
 (add-hook 'prog-mode-hook 'idle-highlight-mode)
@@ -107,6 +108,7 @@
 (add-hook 'prog-mode-hook 'hl-line-mode)
 (add-hook 'prog-mode-hook 'custom-add-watchwords)
 
+(add-hook 'css-mode-hook 'rainbow-mode)
 (add-hook 'sql-mode-hook 'sql-highlight-mysql-keywords)
 
 ;; -- more fontlock --

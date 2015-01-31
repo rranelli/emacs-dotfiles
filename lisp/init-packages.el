@@ -46,6 +46,7 @@
     popup
     pretty-symbols
     projectile
+    rainbow-mode
     restclient
     rhtml-mode
     rinari
