@@ -10,6 +10,7 @@
 ---
 language: brasileiro
 layout: post
+comments: true
 title: '${1:title}'
 ---
 #+END_HTML

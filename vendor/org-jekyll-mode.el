@@ -103,7 +103,8 @@
 
     (insert "blog")
     (yas-expand)
-    (insert post-title)))
+    (insert post-title)
+    (org-mode)))
 
 (defun org-jekyll-fill ()
   (interactive)
