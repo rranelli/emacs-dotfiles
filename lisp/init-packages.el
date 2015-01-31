@@ -33,7 +33,6 @@
     helm
     helm-projectile
     hl-anything
-    idle-highlight-mode
     ido-vertical-mode
     inf-ruby
     javadoc-lookup

@@ -183,8 +183,7 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
 ;; -- Terminal frame --
 (defun config-terminal-frame (frame)
   "Configure terminal FRAME."
-  (set-terminal-faces frame)
-  (global-hl-line-mode -1))
+  (set-terminal-faces frame))
 
 (defun set-terminal-faces (frame)
   "Set specific faces for a terminal FRAME.  This thing is hard as hell."
