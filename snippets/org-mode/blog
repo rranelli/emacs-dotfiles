@@ -17,4 +17,6 @@ title: '${1:title}'
 
 * <p hidden>$1<p hidden>
 
-$0
+*TL;DR*: $0
+
+---
