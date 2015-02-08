@@ -41,7 +41,6 @@
     maven-test-mode
     neotree
     nginx-mode
-    paredit
     popup
     pretty-symbols
     projectile
@@ -75,7 +74,6 @@
     better-registers
     uniquify
     linum
-    paredit
     smex
     whitespace
     wrap-region

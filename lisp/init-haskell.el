@@ -11,7 +11,6 @@
 ;; -- haskell font lock --
 (add-hook 'haskell-mode-hook 'turn-on-haskell-font-lock)
 (add-hook 'haskell-mode-hook 'haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'paredit-mode)
 (remove-hook 'haskell-mode-hook 'pretty-symbols-mode)
 
 (add-hook 'haskell-mode-hook (lambda ()

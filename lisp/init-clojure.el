@@ -11,7 +11,7 @@
 (expose-bindings cider-mode-map '("C-c C-f"))
 
 ;; -- hooks --
-(add-hook 'clojure-mode-hook 'paredit-mode)
+;; TODO: Add smartparens things like lisp mode
 
 (provide 'init-clojure)
 ;;; init-clojure.el ends here
