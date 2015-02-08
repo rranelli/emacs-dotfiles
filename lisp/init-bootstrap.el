@@ -26,6 +26,7 @@
     init-clojure
     init-isearch
     init-writing
+    init-smartparens
     init-org
     init-shell
     init-mail
