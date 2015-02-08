@@ -107,22 +107,28 @@
     (org-mode)
     (org-jekyll-mode)))
 
-(defun org-jekyll-fill ()
+(defun org-jekyll-fill-and-indent ()
   (interactive)
   (cl-labels ((fill-and-ignore-block
 	       ()
 	       (let ((start (point)))
-		 (re-search-forward "\\(#\\+begin_\\)" nil t)
+		 (re-search-forward "\\(#\\+begin_\\|#\\+INCLUDE:\\)" nil t)
+		 (move-beginning-of-line 1)
 		 (if (match-string 1)
 		     (progn
 		       (fill-region start (point))
-		       (re-search-forward "#\\+end_" nil t)
+		       (indent-region start (point))
+		       (re-search-forward "\\(#\\+end_\\|#\\+INCLUDE:.*$\\)" nil t)
+		       (forward-char)
 		       (fill-and-ignore-block))
-		   (fill-region (point) (point-max))))))
+		   (fill-region (point) (point-max))
+		   (indent-region start (point))))))
     (save-excursion
       (beginning-of-buffer)
       (re-search-forward "END_HTML" nil t)
       (fill-and-ignore-block))))
+
+(setq max-lisp-eval-depth 2000)
 
 ;; --  Keybindings --
 ;;;###autoload
@@ -133,7 +139,7 @@
     (define-key map (kbd "s c") 'flyspell-buffer)
     (define-key map (kbd "s t") 'flyspell-mode)
     (define-key map (kbd "n") 'org-jekyll-new-draft)
-    (define-key map (kbd "f") 'org-jekyll-fill)
+    (define-key map (kbd "f") 'org-jekyll-fill-and-indent)
     (define-key map (kbd "r") 'fill-region)
     (define-key map (kbd "t") 'org-jekyll-toggle-between-org-and-md)
     map))
@@ -143,10 +149,7 @@
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c w") org-jekyll-mode-ccw-map)
     (define-key map (kbd "C-c , v") 'org-jekyll-export-to-jekyll)
-    (define-key map (kbd "C-c i") #'(lambda ()
-				      (interactive)
-				      (indent-region (point-min) (point-max))
-				      (org-jekyll-fill)))
+    (define-key map (kbd "C-c i") 'org-jekyll-fill-and-indent)
     map))
 
 ;;;###autoload
