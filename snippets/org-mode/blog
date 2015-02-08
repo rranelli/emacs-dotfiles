@@ -21,3 +21,12 @@ title: '${1:title}'
 *TL;DR*: $0
 
 ---
+
+$content starts here$
+
+That's it.
+
+---
+
+$footnotes come here$
+(1)
