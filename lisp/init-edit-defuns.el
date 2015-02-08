@@ -49,29 +49,6 @@ line instead."
   (interactive "*")
   (uniquify-all-lines-region (point-min) (point-max)))
 
-(defun rr-replace-wrapper-around-point ()
-  "Replace current wrapper around point by a different one."
-  (interactive)
-  (let* ((left-char (string (read-char "Which wrapper to replace?")))
-	 (new-left-char (string (read-char "Replace by?")))
-
-	 (original-is-wrapper-p (wrap-region-find left-char))
-	 (new-is-wrapper-p (wrap-region-find new-left-char))
-
-	 (right-char (if original-is-wrapper-p
-				    (wrap-region-wrapper-right (wrap-region-find left-char))
-				  left-char))
-	 (new-right-char (if new-is-wrapper-p
-			     (wrap-region-wrapper-right (wrap-region-find new-left-char))
-			   new-left-char)))
-    (save-excursion
-      (re-search-backward (regexp-quote left-char))
-      (forward-sexp)
-      (save-excursion
-	(replace-match new-left-char))
-      (re-search-backward (regexp-quote right-char))
-      (replace-match new-right-char))))
-
 (defun rr-strip-whitespace ()
   (interactive)
   (save-excursion

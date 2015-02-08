@@ -61,7 +61,6 @@
     undo-tree
     w3m
     wanderlust
-    wrap-region
     yaml-mode
     yasnippet
     zenburn-theme
@@ -76,7 +75,6 @@
     linum
     smex
     whitespace
-    wrap-region
     ffap
     find-file-in-project
     recentf

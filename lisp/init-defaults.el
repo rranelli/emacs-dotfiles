@@ -26,16 +26,6 @@
 ;; add pretty symbols for lambdas and relationals
 (setq pretty-symbol-categories '(lambda nil))
 
-;; -- Wrap Region --
-(wrap-region-global-mode)
-
-(wrap-region-add-wrapper "`" "`")
-(wrap-region-add-wrapper "|" "|")
-(wrap-region-add-wrapper "=" "=")
-(wrap-region-add-wrapper "*" "*")
-(wrap-region-add-wrapper "/" "/")
-(wrap-region-add-wrapper "_" "_")
-
 ;; -- Variables --
 (setq
  ;; please, share the clipboard
@@ -124,7 +114,6 @@
 ;; diminish
 (diminish 'undo-tree-mode)
 (diminish 'abbrev-mode)
-(diminish 'wrap-region-mode)
 (diminish 'hl-highlight-mode)
 
 (global-flycheck-mode t)
