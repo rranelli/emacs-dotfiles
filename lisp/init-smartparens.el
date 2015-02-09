@@ -7,7 +7,7 @@
 (show-smartparens-global-mode t)
 
 ;; kill sexp
-(define-key sp-keymap (kbd "C-k") 'sp-kill-hybrid-sexp)
+(define-key sp-keymap (kbd "C-M-k") 'sp-kill-hybrid-sexp)
 
 ;;
 ;;; navigation
