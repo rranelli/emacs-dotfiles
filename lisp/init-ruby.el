@@ -1,14 +1,12 @@
 ;;; package -- Summary
 ;;; Commentary:
 ;;; Code:
-(require 'ruby-electric)
 (require 'inf-ruby)
 (require 'rspec-mode)
 (require 'ac-robe)
 (require 'robe)
 (require 'rubocop)
 
-(diminish 'ruby-electric-mode)
 (diminish 'rubocop-mode)
 (diminish 'auto-fill-function)
 
@@ -28,7 +26,6 @@
 
 ;; hook auxiliary modes to ruby mode
 (add-hook 'ruby-mode-hook 'robe-mode)
-(add-hook 'ruby-mode-hook 'ruby-electric-mode)
 (add-hook 'ruby-mode-hook 'rspec-mode)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
 
@@ -77,28 +74,6 @@
   "Send whole buffer to inferior process."
   (interactive)
   (ruby-send-region (point-min) (point-max)))
-
-;; ruby-electric playing nice with wrap region
-;; (defadvice ruby-electric-quote (around first ()
-;;                                        activate)
-;;   "Make electric quote play nice with wrap region."
-;;   (if (use-region-p)
-;;       (wrap-region-trigger arg (string last-command-event))
-;;     ad-do-it))
-
-;; (defadvice ruby-electric-curlies (around first ()
-;;                                          activate)
-;;   "Make electric quote play nice with wrap region."
-;;   (if (use-region-p)
-;;       (wrap-region-trigger arg (string last-command-event))
-;;     ad-do-it))
-
-;; (defadvice ruby-electric-matching-char (around first ()
-;;                                                activate)
-;;   "Make electric quote play nice with wrap region."
-;;   (if (use-region-p)
-;;       (wrap-region-trigger arg (string last-command-event))
-;;     ad-do-it))
 
 ;; -- Rspec stuff --
 (defadvice rspec-compile
