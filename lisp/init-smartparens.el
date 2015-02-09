@@ -51,7 +51,8 @@
   (sp-local-pair "/" "/")
   (sp-local-pair "_" "_")
   (sp-local-pair "*" "*")
-  (sp-local-pair "=" "="))
+  (sp-local-pair "=" "=")
+  (sp-local-tag "<"  "<_>" "</_>" :transform 'sp-match-sgml-tags))
 
 ;;; tex-mode latex-mode
 (sp-with-modes '(tex-mode plain-tex-mode latex-mode)
