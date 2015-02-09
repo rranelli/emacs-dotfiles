@@ -53,6 +53,7 @@
     rubocop
     ruby-refactor
     s
+    smartparens
     smartscan
     smex
     sml-mode
