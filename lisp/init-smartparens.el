@@ -37,6 +37,8 @@
 ;;
 ;;; pairs
 ;;
+(define-key sp-keymap (kbd "C-(") 'sp-rewrap-sexp)
+
 (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
 
 (sp-with-modes '(markdown-mode gfm-mode rst-mode)
