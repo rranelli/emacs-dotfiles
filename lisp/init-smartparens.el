@@ -56,12 +56,13 @@
   (sp-local-pair "=" "=")
   (sp-local-tag "<"  "<_>" "</_>" :transform 'sp-match-sgml-tags))
 
-;;; tex-mode latex-mode
 (sp-with-modes '(tex-mode plain-tex-mode latex-mode)
   (sp-local-pair "$" "$")
   (sp-local-tag "i" "\"<" "\">"))
 
-;;; html-mode
+(sp-with-modes '(ruby-mode)
+  (sp-local-pair "|" "|"))
+
 (sp-with-modes '(html-mode sgml-mode)
   (sp-local-pair "<" ">"))
 
