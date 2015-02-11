@@ -96,6 +96,24 @@ narrowed."
 	  "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in "
 	  "culpa qui officia deserunt mollit anim id est laborum."))
 
+;;
+;;; Fix line endings encodings
+;;
+(defun rr/convert-to-unix-file ()
+  "Change the current buffer to Latin 1 with Unix line-ends."
+  (interactive)
+  (set-buffer-file-coding-system 'iso-latin-1-unix t))
+
+(defun rr/convert-to-dos-file ()
+  "Change the current buffer to Latin 1 with DOS line-ends."
+  (interactive)
+  (set-buffer-file-coding-system 'iso-latin-1-dos t))
+
+(defun rr/convert-to-mac-file ()
+  "Change the current buffer to Latin 1 with Mac line-ends."
+  (interactive)
+  (set-buffer-file-coding-system 'iso-latin-1-mac t))
+
 ;; don't know why, but starter kit added this monkey patch
 (defun vc-git-annotate-command (file buf &optional rev)
   (let ((name (file-relative-name file)))
