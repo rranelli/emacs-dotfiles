@@ -53,10 +53,7 @@
 			(use-powerline-p . t)
 			(set-mode-line-faces-p . t)
 			(paren-highlight-style . expression)
-			(custom-faces-fn . (lambda ()
-					     (set-face-attribute 'idle-highlight nil
-								 :inherit nil
-								 :foreground "#dc322f")))))
+			(custom-faces-fn . (lambda ()))))
 
     (tsdh-dark . '((mode-line-background . "Gray33")
 		   (mode-line-foreground . "#8FB28F")
