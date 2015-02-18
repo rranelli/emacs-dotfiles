@@ -5,9 +5,7 @@
 (defun sudo-edit (&optional arg)
   "Edit file as sudo. ARG as point."
   (interactive "p")
-  (if (or arg (not buffer-file-name))
-      (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
-    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+  (find-file (concat "/sudo:root@localhost:" (helm-read-file-name "File: "))))
 
 (defun rr-show-file-name ()
   "Show the full path filename in the minibuffer."
