@@ -20,13 +20,13 @@ title: '${1:title}'
 
 *TL;DR*: $0
 
----
+_<p hidden>excerpt-separator<p hidden>_
 
-$content starts here$
+/rest of the content/
 
 That's it.
 
 ---
 
-$footnotes come here$
+/footnotes come here/
 (1)
