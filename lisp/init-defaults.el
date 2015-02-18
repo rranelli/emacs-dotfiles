@@ -63,6 +63,10 @@
  browse-url-default-browser 'browse-url-firefox
  )
 
+;; more depth and sizes
+(setq max-specpdl-size 10000
+      max-lisp-eval-depth 20000)
+
 ;; -- tramp stuff --
 (setq
  recentf-keep '(file-remote-p file-readable-p)
