@@ -9,7 +9,7 @@
 #+STARTUP: hidestars
 #+BEGIN_HTML
 ---
-language: brasileiro
+language: english
 layout: post
 comments: true
 title: '${1:title}'
