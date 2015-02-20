@@ -98,6 +98,22 @@
     (re-search-forward "\s?=>")
     (replace-regexp "\s?=>" "" nil (line-beginning-position) (point))))
 
+(defun rr-split-module-nesting ()
+  (interactive)
+  (save-excursion
+    (when (re-search-forward "\\(class\\|module\\).*::" nil t)
+      (backward-delete-char 2)
+      (set-mark (point))
+      (backward-sexp)
+      (kill-region (point) (mark))
+      (beginning-of-buffer)
+      (insert "module ")
+      (yank)
+      (insert "\n")
+      (end-of-buffer)
+      (insert "end")
+      (indent-region (point-min) (point-max)))))
+
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
   (define-bindings map
@@ -111,8 +127,8 @@
     ("C-c r r" . ruby-send-region)
     ("C-c r v" . ruby-refactor-extract-local-variable)
     ("C-c r m" . ruby-refactor-extract-to-method)
-    ("C-c r l" . ruby-refactor-extract-to-let)
-    ("C-c r h" . rr-convert-to-ruby-1.9-hash-syntax)))
+    ("C-c r h" . rr-convert-to-ruby-1.9-hash-syntax)
+    ("C-c r s" . rr-split-module-nesting)))
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
