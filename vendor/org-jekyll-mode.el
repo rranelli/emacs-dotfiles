@@ -112,23 +112,20 @@
   (cl-labels ((fill-and-ignore-block
 	       ()
 	       (let ((start (point)))
-		 (re-search-forward "\\(#\\+begin_\\|#\\+INCLUDE:\\)" nil t)
-		 (move-beginning-of-line 1)
-		 (if (match-string 1)
+		 (if (re-search-forward "\\(#\\+begin_\\|#\\+INCLUDE:\\)" nil t)
 		     (progn
+		       (move-beginning-of-line 1)
 		       (fill-region start (point))
 		       (indent-region start (point))
 		       (re-search-forward "\\(#\\+end_\\|#\\+INCLUDE:.*$\\)" nil t)
-		       (forward-char)
+		       (forward-line)
 		       (fill-and-ignore-block))
 		   (fill-region (point) (point-max))
-		   (indent-region start (point))))))
+		   (indent-region start (point-max))))))
     (save-excursion
       (beginning-of-buffer)
       (re-search-forward "END_HTML" nil t)
       (fill-and-ignore-block))))
-
-(setq max-lisp-eval-depth 2000)
 
 ;; --  Keybindings --
 ;;;###autoload
