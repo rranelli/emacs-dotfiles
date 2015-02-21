@@ -114,29 +114,30 @@
 ;; =====================================
 ;; -- extensions to projectile keymap --
 ;; =====================================
-(let ((map projectile-command-map))
-  ;; general utils
-  (define-key map "f" 'helm-rr-open-project)
-  (define-key map "n" 'rr-show-file-name)
-  (define-key map "\C-n" 'rr-new-git-project)
-  (define-key map "\C-g" 'rr-add-gitignore-file)
+(define-bindings projectile-command-map
+  '(;; misc
+    ("n" . rr-show-file-name)
+    ("\C-n" . rr-new-git-project)
+    ("\C-g" . rr-add-gitignore-file)
+    ("m" . git-timemachine)
 
-  (define-key map "m" 'git-timemachine)
+    ;; ag
+    ("s" . ag-project)
+    ("\C-s" . ag-project-regexp)
 
-  ;; ag
-  (define-key map "s" 'ag-project)
-  (define-key map "\C-s" 'ag-project-regexp)
+    ;; neotree
+    ("d" . neotree-git-project)
+    ("x" . neotree-find)
 
-  ;; neotree
-  (define-key map "d" 'neotree-git-project)
-  (define-key map "x" 'neotree-find)
+    ;; highlight-anything
+    ("h" . hl-highlight-thingatpt-local)
+    ("u" . hl-unhighlight-all-local)
 
-  (define-key map "h" 'hl-highlight-thingatpt-local)
-  (define-key map "u" 'hl-unhighlight-all-local)
-
-  (define-key map "y" 'projectile-find-implementation-or-test-other-window)
-  (define-key map "a" 'projectile-test-project)
-  (define-key map "F" 'helm-projectile-find-file-in-known-projects))
+    ;; projectile extras
+    ("f" . helm-rr-open-project)
+    ("y" . projectile-find-implementation-or-test-other-window)
+    ("a" . projectile-test-project)
+    ("F" . helm-projectile-find-file-in-known-projects)))
 
 (global-set-key (kbd "C-c o") 'helm-rr-open-project)
 (global-set-key (kbd "C-c C-f") 'helm-projectile-find-file)
