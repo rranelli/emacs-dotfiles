@@ -101,7 +101,7 @@
 (defun rr-split-module-nesting ()
   (interactive)
   (save-excursion
-    (when (re-search-forward "\\(class\\|module\\).*::" nil t)
+    (when (re-search-forward "\\(class\\|module\\|describe\\).*::" nil t)
       (backward-delete-char 2)
       (set-mark (point))
       (backward-sexp)
@@ -111,7 +111,7 @@
       (yank)
       (insert "\n")
       (end-of-buffer)
-      (insert "end")
+      (insert "end\n")
       (indent-region (point-min) (point-max)))))
 
 ;; -- keybindings --
