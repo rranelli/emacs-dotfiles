@@ -172,12 +172,12 @@
                 (tags "REFILE"
                       ((org-agenda-overriding-header "Tasks to Refile")
                        (org-tags-match-list-sublevels nil)))
-                (tags-todo "-HOLD-CANCELLED/!"
-                           ((org-agenda-overriding-header "Focus")
-                            (org-agenda-skip-function 'bh/skip-non-stuck-projects)
-			    ;; (org-tags-match-list-sublevels 'indented)
-                            (org-agenda-sorting-strategy
-                             '(category-keep))))
+                ;; (tags-todo "-HOLD-CANCELLED/!"
+                ;;            ((org-agenda-overriding-header "Focus")
+                ;;             (org-agenda-skip-function 'bh/skip-non-stuck-projects)
+		;; 	    ;; (org-tags-match-list-sublevels 'indented)
+                ;;             (org-agenda-sorting-strategy
+                ;;              '(category-keep))))
 		(tags-todo "-CANCELLED+WAITING|HOLD/!"
                            ((org-agenda-overriding-header "Waiting and Postponed Tasks")
                             (org-agenda-skip-function 'bh/skip-stuck-projects)
