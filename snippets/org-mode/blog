@@ -2,7 +2,7 @@
 # name: blog
 # key: blog
 # --
-#+OPTIONS: -*- eval: (org-jekyll-mode) -*-
+#+OPTIONS: -*- eval: (org-jekyll-mode); eval: (writegood-mode) -*-
 #+AUTHOR: Renan Ranelli (renanranelli@gmail.com)
 #+OPTIONS: toc:nil n:3
 #+STARTUP: oddeven

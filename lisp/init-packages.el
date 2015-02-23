@@ -11,7 +11,6 @@
 
 (defvar my-packages
   '(
-    ace-jump-mode
     ag
     anzu
     auto-complete
@@ -62,9 +61,11 @@
     undo-tree
     w3m
     wanderlust
+    writegood-mode
     yaml-mode
     yasnippet
     zenburn-theme
+    ace-jump-mode
     )
   "A list of packages to ensure are installed at launch.")
 
