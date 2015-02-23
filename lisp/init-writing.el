@@ -5,9 +5,20 @@
 
 (add-to-list 'auto-mode-alist '("\\.md$" . gfm-mode))
 
-;; -- hooks --p
+;; langtool
+(require 'langtool)
+(setq langtool-language-tool-jar "~/.langtool/languagetool-commandline.jar")
+
+;; -- hooks --
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
+
+(let ((map org-mode-map))
+  (define-key map (kbd "C-c t c") 'langtool-check)
+  (define-key map (kbd "C-c t C") 'langtool-check-done)
+  (define-key map (kbd "C-c t l") 'langtool-switch-default-language)
+  (define-key map (kbd "C-c t p") 'langtool-show-message-at-point)
+  (define-key map (kbd "C-c t b") 'langtool-correct-buffer))
 
 ;; nested hooks are amazing!
 ;; ref: (http://stackoverflow.com/questions/6138029/how-to-add-a-hook-to-only-run-in-a-particular-mode)
@@ -29,4 +40,4 @@
 (expose-bindings flyspell-mode-map '("C-:" "C-;" "C-c C-f"))
 
 (provide 'init-writing)
-;;; init-markdown.el ends here
+;;; init-writing.el ends here

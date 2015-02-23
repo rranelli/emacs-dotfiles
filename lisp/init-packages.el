@@ -11,7 +11,7 @@
 
 (defvar my-packages
   '(
-    ag
+    ace-jump-mode
     anzu
     auto-complete
     auto-package-update
@@ -35,6 +35,7 @@
     ido-vertical-mode
     inf-ruby
     javadoc-lookup
+    langtool
     magit
     markdown-mode+
     maven-test-mode
@@ -65,7 +66,7 @@
     yaml-mode
     yasnippet
     zenburn-theme
-    ace-jump-mode
+    ag
     )
   "A list of packages to ensure are installed at launch.")
 
