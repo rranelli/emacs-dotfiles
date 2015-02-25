@@ -13,12 +13,14 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
 
-(let ((map org-mode-map))
-  (define-key map (kbd "C-c t c") 'langtool-check)
-  (define-key map (kbd "C-c t C") 'langtool-check-done)
-  (define-key map (kbd "C-c t l") 'langtool-switch-default-language)
-  (define-key map (kbd "C-c t p") 'langtool-show-message-at-point)
-  (define-key map (kbd "C-c t b") 'langtool-correct-buffer))
+(define-bindings org-mode-map
+  '(("C-s-c" . langtool-check)
+    ("C-s-v" . langtool-check-done)
+    ("C-s-k" . langtool-correct-buffer)
+    ("C-s-l" . langtool-switch-default-language)
+    ("C-s-x" . langtool-show-message-at-point)
+    ("C-s-n" . langtool-goto-next-error)
+    ("C-s-p" . langtool-goto-previous-error)))
 
 ;; nested hooks are amazing!
 ;; ref: (http://stackoverflow.com/questions/6138029/how-to-add-a-hook-to-only-run-in-a-particular-mode)
