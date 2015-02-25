@@ -8,6 +8,7 @@
 ;; langtool
 (require 'langtool)
 (setq langtool-language-tool-jar "~/.langtool/languagetool-commandline.jar")
+(setq langtool-disabled-rules '("WHITESPACE_RULE"))
 
 ;; -- hooks --
 (add-hook 'text-mode-hook 'auto-fill-mode)
