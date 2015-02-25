@@ -12,6 +12,7 @@
 (defvar my-packages
   '(
     ace-jump-mode
+    ag
     anzu
     auto-complete
     auto-package-update
@@ -59,6 +60,7 @@
     sml-mode
     smooth-scrolling
     solarized-theme
+    synosaurus
     undo-tree
     w3m
     wanderlust
@@ -66,7 +68,6 @@
     yaml-mode
     yasnippet
     zenburn-theme
-    ag
     )
   "A list of packages to ensure are installed at launch.")
 

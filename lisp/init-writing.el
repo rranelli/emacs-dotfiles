@@ -16,11 +16,14 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
 
+(define-bindings global-map
+  '(("C-s-r" . synosaurus-choose-and-replace)
+    ("C-s-l" . synosaurus-lookup)))
+
 (define-bindings org-mode-map
   '(("C-s-c" . langtool-check)
     ("C-s-v" . langtool-check-done)
     ("C-s-k" . langtool-correct-buffer)
-    ("C-s-l" . langtool-switch-default-language)
     ("C-s-x" . langtool-show-message-at-point)
     ("C-s-n" . langtool-goto-next-error)
     ("C-s-p" . langtool-goto-previous-error)))
