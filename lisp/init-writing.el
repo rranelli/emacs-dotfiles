@@ -8,7 +8,9 @@
 ;; langtool
 (require 'langtool)
 (setq langtool-language-tool-jar "~/.langtool/languagetool-commandline.jar")
-(setq langtool-disabled-rules '("WHITESPACE_RULE"))
+(setq langtool-disabled-rules
+      '("WHITESPACE_RULE"
+	"EN_UNPAIRED_BRACKETS"))
 
 ;; -- hooks --
 (add-hook 'text-mode-hook 'auto-fill-mode)
