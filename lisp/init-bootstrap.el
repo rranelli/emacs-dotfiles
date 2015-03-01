@@ -24,6 +24,7 @@
     init-java
     init-lisp
     init-clojure
+    init-elixir
     init-isearch
     init-writing
     init-smartparens
