@@ -44,6 +44,7 @@
 
       ;; adding a hook to save org stuff more frequently
       (add-hook 'after-save-hook 'org-save-all-org-buffers)
+      (add-hook 'org-mode-hook 'custom-add-watchwords)
 
       ;; set-up encryption
       (require 'org-crypt)
