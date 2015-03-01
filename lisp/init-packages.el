@@ -13,6 +13,7 @@
   '(
     ace-jump-mode
     ag
+    alchemist
     anzu
     auto-complete
     auto-package-update
@@ -23,6 +24,7 @@
     color-theme-sanityinc-tomorrow
     diminish
     expand-region
+    elixir-mode
     find-file-in-project
     flycheck
     fuzzy
