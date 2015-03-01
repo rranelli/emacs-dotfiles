@@ -127,6 +127,10 @@
       (re-search-forward "END_HTML" nil t)
       (fill-and-ignore-block))))
 
+(defun org-jekyll-set-compile-on-save ()
+  (interactive)
+  (add-hook 'after-save-hook 'org-jekyll-export-to-jekyll nil t))
+
 ;; --  Keybindings --
 ;;;###autoload
 (defvar org-jekyll-mode-ccw-map

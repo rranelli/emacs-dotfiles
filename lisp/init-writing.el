@@ -16,6 +16,8 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
 
+(add-hook 'org-jekyll-mode-hook 'org-jekyll-set-compile-on-save)
+
 (define-bindings global-map
   '(("C-s-r" . synosaurus-choose-and-replace)
     ("C-s-l" . synosaurus-lookup)))
