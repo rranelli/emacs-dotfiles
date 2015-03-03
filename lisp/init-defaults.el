@@ -95,6 +95,12 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (defalias 'auto-tail-revert-mode 'tail-mode)
 
+;; -- more fontlock --
+(defun custom-add-watchwords ()
+  (font-lock-add-keywords
+   nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
+	1 font-lock-warning-face t))))
+
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -105,11 +111,7 @@
 (add-hook 'css-mode-hook 'rainbow-mode)
 (add-hook 'sql-mode-hook 'sql-highlight-mysql-keywords)
 
-;; -- more fontlock --
-(defun custom-add-watchwords ()
-  (font-lock-add-keywords
-   nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
-	1 font-lock-warning-face t))))
+(add-hook 'restclient-mode-hook 'custom-add-watchwords)
 
 ;; -- some automodes --
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
