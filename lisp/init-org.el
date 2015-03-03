@@ -2,14 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
-(defcustom rr-org-files-directory "~/Copy/org/"
+(defcustom rr/org-files-directory "~/Copy/org/"
   "Directory for org files."
   :group 'init-org)
 
 ;; make org beautifull
-(if (file-exists-p rr-org-files-directory)
+(if (file-exists-p rr/org-files-directory)
     ;; Set up org-agenda files
-    (let* ((dir-files (directory-files rr-org-files-directory t directory-files-no-dot-files-regexp))
+    (let* ((dir-files (directory-files rr/org-files-directory t directory-files-no-dot-files-regexp))
 	   (org-files (remove-if
 		       #'(lambda (name) (or
 				    (string-match "archive" name)

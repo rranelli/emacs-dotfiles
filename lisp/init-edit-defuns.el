@@ -7,7 +7,7 @@
   (interactive "p")
   (find-file (concat "/sudo:root@localhost:" (helm-read-file-name "File: "))))
 
-(defun rr-show-file-name ()
+(defun rr/show-file-name ()
   "Show the full path filename in the minibuffer."
   (interactive)
   (let ((text (format "%s:%i" (buffer-file-name) (line-number-at-pos))))
@@ -47,7 +47,7 @@ line instead."
   (interactive "*")
   (uniquify-all-lines-region (point-min) (point-max)))
 
-(defun rr-strip-whitespace ()
+(defun rr/strip-whitespace ()
   (interactive)
   (save-excursion
     (goto-char (point-min))

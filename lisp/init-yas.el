@@ -6,11 +6,11 @@
 
 (diminish 'yas-minor-mode "")
 
-(defcustom rr-yas-snippet-dirs
+(defcustom rr/yas-snippet-dirs
   (expand-file-name "snippets" user-emacs-directory)
   "Directory to load yasnippet's snippet files."
   :group 'init-yas)
-(setq yas-snippet-dirs rr-yas-snippet-dirs)
+(setq yas-snippet-dirs rr/yas-snippet-dirs)
 
 (setq yas-prompt-functions (delete 'yas-x-prompt yas-prompt-functions))
 

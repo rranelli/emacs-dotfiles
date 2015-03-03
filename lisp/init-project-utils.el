@@ -18,7 +18,7 @@
 
 ;; helm integration for opening projects
 
-(defun helm-rr-open-project ()
+(defun helm-rr/open-project ()
   "Bring up a Project search interface in helm."
   (interactive)
   (helm :sources '(helm-source-list-projects)
@@ -28,10 +28,10 @@
   '((name . "Open Project")
     (volatile)
     (delayed)
-    (candidates . rr-list-projects)
-    (action-transformer . rr-open-project)))
+    (candidates . rr/list-projects)
+    (action-transformer . rr/open-project)))
 
-(defun rr-list-projects ()
+(defun rr/list-projects ()
   "Lists all projects given project sources."
   (cl-labels ((dir-to-files (dir)
 			    (if (file-exists-p dir)
@@ -41,7 +41,7 @@
 			     ((listp x) (append (car x) (flatten (cdr x)))))))
     (progn (flatten (mapcar #'dir-to-files  project-sources)))))
 
-(defun rr-open-project (actions path)
+(defun rr/open-project (actions path)
   "Do nothing with ACTIONS. Open project given PATH."
   ;; TODO: Add default file get.
   (cl-flet ((find-default-file () (if (file-exists-p (expand-file-name "Gemfile" path))
@@ -50,7 +50,7 @@
     (find-file (find-default-file))))
 
 ;; Creating new project
-(defun rr-new-git-project ()
+(defun rr/new-git-project ()
   (interactive)
   (let* ((source (ido-completing-read "create new project in which source?: " project-sources))
 	 (project-name (read-input "new project name: "))
@@ -60,9 +60,9 @@
       (error nil))
 
     (shell-command (format "cd %s; git init" project-dir))
-    (rr-add-gitignore-file project-dir)))
+    (rr/add-gitignore-file project-dir)))
 
-(defun rr-add-gitignore-file (repo-path)
+(defun rr/add-gitignore-file (repo-path)
   (interactive (list
 		(read-directory-name
 		 "Which repository?: "
@@ -116,9 +116,9 @@
 ;; =====================================
 (define-bindings projectile-command-map
   '(;; misc
-    ("n" . rr-show-file-name)
-    ("\C-n" . rr-new-git-project)
-    ("\C-g" . rr-add-gitignore-file)
+    ("n" . rr/show-file-name)
+    ("\C-n" . rr/new-git-project)
+    ("\C-g" . rr/add-gitignore-file)
     ("m" . git-timemachine)
 
     ;; ag
@@ -134,12 +134,12 @@
     ("u" . hl-unhighlight-all-local)
 
     ;; projectile extras
-    ("f" . helm-rr-open-project)
+    ("f" . helm-rr/open-project)
     ("y" . projectile-find-implementation-or-test-other-window)
     ("a" . projectile-test-project)
     ("F" . helm-projectile-find-file-in-known-projects)))
 
-(global-set-key (kbd "C-c o") 'helm-rr-open-project)
+(global-set-key (kbd "C-c o") 'helm-rr/open-project)
 (global-set-key (kbd "C-c C-f") 'helm-projectile-find-file)
 
 (provide 'init-project-utils)

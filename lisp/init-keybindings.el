@@ -21,7 +21,7 @@
     "M-l")
   "Custom keybindings to expose on every mode.")
 
-(defun expose-rr-default-bindings (mode-map)
+(defun expose-rr/default-bindings (mode-map)
   (expose-bindings mode-map bindings-to-expose))
 
 (defmacro expose-global-keybinding (binding map)
@@ -51,13 +51,13 @@
 (global-set-key (kbd "C-c ,c") 'compile)
 
 ;; train myself not to use return or backspace
-(defun rr-disable-backspace-and-return ()
+(defun rr/disable-backspace-and-return ()
   (interactive)
   (define-key prog-mode-map (kbd "<return>") 'ignore)
   (define-key prog-mode-map (kbd "<backspace>") 'ignore))
-(rr-disable-backspace-and-return)
+(rr/disable-backspace-and-return)
 
-(defun rr-enable-backspace-and-return ()
+(defun rr/enable-backspace-and-return ()
   (interactive)
   (define-key prog-mode-map (kbd "<return>") 'newline)
   (define-key prog-mode-map (kbd "<backspace>") 'backward-delete-char))
@@ -92,7 +92,7 @@
 (global-set-key (kbd "C-:") 'ace-jump-char-mode)
 
 (global-set-key (kbd "M-j") 'better-registers-jump-to-register)
-(define-key better-registers-map (kbd "C-r (") 'rr-replace-wrapper-around-point)
+(define-key better-registers-map (kbd "C-r (") 'rr/replace-wrapper-around-point)
 
 
 ;; window and buffer manipulation
@@ -119,25 +119,25 @@
 (expose-bindings better-registers-map
 		 '("<f1>" "C-j" "C-x r" "C-x r"))
 
-(expose-rr-default-bindings markdown-mode-map)
-(expose-rr-default-bindings sh-mode-map)
+(expose-rr/default-bindings markdown-mode-map)
+(expose-rr/default-bindings sh-mode-map)
 
 (add-hook 'python-mode-hook
-	  (lambda () (expose-rr-default-bindings python-mode-map)))
+	  (lambda () (expose-rr/default-bindings python-mode-map)))
 (add-hook 'sgml-mode-hook
-	  (lambda () (expose-rr-default-bindings sgml-mode-map)))
+	  (lambda () (expose-rr/default-bindings sgml-mode-map)))
 (add-hook 'html-mode-hook
-	  (lambda () (expose-rr-default-bindings html-mode-map)))
+	  (lambda () (expose-rr/default-bindings html-mode-map)))
 (add-hook 'nxml-mode-hook
-	  (lambda () (expose-rr-default-bindings nxml-mode-map)))
+	  (lambda () (expose-rr/default-bindings nxml-mode-map)))
 (add-hook 'diff-mode-hook
-	  (lambda () (expose-rr-default-bindings diff-mode-map)))
+	  (lambda () (expose-rr/default-bindings diff-mode-map)))
 
 ;; makefile
 (add-hook 'makefile-mode-hook
 	  (lambda ()
 	    (define-key makefile-mode-map (kbd "TAB") 'self-insert-command)
-	    (expose-rr-default-bindings makefile-mode-map)))
+	    (expose-rr/default-bindings makefile-mode-map)))
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here

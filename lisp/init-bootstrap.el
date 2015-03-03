@@ -37,14 +37,14 @@
   "Safely requires FEATURE."
   (condition-case ex
       (require feature)
-    ('error (add-to-list 'rr-initialization-errors
+    ('error (add-to-list 'rr/initialization-errors
 			 (format "[ERROR LOADING \"%s\"]: %s" (symbol-name feature) ex)))))
 
-(defun rr-safe-load-init-files ()
+(defun rr/safe-load-init-files ()
   (dolist (file init-files)
     (safe-require file)))
 
-(defun rr-unsafe-load-init-files ()
+(defun rr/unsafe-load-init-files ()
   (dolist (file init-files)
     (require file)))
 

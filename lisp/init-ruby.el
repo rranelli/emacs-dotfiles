@@ -88,7 +88,7 @@
   (other-window 1))
 
 ;; -- misc --
-(defun rr-convert-to-ruby-1.9-hash-syntax ()
+(defun rr/convert-to-ruby-1.9-hash-syntax ()
   (interactive)
   (save-excursion
     (re-search-backward ":")
@@ -98,7 +98,7 @@
     (re-search-forward "\s?=>")
     (replace-regexp "\s?=>" "" nil (line-beginning-position) (point))))
 
-(defun rr-split-module-nesting ()
+(defun rr/split-module-nesting ()
   (interactive)
   (save-excursion
     (when (re-search-forward "\\(class\\|module\\|describe\\).*::" nil t)
@@ -127,8 +127,8 @@
     ("C-c r r" . ruby-send-region)
     ("C-c r v" . ruby-refactor-extract-local-variable)
     ("C-c r m" . ruby-refactor-extract-to-method)
-    ("C-c r h" . rr-convert-to-ruby-1.9-hash-syntax)
-    ("C-c r s" . rr-split-module-nesting)))
+    ("C-c r h" . rr/convert-to-ruby-1.9-hash-syntax)
+    ("C-c r s" . rr/split-module-nesting)))
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here

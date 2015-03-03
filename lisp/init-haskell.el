@@ -17,7 +17,7 @@
 			       (make-local-variable 'flycheck-display-errors-delay)
 			       (setq flycheck-display-errors-delay 3600)))
 
-(defvar rr-haskell-font-lock-extra-symbols
+(defvar rr/haskell-font-lock-extra-symbols
   '(("<alpha>" . #X03B1)
     ("<beta>" . #X03B2)
     ("<gamma>" . #X03B3)
@@ -32,7 +32,7 @@
      (remove-alist 'haskell-font-lock-symbols-alist "()")
      (mapcar
       (lambda (entry) (add-to-list 'haskell-font-lock-symbols-alist entry))
-      rr-haskell-font-lock-extra-symbols)
+      rr/haskell-font-lock-extra-symbols)
      (setq haskell-font-lock-keywords
 	   (haskell-font-lock-keywords-create nil))))
 

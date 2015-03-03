@@ -16,7 +16,7 @@
   "Minimum transparency for Emacs in X."
   :group 'init-appearance)
 
-(defcustom rr-theme-custom-color-alist
+(defcustom rr/theme-custom-color-alist
   '((zenburn . '((mode-line-background . "Gray33")
 		 (mode-line-foreground . "#8FB28F")
 		 (powerline-arrow . "Gray20")
@@ -72,7 +72,7 @@
 ;; configuration
 (defun get-color-config (config-name)
   "Gets the configuration from the config list by CONFIG-NAME."
-  (let* ((themed-assoc (eval (cdr (assoc chosen-theme rr-theme-custom-color-alist))))
+  (let* ((themed-assoc (eval (cdr (assoc chosen-theme rr/theme-custom-color-alist))))
          (color (cdr (assoc config-name themed-assoc))))
     color))
 
@@ -141,7 +141,7 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
           (toggle--transparency (selected-frame) min-transp max-transp)
         (toggle--transparency frame min-transp max-transp)))))
 
-(defun rr-set-transparency (&optional desired-transp frame)
+(defun rr/set-transparency (&optional desired-transp frame)
   (interactive)
   (unless frame
     (setq frame (selected-frame)))

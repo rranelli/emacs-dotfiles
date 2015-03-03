@@ -42,16 +42,16 @@ regardless."
   (let* ((custom-name (if arg
 			  (format "[%s]" (read-string "Shell name: "))
 			""))
-	 (shell-name (format "shell: %s %s" (rr-shell-project-name) custom-name))
+	 (shell-name (format "shell: %s %s" (rr/shell-project-name) custom-name))
 	 (shell-exists-p (bufferp (get-buffer shell-name))))
 
     (shell shell-name)
 
     (when (and
-	   (rr-in-project)
+	   (rr/in-project)
 	   (not shell-exists-p))
       (goto-char (point-max))
-      (insert (format "cd %s # [Enter] cds to root" (rr-shell-wd))))))
+      (insert (format "cd %s # [Enter] cds to root" (rr/shell-wd))))))
 
 (defun new-term (arg)
   "Create a new terminal giving it a nice name.
@@ -60,7 +60,7 @@ If ARG is present, open a new term regardless."
   (let* ((custom-name (if arg
 			  (format "[%s]" (read-string "Terminal name: "))
 			""))
-	 (term-name (format "term: %s %s" (rr-shell-project-name) custom-name))
+	 (term-name (format "term: %s %s" (rr/shell-project-name) custom-name))
 	 (shell-exists-p (bufferp (get-buffer term-name))))
 
     (if (not shell-exists-p)
@@ -68,20 +68,20 @@ If ARG is present, open a new term regardless."
 	       (rename-buffer term-name)
 	       (term-line-mode)
 	       (goto-char (point-max))
-	       (insert (format "cd %s # [Enter] cds to root" (rr-shell-wd)))
+	       (insert (format "cd %s # [Enter] cds to root" (rr/shell-wd)))
 	       (term-char-mode)
 	       )
       (switch-to-buffer term-name))))
 
-(defun rr-shell-project-name ()
-  (file-name-base (directory-file-name (rr-shell-wd))))
+(defun rr/shell-project-name ()
+  (file-name-base (directory-file-name (rr/shell-wd))))
 
-(defun rr-shell-wd ()
-  (if (rr-in-project)
+(defun rr/shell-wd ()
+  (if (rr/in-project)
       (ffip-project-root)
     default-directory))
 
-(defun rr-in-project ()
+(defun rr/in-project ()
   (stringp (ffip-project-root)))
 
 ;; hooks

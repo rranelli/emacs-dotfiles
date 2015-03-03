@@ -79,7 +79,7 @@
     (forward-sentence)
     (read-only-mode -1)
     (fill-region (point) (point-max))
-    (rr-strip-whitespace)
+    (rr/strip-whitespace)
     (read-only-mode 1)))
 
 ;; -- auto refile configuration --
