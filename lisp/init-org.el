@@ -12,6 +12,7 @@
     (let* ((dir-files (directory-files rr/org-files-directory t directory-files-no-dot-files-regexp))
 	   (org-files (remove-if
 		       #'(lambda (name) (or
+				    (not (string-match "\.org$" name))
 				    (string-match "archive" name)
 				    (string-match "\??/\.#" name))) dir-files)))
 
