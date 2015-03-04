@@ -7,6 +7,15 @@
 ;; -- hooks --
 (add-hook 'elixir-mode-hook 'alchemist-mode)
 
+;; pretty symbols
+(setq pretty-symbol-patterns
+      (append pretty-symbol-patterns
+	      `((?→ lambda "->" (elixir-mode))
+		(?𝆑 lambda "\\<fn\\>" (elixir-mode))
+		;; (?` lambda "\\<quote\\>" (elixir-mode))
+		;; (?, lambda "\\<unquote\\>" (elixir-mode))
+		)))
+
 (define-bindings alchemist-mode-map
   '(("C-c , y" . alchemist-project-open-tests-for-current-file)
     ("C-c , a" . alchemist-mix-test)
