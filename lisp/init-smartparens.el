@@ -76,6 +76,10 @@
   (sp-local-pair "do" "end"
 		 :when '(("SPC" "RET"))
 		 :post-handlers '(sp-ruby-def-post-handler)
+		 :actions '(insert navigate))
+  (sp-local-pair "case" "end"
+		 :when '(("SPC" "RET"))
+		 :post-handlers '(sp-ruby-def-post-handler)
 		 :actions '(insert navigate)))
 
 (provide 'init-smartparens)

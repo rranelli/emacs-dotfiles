@@ -27,10 +27,10 @@
     init-elixir
     init-isearch
     init-writing
+    init-smartparens
     init-org
     init-shell
     init-mail
-    init-smartparens
     init-appearance))
 
 (defun safe-require (feature)
