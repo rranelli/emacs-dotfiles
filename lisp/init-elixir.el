@@ -7,6 +7,18 @@
 ;; -- hooks --
 (add-hook 'elixir-mode-hook 'alchemist-mode)
 
+;; fill doc strings
+(defun rr/elixir-fill-doc-strings ()
+  (interactive)
+  (save-excursion
+    (re-search-backward "@\\(?:module\\)?doc +\"\"\"" nil t)
+    (re-search-forward "\"\"\"" nil t)
+    (set-mark (point))
+    (re-search-forward "\"\"\"" nil t)
+    (re-search-backward "^ *\"\"\"" nil t)
+    (backward-char)
+    (fill-region (point) (mark))))
+
 ;; pretty symbols
 (setq pretty-symbol-patterns
       (append pretty-symbol-patterns
