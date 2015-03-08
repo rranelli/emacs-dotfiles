@@ -80,7 +80,6 @@
     uniquify
     linum
     smex
-    whitespace
     ffap
     find-file-in-project
     recentf
