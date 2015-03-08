@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: defmodule :${1:name} do; use ExUnit.case; import :$1... ;end
+# --
+defmodule ${1:name} do
+  use ExUnit.Case
+  import $1
+
+  test "the truth" do
+    assert 1 == 1
+  end
+end
