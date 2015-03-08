@@ -3,10 +3,10 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'solarized-dark
+(defcustom chosen-x-theme 'gruvbox
   "Theme chosen to be initialized."
   :group 'init-appearance)
-(defcustom chosen-terminal-theme 'zenburn
+(defcustom chosen-terminal-theme 'gruvbox
   "Theme chosen to be initialized in terminal sessions."
   :group 'init-appearance)
 (defvar chosen-theme chosen-x-theme
