@@ -46,7 +46,6 @@
  suggest-key-bindings t
  column-number-mode t
  show-trailing-whitespace t
- indent-tabs-mode nil
  ;; ignore case completion on emacs lisp and find files
  eshell-cmpl-ignore-case t
  pcomplete-ignore-case t
@@ -89,6 +88,7 @@
 
 (setq-default
  display-buffer-reuse-frames t
+ indent-tabs-mode nil
  save-place t
  fill-column 80)
 
