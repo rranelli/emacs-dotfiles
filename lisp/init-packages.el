@@ -75,29 +75,32 @@
 
 ;; -- vendor packages --
 (defvar libs-to-require
-  '(cl
+  '(
+    ansi-color
     better-registers
-    uniquify
-    linum
-    smex
+    cl
+    dash
+    dired-x
+    dpkg-dev-el
     ffap
     find-file-in-project
-    recentf
-    saveplace
-    ansi-color
-    dired-x
-    visual-basic-mode
-    iso-transl
-    dash
     flyspell
-    markdown-mode
-    ox-gfm
-    s
     hl-anything
-    sh-script
-    sgml-mode
+    iso-transl
+    linum
+    markdown-mode
     nxml-mode
-    yaml-mode))
+    ox-gfm
+    recentf
+    s
+    saveplace
+    sgml-mode
+    sh-script
+    smex
+    uniquify
+    visual-basic-mode
+    yaml-mode
+    ))
 
 ;; package loading
 (setq packaged-contents-refreshed-p nil)

@@ -2,9 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 (let* ((lisp-dir (expand-file-name "lisp" user-emacs-directory))
-       (vendor-dir (expand-file-name "vendor" user-emacs-directory)))
+       (vendor-dir (expand-file-name "vendor" user-emacs-directory))
+       (dpkg-dev-el-dir (expand-file-name "vendor/dpkg-dev-el" user-emacs-directory)))
   (add-to-list 'load-path lisp-dir)
-  (add-to-list 'load-path vendor-dir))
+  (add-to-list 'load-path vendor-dir)
+  (add-to-list 'load-path dpkg-dev-el-dir))
 
 (defvar init-files
   '(init-packages
