@@ -23,8 +23,9 @@
     color-theme-sanityinc-solarized
     color-theme-sanityinc-tomorrow
     diminish
-    expand-region
+    dockerfile-mode
     elixir-mode
+    expand-region
     find-file-in-project
     flycheck
     fuzzy
