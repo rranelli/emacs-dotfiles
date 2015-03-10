@@ -7,6 +7,10 @@
 (projectile-global-mode 1)
 (diminish 'projectile-mode "")
 
+;;
+;;; Jumping between projects
+;;
+
 ;; variables
 (defvar default-project-source
   "~/code/")
@@ -49,7 +53,9 @@
 				    path)))
     (find-file (find-default-file))))
 
-;; Creating new project
+;;
+;;; Creating new git project
+;;
 (defun rr/new-git-project ()
   (interactive)
   (let* ((source (ido-completing-read "create new project in which source?: " project-sources))
