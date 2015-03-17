@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-lisp.el -- Configures nice-to-have features for ELisp development.
 ;;; Commentary:
 ;;; Code:
 (diminish 'eldoc-mode)

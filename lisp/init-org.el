@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-org.el -- Sanely configures org-mode related stuff.
 ;;; Commentary:
 ;;; Code:
 

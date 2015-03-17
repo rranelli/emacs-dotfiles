@@ -1,4 +1,4 @@
-;;; package -- summary
+;;; init-custom-defuns.el -- Adds simple and useful functions that have nowhere else to go.
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-yas.el -- Configures `yasnippet-mode' preferences.
 ;;; Commentary:
 ;;; Code:
 (require 'yasnippet)

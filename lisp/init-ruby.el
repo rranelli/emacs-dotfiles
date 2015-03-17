@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-ruby.el -- Configures nice-to-have features for Ruby development.
 ;;; Commentary:
 ;;; Code:
 (require 'inf-ruby)

@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-path.el -- Ensure the .bashrc exported PATH is used inside Emacs.
 ;;; Commentary:
 ;;; Code:
 

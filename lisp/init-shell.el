@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-shell.el -- Configures features that enhances one's work with terminals inside Emacs.
 ;;; Commentary:
 ;;; Code:
 (autoload 'bash-completion-dynamic-complete

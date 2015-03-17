@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-defaults.el -- Sets default global configurations and general Emacs behavior.
 ;;; Commentary:
 ;;; Code:
 

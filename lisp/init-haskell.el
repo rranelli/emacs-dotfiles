@@ -1,4 +1,4 @@
-;;; Package --- Summary
+;;; init-haskell.el --- Configures haskell-mode.
 ;;; Commentary:
 ;;; Code:
 (setq haskell-font-lock-symbols t)

@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-octave.el -- Configures minor things used to run octave inside Emacs.
 ;;; Commentary:
 ;;; Code:
 (require 'octave)

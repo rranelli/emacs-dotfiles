@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-appearance.el -- Configures some helpers for fast color scheme changing.
 ;;; Commentary:
 ;;; Code:
 

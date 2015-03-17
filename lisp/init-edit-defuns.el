@@ -1,4 +1,4 @@
-;;; package -- summary
+;;; init-edit-defuns.el -- General functions to customize text editing experience.
 ;;; Commentary:
 ;;; Code:
 

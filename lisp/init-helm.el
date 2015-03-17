@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-helm.el --- Configures helm usage preferences and keybindings.
 ;;; Commentary:
 ;;; Code:
 (require 'helm-config)

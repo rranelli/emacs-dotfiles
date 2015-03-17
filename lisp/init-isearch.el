@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-isearch.el --- Customizes isearch behavior.
 ;;; Commentary:
 ;;; Code:
 (global-anzu-mode t)

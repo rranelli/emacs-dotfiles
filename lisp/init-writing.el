@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-writting.el -- Configures features that enhance one's prose writing in Emacs.
 ;;; Commentary:
 ;;; Code:
 (require 'org-jekyll-mode)

@@ -1,4 +1,4 @@
-;;; package --- summary
+;;; init-bootstrap.el --- Configures the bootstrapping of the Emacs configuration.
 ;;; Commentary:
 ;;; Code:
 (let* ((lisp-dir (expand-file-name "lisp" user-emacs-directory))

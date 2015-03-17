@@ -1,4 +1,4 @@
-;;; package -- summary
+;;; init-elixir.el -- Configures utilities and nice-to-have features for Elixir development.
 ;;; Commentary:
 ;;; Code:
 (require 'elixir-mode)

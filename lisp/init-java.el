@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-java.el -- Configures nice-to-have features for Java development.
 ;;; Commentary:
 ;;; Code:
 (require 'cc-mode)

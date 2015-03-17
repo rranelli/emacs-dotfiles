@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-clojure.el -- Configures simple and usefull things for working with clojure.
 ;;; Commentary:
 ;;; Code:
 (require 'cider)

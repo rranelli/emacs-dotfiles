@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-project-utils.el -- Personal configuration and enhancements to project management.
 ;;; Commentary:
 ;;; Code:
 (setq helm-projectile-fuzzy-match nil)

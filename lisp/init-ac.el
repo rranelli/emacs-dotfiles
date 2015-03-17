@@ -1,4 +1,4 @@
-;;; init-ac.el -- Configures autocompletion
+;;; init-ac.el -- Configures autocompletion.
 ;;; Commentary:
 ;;; Code:
 (require 'auto-complete-config)

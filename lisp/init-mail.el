@@ -1,4 +1,4 @@
-;;; Package --- Summary
+;;; init-mail.el --- Configures the behemoth wanderlust email client.
 ;;; Commentary:
 ;;; Code:
 (autoload 'wl "wl" "Wanderlust" t)

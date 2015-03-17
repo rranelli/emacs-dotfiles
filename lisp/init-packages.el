@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-packages.el --- Declare, install and update Emacs packages.
 ;;; Commentary:
 ;;; Code:
 (require 'package)

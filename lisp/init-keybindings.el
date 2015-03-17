@@ -1,4 +1,4 @@
-;;; package -- Summary
+;;; init-keybindings.el -- Configures global keybindings and other keybinding-related stuff.
 ;;; Commentary:
 ;;; Code:
 
