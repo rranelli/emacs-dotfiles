@@ -3,7 +3,7 @@
 ;;; Code:
 (require 'inf-ruby)
 (require 'rspec-mode)
-(require 'ac-robe)
+(require 'company-robe)
 (require 'robe)
 (require 'rubocop)
 
@@ -28,11 +28,6 @@
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'rspec-mode)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
-
-(add-hook 'robe-mode-hook
-          (lambda () (add-to-list 'ac-sources 'ac-source-robe)))
-(add-hook 'ruby-mode-hook
-          (lambda () (add-to-list 'ac-sources 'ac-source-yasnippet)))
 
 ;; fix for rspec and pry
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)

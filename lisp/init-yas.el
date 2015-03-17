@@ -14,11 +14,6 @@
 
 (setq yas-prompt-functions (delete 'yas-x-prompt yas-prompt-functions))
 
-;; add to autocomplete sources
-(when (and (boundp 'ac-sources)
-	   (file-exists-p yas-snippet-dirs))
-  (add-to-list 'ac-sources ac-source-yasnippet))
-
 ;; -- keybindings --
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "<tab>") nil)

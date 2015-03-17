@@ -12,13 +12,13 @@
     init-edit-defuns
     init-keybindings
     init-defaults
-    init-octave
+    init-company
     init-helm
     init-project-utils
     init-path
     init-magit
     init-yas
-    init-ac
+    init-octave
     init-haskell
     init-ruby
     init-java

@@ -15,13 +15,13 @@
     ag
     alchemist
     anzu
-    auto-complete
     auto-package-update
     bash-completion
     better-registers
     cider
     color-theme-sanityinc-solarized
     color-theme-sanityinc-tomorrow
+    company
     diminish
     dockerfile-mode
     elixir-mode
