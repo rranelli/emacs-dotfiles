@@ -8,6 +8,7 @@
 ;; In order to save your passwords, run `elmo-passwd-alist-save' interactively
 
 (setq
+ wl-from "renanranelli@gmail.com"
  wl-summary-width 180 ;; do not limit summary width
  wl-message-buffer-prefetch-depth 0 ;; dont know what that is
  mime-edit-split-message nil ;; do not split large attachments in many messages
