@@ -96,8 +96,6 @@
 
 
 ;; window and buffer manipulation
-(global-set-key (kbd "C->") 'maximize-window-vertically)
-(global-set-key (kbd "C-<") 'minimize-window-vertically)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-i") 'other-frame)
 (global-set-key (kbd "M-0") 'delete-window)

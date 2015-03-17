@@ -17,16 +17,6 @@
     (move-beginning-of-line nil)))
 
 ;; -- window management --
-(defun maximize-window-vertically ()
-  "Maximizes the current window vertically the same way vi does."
-  (interactive)
-  (enlarge-window 180 nil))
-
-(defun minimize-window-vertically ()
-  "Minimizes the current window vertically the same way vi does."
-  (interactive)
-  (shrink-window 180 nil))
-
 (defun vsplit-last-buffer ()
   "Vertically split window showing last buffer."
   (interactive)
