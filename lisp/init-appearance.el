@@ -168,6 +168,8 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
   "Set specific faces for a 256 color terminal FRAME."
   (load-theme chosen-terminal-theme t)
 
+  (remove-hook 'prog-mode-hook 'linum-mode)
+
   (set-face-attribute 'helm-selection frame
                       :background "black")
   (set-face-attribute 'helm-ff-directory frame
