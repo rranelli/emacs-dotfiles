@@ -41,9 +41,8 @@
 (setq pretty-symbol-patterns
       (append pretty-symbol-patterns
 	      `((?→ lambda "->" (elixir-mode))
+                (?⟵ lambda "<-" (elixir-mode))
 		(?𝆑 lambda "\\<fn\\>" (elixir-mode))
-		;; (?` lambda "\\<quote\\>" (elixir-mode))
-		;; (?, lambda "\\<unquote\\>" (elixir-mode))
 		)))
 
 (define-bindings elixir-mode-map
