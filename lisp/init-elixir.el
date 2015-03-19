@@ -7,18 +7,6 @@
 ;; -- hooks --
 (add-hook 'elixir-mode-hook 'alchemist-mode)
 
-;; fill doc strings
-(defun rr/elixir-fill-doc-strings ()
-  (interactive)
-  (save-excursion
-    (re-search-backward "@\\(?:module\\)?doc +\"\"\"" nil t)
-    (re-search-forward "\"\"\"" nil t)
-    (set-mark (point))
-    (re-search-forward "\"\"\"" nil t)
-    (re-search-backward "^ *\"\"\"" nil t)
-    (backward-char)
-    (fill-region (point) (mark))))
-
 (defun rr/alchemist-toggle-file-and-tests-other-window ()
   (interactive)
   (if (rr/alchemist--is-test-file-p)
@@ -57,6 +45,9 @@
 		;; (?` lambda "\\<quote\\>" (elixir-mode))
 		;; (?, lambda "\\<unquote\\>" (elixir-mode))
 		)))
+
+(define-bindings elixir-mode-map
+  '(("M-q" . elixir-fill-doc-strings)))
 
 (define-bindings alchemist-mode-map
   '(("C-c , y" . rr/alchemist-toggle-file-and-tests-other-window)
