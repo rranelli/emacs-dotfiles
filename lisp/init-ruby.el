@@ -38,11 +38,11 @@
 
 ;; -- GODAMMIT RUBY INDENTATION!!! --
 ;; don't indent parenthesis in a weird way
-(setq ruby-align-chained-calls nil)
-(setq ruby-align-to-stmt-keywords nil)
-(setq ruby-deep-indent-paren nil)
-(setq ruby-deep-indent-paren-style nil)
-(setq ruby-use-smie nil)
+(setq ruby-align-chained-calls nil
+      ruby-align-to-stmt-keywords nil
+      ruby-deep-indent-paren nil
+      ruby-deep-indent-paren-style nil
+      ruby-use-smie nil)
 
 (defadvice ruby-indent-line (after unindent-closing-paren activate)
   "Indent sole parenthesis in loca's way."
