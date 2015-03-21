@@ -93,7 +93,6 @@
  fill-column 80)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
-(defalias 'auto-tail-revert-mode 'tail-mode)
 
 ;; -- more fontlock --
 (defun custom-add-watchwords ()
