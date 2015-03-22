@@ -53,7 +53,8 @@
     ("C-c , t" . rr/alchemist-toggle-file-and-tests)
     ("C-c , a" . alchemist-mix-test)
     ("C-c , s" . alchemist-mix-test-at-point)
-    ("C-c , v" . alchemist-mix-test-this-buffer)))
+    ("C-c , v" . alchemist-mix-test-this-buffer)
+    ("C-c , c" . alchemist-mix-compile)))
 
 (provide 'init-elixir)
 ;;; init-elixir.el ends here
