@@ -46,7 +46,7 @@
 		)))
 
 (define-bindings elixir-mode-map
-  '(("M-q" . elixir-fill-doc-strings)))
+  '(("M-q" . elixir-mode-fill-doc-string)))
 
 (define-bindings alchemist-mode-map
   '(("C-c , y" . rr/alchemist-toggle-file-and-tests-other-window)
