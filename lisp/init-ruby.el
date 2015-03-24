@@ -6,6 +6,7 @@
 (require 'company-robe)
 (require 'robe)
 (require 'rubocop)
+(require 'yard-mode)
 
 (diminish 'rubocop-mode)
 (diminish 'auto-fill-function)
@@ -28,6 +29,7 @@
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'rspec-mode)
 (add-hook 'ruby-mode-hook 'rubocop-mode)
+(add-hook 'ruby-mode-hook 'yard-mode)
 
 ;; fix for rspec and pry
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)

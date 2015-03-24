@@ -101,6 +101,7 @@
     uniquify
     visual-basic-mode
     yaml-mode
+    yard-mode
     ))
 
 ;; package loading
