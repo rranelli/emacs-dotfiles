@@ -6,7 +6,6 @@
 (require 'company-robe)
 (require 'robe)
 (require 'rubocop)
-(require 'yard-mode)
 
 (diminish 'rubocop-mode)
 (diminish 'auto-fill-function)
