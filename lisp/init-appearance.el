@@ -68,6 +68,9 @@
                                                             :background "gray33")
                                         (set-face-attribute 'fringe nil
                                                             :background nil)
+                                        (set-face-attribute 'header-line nil
+                                                            :box nil
+                                                            :inverse-video nil)
                                         (set-face-attribute 'font-lock-type-face nil
                                                             :foreground "khaki1")
                                         (set-face-attribute 'helm-selection nil
@@ -75,6 +78,13 @@
                                         (set-face-attribute 'helm-ff-dotted-directory nil
                                                             :foreground "white"
                                                             :background "nil")
+                                        (set-face-attribute 'minibuffer-prompt nil
+                                                            :foreground "white"
+                                                            :background nil
+                                                            :box nil)
+                                        (set-face-attribute 'helm-candidate-number nil
+                                                            :foreground nil
+                                                            :background nil)
                                         (set-face-attribute 'helm-ff-directory nil
                                                             :background "#282828"
                                                             :foreground "#fb4934"))))))
