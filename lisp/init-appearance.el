@@ -68,6 +68,8 @@
                                                             :background "gray33")
                                         (set-face-attribute 'fringe nil
                                                             :background nil)
+                                        (set-face-attribute 'font-lock-type-face nil
+                                                            :foreground "khaki1")
                                         (set-face-attribute 'helm-selection nil
                                                             :background "black")
                                         (set-face-attribute 'helm-ff-dotted-directory nil
