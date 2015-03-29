@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'zenburn
+(defcustom chosen-x-theme 'tsdh-dark
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
@@ -55,17 +55,27 @@
 			(paren-highlight-style . expression)
 			(custom-faces-fn . (lambda ()))))
 
-    (tsdh-dark . '((mode-line-background . "Gray33")
-		   (mode-line-foreground . "#8FB28F")
-		   (powerline-arrow . "Gray20")
-		   (powerline-other . "#3F3F3F")
-		   (cursor . "Skyblue")
-		   (use-powerline-p . nil)
-		   (set-mode-line-faces-p . nil)
+    (tsdh-dark . '((mode-line-background . "IndianRed4")
+		   (mode-line-foreground . "SlateGray1")
+		   (powerline-arrow . "#3F3F3F")
+		   (powerline-other . "gray20")
+		   (cursor . "SkyBlue")
+		   (use-powerline-p . t)
+		   (set-mode-line-faces-p . t)
 		   (paren-highlight-style . expression)
 		   (custom-faces-fn . (lambda ()
-					(set-face-attribute 'helm-selection frame
-							    :background "black"))))))
+                                        (set-face-attribute 'mode-line-inactive nil
+                                                            :background "gray33")
+                                        (set-face-attribute 'fringe nil
+                                                            :background nil)
+                                        (set-face-attribute 'helm-selection nil
+                                                            :background "black")
+                                        (set-face-attribute 'helm-ff-dotted-directory nil
+                                                            :foreground "white"
+                                                            :background "nil")
+                                        (set-face-attribute 'helm-ff-directory nil
+                                                            :background "#282828"
+                                                            :foreground "#fb4934"))))))
   "Custom color configuration."
   :group 'init-appearance)
 
@@ -83,9 +93,9 @@
   (setq show-paren-style (get-color-config 'paren-highlight-style)))
 (add-hook 'emacs-lisp-mode-hook 'expression-style-show-paren)
 
-;; ===========================
-;; == frame config dispatch ==
-;; ===========================
+;;
+;;; frame config dispatch
+;;
 (defun config-frame-appearance (&optional frame)
   "Configure FRAME with specific settings for terminal or x."
   (interactive)
@@ -106,7 +116,7 @@
   (load-theme chosen-theme t)
 
   ;; make cursor type a bar
-  (modify-all-frames-parameters (list (cons 'cursor-type 'bar)))
+  (modify-all-frames-parameters `((cursor-type . bar)))
 
   (toggle-transparency frame t)
 
