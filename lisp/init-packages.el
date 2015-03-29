@@ -19,7 +19,6 @@
     bash-completion
     better-registers
     cider
-    color-theme-sanityinc-solarized
     color-theme-sanityinc-tomorrow
     company
     diminish
