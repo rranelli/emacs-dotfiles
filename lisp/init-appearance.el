@@ -17,9 +17,9 @@
   :group 'init-appearance)
 
 (defcustom rr/theme-custom-color-alist
-  '((zenburn . '((mode-line-background . "Gray33")
+  '((zenburn . '((mode-line-background . "gray33")
 		 (mode-line-foreground . "#8FB28F")
-		 (powerline-arrow . "Gray20")
+		 (powerline-arrow . "gray20")
 		 (powerline-other . "#3F3F3F")
 		 (cursor . nil)
 		 (use-powerline-p . t)
@@ -29,8 +29,8 @@
 				      ))))
 
     (gruvbox . '((mode-line-background . "peru")
-		 (mode-line-foreground . "Snow")
-		 (powerline-arrow . "Gray20")
+		 (mode-line-foreground . "snow")
+		 (powerline-arrow . "gray20")
 		 (powerline-other . "#282828")
 		 (cursor . nil)
 		 (use-powerline-p . t)
@@ -38,7 +38,7 @@
 		 (paren-highlight-style . parenthesis)
 		 (custom-faces-fn . (lambda ()
 				      (set-face-attribute 'helm-selection nil
-							  :background "Gray20")
+							  :background "gray20")
 				      (set-face-attribute 'helm-ff-directory nil
 							  :background "#282828"
 							  :foreground "#fb4934")
@@ -46,10 +46,10 @@
 							  :foreground "dark turquoise")))))
 
     (solarized-dark . '((mode-line-background . "DeepSkyBlue4")
-			(mode-line-foreground . "Snow")
+			(mode-line-foreground . "snow")
 			(powerline-arrow . "#002b36")
 			(powerline-other . "#002b36")
-			(cursor . "Skyblue")
+			(cursor . "SkyBlue")
 			(use-powerline-p . t)
 			(set-mode-line-faces-p . t)
 			(paren-highlight-style . expression)
