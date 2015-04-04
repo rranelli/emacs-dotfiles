@@ -11,7 +11,7 @@
 ;; Finish!
 (message "======================================")
 (message (if rr/initialization-errors
-	     (mapconcat #'identity rr/initialization-errors "\n")
-	   "All is sane, and init.el got to its end"))
+             (mapconcat #'identity rr/initialization-errors "\n")
+           "All is sane, and init.el got to its end"))
 (message "======================================")
 ;;; init.el ends here

@@ -4,6 +4,8 @@
 (require 'elixir-mode)
 (require 'alchemist)
 
+(diminish 'alchemist-mode " 𝞪")
+
 ;; -- hooks --
 (add-hook 'elixir-mode-hook 'alchemist-mode)
 
