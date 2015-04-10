@@ -95,7 +95,9 @@ If ARG is present, open a new term regardless."
 (add-hook 'term-mode-hook
 	  (lambda ()
 	    (expose-bindings term-raw-map
-			     (remove "C-h" (remove "M-h" bindings-to-expose)))))
+                             (->> bindings-to-expose
+                                  (remove "C-h")
+                                  (remove "M-h")))))
 
 (add-hook 'sh-mode-hook
 	  (lambda ()
