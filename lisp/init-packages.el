@@ -68,6 +68,7 @@
     wanderlust
     writegood-mode
     yaml-mode
+    yard-mode
     yasnippet
     zenburn-theme
     )
@@ -100,7 +101,6 @@
     uniquify
     visual-basic-mode
     yaml-mode
-    yard-mode
     ))
 
 ;; package loading
