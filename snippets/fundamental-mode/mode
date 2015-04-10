@@ -1,0 +1,5 @@
+#name: mode
+#key: mode
+# --
+-*- mode: ${1:restclient};-*-
+$0
