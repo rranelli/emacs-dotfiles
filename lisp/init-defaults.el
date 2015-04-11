@@ -34,6 +34,8 @@
  ;; please, share the clipboard
  x-select-enable-clipboard t
  uniquify-buffer-name-style 'forward
+ ;; improve rendering performance
+ redisplay-dont-pause t
  ;; no backups
  make-backup-files nil
  auto-save-default nil
@@ -118,11 +120,6 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.vbs$" . visual-basic-mode))
 (add-to-list 'auto-mode-alist '("\\.asp$" . visual-basic-mode))
-
-;; diminish
-(diminish 'undo-tree-mode)
-(diminish 'abbrev-mode)
-(diminish 'hl-highlight-mode)
 
 (global-flycheck-mode t)
 

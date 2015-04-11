@@ -4,8 +4,6 @@
 (require 'company)
 (global-company-mode)
 
-(diminish 'company-mode "")
-
 (global-set-key (kbd "M-/") 'company-complete)
 
 (define-bindings company-active-map

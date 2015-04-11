@@ -6,8 +6,6 @@
 (smartparens-global-mode t)
 (show-smartparens-global-mode t)
 
-(diminish 'smartparens-mode)
-
 ;; kill sexp
 (define-key sp-keymap (kbd "C-M-k") 'sp-kill-hybrid-sexp)
 

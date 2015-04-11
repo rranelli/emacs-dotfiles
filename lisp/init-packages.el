@@ -21,7 +21,6 @@
     cider
     color-theme-sanityinc-tomorrow
     company
-    diminish
     dockerfile-mode
     elixir-mode
     expand-region

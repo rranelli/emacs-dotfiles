@@ -4,8 +4,6 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
-(diminish 'yas-minor-mode "")
-
 (defcustom rr/yas-snippet-dirs
   (expand-file-name "snippets" user-emacs-directory)
   "Directory to load yasnippet's snippet files."

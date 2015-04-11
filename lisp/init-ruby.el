@@ -7,9 +7,6 @@
 (require 'robe)
 (require 'rubocop)
 
-(diminish 'rubocop-mode)
-(diminish 'auto-fill-function)
-
 ;; auto modes
 (dolist (fp '("\\.rb$"
 	      "\\.ru$"

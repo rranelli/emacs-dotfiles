@@ -5,7 +5,6 @@
 (require 'helm-projectile)
 
 (projectile-global-mode 1)
-(diminish 'projectile-mode "")
 
 ;;
 ;;; Jumping between projects

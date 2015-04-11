@@ -19,20 +19,20 @@
 (defvar powerline-color2)
 
 (defun get-arrow-dots
-  (leftp width height)
+    (leftp width height)
   (mapconcat
    (apply-partially 'format "\"%s\"")
    (mapcar
     (lambda (n)
-       (let* ((nx (if (< n (/ height 2)) n (- height n)))
-              (dots (make-string nx ?.))
-              (spaces (make-string (- width nx) ? )))
-         (if leftp (concat dots spaces) (concat spaces dots))))
+      (let* ((nx (if (< n (/ height 2)) n (- height n)))
+             (dots (make-string nx ?.))
+             (spaces (make-string (- width nx) ? )))
+        (if leftp (concat dots spaces) (concat spaces dots))))
     (number-sequence 1 height))
    ",\n"))
 
 (defun get-arrow-xpm
-  (direction width height &optional color1 color2)
+    (direction width height &optional color1 color2)
   "Create an XPM left arrow."
   (let* ((leftp (eq 'left direction))
          (fg (if leftp color1 color2))
@@ -56,7 +56,7 @@ static char * arrow_left[] = {
      (elt (window-inside-pixel-edges) 3)))
 
 (defun proportional-arrow-xpm
-  (direction color1 color2)
+    (direction color1 color2)
   (let* ((r 1.5)
          (m-height (mode-line-height))
          (height (if (evenp m-height) m-height (+ 1 m-height)))
@@ -64,17 +64,17 @@ static char * arrow_left[] = {
     (get-arrow-xpm direction width height color1 color2)))
 
 (defun arrow-left-xpm
-  (color1 color2)
+    (color1 color2)
   "Return an XPM left arrow string representing."
   (proportional-arrow-xpm 'left color1 color2))
 
 (defun arrow-right-xpm
-  (color1 color2)
+    (color1 color2)
   "Return an XPM right arrow string representing."
   (proportional-arrow-xpm 'right color1 color2))
 
 (defun curve-right-xpm
-  (color1 color2)
+    (color1 color2)
   "Return an XPM right curve string representing."
   (create-image
    (format "/* XPM */
@@ -105,7 +105,7 @@ static char * curve_right[] = {
    'xpm t :ascent 'center))
 
 (defun curve-left-xpm
-  (color1 color2)
+    (color1 color2)
   "Return an XPM left curve string representing."
   (create-image
    (format "/* XPM */
@@ -136,7 +136,7 @@ static char * curve_left[] = {
    'xpm t :ascent 'center))
 
 (defun make-xpm
-  (name color1 color2 data)
+    (name color1 color2 data)
   "Return an XPM image for lol data"
   (create-image
    (concat
@@ -155,30 +155,30 @@ static char * %s[] = {
           (idx  0))
       (apply 'concat
              (mapcar #'(lambda (dl)
-                        (setq idx (+ idx 1))
-                        (concat
-                         "\""
+                         (setq idx (+ idx 1))
                          (concat
-                          (mapcar #'(lambda (d)
-                                     (if (eq d 0)
-                                         (string-to-char " ")
-                                       (string-to-char ".")))
-                                  dl))
-                         (if (eq idx len)
-                             "\"};"
-                           "\",\n")))
+                          "\""
+                          (concat
+                           (mapcar #'(lambda (d)
+                                       (if (eq d 0)
+                                           (string-to-char " ")
+                                         (string-to-char ".")))
+                                   dl))
+                          (if (eq idx len)
+                              "\"};"
+                            "\",\n")))
                      data))))
    'xpm t :ascent 'center))
 
 (defun half-xpm
-  (color1 color2)
+    (color1 color2)
   (make-xpm "half" color1 color2
             (make-list 18
                        (append (make-list 6 0)
                                (make-list 6 1)))))
 
 (defun percent-xpm
-  (pmax pmin we ws width color1 color2)
+    (pmax pmin we ws width color1 color2)
   (let* ((fs   (if (eq pmin ws)
                    0
                  (round (* 17 (/ (float ws) (float pmax))))))
@@ -209,15 +209,15 @@ install the memoized function over the original function."
 (defun memoize-wrap (func)
   "Return the memoized version of the given function."
   (let ((table-sym (gensym))
-    (val-sym (gensym))
-    (args-sym (gensym)))
+        (val-sym (gensym))
+        (args-sym (gensym)))
     (set table-sym (make-hash-table :test 'equal))
     `(lambda (&rest ,args-sym)
        ,(concat (documentation func) "\n(memoized function)")
        (let ((,val-sym (gethash ,args-sym ,table-sym)))
-     (if ,val-sym
-         ,val-sym
-       (puthash ,args-sym (apply ,func ,args-sym) ,table-sym))))))
+         (if ,val-sym
+             ,val-sym
+           (puthash ,args-sym (apply ,func ,args-sym) ,table-sym))))))
 
 (memoize 'arrow-left-xpm)
 (memoize 'arrow-right-xpm)
@@ -229,7 +229,7 @@ install the memoized function over the original function."
 (defvar powerline-minor-modes nil)
 (defvar powerline-arrow-shape 'arrow)
 (defun powerline-make-face
-  (bg &optional fg)
+    (bg &optional fg)
   (if bg
       (let ((cface (intern (concat "powerline-"
                                    bg
@@ -248,14 +248,14 @@ install the memoized function over the original function."
                                   :background bg
                                   :box nil))
           (set-face-attribute cface nil
-                            :foreground "white"
-                            :background bg
-                            :box nil))
+                              :foreground "white"
+                              :background bg
+                              :box nil))
         cface)
     nil))
 
 (defun powerline-make-left
-  (string color1 &optional color2 localmap)
+    (string color1 &optional color2 localmap)
   (let ((plface (powerline-make-face color1))
         (arrow  (and color2 (not (string= color1 color2)))))
     (concat
@@ -291,28 +291,28 @@ install the memoized function over the original function."
        ""))))
 
 (defun powerline-make-right
-  (string color2 &optional color1 localmap)
+    (string color2 &optional color1 localmap)
   (let ((plface (powerline-make-face color2))
         (arrow  (and color1 (not (string= color1 color2)))))
     (concat
      (if arrow
-       (propertize " " 'display
-                   (cond ((eq powerline-arrow-shape 'arrow)
-                          (arrow-right-xpm color1 color2))
-                         ((eq powerline-arrow-shape 'curve)
-                          (curve-right-xpm color1 color2))
-                         ((eq powerline-arrow-shape 'half)
-                          (half-xpm color2 color1))
-                         (t
-                          (arrow-right-xpm color1 color2)))
-                   'local-map (make-mode-line-mouse-map
-                               'mouse-1 (lambda () (interactive)
-                                          (setq powerline-arrow-shape
-                                                (cond ((eq powerline-arrow-shape 'arrow) 'curve)
-                                                      ((eq powerline-arrow-shape 'curve) 'half)
-                                                      ((eq powerline-arrow-shape 'half)  'arrow)
-                                                      (t                                 'arrow)))
-                                          (redraw-modeline))))
+         (propertize " " 'display
+                     (cond ((eq powerline-arrow-shape 'arrow)
+                            (arrow-right-xpm color1 color2))
+                           ((eq powerline-arrow-shape 'curve)
+                            (curve-right-xpm color1 color2))
+                           ((eq powerline-arrow-shape 'half)
+                            (half-xpm color2 color1))
+                           (t
+                            (arrow-right-xpm color1 color2)))
+                     'local-map (make-mode-line-mouse-map
+                                 'mouse-1 (lambda () (interactive)
+                                            (setq powerline-arrow-shape
+                                                  (cond ((eq powerline-arrow-shape 'arrow) 'curve)
+                                                        ((eq powerline-arrow-shape 'curve) 'half)
+                                                        ((eq powerline-arrow-shape 'half)  'arrow)
+                                                        (t                                 'arrow)))
+                                            (redraw-modeline))))
        "")
      (if arrow
          (propertize " " 'face plface)
@@ -331,7 +331,7 @@ install the memoized function over the original function."
     (defun get-scroll-bar-mode () scroll-bar-mode))
 
 (defun powerline-make-fill
-  (color)
+    (color)
   ;; justify right by filling with spaces to right fringe, 20 should be calculated
   (let ((plface (powerline-make-face color)))
     (if (eq 'right (get-scroll-bar-mode))
@@ -341,7 +341,7 @@ install the memoized function over the original function."
                   'face plface))))
 
 (defun powerline-make-text
-  (string color &optional fg localmap)
+    (string color &optional fg localmap)
   (let ((plface (powerline-make-face color)))
     (if string
         (if localmap
@@ -358,7 +358,7 @@ install the memoized function over the original function."
 
 (defmacro defpowerline (name string)
   `(defun ,(intern (concat "powerline-" (symbol-name name)))
-     (side color1 &optional color2)
+       (side color1 &optional color2)
      (powerline-make side
                      ,string
                      color1 color2)))
@@ -376,7 +376,7 @@ install the memoized function over the original function."
                (t
                 `(lambda (event)
                    (interactive "@e")
-                    nil))))
+                   nil))))
         (t
          `(lambda (event)
             (interactive "@e")
@@ -387,14 +387,14 @@ install the memoized function over the original function."
                                       'face (powerline-make-face color1)))
 (defvar powerline-buffer-size-suffix t)
 (defpowerline buffer-size (propertize
-                            (if powerline-buffer-size-suffix
-                                "%I"
-                              "%i")
-                            'local-map (make-mode-line-mouse-map
-                                        'mouse-1 (lambda () (interactive)
-                                                   (setq powerline-buffer-size-suffix
-                                                         (not powerline-buffer-size-suffix))
-                                                   (redraw-modeline)))))
+                           (if powerline-buffer-size-suffix
+                               "%I"
+                             "%i")
+                           'local-map (make-mode-line-mouse-map
+                                       'mouse-1 (lambda () (interactive)
+                                                  (setq powerline-buffer-size-suffix
+                                                        (not powerline-buffer-size-suffix))
+                                                  (redraw-modeline)))))
 (defpowerline lcl         current-input-method-title)
 (defpowerline rmw         "%*")
 (defpowerline major-mode  (propertize (format-mode-line mode-name)
@@ -409,17 +409,17 @@ install the memoized function over the original function."
 (defpowerline minor-modes (let ((mms (split-string (format-mode-line minor-mode-alist))))
                             (apply 'concat
                                    (mapcar #'(lambda (mm)
-                                              (propertize (if (string= (car mms)
-                                                                       mm)
-                                                              mm
-                                                            (concat " " mm))
-                                                          'help-echo "Minor mode\n mouse-1: Display minor mode menu\n mouse-2: Show help for minor mode\n mouse-3: Toggle minor modes"
-                                                          'local-map (let ((map (make-sparse-keymap)))
-                                                                       (define-key map [mode-line down-mouse-1]   (powerline-mouse 'minor 'menu mm))
-                                                                       (define-key map [mode-line mouse-2]        (powerline-mouse 'minor 'help mm))
-                                                                       (define-key map [mode-line down-mouse-3]   (powerline-mouse 'minor 'menu mm))
-                                                                       (define-key map [header-line down-mouse-3] (powerline-mouse 'minor 'menu mm))
-                                                                       map)))
+                                               (propertize (if (string= (car mms)
+                                                                        mm)
+                                                               mm
+                                                             (concat " " mm))
+                                                           'help-echo "Minor mode\n mouse-1: Display minor mode menu\n mouse-2: Show help for minor mode\n mouse-3: Toggle minor modes"
+                                                           'local-map (let ((map (make-sparse-keymap)))
+                                                                        (define-key map [mode-line down-mouse-1]   (powerline-mouse 'minor 'menu mm))
+                                                                        (define-key map [mode-line mouse-2]        (powerline-mouse 'minor 'help mm))
+                                                                        (define-key map [mode-line down-mouse-3]   (powerline-mouse 'minor 'menu mm))
+                                                                        (define-key map [header-line down-mouse-3] (powerline-mouse 'minor 'menu mm))
+                                                                        map)))
                                            mms))))
 (defpowerline row         "%4l")
 (defpowerline column      "%3c")
@@ -458,7 +458,7 @@ install the memoized function over the original function."
                              (powerline-rmw            'left   nil  )
                              (powerline-buffer-id      'left   nil  powerline-color1  )
                              (powerline-major-mode     'left        powerline-color1  )
-                             (powerline-minor-modes    'left        powerline-color1  )
+                             ;; (powerline-minor-modes    'left        powerline-color1  )
                              (powerline-narrow         'left        powerline-color1  powerline-color2  )
                              (powerline-vc             'center                        powerline-color2  )
                              (powerline-make-fill                                     powerline-color2  )
