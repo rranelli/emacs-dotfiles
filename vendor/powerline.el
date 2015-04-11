@@ -383,7 +383,7 @@ install the memoized function over the original function."
             nil))))
 
 (defpowerline arrow       "")
-(defpowerline buffer-id   (propertize (car (propertized-buffer-identification "%12b"))
+(defpowerline buffer-id   (propertize (car (propertized-buffer-identification "%12b   "))
                                       'face (powerline-make-face color1)))
 (defvar powerline-buffer-size-suffix t)
 (defpowerline buffer-size (propertize
@@ -458,6 +458,7 @@ install the memoized function over the original function."
                              (powerline-rmw            'left   nil  )
                              (powerline-buffer-id      'left   nil  powerline-color1  )
                              (powerline-major-mode     'left        powerline-color1  )
+                             (powerline-make-text      "  "    powerline-color1  )
                              ;; (powerline-minor-modes    'left        powerline-color1  )
                              (powerline-narrow         'left        powerline-color1  powerline-color2  )
                              (powerline-vc             'center                        powerline-color2  )
