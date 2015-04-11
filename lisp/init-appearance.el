@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'tsdh-dark
+(defcustom chosen-x-theme 'gruvbox
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
@@ -92,6 +92,8 @@
                                                             :foreground "#fb4934"))))))
   "Custom color configuration."
   :group 'init-appearance)
+
+(set-face-attribute 'default nil :height 115)
 
 ;; configuration
 (defun get-color-config (config-name)
