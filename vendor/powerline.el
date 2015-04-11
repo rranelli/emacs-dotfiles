@@ -437,7 +437,7 @@ install the memoized function over the original function."
                                                       'mouse-1 'mode-line-widen)))))
 (defpowerline status      "%s")
 (defpowerline emacsclient mode-line-client)
-(defpowerline vc vc-mode)
+(defpowerline vc (when vc-mode (substring vc-mode 5)))
 
 (defpowerline percent-xpm (propertize "  "
                                       'display
