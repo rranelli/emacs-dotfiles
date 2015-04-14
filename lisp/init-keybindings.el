@@ -84,7 +84,7 @@
 (global-set-key (kbd "M-d") 'kill-word)
 (global-set-key (kbd "M-h") 'backward-kill-word)
 (global-set-key (kbd "M-u") 'zap-to-char)
-(global-set-key (kbd "M-E") 'er/expand-region)
+(global-set-key (kbd "C-M-SPC") 'er/expand-region)
 (global-set-key (kbd "M-T") 'transpose-sexps)
 (global-set-key (kbd "M-Q") 'quoted-insert)
 
