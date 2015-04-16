@@ -125,10 +125,12 @@
 
 (defun rr/toggle-vcr-off ()
   (interactive)
-  (message (format "VCR_OFF set to %s"
-                   (or (and (equal (getenv "VCR_OFF") "true")
-                            (setenv "VCR_OFF" "false"))
-                       (setenv "VCR_OFF" "true")))))
+  (-> (getenv "VCR_OFF")
+      (equal "true")
+      (if nil "true")
+      (->> (setenv "VCR_OFF")
+           (format "VCR_OFF set to %s"))
+      (message)))
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
