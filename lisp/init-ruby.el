@@ -123,5 +123,12 @@
     ("C-c r h" . rr/convert-to-ruby-1.9-hash-syntax)
     ("C-c r s" . rr/split-module-nesting)))
 
+(defun rr/toggle-vcr-off ()
+  (interactive)
+  (message (format "VCR_OFF set to %s"
+                   (or (and (equal (getenv "VCR_OFF") "true")
+                            (setenv "VCR_OFF" "false"))
+                       (setenv "VCR_OFF" "true")))))
+
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
