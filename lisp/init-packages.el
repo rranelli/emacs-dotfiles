@@ -23,6 +23,7 @@
     company
     dockerfile-mode
     elixir-mode
+    ensime
     expand-region
     find-file-in-project
     flycheck
@@ -55,6 +56,7 @@
     rubocop
     ruby-refactor
     s
+    scala-mode2
     smartparens
     smartscan
     smex
