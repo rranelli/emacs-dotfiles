@@ -41,6 +41,13 @@
     (set-window-buffer other this-buffer)
     (set-window-buffer this other-buffer)))
 
+(defun rr/ask-before-killing-frame ()
+  "Ask for confirmation when killing the current frame."
+  (interactive)
+  (if (y-or-n-p (format "Are you sure you want to kill this frame? "))
+      (save-buffers-kill-terminal)
+    (message "Thank you ;)")))
+
 ;; -- misc --
 (defun noop () "Does nothing." (interactive) nil)
 

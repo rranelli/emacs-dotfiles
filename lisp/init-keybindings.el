@@ -44,11 +44,7 @@
 (global-unset-key (kbd "C-M-z"))
 (global-unset-key (kbd "C-x C-z"))
 
-;; join lines!
-(global-set-key (kbd "C-\\") 'join-line)
-
-;; compilation
-(global-set-key (kbd "C-c ,c") 'compile)
+(global-set-key [remap save-buffers-kill-terminal] 'rr/ask-before-killing-frame)
 
 ;; train myself not to use return or backspace
 (defun rr/disable-backspace-and-return ()
@@ -66,6 +62,7 @@
 (define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
 (define-key emacs-lisp-mode-map (kbd "C-c C-e") 'eval-and-replace)
 (define-key emacs-lisp-mode-map (kbd "C-c C-v") 'eval-buffer)
+(global-set-key (kbd "C-c ,c") 'compile)
 
 ;; indentation
 (global-set-key (kbd "C-I") 'indent-region)
@@ -87,6 +84,7 @@
 (global-set-key (kbd "C-M-SPC") 'er/expand-region)
 (global-set-key (kbd "M-T") 'transpose-sexps)
 (global-set-key (kbd "M-Q") 'quoted-insert)
+(global-set-key (kbd "C-\\") 'join-line)
 
 (global-set-key (kbd "C-;") 'ace-jump-word-mode)
 (global-set-key (kbd "C-:") 'ace-jump-char-mode)
@@ -103,10 +101,10 @@
 (global-set-key (kbd "M-1") 'delete-other-windows)
 (global-set-key (kbd "M-2") 'split-window-vertically)
 (global-set-key (kbd "M-3") 'split-window-horizontally)
-(global-set-key (kbd "C-x 2") 'vsplit-last-buffer)
-(global-set-key (kbd "C-x 3") 'hsplit-last-buffer)
-(global-set-key (kbd "C-c -") 'swap-buffers-in-windows)
 
+(define-key ctl-x-map "2" 'vsplit-last-buffer)
+(define-key ctl-x-map "3" 'hsplit-last-buffer)
+(define-key ctl-x-map "-" 'swap-buffers-in-windows)
 (define-key ctl-x-map "n" 'narrow-or-widen-dwim)
 
 ;; other mode compatibilities
