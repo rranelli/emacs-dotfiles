@@ -18,11 +18,11 @@
 
 (add-hook 'org-jekyll-mode-hook 'org-jekyll-set-compile-on-save)
 
-(define-bindings global-map
+(rr/define-bindings global-map
   '(("C-s-o" . synosaurus-choose-and-replace)
     ("C-s-l" . synosaurus-lookup)))
 
-(define-bindings org-mode-map
+(rr/define-bindings org-mode-map
   '(("C-s-c" . langtool-check)
     ("C-s-v" . langtool-check-done)
     ("C-s-k" . langtool-correct-buffer)
@@ -42,12 +42,12 @@
 
 (add-hook 'flyspell-mode-hook
 	  (lambda ()
-	    (expose-bindings flyspell-mode-map '("C-;"))))
+	    (rr/expose-bindings flyspell-mode-map '("C-;"))))
 
 (add-hook 'markdown-mode-hook #'(lambda ()
-				  (expose-bindings markdown-mode-map bindings-to-expose)
-				  (expose-bindings markdown-mode-map '("C-:" "C-c C-f" "C-;"))))
-(expose-bindings flyspell-mode-map '("C-:" "C-;" "C-c C-f"))
+				  (rr/expose-bindings markdown-mode-map rr/default-bindings-to-expose)
+				  (rr/expose-bindings markdown-mode-map '("C-:" "C-c C-f" "C-;"))))
+(rr/expose-bindings flyspell-mode-map '("C-:" "C-;" "C-c C-f"))
 
 (provide 'init-writing)
 ;;; init-writing.el ends here

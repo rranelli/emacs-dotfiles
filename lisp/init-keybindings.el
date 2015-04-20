@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; Keybindings macros
-(defvar bindings-to-expose
+(defvar rr/default-bindings-to-expose
   '("M-x"
     "C-c C-f"
     "C-M-f"
@@ -21,24 +21,38 @@
     "M-l")
   "Custom keybindings to expose on every mode.")
 
-(defun expose-rr/default-bindings (mode-map)
-  (expose-bindings mode-map bindings-to-expose))
+(defun rr/expose-default-bindings (mode-map)
+  "Expose `rr/default-bindings-to-expose' in MODE-MAP."
+  (rr/expose-bindings mode-map rr/default-bindings-to-expose))
 
-(defmacro expose-global-keybinding (binding map)
+(defmacro rr/expose-global-binding (binding map)
+  "Overwrite the BINDING in MAP with the command defined in `current-global-map' for BINDING."
   `(define-key ,map ,binding `,(lookup-key `,(current-global-map) ,binding)))
 
-(defmacro expose-bindings (map bindings)
+(defmacro rr/expose-bindings (map bindings)
+  "Expose in MAP all BINDINGS from `current-global-map'."
   `(dolist (bnd ,bindings)
-     `,(expose-global-keybinding `,(kbd bnd) ,map)))
+     `,(rr/expose-global-binding `,(kbd bnd) ,map)))
 
-(defun define-bindings (keymap binding-alist)
+(defun rr/define-bindings (keymap binding-alist)
   "Define keys for KEYMAP given a BINDING-ALIST."
   (dolist (p binding-alist)
     (let ((key (car p))
 	  (command (cdr p)))
       (define-key keymap (kbd key) command))))
 
-;; unset irritant suspend-frame
+(defmacro rr/expose-default-bindings-with-hook (mode-namez)
+  "Expose default keybidings using hook for MODE-NAME."
+  `(add-hook (rr/format-symbol "%s-hook" ,mode-namez)
+             (lambda ()
+               (->> ,mode-namez
+                    (rr/format-symbol "%s-map")
+                    (symbol-value)
+                    (rr/expose-default-bindings)))))
+
+;;
+;;; unset irritant suspend-frame
+;;
 (global-unset-key (kbd "C-x z"))
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-M-z"))
@@ -69,17 +83,14 @@
 (global-set-key (kbd "C-c i") (lambda () (interactive)
 				(indent-region (point-min) (point-max))))
 
-;; commands
-(global-set-key (kbd "C-x m") 'execute-extended-command)
-
 ;; movement and editing
 (global-set-key (kbd "M-n") (lambda () (interactive) (next-line 5)))
 (global-set-key (kbd "M-p") (lambda () (interactive) (previous-line 5)))
 (global-set-key (kbd "C-q") 'comment-or-uncomment-region)
-(global-set-key (kbd "C-a") 'move-smart-beginning-of-line)
+(global-set-key (kbd "C-a") 'rr/move-smart-beginning-of-line)
 (global-set-key (kbd "C-h") 'backward-delete-char)
-(global-set-key (kbd "M-d") 'kill-word)
-(global-set-key (kbd "M-h") 'backward-kill-word)
+(global-set-key [remap kill-word] 'rr/kill-word)
+(global-set-key [remap backward-kill-word] 'rr/backward-kill-word)
 (global-set-key (kbd "M-u") 'zap-to-char)
 (global-set-key (kbd "C-M-SPC") 'er/expand-region)
 (global-set-key (kbd "M-T") 'transpose-sexps)
@@ -91,7 +102,6 @@
 
 (global-set-key (kbd "M-j") 'better-registers-jump-to-register)
 (define-key better-registers-map (kbd "C-r (") 'rr/replace-wrapper-around-point)
-
 
 ;; window and buffer manipulation
 (global-set-key (kbd "M-o") 'other-window)
@@ -107,33 +117,31 @@
 (define-key ctl-x-map "-" 'swap-buffers-in-windows)
 (define-key ctl-x-map "n" 'narrow-or-widen-dwim)
 
-;; other mode compatibilities
-(expose-bindings dired-mode-map '("M-o"))
-(expose-bindings yaml-mode-map '("C-m"))
-(expose-bindings text-mode-map '("M-r"))
+;;
+;;; Customization compatibility with other modes
+;;
+(rr/expose-bindings dired-mode-map '("M-o"))
+(rr/expose-bindings yaml-mode-map '("C-m"))
+(rr/expose-bindings text-mode-map '("M-r"))
+(rr/expose-bindings better-registers-map
+                    '("<f1>" "C-j" "C-x r"))
 
-(expose-bindings better-registers-map
-		 '("<f1>" "C-j" "C-x r" "C-x r"))
+(mapc 'rr/expose-default-bindings
+      (list markdown-mode-map
+            sh-mode-map))
 
-(expose-rr/default-bindings markdown-mode-map)
-(expose-rr/default-bindings sh-mode-map)
+(mapc (lambda (x) (rr/expose-default-bindings-with-hook x))
+      '(python-mode
+        sgml-mode
+        html-mode
+        nxml-mode
+        diff-mode
+        vhdl-mode
+        makefile-mode))
 
-(add-hook 'python-mode-hook
-	  (lambda () (expose-rr/default-bindings python-mode-map)))
-(add-hook 'sgml-mode-hook
-	  (lambda () (expose-rr/default-bindings sgml-mode-map)))
-(add-hook 'html-mode-hook
-	  (lambda () (expose-rr/default-bindings html-mode-map)))
-(add-hook 'nxml-mode-hook
-	  (lambda () (expose-rr/default-bindings nxml-mode-map)))
-(add-hook 'diff-mode-hook
-	  (lambda () (expose-rr/default-bindings diff-mode-map)))
-
-;; makefile
 (add-hook 'makefile-mode-hook
-	  (lambda ()
-	    (define-key makefile-mode-map (kbd "TAB") 'self-insert-command)
-	    (expose-rr/default-bindings makefile-mode-map)))
+          (lambda ()
+            (define-key makefile-mode-map (kbd "TAB") 'self-insert-command)))
 
 (provide 'init-keybindings)
 ;;; init-keybindings ends here

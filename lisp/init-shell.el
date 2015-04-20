@@ -91,17 +91,17 @@ If ARG is present, open a new term regardless."
 (global-set-key (kbd "C-x RET") 'new-term)
 (global-set-key (kbd "C-x C-M-M") 'new-shell)
 
-(expose-bindings shell-mode-map bindings-to-expose)
+(rr/expose-bindings shell-mode-map rr/default-bindings-to-expose)
 (add-hook 'term-mode-hook
 	  (lambda ()
-	    (expose-bindings term-raw-map
-                             (->> bindings-to-expose
+	    (rr/expose-bindings term-raw-map
+                             (->> rr/default-bindings-to-expose
                                   (remove "C-h")
                                   (remove "M-h")))))
 
 (add-hook 'sh-mode-hook
 	  (lambda ()
-	    (expose-bindings sh-mode-map bindings-to-expose)))
+	    (rr/expose-bindings sh-mode-map rr/default-bindings-to-expose)))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

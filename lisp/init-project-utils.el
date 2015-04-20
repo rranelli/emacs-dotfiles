@@ -119,7 +119,7 @@
 ;; =====================================
 ;; -- extensions to projectile keymap --
 ;; =====================================
-(define-bindings projectile-command-map
+(rr/define-bindings projectile-command-map
   '(;; misc
     ("n" . rr/show-file-name)
     ("\C-n" . rr/new-git-project)

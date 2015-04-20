@@ -6,7 +6,7 @@
 
 (global-set-key (kbd "M-/") 'company-complete)
 
-(define-bindings company-active-map
+(rr/define-bindings company-active-map
   `(("C-n" . company-select-next)
     ("C-p" . company-select-previous)
     ("C-h" . backward-delete-char)))

@@ -45,10 +45,10 @@
 		(?𝆑 lambda "\\<fn\\>" (elixir-mode))
 		)))
 
-(define-bindings elixir-mode-map
+(rr/define-bindings elixir-mode-map
   '(("M-q" . elixir-mode-fill-doc-string)))
 
-(define-bindings alchemist-mode-map
+(rr/define-bindings alchemist-mode-map
   '(("C-c , y" . rr/alchemist-toggle-file-and-tests-other-window)
     ("C-c , t" . rr/alchemist-toggle-file-and-tests)
     ("C-c , a" . alchemist-mix-test)

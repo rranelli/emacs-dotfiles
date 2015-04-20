@@ -2,19 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun kill-word (arg)
-  ;; -- This monkeypatch fixes the behavior of kill word --
-  ;; now, it will not push to the kill-ring the killed words.
-  (interactive "p")
-  (delete-region (point) (progn (forward-word arg) (point))))
+(defmacro rr/format-symbol (template &rest symbols)
+  "Format a symbol out of a TEMPLATE and other SYMBOLS.
+Works just like `format' formats a string from strings.
 
-;; -- movement --
-(defun move-smart-beginning-of-line ()
-  "Move to beginning of line or to beginning of indentation depending on POINT."
-  (interactive)
-  (if (= (point) (line-beginning-position))
-      (back-to-indentation)
-    (move-beginning-of-line nil)))
+The symbol is returned using `intern'"
+  `(intern (format ,template ,@(mapcar 'symbol-name symbols))))
 
 ;; -- window management --
 (defun vsplit-last-buffer ()

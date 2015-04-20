@@ -109,13 +109,13 @@
 
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
-  (define-bindings map
+  (rr/define-bindings map
     '(("y" . rspec-spec-or-target-other-window-no-change-window)
       ("u" . rspec-find-spec-or-target-other-window)
       ("e" . rspec-find-spec-or-target-find-example-other-window)
       ("w" . rspec-toggle-spec-and-target-find-example))))
 
-(define-bindings ruby-mode-map
+(rr/define-bindings ruby-mode-map
   '(("C-c r b" . ruby-send-buffer)
     ("C-c r r" . ruby-send-region)
     ("C-c r v" . ruby-refactor-extract-local-variable)

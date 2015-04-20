@@ -2,6 +2,22 @@
 ;;; Commentary:
 ;;; Code:
 
+(defun rr/kill-word (arg)
+  (interactive "p")
+  (delete-region (point) (progn (forward-word arg) (point))))
+
+(defun rr/backward-kill-word (arg)
+  (interactive "p")
+  (delete-region (point) (progn (backward-word arg) (point))))
+
+;; -- movement --
+(defun rr/move-smart-beginning-of-line ()
+  "Move to beginning of line or to beginning of indentation depending on POINT."
+  (interactive)
+  (if (= (point) (line-beginning-position))
+      (back-to-indentation)
+    (move-beginning-of-line nil)))
+
 (defun sudo-edit (&optional arg)
   "Edit file as sudo. ARG as point."
   (interactive "p")

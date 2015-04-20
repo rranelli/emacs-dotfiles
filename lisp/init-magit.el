@@ -27,7 +27,7 @@
 
 (define-key magit-mode-map (kbd "C-x C-s") 'noop)
 
-(expose-bindings magit-mode-map '("M-1" "M-2" "M-3"))
+(rr/expose-bindings magit-mode-map '("M-1" "M-2" "M-3"))
 
 (provide 'init-magit)
 ;;; init-magit.el ends here

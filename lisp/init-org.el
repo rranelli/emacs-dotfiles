@@ -54,8 +54,8 @@
       (setq org-crypt-key nil)
 
       ;; setup keybindings
-      (expose-bindings org-agenda-mode-map '("C-c p"))
-      (expose-bindings org-mode-map '("M-h" "C-c C-f"))
+      (rr/expose-bindings org-agenda-mode-map '("C-c p"))
+      (rr/expose-bindings org-mode-map '("M-h" "C-c C-f"))
 
       (message "Org-mode agenda config loaded."))
   (message "skipping org-mode agenda load."))
