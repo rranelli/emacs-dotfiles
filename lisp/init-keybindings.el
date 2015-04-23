@@ -126,18 +126,16 @@
 (rr/expose-bindings better-registers-map
                     '("<f1>" "C-j" "C-x r"))
 
-(mapc 'rr/expose-default-bindings
-      (list markdown-mode-map
-            sh-mode-map))
+(rr/expose-default-bindings markdown-mode-map)
+(rr/expose-default-bindings sh-mode-map)
 
-(mapc (lambda (x) (rr/expose-default-bindings-with-hook x))
-      '(python-mode
-        sgml-mode
-        html-mode
-        nxml-mode
-        diff-mode
-        vhdl-mode
-        makefile-mode))
+(rr/expose-default-bindings-with-hook python-mode)
+(rr/expose-default-bindings-with-hook sgml-mode)
+(rr/expose-default-bindings-with-hook html-mode)
+(rr/expose-default-bindings-with-hook nxml-mode)
+(rr/expose-default-bindings-with-hook diff-mode)
+(rr/expose-default-bindings-with-hook vhdl-mode)
+(rr/expose-default-bindings-with-hook makefile-mode)
 
 (add-hook 'makefile-mode-hook
           (lambda ()
