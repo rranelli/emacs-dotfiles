@@ -127,7 +127,7 @@
   (interactive)
   (-> (getenv "VCR_OFF")
       (equal "true")
-      (if nil "true")
+      (unless "true")
       (->> (setenv "VCR_OFF")
            (format "VCR_OFF set to %s"))
       (message)))
