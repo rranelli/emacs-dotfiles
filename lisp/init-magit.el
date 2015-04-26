@@ -3,6 +3,9 @@
 ;;; Code:
 (require 'magit)
 
+;; Remove warning for `magit-auto-revert-mode'
+(setq magit-last-seen-setup-instructions "1.4.0")
+
 ;; Always open magit in the same window
 (setq magit-status-buffer-switch-function 'switch-to-buffer)
 
@@ -13,10 +16,6 @@
   (before magit-save-before-status activate)
   "Save all buffers before magit status."
   (save-some-buffers t))
-
-
-(global-set-key (kbd "C-c g") 'magit-status)
-(global-set-key (kbd "<f8>") 'magit-status)
 
 ;; magit showlevels redefinition
 (define-key magit-mode-map (kbd "s") 'magit-status)
