@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (require 'scala-mode2)
-(require 'ensime-mode)
+(require 'ensime)
 
 ;; -- hooks --
 (add-hook 'scala-mode-hook 'ensime-mode)
@@ -10,8 +10,9 @@
 ;; pretty symbols
 (setq pretty-symbol-patterns
       (append pretty-symbol-patterns
-	      `((?→ lambda "->" (scala-mode2))
-                (?⟵ lambda "<-" (scala-mode2)))))
+	      `((?→ lambda "->" (scala-mode))
+                (?⟵ lambda "<-" (scala-mode))
+                (?⟹ lambda "=>" (scala-mode)))))
 
 (rr/define-bindings scala-mode-map
                     '(("C-c , c" . ensime-sbt-do-compile)
