@@ -25,7 +25,6 @@
     elixir-mode
     ensime
     expand-region
-    find-file-in-project
     flycheck
     fuzzy
     git-timemachine
@@ -85,7 +84,6 @@
     dired-x
     dpkg-dev-el
     ffap
-    find-file-in-project
     flyspell
     hl-anything
     iso-transl

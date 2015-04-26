@@ -77,12 +77,9 @@ If ARG is present, open a new term regardless."
   (file-name-base (directory-file-name (rr/shell-wd))))
 
 (defun rr/shell-wd ()
-  (if (rr/in-project)
-      (ffip-project-root)
+  (if (projectile-project-p)
+      (projectile-project-root)
     default-directory))
-
-(defun rr/in-project ()
-  (stringp (ffip-project-root)))
 
 ;; hooks
 (add-hook 'comint-preoutput-filter-functions 'kill-completion-window-buffer)

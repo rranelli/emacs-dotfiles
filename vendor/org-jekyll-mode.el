@@ -99,7 +99,7 @@
   (let* ((post-title (read-string "post title: "))
          (post-title-dashed (replace-regexp-in-string " " "-" post-title))
          (drafts-template-path "org/_drafts/%s.org"))
-    (find-file (expand-file-name (format drafts-template-path post-title-dashed) (ffip-project-root)))
+    (find-file (expand-file-name (format drafts-template-path post-title-dashed) (projectile-project-root)))
 
     (insert "blog")
     (yas-expand)
