@@ -14,7 +14,8 @@
 		       #'(lambda (name) (or
 				    (not (string-match "\.org$" name))
 				    (string-match "archive" name)
-				    (string-match "\??/\.#" name))) dir-files)))
+				    (string-match "\??/\.#" name)))
+                       dir-files)))
 
       (setq org-user-agenda-files org-files)
 
@@ -55,7 +56,7 @@
 
       ;; setup keybindings
       (rr/expose-bindings org-agenda-mode-map '("C-c p"))
-      (rr/expose-bindings org-mode-map '("M-h" "C-c C-f"))
+      (rr/expose-bindings org-mode-map '("M-h" "C-c C-f" "C-a"))
 
       (message "Org-mode agenda config loaded."))
   (message "skipping org-mode agenda load."))
