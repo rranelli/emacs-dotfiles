@@ -104,6 +104,11 @@ narrowed."
   (interactive)
   (set-buffer-file-coding-system 'iso-latin-1-mac t))
 
+(defun rr/convert-to-utf8-file ()
+  "Change the current buffer to Latin 1 with Unix line-ends."
+  (interactive)
+  (set-buffer-file-coding-system 'utf-8 t))
+
 ;; don't know why, but starter kit added this monkey patch
 (defun vc-git-annotate-command (file buf &optional rev)
   (let ((name (file-relative-name file)))
