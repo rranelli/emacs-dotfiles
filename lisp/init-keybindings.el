@@ -134,7 +134,7 @@
 (rr/expose-default-bindings-with-hook html-mode)
 (rr/expose-default-bindings-with-hook nxml-mode)
 (rr/expose-default-bindings-with-hook diff-mode)
-(rr/expose-default-bindings-with-hook vhdl-mode)
+(rr/expose-default-bindings-with-hook c-mode)
 (rr/expose-default-bindings-with-hook makefile-mode)
 
 (add-hook 'makefile-mode-hook
