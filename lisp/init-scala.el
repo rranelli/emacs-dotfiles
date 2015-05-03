@@ -12,7 +12,7 @@
       (append pretty-symbol-patterns
 	      `((?→ lambda "->" (scala-mode))
                 (?⟵ lambda "<-" (scala-mode))
-                (?⟹ lambda "=>" (scala-mode)))))
+                (?➾ lambda "=>" (scala-mode)))))
 
 (rr/define-bindings scala-mode-map
                     '(("C-c , c" . ensime-sbt-do-compile)
