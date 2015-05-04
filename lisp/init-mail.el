@@ -104,6 +104,7 @@
 	  ("From" ("reporting_service@locaweb.com.br" . ,junk-folder))
 	  ("From" ("no-reply@slack.com" . ,junk-folder))
 	  ("From" ("reservadesala@locaweb.com.br" . ,junk-folder))
+          ("From" ("notifications@kanbanery.com" . ,junk-folder))
 	  ("To" ("scrum-hospedagem@locaweb.com.br" . ,junk-folder))
 	  ;; rules for personal mail
 	  ("From" ("enews@automation.com" . ,gmail-trash))
