@@ -110,20 +110,30 @@
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
   (rr/define-bindings map
-    '(("y" . rspec-spec-or-target-other-window-no-change-window)
-      ("u" . rspec-find-spec-or-target-other-window)
-      ("e" . rspec-find-spec-or-target-find-example-other-window)
-      ("w" . rspec-toggle-spec-and-target-find-example))))
+                      '(("y" . rspec-spec-or-target-other-window-no-change-window)
+                        ("u" . rspec-find-spec-or-target-other-window)
+                        ("e" . rspec-find-spec-or-target-find-example-other-window)
+                        ("w" . rspec-toggle-spec-and-target-find-example))))
 
 (rr/define-bindings ruby-mode-map
-  '(("C-c r b" . ruby-send-buffer)
-    ("C-c r r" . ruby-send-region)
-    ("C-c r v" . ruby-refactor-extract-local-variable)
-    ("C-c r m" . ruby-refactor-extract-to-method)
-    ("C-c r h" . rr/convert-to-ruby-1.9-hash-syntax)
-    ("C-c r s" . rr/split-module-nesting)))
+                    '(("C-c r b" . ruby-send-buffer)
+                      ("C-c r r" . ruby-send-region)
+                      ("C-c r v" . ruby-refactor-extract-local-variable)
+                      ("C-c r m" . ruby-refactor-extract-to-method)
+                      ("C-c r h" . rr/convert-to-ruby-1.9-hash-syntax)
+                      ("C-c r s" . rr/split-module-nesting)))
+
+(rr/define-bindings rspec-compilation-mode-map
+                    '(("e" . rr/pry-in-rspec-compilation)))
+
+(defun rr/pry-in-rspec-compilation ()
+  "Fast usage of pry inside compilation mode buffersa"
+  (interactive)
+  (end-of-buffer)
+  (inf-ruby-switch-from-compilation))
 
 (defun rr/toggle-vcr-off ()
+  "Toggles VCR_OFF environment variable between 'true' and nil"
   (interactive)
   (-> (getenv "VCR_OFF")
       (equal "true")
