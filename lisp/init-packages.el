@@ -16,7 +16,6 @@
     alchemist
     anzu
     auto-package-update
-    bash-completion
     better-registers
     cider
     color-theme-sanityinc-tomorrow

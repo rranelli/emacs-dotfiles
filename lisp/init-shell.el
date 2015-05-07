@@ -1,14 +1,6 @@
 ;;; init-shell.el -- Configures features that enhances one's work with terminals inside Emacs.
 ;;; Commentary:
 ;;; Code:
-(autoload 'bash-completion-dynamic-complete
-  "bash-completion"
-  "BASH completion hook")
-(add-hook 'shell-dynamic-complete-functions
-	  'bash-completion-dynamic-complete)
-(add-hook 'shell-command-complete-functions
-	  'bash-completion-dynamic-complete)
-
 (defun kill-completion-window-buffer (&optional output)
   (interactive)
   (dolist (win (window-list))
