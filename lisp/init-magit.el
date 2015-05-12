@@ -13,16 +13,18 @@
 (setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-only)
 
 (defadvice magit-status
-  (before magit-save-before-status activate)
+    (before magit-save-before-status activate)
   "Save all buffers before magit status."
   (save-some-buffers t))
 
 ;; magit showlevels redefinition
-(define-key magit-mode-map (kbd "s") 'magit-status)
-(define-key magit-mode-map (kbd "C-1") 'magit-show-level-1-all)
-(define-key magit-mode-map (kbd "C-2") 'magit-show-level-2-all)
-(define-key magit-mode-map (kbd "C-3") 'magit-show-level-3-all)
-(define-key magit-mode-map (kbd "C-4") 'magit-show-level-4-all)
+(rr/define-bindings magit-mode-map
+                    '(("s" . magit-status)
+                      ("X" . magit-reset-head-hard)
+                      ("C-1" . magit-show-level-1-all)
+                      ("C-2" . magit-show-level-2-all)
+                      ("C-3" . magit-show-level-3-all)
+                      ("C-4" . magit-show-level-4-all)))
 
 (define-key magit-mode-map (kbd "C-x C-s") 'noop)
 
