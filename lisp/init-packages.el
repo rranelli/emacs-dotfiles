@@ -31,6 +31,7 @@
     gruvbox-theme
     haskell-mode
     helm
+    helm-bundle-show
     helm-projectile
     hl-anything
     ido-vertical-mode
