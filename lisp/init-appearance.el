@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'gruvbox
+(defcustom chosen-x-theme 'tsdh-dark
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
