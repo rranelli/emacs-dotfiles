@@ -71,6 +71,8 @@
                                         (set-face-attribute 'header-line nil
                                                             :box nil
                                                             :inverse-video nil)
+                                        (set-face-attribute 'sp-pair-overlay-face nil
+                                                            :foreground "khaki1")
                                         (set-face-attribute 'font-lock-type-face nil
                                                             :foreground "khaki1")
                                         (set-face-attribute 'font-lock-comment-face nil
