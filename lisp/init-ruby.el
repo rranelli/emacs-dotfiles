@@ -107,6 +107,18 @@
       (insert "end\n")
       (indent-region (point-min) (point-max)))))
 
+(defun rr/wrap-in-stabby-lambda (begin end)
+  (interactive "r")
+  (goto-char end)
+  (insert " }")
+  (goto-char begin)
+  (insert "-> { "))
+
+(defun rr/convert-stabby-lambda-to-block ()
+  (interactive)
+  ;; TODO: Implement this function
+  )
+
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
   (rr/define-bindings map
@@ -121,7 +133,8 @@
                       ("C-c r v" . ruby-refactor-extract-local-variable)
                       ("C-c r m" . ruby-refactor-extract-to-method)
                       ("C-c r h" . rr/convert-to-ruby-1.9-hash-syntax)
-                      ("C-c r s" . rr/split-module-nesting)))
+                      ("C-c r s" . rr/split-module-nesting)
+                      ("C-c r l" . rr/wrap-in-stabby-lambda)))
 
 (rr/define-bindings rspec-compilation-mode-map
                     '(("e" . rr/pry-in-rspec-compilation)))
