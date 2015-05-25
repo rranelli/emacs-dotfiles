@@ -7,7 +7,7 @@
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'emacs-lisp-mode-hook 'remove-elc-on-save)
 
-(defun eval-and-replace ()
+(defun rr/eval-and-replace ()
   "Replace the preceding sexp with its value."
   (interactive)
   (if (> (point) (mark))
