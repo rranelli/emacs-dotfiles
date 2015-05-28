@@ -1,13 +1,6 @@
 ;;; init-shell.el -- Configures features that enhances one's work with terminals inside Emacs.
 ;;; Commentary:
 ;;; Code:
-(defun kill-completion-window-buffer (&optional output)
-  (interactive)
-  (dolist (win (window-list))
-    (when (string= (buffer-name (window-buffer win)) "*Completions*")
-      (kill-buffer "*Completions*")))
-  output)
-
 (defmacro do-not-query-process-kill (function-name process-name)
   "Do not query process kill for FUNCTION-NAME that spawns process
 PROCESS-NAME."
@@ -26,7 +19,6 @@ PROCESS-NAME."
 (do-not-query-process-kill term "terminal")
 
 ;; new shells
-
 (defun new-shell (arg)
   "Create shell with given name. If ARG is present, open a new shell
 regardless."
@@ -72,9 +64,6 @@ If ARG is present, open a new term regardless."
   (if (projectile-project-p)
       (projectile-project-root)
     default-directory))
-
-;; hooks
-(add-hook 'comint-preoutput-filter-functions 'kill-completion-window-buffer)
 
 ;; -- keybindings --
 (global-set-key (kbd "C-x RET") 'new-term)
