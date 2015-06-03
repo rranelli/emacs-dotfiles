@@ -134,8 +134,8 @@
     ("x" . neotree-find)
 
     ;; highlight-anything
-    ("h" . hl-highlight-thingatpt-local)
-    ("u" . hl-unhighlight-all-local)
+    ("h" . rr/highlight-at-point)
+    ("u" . rr/unhighlight-at-point)
 
     ;; projectile extras
     ("f" . helm-rr/open-project)

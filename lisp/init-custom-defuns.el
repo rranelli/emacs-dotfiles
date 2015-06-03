@@ -109,6 +109,18 @@ narrowed."
   (interactive)
   (set-buffer-file-coding-system 'utf-8 t))
 
+(defun rr/highlight-at-point ()
+  "Highlight the sexp at point."
+  (interactive)
+  (let ((rgxp (regexp-quote (symbol-name (sexp-at-point)))))
+    (highlight-regexp rgxp)))
+
+(defun rr/unhighlight-at-point ()
+  "Unhighlight the sexp at point."
+  (interactive)
+  (let ((rgxp (regexp-quote (symbol-name (sexp-at-point)))))
+    (unhighlight-regexp rgxp)))
+
 ;; don't know why, but starter kit added this monkey patch
 (defun vc-git-annotate-command (file buf &optional rev)
   (let ((name (file-relative-name file)))

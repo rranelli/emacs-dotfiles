@@ -114,11 +114,6 @@
   (goto-char begin)
   (insert "-> { "))
 
-(defun rr/convert-stabby-lambda-to-block ()
-  (interactive)
-  ;; TODO: Implement this function
-  )
-
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
   (rr/define-bindings map
