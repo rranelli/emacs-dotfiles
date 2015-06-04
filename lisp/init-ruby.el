@@ -114,6 +114,34 @@
   (goto-char begin)
   (insert "-> { "))
 
+(defun rr/pry-in-rspec-compilation ()
+  "Fast usage of pry inside compilation mode buffersa"
+  (interactive)
+  (end-of-buffer)
+  (inf-ruby-switch-from-compilation))
+
+(defun rr/insert-requires ()
+  "Require all internal classes/modules of the current file."
+  (interactive)
+  (let* ((fbase (file-name-base (file-name-sans-extension (buffer-file-name))))
+         (fdir (file-name-directory (buffer-file-name)))
+         (dirz (expand-file-name fbase fdir))
+         (files (directory-files dirz nil ".rb$"))
+         (require-text (->> files
+                            (-map (lambda (name) (replace-regexp-in-string ".rb$" "" name)))
+                            (-map (lambda (name) (format "require_relative '%s/%s'" fbase name))))))
+    (insert (s-join "\n" require-text))))
+
+(defun rr/toggle-vcr-off ()
+  "Toggles VCR_OFF environment variable between 'true' and nil"
+  (interactive)
+  (-> (getenv "VCR_OFF")
+      (equal "true")
+      (unless "true")
+      (->> (setenv "VCR_OFF")
+           (format "VCR_OFF set to %s"))
+      (message)))
+
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
   (rr/define-bindings map
@@ -133,22 +161,6 @@
 
 (rr/define-bindings rspec-compilation-mode-map
                     '(("e" . rr/pry-in-rspec-compilation)))
-
-(defun rr/pry-in-rspec-compilation ()
-  "Fast usage of pry inside compilation mode buffersa"
-  (interactive)
-  (end-of-buffer)
-  (inf-ruby-switch-from-compilation))
-
-(defun rr/toggle-vcr-off ()
-  "Toggles VCR_OFF environment variable between 'true' and nil"
-  (interactive)
-  (-> (getenv "VCR_OFF")
-      (equal "true")
-      (unless "true")
-      (->> (setenv "VCR_OFF")
-           (format "VCR_OFF set to %s"))
-      (message)))
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
