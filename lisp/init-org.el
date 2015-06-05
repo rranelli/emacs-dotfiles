@@ -54,6 +54,15 @@
       (setq org-tags-exclude-from-inheritance (quote ("crypt")))
       (setq org-crypt-key nil)
 
+      ;; org notification magic
+      (require 'org-notify)
+      (org-notify-start 60)
+      (org-notify-add 'default
+                      '(:time "1h" :period "5m" :duration 100 :actions -notify/window)
+                      '(:time "4h" :period "15m" :actions -notify/window)
+                      '(:time "1d" :period "30m" :actions -notify/window)
+                      '(:time "3d" :period "1h" :actions -notify/window))
+
       ;; setup keybindings
       (rr/expose-bindings org-agenda-mode-map '("C-c p"))
       (rr/expose-bindings org-mode-map '("M-h" "C-c C-f" "C-a"))
