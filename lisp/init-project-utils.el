@@ -19,8 +19,9 @@
    default-project-source
    "~/locaweb/"))
 
-;; helm integration for opening projects
-
+;;
+;;; helm integration for opening projects
+;;
 (defun helm-rr/open-project ()
   "Bring up a Project search interface in helm."
   (interactive)
@@ -86,17 +87,29 @@
 	 (expand-file-name ".gitignore" repo-path)
 	 t))))
 
-;; ===============
-;; -- ag config --
-;; ===============
+
+;;
+;;; Colors in compilation buffer
+;;
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (when (eq major-mode 'compilation-mode)
+    (toggle-read-only)
+    (ansi-color-apply-on-region (point-min) (point-max))
+    (toggle-read-only)))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
+;;
+;;; ag config
+;;
 (setq
  ag-highlight-search t ;; highlight the matches
  ag-reuse-window nil   ;; do not use the same window for the search result
  ag-reuse-buffers t)   ;; use the same buffer for many searches
 
-;; ====================
-;; -- neotree config --
-;; ====================
+;;
+;;; neotree config
+;;
 (setq
  neo-persist-show nil
  neo-keymap-style 'concise)
@@ -115,33 +128,33 @@
           (neotree-find file-name))
       (message "Could not find git project root."))))
 
-;; =====================================
-;; -- extensions to projectile keymap --
-;; =====================================
+;;
+;;; extensions to projectile keymap
+;;
 (rr/define-bindings projectile-command-map
-  '(;; misc
-    ("n" . rr/show-file-name)
-    ("\C-n" . rr/new-git-project)
-    ("\C-g" . rr/add-gitignore-file)
-    ("m" . git-timemachine)
+                    '(;; misc
+                      ("n" . rr/show-file-name)
+                      ("\C-n" . rr/new-git-project)
+                      ("\C-g" . rr/add-gitignore-file)
+                      ("m" . git-timemachine)
 
-    ;; ag
-    ("s" . ag-project)
-    ("\C-s" . ag-project-regexp)
+                      ;; ag
+                      ("s" . ag-project)
+                      ("\C-s" . ag-project-regexp)
 
-    ;; neotree
-    ("d" . neotree-git-project)
-    ("x" . neotree-find)
+                      ;; neotree
+                      ("d" . neotree-git-project)
+                      ("x" . neotree-find)
 
-    ;; highlight-anything
-    ("h" . rr/highlight-at-point)
-    ("u" . rr/unhighlight-at-point)
+                      ;; highlight-anything
+                      ("h" . rr/highlight-at-point)
+                      ("u" . rr/unhighlight-at-point)
 
-    ;; projectile extras
-    ("f" . helm-rr/open-project)
-    ("y" . projectile-find-implementation-or-test-other-window)
-    ("a" . projectile-test-project)
-    ("F" . helm-projectile-find-file-in-known-projects)))
+                      ;; projectile extras
+                      ("f" . helm-rr/open-project)
+                      ("y" . projectile-find-implementation-or-test-other-window)
+                      ("a" . projectile-test-project)
+                      ("F" . helm-projectile-find-file-in-known-projects)))
 
 (global-set-key (kbd "C-c o") 'helm-rr/open-project)
 (global-set-key (kbd "C-c C-f") 'helm-projectile-find-file)
