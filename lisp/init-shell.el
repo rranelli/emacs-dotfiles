@@ -50,6 +50,7 @@ If ARG is present, open a new eshell regardless."
     default-directory))
 
 ;; -- keybindings --
+(rr/expose-default-bindings-with-hook eshell-mode)
 (global-set-key (kbd "C-x RET") 'new-eshell)
 
 (provide 'init-shell)
