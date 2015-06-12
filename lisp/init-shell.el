@@ -49,6 +49,13 @@ If ARG is present, open a new eshell regardless."
       (projectile-project-root)
     default-directory))
 
+(defun 8c (&rest cmd)
+  "Run CMD as if you were in a bash shell instead of Eshell."
+  (insert (format "bash -c 'source ~/.bashrc; cd %s; %s'"
+                  (eshell/pwd)
+                  (s-join " " cmd)))
+  (eshell-send-input))
+
 ;; -- keybindings --
 (rr/expose-default-bindings-with-hook eshell-mode)
 (global-set-key (kbd "C-x RET") 'new-eshell)
