@@ -158,6 +158,7 @@
 
 (global-set-key (kbd "C-c o") 'helm-rr/open-project)
 (global-set-key (kbd "C-c C-f") 'helm-projectile-find-file)
+(global-set-key (kbd "C-M-l") 'helm-projectile-switch-to-buffer)
 
 (provide 'init-project-utils)
 ;;; init-project-utils.el ends here
