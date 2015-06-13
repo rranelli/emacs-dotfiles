@@ -9,6 +9,7 @@
 (defvar init-files
   '(init-packages
     init-custom-defuns
+    init-custom-highlight
     init-edit-defuns
     init-keybindings
     init-defaults
