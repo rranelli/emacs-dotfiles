@@ -128,6 +128,7 @@
 
 (rr/expose-default-bindings markdown-mode-map)
 (rr/expose-default-bindings sh-mode-map)
+(rr/expose-default-bindings shell-mode-map)
 
 (rr/expose-default-bindings-with-hook python-mode)
 (rr/expose-default-bindings-with-hook sgml-mode)
