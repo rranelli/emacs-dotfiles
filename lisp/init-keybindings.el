@@ -130,6 +130,8 @@
 (rr/expose-default-bindings sh-mode-map)
 (add-hook 'shell-mode-hook
           (lambda () (rr/expose-default-bindings shell-mode-map)))
+(add-hook 'sh-mode-hook
+          (lambda () (rr/expose-default-bindings sh-mode-map)))
 
 (rr/expose-default-bindings-with-hook python-mode)
 (rr/expose-default-bindings-with-hook sgml-mode)
