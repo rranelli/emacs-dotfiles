@@ -21,6 +21,11 @@
 	      "\\.god$"))
   (add-to-list 'auto-mode-alist `(,fp . ruby-mode)))
 
+;; pretty stabby lambda
+(setq pretty-symbol-patterns
+      (append pretty-symbol-patterns
+	      `((?λ lambda "-> " (ruby-mode)))))
+
 ;; hook auxiliary modes to ruby mode
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'rspec-mode)
