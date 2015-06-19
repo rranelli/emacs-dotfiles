@@ -27,7 +27,7 @@
 (add-to-list 'safe-local-variable-values '(encoding . utf-8))
 
 ;; add pretty symbols for lambdas and relationals
-(setq pretty-symbol-categories '(lambda nil))
+(setq pretty-symbol-categories '(lambda))
 
 ;; -- Variables --
 (setq
