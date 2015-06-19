@@ -49,7 +49,7 @@ If ARG is present, open a new eshell regardless."
       (projectile-project-root)
     default-directory))
 
-(defun 8c (&rest cmd)
+(defun rr/run-command-in-bash (&rest cmd)
   "Run CMD as if you were in a bash shell instead of Eshell."
   (insert (format "bash -c 'source ~/.bashrc; cd %s; %s'"
                   (eshell/pwd)
