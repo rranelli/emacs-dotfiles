@@ -1,6 +1,7 @@
 ;;; init-project-utils.el -- Personal configuration and enhancements to project management.
 ;;; Commentary:
 ;;; Code:
+;; you need to do this before requiring the lib
 (setq helm-projectile-fuzzy-match nil)
 (require 'helm-projectile)
 
@@ -9,56 +10,47 @@
 ;;
 ;;; Jumping between projects
 ;;
+(defvar rr/project-sources
+  '("~/code/"
+    "~/locaweb/"))
 
-;; variables
-(defvar default-project-source
-  "~/code/")
+(defvar rr/default-file-regexps
+  '("Gemfile$"
+    "mix.exs$"
+    "Readme"
+    "README"))
 
-(defvar project-sources
-  (list
-   default-project-source
-   "~/locaweb/"))
-
-;;
-;;; helm integration for opening projects
-;;
-(defun helm-rr/open-project ()
+(defun rr/helm-open-project ()
   "Bring up a Project search interface in helm."
   (interactive)
-  (helm :sources '(helm-source-list-projects)
+  (helm :sources '(rr/helm-open-project--source)
 	:buffer "*helm-list-projects*"))
 
-(defvar helm-source-list-projects
+(defvar rr/helm-open-project--source
   '((name . "Open Project")
-    (volatile)
     (delayed)
     (candidates . rr/list-projects)
-    (action-transformer . rr/open-project)))
+    (action . rr/open-project)))
 
 (defun rr/list-projects ()
   "Lists all projects given project sources."
-  (cl-labels ((dir-to-files (dir)
-			    (if (file-exists-p dir)
-				(directory-files dir t directory-files-no-dot-files-regexp)))
-	      (flatten (x)
-		       (cond ((null x) nil)
-			     ((listp x) (append (car x) (flatten (cdr x)))))))
-    (progn (flatten (mapcar #'dir-to-files  project-sources)))))
+  (->> rr/project-sources
+       (-filter 'file-exists-p)
+       (-mapcat (lambda (dir) (directory-files dir t directory-files-no-dot-files-regexp)))))
 
-(defun rr/open-project (actions path)
-  "Do nothing with ACTIONS. Open project given PATH."
-  ;; TODO: Add default file get.
-  (cl-flet ((find-default-file () (if (file-exists-p (expand-file-name "Gemfile" path))
-				      (expand-file-name "Gemfile" path)
-				    path)))
-    (find-file (find-default-file))))
+(defun rr/open-project (path)
+  "Open project available at PATH."
+  (let* ((candidates (-mapcat (lambda (d) (directory-files path t d)) rr/default-file-regexps))
+         (elected (car candidates)))
+    (find-file (or elected path))))
 
 ;;
 ;;; Creating new git project
 ;;
 (defun rr/new-git-project ()
+  "Create a new git project."
   (interactive)
-  (let* ((source (ido-completing-read "create new project in which source?: " project-sources))
+  (let* ((source (ido-completing-read "create new project in which source?: " rr/project-sources))
 	 (project-name (read-input "new project name: "))
 	 (project-dir (file-name-as-directory (expand-file-name project-name source))))
     (condition-case nil
@@ -69,13 +61,15 @@
     (rr/add-gitignore-file project-dir)))
 
 (defun rr/add-gitignore-file (repo-path)
+  "Add .gitignore to the repository at REPO-PATH."
   (interactive (list
 		(read-directory-name
 		 "Which repository?: "
 		 (if (projectile-project-root)
 		     (projectile-project-root)
 		   (file-name-directory (buffer-file-name))))))
-  (let* ((gitignore-dir (expand-file-name "gitignore/" default-project-source))
+  (let* ((default-project-source (car rr/project-sources))
+         (gitignore-dir (expand-file-name "gitignore/" default-project-source))
 	 (gitignore-files (directory-files
 			   gitignore-dir
 			   nil
@@ -151,12 +145,12 @@
                       ("u" . rr/unhighlight-at-point)
 
                       ;; projectile extras
-                      ("f" . helm-rr/open-project)
+                      ("f" . rr/helm-open-project)
                       ("y" . projectile-find-implementation-or-test-other-window)
                       ("a" . projectile-test-project)
                       ("F" . helm-projectile-find-file-in-known-projects)))
 
-(global-set-key (kbd "C-c o") 'helm-rr/open-project)
+(global-set-key (kbd "C-c o") 'rr/helm-open-project)
 (global-set-key (kbd "C-c C-f") 'helm-projectile-find-file)
 (global-set-key (kbd "C-M-l") 'helm-projectile-switch-to-buffer)
 
