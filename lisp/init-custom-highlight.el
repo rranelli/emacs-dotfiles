@@ -9,19 +9,17 @@
              (-rotate 1 rr/highlight-faces))))
 
 (defvar rr/highlight-faces
-  '(helm-match-item
+  '(hi-black-hb
     hi-yellow
     hi-blue
     hi-green
-    ido-indicator
-    helm-selection
-    highlight
-    popup-menu-mouse-face
+    hi-red
     hi-pink
-    magit-log-message
-    magit-log-reflog-label-cherry-pick
-    neo-vc-unlocked-changes-face
-    org-agenda-filter-category))
+    hi-yellow-b
+    hi-blue-b
+    hi-green-b
+    hi-red-b
+    hi-black-b))
 
 (defun rr/highlight-at-point ()
   "Highlight the sexp at point."
