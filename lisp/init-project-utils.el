@@ -128,8 +128,6 @@
 (rr/define-bindings projectile-command-map
                     '(;; misc
                       ("n" . rr/show-file-name)
-                      ("\C-n" . rr/new-git-project)
-                      ("\C-g" . rr/add-gitignore-file)
                       ("m" . git-timemachine)
 
                       ;; ag
@@ -140,9 +138,10 @@
                       ("d" . neotree-git-project)
                       ("x" . neotree-find)
 
-                      ;; highlight-anything
-                      ("h" . rr/highlight-at-point)
-                      ("u" . rr/unhighlight-at-point)
+                      ;; simple-highlight
+                      ("h" . simple-highlight-at-point)
+                      ("u" . simple-highlight-unhighlight-at-point)
+                      ("U" . simple-highlight-unhighlight-all)
 
                       ;; projectile extras
                       ("f" . rr/helm-open-project)

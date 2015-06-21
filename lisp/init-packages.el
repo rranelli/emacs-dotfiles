@@ -96,6 +96,7 @@
     saveplace
     sgml-mode
     sh-script
+    simple-highlight
     smex
     uniquify
     visual-basic-mode
