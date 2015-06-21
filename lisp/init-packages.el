@@ -56,6 +56,7 @@
     ruby-refactor
     s
     scala-mode2
+    simple-highlight
     smartparens
     smartscan
     smex
