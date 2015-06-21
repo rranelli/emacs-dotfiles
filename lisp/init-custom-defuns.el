@@ -42,8 +42,6 @@ The symbol is returned using `intern'"
     (message "Thank you ;)")))
 
 ;; -- misc --
-(defun noop () "Does nothing." (interactive) nil)
-
 (defun nxml-pretty-format (begin end)
   "Pretty print xml in region BEGIN to END."
   (interactive "r")

@@ -3,7 +3,8 @@
 ;;; Code:
 (add-hook 'eshell-mode-hook
           #'(lambda ()
-              (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)))
+              (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
+              (define-key eshell-mode-map (kbd "C-x C-s") 'ignore)))
 
 (defmacro do-not-query-process-kill (function-name process-name)
   "Do not query process kill for FUNCTION-NAME that spawns process
