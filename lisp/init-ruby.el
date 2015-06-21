@@ -165,6 +165,9 @@
                       ("C-c r s" . rr/split-module-nesting)
                       ("C-c r l" . rr/wrap-in-stabby-lambda)))
 
+(rr/define-bindings inf-ruby-minor-mode-map
+                    '(("C-M-x" . ruby-send-block)))
+
 (rr/define-bindings rspec-compilation-mode-map
                     '(("e" . rr/pry-in-rspec-compilation)))
 
