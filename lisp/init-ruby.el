@@ -24,7 +24,8 @@
 ;; pretty stabby lambda
 (setq pretty-symbol-patterns
       (append pretty-symbol-patterns
-	      `((?λ lambda "-> " (ruby-mode)))))
+	      `((?λ lambda "-> " (ruby-mode))
+                (?λ lambda "lambda do" (ruby-mode)))))
 
 ;; hook auxiliary modes to ruby mode
 (add-hook 'ruby-mode-hook 'robe-mode)
