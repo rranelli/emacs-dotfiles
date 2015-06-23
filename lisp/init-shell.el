@@ -1,11 +1,6 @@
 ;;; init-shell.el -- Configures features that enhances one's work with terminals inside Emacs.
 ;;; Commentary:
 ;;; Code:
-(add-hook 'eshell-mode-hook
-          #'(lambda ()
-              (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
-              (define-key eshell-mode-map (kbd "C-x C-s") 'ignore)))
-
 (defmacro do-not-query-process-kill (function-name process-name)
   "Do not query process kill for FUNCTION-NAME that spawns process
 PROCESS-NAME."
@@ -60,6 +55,12 @@ If ARG is present, open a new eshell regardless."
 ;; -- keybindings --
 (rr/expose-default-bindings-with-hook eshell-mode)
 (global-set-key (kbd "C-x RET") 'new-eshell)
+
+(add-hook 'eshell-mode-hook
+          #'(lambda ()
+              (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
+              (define-key eshell-mode-map (kbd "C-x C-s") 'ignore)
+              (define-key eshell-mode-map (kbd "C-r") 'helm-eshell-history)))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
