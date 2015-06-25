@@ -60,7 +60,7 @@ If ARG is present, open a new eshell regardless."
           #'(lambda ()
               (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
               (define-key eshell-mode-map (kbd "C-x C-s") 'ignore)
-              (define-key eshell-mode-map (kbd "C-r") 'helm-eshell-history)))
+              (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
