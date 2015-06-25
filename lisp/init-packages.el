@@ -33,6 +33,7 @@
     helm
     helm-bundle-show
     helm-projectile
+    highlight-symbol
     hl-anything
     ido-vertical-mode
     inf-ruby
@@ -56,7 +57,6 @@
     ruby-refactor
     s
     scala-mode2
-    simple-highlight
     smartparens
     smartscan
     smex
@@ -97,7 +97,6 @@
     saveplace
     sgml-mode
     sh-script
-    simple-highlight
     smex
     uniquify
     visual-basic-mode

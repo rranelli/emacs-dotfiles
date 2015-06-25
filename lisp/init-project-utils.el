@@ -139,9 +139,8 @@
                       ("x" . neotree-find)
 
                       ;; simple-highlight
-                      ("h" . simple-highlight-at-point)
-                      ("u" . simple-highlight-unhighlight-at-point)
-                      ("U" . simple-highlight-unhighlight-all)
+                      ("h" . highlight-symbol)
+                      ("u" . highlight-symbol-remove-all)
 
                       ;; projectile extras
                       ("f" . rr/helm-open-project)
