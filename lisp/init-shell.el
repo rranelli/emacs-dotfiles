@@ -49,7 +49,7 @@ If ARG is present, open a new eshell regardless."
   "Run CMD as if you were in a bash shell instead of Eshell."
   (insert (format "bash -c 'source ~/.bashrc; cd %s; %s'"
                   (eshell/pwd)
-                  (s-join " " cmd)))
+                  (s-join " " (car cmd))))
   (eshell-send-input))
 
 ;; -- keybindings --

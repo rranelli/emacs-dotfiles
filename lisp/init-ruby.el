@@ -168,7 +168,7 @@
 (rr/define-bindings inf-ruby-minor-mode-map
                     '(("C-M-x" . ruby-send-block)))
 
-(rr/define-bindings rspec-compilation-mode-map
+(rr/define-bindings compilation-mode-map
                     '(("e" . rr/pry-in-rspec-compilation)))
 
 (provide 'init-ruby)
