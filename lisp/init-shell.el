@@ -53,6 +53,12 @@ If ARG is present, open a new eshell regardless."
   (eshell-send-input))
 
 ;; -- keybindings --
+(add-hook 'term-mode-hook (lambda ()
+                            (rr/expose-bindings term-raw-map
+                                                (->> rr/default-bindings-to-expose
+                                                     (remove "C-h")
+                                                     (remove "M-h")))))
+
 (rr/expose-default-bindings-with-hook eshell-mode)
 (global-set-key (kbd "C-x RET") 'new-eshell)
 
