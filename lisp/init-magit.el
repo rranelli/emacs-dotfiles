@@ -21,10 +21,10 @@
 (rr/define-bindings magit-mode-map
                     '(("s" . magit-status)
                       ("X" . magit-reset-head-hard)
-                      ("C-1" . magit-show-level-1-all)
-                      ("C-2" . magit-show-level-2-all)
-                      ("C-3" . magit-show-level-3-all)
-                      ("C-4" . magit-show-level-4-all)))
+                      ("C-1" . magit-section-show-level-1-all)
+                      ("C-2" . magit-section-show-level-2-all)
+                      ("C-3" . magit-section-show-level-3-all)
+                      ("C-4" . magit-section-show-level-4-all)))
 
 (define-key magit-mode-map (kbd "C-x C-s") 'ignore)
 
