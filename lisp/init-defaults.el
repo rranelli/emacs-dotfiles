@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+(setq better-registers-use-C-r nil)
+(require 'better-registers)
+
 ;; undisable upcase
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)

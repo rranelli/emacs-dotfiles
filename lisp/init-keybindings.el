@@ -101,7 +101,7 @@
 (global-set-key (kbd "C-:") 'ace-jump-char-mode)
 
 (global-set-key (kbd "M-j") 'better-registers-jump-to-register)
-(define-key better-registers-map (kbd "C-r (") 'rr/replace-wrapper-around-point)
+(define-key better-registers-map (kbd "C-M-r") better-registers-r-map)
 
 ;; window and buffer manipulation
 (global-set-key (kbd "M-o") 'other-window)

@@ -79,7 +79,6 @@
 (defvar libs-to-require
   '(
     ansi-color
-    better-registers
     cl
     dash
     dired-x
