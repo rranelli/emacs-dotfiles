@@ -20,7 +20,7 @@
 ;; magit showlevels redefinition
 (rr/define-bindings magit-mode-map
                     '(("s" . magit-status)
-                      ("X" . magit-reset-head-hard)
+                      ("X" . magit-reset-hard)
                       ("C-1" . magit-section-show-level-1-all)
                       ("C-2" . magit-section-show-level-2-all)
                       ("C-3" . magit-section-show-level-3-all)
