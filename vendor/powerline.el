@@ -438,11 +438,11 @@ install the memoized function over the original function."
 (defpowerline status      "%s")
 (defpowerline emacsclient mode-line-client)
 (defpowerline vc (s-concat
-                  (when vc-mode (substring vc-mode 5))
+                  (when vc-mode (substring vc-mode 5 (min (length vc-mode) 18)))
                   (when (projectile-project-p)
                     (format "[%s]"
                             (projectile-project-name)))))
-
+(substring "aasdf" 1 (min (length "13" 15)))
 (defpowerline percent-xpm (propertize "  "
                                       'display
                                       (let (pmax
