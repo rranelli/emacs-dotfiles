@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'solarized-dark
+(defcustom chosen-x-theme 'zenburn
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox

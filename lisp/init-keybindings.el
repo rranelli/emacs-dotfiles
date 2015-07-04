@@ -100,6 +100,7 @@
 (global-set-key (kbd "C-;") 'ace-jump-word-mode)
 (global-set-key (kbd "C-:") 'ace-jump-char-mode)
 
+(require 'better-registers)
 (global-set-key (kbd "M-j") 'better-registers-jump-to-register)
 (define-key better-registers-map (kbd "C-M-r") better-registers-r-map)
 
