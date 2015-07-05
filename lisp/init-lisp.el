@@ -13,11 +13,12 @@
   (if (> (point) (mark))
       (backward-kill-sexp)
     (kill-sexp))
-  (condition-case nil
+  (condition-case ex
       (prin1 (eval (read (current-kill 0)))
 	     (current-buffer))
-    (error (message "Invalid expression")
-	   (insert (current-kill 0)))))
+    ('error
+     (message (prin1-to-string ex))
+     (insert (current-kill 0)))))
 
 (defun macroexpand-point (sexp)
   "Expands macro at point/region containing SEXP."
