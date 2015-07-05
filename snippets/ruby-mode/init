@@ -3,5 +3,7 @@
 # key: init
 # --
 def initialize(${1:args})
-    $0
+    ${1:$(rr/initialize-instance-vars)}
 end
+attr_reader ${1:$(rr/initialize-readers)}
+private ${1:$(rr/initialize-readers)}

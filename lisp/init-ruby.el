@@ -149,6 +149,25 @@
            (format "VCR_OFF set to %s"))
       (message)))
 
+;; initializer construction
+(defun rr/initialize-instance-vars ()
+  (interactive)
+  (->> (rr/initialize-args)
+       (-map (lambda (x) (format "@%s = %s" x x)))
+       (s-join "\n")))
+
+(defun rr/initialize-readers ()
+  (interactive)
+  (->> (rr/initialize-args)
+       (-map (lambda (x) (format ":%s" x)))
+       (s-join ", ")))
+
+(defun rr/initialize-args ()
+  (interactive)
+  (string-match "initialize(\\(.*\\))$" (buffer-string))
+  (let ((args (match-string-no-properties 1 (buffer-string))))
+    (s-split "[ ,]" args t)))
+
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
   (rr/define-bindings map
