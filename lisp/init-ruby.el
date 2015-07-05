@@ -167,7 +167,8 @@
                       ("C-c r l" . rr/wrap-in-stabby-lambda)))
 
 (rr/define-bindings inf-ruby-minor-mode-map
-                    '(("C-M-x" . ruby-send-block)))
+                    '(("C-M-x" . ruby-send-block)
+                      ("C-c C-c" . inf-ruby-console-auto)))
 
 (rr/define-bindings compilation-mode-map
                     '(("e" . rr/pry-in-rspec-compilation)))
