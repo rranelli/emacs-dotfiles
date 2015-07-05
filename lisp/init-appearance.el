@@ -26,7 +26,8 @@
 		 (set-mode-line-faces-p . nil)
 		 (paren-highlight-style . expression)
 		 (custom-faces-fn . (lambda ()
-				      ))))
+				      (set-face-attribute 'fringe nil
+                                                          :background nil)))))
 
     (gruvbox . '((mode-line-background . "peru")
 		 (mode-line-foreground . "snow")
