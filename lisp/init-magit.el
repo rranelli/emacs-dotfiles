@@ -17,6 +17,8 @@
   "Save all buffers before magit status."
   (save-some-buffers t))
 
+(rr/expose-bindings magit-log-mode-map '("C-c C-f"))
+
 ;; magit showlevels redefinition
 (rr/define-bindings magit-mode-map
                     '(("s" . magit-status)
