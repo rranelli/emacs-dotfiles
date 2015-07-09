@@ -65,7 +65,7 @@
   (interactive)
   (define-key prog-mode-map (kbd "<return>") 'ignore)
   (define-key prog-mode-map (kbd "<backspace>") 'ignore))
-(rr/disable-backspace-and-return)
+;; (rr/disable-backspace-and-return)
 
 (defun rr/enable-backspace-and-return ()
   (interactive)
