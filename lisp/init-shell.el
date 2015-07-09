@@ -56,7 +56,8 @@ If ARG is present, open a new eshell regardless."
             (rr/expose-bindings term-raw-map
                                 (->> rr/default-bindings-to-expose
                                      (remove "C-h")
-                                     (remove "M-h")))))
+                                     (remove "M-h")
+                                     (remove "C-r")))))
 
 ;; eshell
 (global-set-key (kbd "C-x RET") 'rr/new-eshell)
