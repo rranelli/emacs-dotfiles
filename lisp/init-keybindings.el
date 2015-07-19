@@ -16,6 +16,8 @@
     "M-1"
     "M-2"
     "M-3"
+    "M-4"
+    "M-5"
     "M-0"
     "M-i"
     "M-l")
@@ -110,6 +112,8 @@
 (global-set-key (kbd "M-1") 'delete-other-windows)
 (global-set-key (kbd "M-2") 'split-window-vertically)
 (global-set-key (kbd "M-3") 'split-window-horizontally)
+(global-set-key (kbd "M-4") 'delete-other-windows)
+(global-set-key (kbd "M-5") 'delete-window)
 
 (define-key ctl-x-map "2" 'vsplit-last-buffer)
 (define-key ctl-x-map "3" 'hsplit-last-buffer)
