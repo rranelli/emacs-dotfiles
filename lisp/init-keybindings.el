@@ -93,6 +93,7 @@
 (global-set-key (kbd "M-h") 'rr/backward-kill-word)
 (global-set-key (kbd "M-u") 'zap-to-char)
 (global-set-key (kbd "C-M-SPC") 'er/expand-region)
+(global-set-key (kbd "M-e") 'er/expand-region)
 (global-set-key (kbd "M-T") 'transpose-sexps)
 (global-set-key (kbd "M-Q") 'quoted-insert)
 (global-set-key (kbd "C-\\") 'join-line)
