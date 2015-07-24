@@ -1,0 +1,4 @@
+#name : rescue (require 'pry'; binding.pry)
+#group : general
+# --
+rescue (require 'pry'; binding.pry)
