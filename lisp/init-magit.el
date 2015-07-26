@@ -12,6 +12,9 @@
 ;; Don't add remote prefix when creating a tracking branch
 (setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-only)
 
+;; Don't prompt everytime for push destination
+(setq magit-push-always-verify nil)
+
 (defadvice magit-status
     (before magit-save-before-status activate)
   "Save all buffers before magit status."
