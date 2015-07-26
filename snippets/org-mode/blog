@@ -12,11 +12,11 @@
 language: english
 layout: post
 comments: true
-title: '${1:title}'
+title: '${1:$(replace-regexp-in-string "-" " " yas-text)}'
 ---
 #+END_HTML
 
-* <p hidden>${1:$(replace-regexp-in-string "-" " " yas-text)}<p hidden>
+* <p hidden>${1:title}<p hidden>
 
 *TL;DR*: $0
 
