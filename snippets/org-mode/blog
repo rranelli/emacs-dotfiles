@@ -16,7 +16,7 @@ title: '${1:title}'
 ---
 #+END_HTML
 
-* <p hidden>$1<p hidden>
+* <p hidden>${1:$(replace-regexp-in-string "-" " " yas-text)}<p hidden>
 
 *TL;DR*: $0
 
