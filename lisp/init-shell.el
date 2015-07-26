@@ -61,6 +61,7 @@ If ARG is present, open a new eshell regardless."
 
 ;; eshell
 (global-set-key (kbd "C-x RET") 'rr/new-eshell)
+(global-set-key (kbd "C-x C-<return>") 'rr/new-ansi-term)
 (global-set-key (kbd "C-x M-RET") 'rr/new-ansi-term)
 
 (rr/expose-default-bindings-with-hook eshell-mode)
