@@ -150,23 +150,25 @@
       (message)))
 
 ;; initializer construction
-(defun rr/initialize-instance-vars ()
+(defun rr/initialize-instance-vars (text)
   (interactive)
-  (->> (rr/initialize-args)
+  (->> text
+       (rr/extract-arg-names-from-declaration)
        (-map (lambda (x) (format "@%s = %s" x x)))
        (s-join "\n")))
 
-(defun rr/initialize-readers ()
+(defun rr/initialize-readers (text)
   (interactive)
-  (->> (rr/initialize-args)
-       (-map (lambda (x) (format ":%s" x)))
-       (s-join ", ")))
+  (let ((args (->> text
+                  (rr/extract-arg-names-from-declaration)
+                  (-map (lambda (x) (format ":%s" x)))
+                  (s-join ", "))))
+    (unless (string-empty-p args)
+      (s-concat "attr_reader " args))))
 
-(defun rr/initialize-args ()
-  (interactive)
-  (string-match "initialize(\\(.*\\))$" (buffer-string))
-  (let ((args (match-string-no-properties 1 (buffer-string))))
-    (s-split "[ ,]" args t)))
+(defun rr/extract-arg-names-from-declaration (text)
+  (->> (s-split "\\(=[^,]?+\\|[, *]\\)" text t)
+       (-map 's-trim)))
 
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))

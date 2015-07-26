@@ -3,7 +3,6 @@
 # key: init
 # --
 def initialize(${1:args})
-    ${1:$(rr/initialize-instance-vars)}
+    ${1:$(rr/initialize-instance-vars yas-text)}
 end
-attr_reader ${1:$(rr/initialize-readers)}
-private ${1:$(rr/initialize-readers)}
+${1:$(rr/initialize-readers yas-text)}
