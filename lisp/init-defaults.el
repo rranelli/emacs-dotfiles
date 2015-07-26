@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+;; the following two lines fixes the binding of eshell history to C-M-r
 (setq better-registers-use-C-r nil)
 (require 'better-registers)
 
