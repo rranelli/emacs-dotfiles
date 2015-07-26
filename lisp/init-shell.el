@@ -69,7 +69,7 @@ If ARG is present, open a new eshell regardless."
               (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
               (rr/define-bindings eshell-mode-map
                                   '(("C-x C-s" . ignore)
-                                    ("M-r" . helm-eshell-history)))))
+                                    ("C-r" . helm-eshell-history)))))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

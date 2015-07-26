@@ -89,10 +89,6 @@
 (global-set-key (kbd "C-;") 'ace-jump-word-mode)
 (global-set-key (kbd "C-:") 'ace-jump-char-mode)
 
-(require 'better-registers)
-(global-set-key (kbd "M-j") 'better-registers-jump-to-register)
-(define-key better-registers-map (kbd "C-M-r") better-registers-r-map)
-
 ;; window and buffer manipulation
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-i") 'other-frame)
@@ -115,8 +111,6 @@
 (rr/expose-bindings dired-mode-map '("M-o"))
 (rr/expose-bindings yaml-mode-map '("C-m"))
 (rr/expose-bindings text-mode-map '("M-r"))
-(rr/expose-bindings better-registers-map
-                    '("<f1>" "C-j" "C-x r"))
 
 (rr/expose-default-bindings markdown-mode-map)
 (rr/expose-default-bindings sh-mode-map)

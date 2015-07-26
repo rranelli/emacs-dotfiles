@@ -32,7 +32,8 @@
     init-org
     init-shell
     init-mail
-    init-appearance))
+    init-appearance
+    init-registers))
 
 (defun safe-require (feature)
   "Safely requires FEATURE."
