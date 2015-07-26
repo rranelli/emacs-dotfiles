@@ -62,18 +62,6 @@
 
 (global-set-key [remap save-buffers-kill-terminal] 'rr/ask-before-killing-frame)
 
-;; train myself not to use return or backspace
-(defun rr/disable-backspace-and-return ()
-  (interactive)
-  (define-key prog-mode-map (kbd "<return>") 'ignore)
-  (define-key prog-mode-map (kbd "<backspace>") 'ignore))
-;; (rr/disable-backspace-and-return)
-
-(defun rr/enable-backspace-and-return ()
-  (interactive)
-  (define-key prog-mode-map (kbd "<return>") 'newline)
-  (define-key prog-mode-map (kbd "<backspace>") 'backward-delete-char))
-
 ;; evaluation
 (define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
 (define-key emacs-lisp-mode-map (kbd "C-c C-e") 'rr/eval-and-replace)
