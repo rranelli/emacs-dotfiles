@@ -99,7 +99,7 @@
 ;; -- more fontlock --
 (defun custom-add-watchwords ()
   (font-lock-add-keywords
-   nil '(("\\<\\(FIX\\(ME\\)?\\|TODO\\|HACK\\|REFACTOR\\|NOCOMMIT\\)"
+   nil '(("\\<\\(FIXME\\|TODO\\|HACK\\|NOCOMMIT\\)"
 	1 font-lock-warning-face t))))
 
 ;; -- Hooks --
