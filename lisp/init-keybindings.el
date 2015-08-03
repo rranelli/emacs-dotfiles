@@ -52,8 +52,11 @@
                     (symbol-value)
                     (rr/expose-default-bindings)))))
 
+;; Kinesis friendly help command
+(global-set-key (kbd "C-S-h") 'help)
+
 ;;
-;;; unset irritant suspend-frame
+;;; unset annoying suspend-frame
 ;;
 (global-unset-key (kbd "C-x z"))
 (global-unset-key (kbd "C-z"))
@@ -69,7 +72,7 @@
 (global-set-key (kbd "C-c ,c") 'compile)
 
 ;; indentation
-(global-set-key (kbd "C-I") 'indent-region)
+(global-set-key (kbd "C-i") 'indent-region)
 (global-set-key (kbd "C-c i") (lambda () (interactive)
 				(indent-region (point-min) (point-max))))
 
