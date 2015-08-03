@@ -170,6 +170,20 @@
   (->> (s-split "\\(=[^,]?+\\|[, *]\\)" text t)
        (-map 's-trim)))
 
+;; debbuger utilities
+(defun rr/byebug-jump-to-source ()
+  "Jumps to source location given debugger output"
+  (interactive)
+  (delete-other-windows)
+  (let ((file (save-excursion
+                (and (search-backward-regexp "\\] in \\(.*\.rb\\)$")
+                     (match-string 1))))
+        (line (save-excursion
+                (and (search-backward-regexp "=> \\([0-9]+\\):")
+                     (string-to-int (match-string 1))))))
+    (find-file-other-window file)
+    (goto-line line)))
+
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
   (rr/define-bindings map
