@@ -171,16 +171,13 @@
        (-map 's-trim)))
 
 ;; debbuger utilities
-(defun rr/byebug-jump-to-source ()
+(defun rr/pry-byebug-jump-to-source ()
   "Jumps to source location given debugger output"
   (interactive)
   (delete-other-windows)
-  (let ((file (save-excursion
-                (and (search-backward-regexp "\\] in \\(.*\.rb\\)$")
-                     (match-string 1))))
-        (line (save-excursion
-                (and (search-backward-regexp "=> \\([0-9]+\\):")
-                     (string-to-int (match-string 1))))))
+  (when (save-excursion (search-backward-regexp "From: \\(.*\.rb\\) @ line \\([0-9]+\\)")))
+  (let ((file (match-string 1))
+        (line (string-to-int (match-string 2))))
     (find-file-other-window file)
     (goto-line line)))
 
@@ -204,6 +201,9 @@
 (rr/define-bindings inf-ruby-minor-mode-map
                     '(("C-M-x" . ruby-send-block)
                       ("C-c C-c" . inf-ruby-console-auto)))
+
+(rr/define-bindings inf-ruby-mode-map
+                    '(("C-c C-c" . rr/pry-byebug-jump-to-source)))
 
 (rr/define-bindings compilation-mode-map
                     '(("e" . rr/pry-in-rspec-compilation)))
