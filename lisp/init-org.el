@@ -1,7 +1,6 @@
 ;;; init-org.el -- Sanely configures org-mode related stuff.
 ;;; Commentary:
 ;;; Code:
-
 (defcustom rr/org-files-directory "~/Copy/org/"
   "Directory for org files."
   :group 'init-org)
@@ -10,7 +9,7 @@
 (if (file-exists-p rr/org-files-directory)
     ;; Set up org-agenda files
     (let* ((dir-files (directory-files rr/org-files-directory t directory-files-no-dot-files-regexp))
-	   (org-files (remove-if
+	   (org-files (-filter
 		       #'(lambda (name) (or
 				    (not (string-match "\.org$" name))
 				    (string-match "archive" name)
@@ -22,9 +21,18 @@
       ;; loading org custom
       (require 'org-mode-custom)
 
+      ;; adding a hook to save org stuff more frequently
+      (add-hook 'after-save-hook 'org-save-all-org-buffers)
+      (add-hook 'org-mode-hook 'custom-add-watchwords)
+
+      ;; prettify org
+      (setq
+       org-odd-levels-only t
+       org-hide-leading-stars t
+       org-startup-indented nil)
+
       ;; Setting up babel support for languages
       (setq org-src-fontify-natively t)
-
       (org-babel-do-load-languages'org-babel-load-languages
        '((emacs-lisp . t)
 	 (dot . t)
@@ -38,53 +46,8 @@
 	 (latex . t)
 	 (sql . t)))
 
-      ;; prettify org
-      (setq
-       org-odd-levels-only t
-       org-hide-leading-stars t
-       org-startup-indented nil)
-
-      ;; adding a hook to save org stuff more frequently
-      (add-hook 'after-save-hook 'org-save-all-org-buffers)
-      (add-hook 'org-mode-hook 'custom-add-watchwords)
-
-      ;; set-up encryption
-      (require 'org-crypt)
-      (org-crypt-use-before-save-magic)
-      (setq org-tags-exclude-from-inheritance (quote ("crypt")))
-      (setq org-crypt-key nil)
-
-      (defadvice epg--start (around advice-epg-disable-agent disable)
-        "Make epg--start not able to find a gpg-agent"
-        (let ((agent (getenv "GPG_AGENT_INFO")))
-          (setenv "GPG_AGENT_INFO" nil)
-          ad-do-it
-          (setenv "GPG_AGENT_INFO" agent)))
-
-      (defun epg-enable-agent ()
-        "Make EasyPG use a gpg-agent after having been disabled with epg-disable-agent"
-        (interactive)
-        (ad-disable-advice 'epg--start 'around 'advice-epg-disable-agent)
-        (ad-activate 'epg--start)
-        (message "EasyPG gpg-agent re-enabled"))
-
-      (defun epg-disable-agent ()
-        "Make EasyPG bypass any gpg-agent"
-        (interactive)
-        (ad-enable-advice 'epg--start 'around 'advice-epg-disable-agent)
-        (ad-activate 'epg--start)
-        (message "EasyPG gpg-agent bypassed"))
-
-      (epg-disable-agent)
-
-      ;; org notification magic
-      (require 'org-notify)
-      (org-notify-start 60)
-      (org-notify-add 'default
-                      '(:time "10m" :period "2m" :duration 25 :actions -notify/window)
-                      '(:time "1h" :period "20m" :duration 25 :actions -notify/window)
-                      '(:time "1d" :period "90m" :duration 25 :actions -notify/window)
-                      '(:time "2d" :period "3h" :duration 25 :actions -notify/window))
+      (require 'init-org-crypt)
+      (require 'init-org-notify)
 
       ;; setup keybindings
       (rr/expose-bindings org-agenda-mode-map '("C-c p"))
