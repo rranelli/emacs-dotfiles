@@ -23,8 +23,8 @@
                              (file-truename (buffer-file-name)))
                     (org-mobile-push-with-delay 1200))))))
 
-(run-at-time "00:05" 86400 '(lambda () (org-mobile-push-with-delay 1))) ;; refreshes agenda file each day
-(run-at-time "00:20" 86400 'org-mobile-pull) ;; refreshes agenda file each day
+(run-at-time "23:59" 86400 '(lambda () (org-mobile-push-with-delay 120))) ;; refreshes agenda file each day
+(run-at-time "23:58" 86400 'org-mobile-pull) ;; refreshes agenda file each day
 
 (provide 'init-org-mobile)
 ;;; init-org-mobile.el ends here
