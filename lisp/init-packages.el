@@ -121,6 +121,7 @@
 ;; Automagically updating packages
 (require 'auto-package-update)
 (auto-package-update-maybe)
+(auto-package-update-at-time "05:00")
 
 (provide 'init-packages)
 ;;; init-packages.el ends here

@@ -9,7 +9,7 @@
 (if (file-exists-p rr/org-files-directory)
     ;; Set up org-agenda files
     (let* ((dir-files (directory-files rr/org-files-directory t directory-files-no-dot-files-regexp))
-	   (org-files (-filter
+	   (org-files (delete-if
 		       #'(lambda (name) (or
 				    (not (string-match "\.org$" name))
 				    (string-match "archive" name)
