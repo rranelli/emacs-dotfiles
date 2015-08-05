@@ -46,6 +46,7 @@
 	 (latex . t)
 	 (sql . t)))
 
+      (require 'init-org-mobile)
       (require 'init-org-crypt)
       (require 'init-org-notify)
 
