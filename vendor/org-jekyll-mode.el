@@ -127,6 +127,24 @@
       (re-search-forward "END_HTML" nil t)
       (fill-and-ignore-block))))
 
+(defun org-jekyll-include-code-file ()
+  (interactive)
+  (let* ((file-name (file-name-base (buffer-file-name)))
+         (relative-code-dir (format "../../_code/%s/" file-name))
+         (extension-to-language-assoc '(("rb" . "ruby")
+                                        ("sh" . "bash"))))
+    (mkdir relative-code-dir t)
+    (setq-local chosen-code-file
+                (ido-read-file-name "code file to include: " relative-code-dir))
+    (setq-local chosen-code-file-language
+                (or (cdr (assoc (file-name-extension chosen-code-file)
+                                extension-to-language-assoc))
+                    (read-string "language: ")))
+    (insert (format "#+INCLUDE: %s%s src %s"
+                    relative-code-dir
+                    (file-name-nondirectory chosen-code-file)
+                    chosen-code-file-language))))
+
 (defun org-jekyll-set-compile-on-save ()
   (interactive)
   (add-hook 'after-save-hook 'org-jekyll-export-to-jekyll nil t))
