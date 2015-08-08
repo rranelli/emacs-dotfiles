@@ -86,7 +86,8 @@
  ido-use-filename-at-point 'guess
  ido-use-virtual-buffers t
  ido-handle-duplicate-virtual-buffers 2
- ido-max-prospects 10)
+ ido-max-prospects 10
+ ido-vertical-define-keys 'C-n-and-C-p-only)
 
 (setq-default
  display-buffer-reuse-frames t
