@@ -159,6 +159,7 @@
     (define-key map (kbd "s t") 'flyspell-mode)
     (define-key map (kbd "n") 'org-jekyll-new-draft)
     (define-key map (kbd "f") 'org-jekyll-fill-and-indent)
+    (define-key map (kbd "i") 'org-jekyll-include-code-file)
     (define-key map (kbd "r") 'fill-region)
     (define-key map (kbd "t") 'org-jekyll-toggle-between-org-and-md)
     map))
