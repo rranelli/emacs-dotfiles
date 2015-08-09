@@ -112,7 +112,7 @@
   (cl-labels ((fill-and-ignore-block
 	       ()
 	       (let ((start (point)))
-		 (if (re-search-forward "\\(#\\+begin_\\|#\\+INCLUDE:\\)" nil t)
+		 (if (re-search-forward "\\(#\\+begin_\\|#\\+INCLUDE:\\|#\\+name\\|#\\+results\\)" nil t)
 		     (progn
 		       (move-beginning-of-line 1)
 		       (fill-region start (point))
