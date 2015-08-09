@@ -2,7 +2,6 @@
 # name: src
 # key: src
 # --
-#+name: ${2:block-name}
-#+begin_src ${1:language} :results code :exports both
+#+begin_src ${1:language}
 $0
 #+end_src
