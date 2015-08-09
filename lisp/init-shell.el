@@ -57,7 +57,8 @@ If ARG is present, open a new eshell regardless."
                                 (->> rr/default-bindings-to-expose
                                      (remove "C-h")
                                      (remove "M-h")
-                                     (remove "C-r")))))
+                                     (remove "C-r")))
+            (define-key term-raw-map (kbd "C-x C-f") 'helm-find-files)))
 
 ;; eshell
 (global-set-key (kbd "C-x RET") 'rr/new-eshell)
