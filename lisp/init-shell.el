@@ -51,14 +51,13 @@ If ARG is present, open a new eshell regardless."
 ;; -- keybindings --
 
 ;; term
-(add-hook 'term-mode-hook
+(add-hook 'term-load-hook
           (lambda ()
             (rr/expose-bindings term-raw-map
                                 (->> rr/default-bindings-to-expose
                                      (remove "C-h")
                                      (remove "M-h")
-                                     (remove "C-r")))
-            (define-key term-raw-map (kbd "C-x C-f") 'helm-find-files)))
+                                     (remove "C-r")))))
 
 ;; eshell
 (global-set-key (kbd "C-x RET") 'rr/new-eshell)
