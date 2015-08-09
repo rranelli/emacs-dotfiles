@@ -32,6 +32,8 @@
        org-startup-indented nil)
 
       ;; Setting up babel support for languages
+      (setq org-babel-sh-command "bash")
+
       (setq org-src-fontify-natively t)
       (org-babel-do-load-languages'org-babel-load-languages
        '((emacs-lisp . t)

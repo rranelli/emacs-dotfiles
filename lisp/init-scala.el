@@ -20,7 +20,6 @@
                       ("M-/" . ensime-company)))
 
 (rr/expose-default-bindings ensime-mode-map)
-(rr/expose-bindings ensime-mode-map '("M-n" "M-p"))
 
 (provide 'init-scala)
 ;;; init-scala.el ends here
