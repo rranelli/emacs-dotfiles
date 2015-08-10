@@ -18,8 +18,8 @@
 (add-hook 'after-save-hook
           (lambda ()
             (when (eq major-mode 'org-mode)
-              (dolist (file (org-agenda-files))
-                (if (string= (file-truename (expand-file-name (car file)))
+              (dolist (file org-user-agenda-files)
+                (if (string= (file-truename (expand-file-name file))
                              (file-truename (buffer-file-name)))
                     (org-mobile-push-with-delay 1200))))))
 
