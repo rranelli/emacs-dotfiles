@@ -25,6 +25,7 @@
     ensime
     expand-region
     flycheck
+    flycheck-rust
     fuzzy
     git-timemachine
     graphviz-dot-mode
@@ -55,6 +56,7 @@
     rspec-mode
     rubocop
     ruby-refactor
+    rust-mode
     s
     scala-mode2
     smartparens
