@@ -51,6 +51,7 @@
     rainbow-mode
     restclient
     rhtml-mode
+    racer
     rinari
     robe
     rspec-mode

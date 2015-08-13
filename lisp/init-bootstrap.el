@@ -23,6 +23,7 @@
     init-ruby
     init-java
     init-lisp
+    init-rust
     init-clojure
     init-scala
     init-elixir
