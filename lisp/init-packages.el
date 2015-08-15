@@ -50,10 +50,11 @@
     popup
     pretty-symbols
     projectile
+    racer
     rainbow-mode
+    request
     restclient
     rhtml-mode
-    racer
     rinari
     robe
     rspec-mode
