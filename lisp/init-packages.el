@@ -20,6 +20,8 @@
     cider
     color-theme-sanityinc-tomorrow
     company
+    dash
+    dash-functional
     dockerfile-mode
     elixir-mode
     ensime
@@ -84,6 +86,7 @@
     ansi-color
     cl
     dash
+    dash-functional
     dired-x
     dpkg-dev-el
     ffap
