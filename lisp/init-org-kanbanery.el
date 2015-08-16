@@ -26,8 +26,8 @@
       '(("Backlog" . none)
         ("To Do" . "TODO")
         ("Doing" . "NEXT")
-        ("Test" . "HOLD")
-        ("Waiting to Deploy" . "WAITING")
+        ("Test" . "WAITING")
+        ("Waiting to Deploy" . "HOLD")
         ("Done" . done)))
 
 (setq rr/kanbanery-project-id "45757")
@@ -77,6 +77,7 @@
                              (todo-state (cdr (assoc (rr/get 'name column)
                                                      rr/kanbanery-column-to-todo-alist))))
                         (let ((prefix-arg 0))
+                          (org-set-tags-to "KANBAN")
                           (org-todo todo-state)))))
           (append rr/all-tasks nil))))
 
