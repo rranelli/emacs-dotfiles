@@ -28,7 +28,7 @@
         ("Doing" . "NEXT")
         ("Test" . "WAITING")
         ("Waiting to Deploy" . "HOLD")
-        ("Done" . done)))
+        ("Done" . "DONE")))
 
 (setq rr/kanbanery-project-id "45757")
 (setq rr/kanbanery-endpoint "https://paaslocaweb.kanbanery.com/api/v1")
