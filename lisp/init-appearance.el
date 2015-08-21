@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'solarized-dark
+(defcustom chosen-x-theme 'zenburn
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
@@ -27,7 +27,9 @@
 		 (paren-highlight-style . expression)
 		 (custom-faces-fn . (lambda ()
 				      (set-face-attribute 'fringe nil
-                                                          :background nil)))))
+                                                          :background nil)
+                                      (set-face-attribute 'default nil
+                                                          :height 130)))))
 
     (gruvbox . '((mode-line-background . "peru")
 		 (mode-line-foreground . "snow")
