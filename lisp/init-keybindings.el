@@ -89,8 +89,7 @@
 (global-set-key (kbd "M-Q") 'quoted-insert)
 (global-set-key (kbd "C-\\") 'join-line)
 
-(global-set-key (kbd "C-;") 'ace-jump-word-mode)
-(global-set-key (kbd "C-:") 'ace-jump-char-mode)
+(global-set-key (kbd "C-;") 'ace-jump-char-mode)
 
 ;; window and buffer manipulation
 (global-set-key (kbd "M-o") 'other-window)
