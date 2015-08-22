@@ -2,51 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'telephone-line)
-
-(telephone-line-defsegment* rr/telephone-line-buffer-segment
-  `(""
-    mode-line-mule-info
-    mode-line-modified
-    mode-line-client
-    mode-line-remote
-    mode-line-frame-identification
-    ,(telephone-line-raw mode-line-buffer-identification t)))
-
-(setq telephone-line-lhs
-      '((accent . (rr/telephone-line-buffer-segment
-                   telephone-line-process-segment
-                   telephone-line-erc-modified-channels-segment))
-        (nil . (telephone-line-vc-segment))))
-
-(setq telephone-line-rhs
-      '((nil    . (telephone-line-misc-info-segment))
-        (accent . (telephone-line-major-mode-segment
-                   telephone-line-position-segment))))
-
-(set-face-attribute 'telephone-line-accent-active nil
-                    :background "#8FB28F"
-                    :foreground "black"
-                    :box nil)
-
-(set-face-attribute 'mode-line nil
-                    :box '(:line-width -1 :style raised)
-                    :foreground "#8FB28F")
-
-(set-face-attribute 'mode-line-inactive nil
-                    :box nil
-                    :foreground "#8FB28F")
-
-(setq telephone-line-primary-left-separator 'telephone-line-cubed-left
-      telephone-line-left-separator 'telephone-line-cubed-left
-      telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left)
-
-(setq telephone-line-primary-right-separator 'telephone-line-cubed-right
-      telephone-line-right-separator 'telephone-line-cubed-right
-      telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
-
-(telephone-line-mode 1)
-
 ;; themes
 (defcustom chosen-x-theme 'zenburn
   "Theme chosen to be initialized."
@@ -69,8 +24,22 @@
 				      (set-face-attribute 'fringe nil
                                                           :background nil)
                                       (set-face-attribute 'default nil
-                                                          :height 130)))))
+                                                          :height 130)
+                                      (rr/setup-telephone-line)
 
+                                      ;; telephone line faces !!
+                                      (set-face-attribute 'telephone-line-accent-active nil
+                                                          :background "#8FB28F"
+                                                          :foreground "black"
+                                                          :box nil)
+
+                                      (set-face-attribute 'mode-line-inactive nil
+                                                          :box nil
+                                                          :foreground "#8FB28F")
+
+                                      (set-face-attribute 'mode-line nil
+                                                          :box '(:line-width -1 :style raised)
+                                                          :foreground "#8FB28F")))))
     (gruvbox . '((mode-line-background . "peru")
 		 (mode-line-foreground . "snow")
 		 (cursor . nil)
@@ -90,7 +59,7 @@
 			(cursor . "SkyBlue")
 			(set-mode-line-faces-p . t)
 			(paren-highlight-style . expression)
-			(custom-faces-fn . (lambda ()))))
+			(custom-faces-fn . ignore)))
 
     (tsdh-dark . '((mode-line-background . "IndianRed4")
 		   (mode-line-foreground . "SlateGray1")
@@ -255,6 +224,39 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
                       :foreground "red"
                       :background "black"))
 
+(defun rr/setup-telephone-line ()
+  "Set up telephone line !"
+
+  (require 'telephone-line)
+  (telephone-line-defsegment* rr/telephone-line-buffer-segment
+    `("" mode-line-remote " "
+      ,(telephone-line-raw mode-line-buffer-identification t)))
+
+  (telephone-line-defsegment* rr/telephone-line-projectile-project-name
+    `(""
+      ,(telephone-line-raw (ignore-errors (format "prj:%s" (projectile-project-name))))))
+
+  (setq telephone-line-lhs
+        '((accent . (rr/telephone-line-buffer-segment
+                     telephone-line-process-segment
+                     telephone-line-erc-modified-channels-segment))
+          (nil . (telephone-line-vc-segment
+                  rr/telephone-line-projectile-project-name))))
+
+  (setq telephone-line-rhs
+        '((nil    . (telephone-line-misc-info-segment))
+          (accent . (telephone-line-major-mode-segment
+                     telephone-line-position-segment))))
+
+  (setq telephone-line-primary-left-separator 'telephone-line-cubed-left
+        telephone-line-left-separator 'telephone-line-cubed-left
+        telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left)
+
+  (setq telephone-line-primary-right-separator 'telephone-line-cubed-right
+        telephone-line-right-separator 'telephone-line-cubed-right
+        telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+
+  (telephone-line-mode 1))
 
 ;; load the configuration
 (add-hook 'after-make-frame-functions 'config-frame-appearance)
