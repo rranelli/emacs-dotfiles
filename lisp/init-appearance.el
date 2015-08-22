@@ -2,6 +2,51 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'telephone-line)
+
+(telephone-line-defsegment* rr/telephone-line-buffer-segment
+  `(""
+    mode-line-mule-info
+    mode-line-modified
+    mode-line-client
+    mode-line-remote
+    mode-line-frame-identification
+    ,(telephone-line-raw mode-line-buffer-identification t)))
+
+(setq telephone-line-lhs
+      '((accent . (rr/telephone-line-buffer-segment
+                   telephone-line-process-segment
+                   telephone-line-erc-modified-channels-segment))
+        (nil . (telephone-line-vc-segment))))
+
+(setq telephone-line-rhs
+      '((nil    . (telephone-line-misc-info-segment))
+        (accent . (telephone-line-major-mode-segment
+                   telephone-line-position-segment))))
+
+(set-face-attribute 'telephone-line-accent-active nil
+                    :background "#8FB28F"
+                    :foreground "black"
+                    :box nil)
+
+(set-face-attribute 'mode-line nil
+                    :box '(:line-width -1 :style raised)
+                    :foreground "#8FB28F")
+
+(set-face-attribute 'mode-line-inactive nil
+                    :box nil
+                    :foreground "#8FB28F")
+
+(setq telephone-line-primary-left-separator 'telephone-line-cubed-left
+      telephone-line-left-separator 'telephone-line-cubed-left
+      telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left)
+
+(setq telephone-line-primary-right-separator 'telephone-line-cubed-right
+      telephone-line-right-separator 'telephone-line-cubed-right
+      telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+
+(telephone-line-mode 1)
+
 ;; themes
 (defcustom chosen-x-theme 'zenburn
   "Theme chosen to be initialized."
@@ -17,12 +62,7 @@
   :group 'init-appearance)
 
 (defcustom rr/theme-custom-color-alist
-  '((zenburn . '((mode-line-background . "gray33")
-		 (mode-line-foreground . "#8FB28F")
-		 (powerline-arrow . "gray20")
-		 (powerline-other . "#3F3F3F")
-		 (cursor . nil)
-		 (use-powerline-p . t)
+  '((zenburn . '((cursor . "Red")
 		 (set-mode-line-faces-p . nil)
 		 (paren-highlight-style . expression)
 		 (custom-faces-fn . (lambda ()
@@ -33,10 +73,7 @@
 
     (gruvbox . '((mode-line-background . "peru")
 		 (mode-line-foreground . "snow")
-		 (powerline-arrow . "gray20")
-		 (powerline-other . "#282828")
 		 (cursor . nil)
-		 (use-powerline-p . t)
 		 (set-mode-line-faces-p . t)
 		 (paren-highlight-style . parenthesis)
 		 (custom-faces-fn . (lambda ()
@@ -50,20 +87,14 @@
 
     (solarized-dark . '((mode-line-background . "DeepSkyBlue4")
 			(mode-line-foreground . "snow")
-			(powerline-arrow . "#002b36")
-			(powerline-other . "#002b36")
 			(cursor . "SkyBlue")
-			(use-powerline-p . t)
 			(set-mode-line-faces-p . t)
 			(paren-highlight-style . expression)
 			(custom-faces-fn . (lambda ()))))
 
     (tsdh-dark . '((mode-line-background . "IndianRed4")
 		   (mode-line-foreground . "SlateGray1")
-		   (powerline-arrow . "#3F3F3F")
-		   (powerline-other . "gray20")
 		   (cursor . "SkyBlue")
-		   (use-powerline-p . t)
 		   (set-mode-line-faces-p . t)
 		   (paren-highlight-style . expression)
 		   (custom-faces-fn . (lambda ()
@@ -146,8 +177,6 @@
   (when (get-color-config 'cursor)
     (set-face-attribute 'cursor nil
                         :background (get-color-config 'cursor)))
-  (when (get-color-config 'use-powerline-p)
-    (config-powerline))
   (when (get-color-config 'set-mode-line-faces-p)
     ;; frame is set to nil in face in order for it to run for all frames when a new frame is created
     (set-face-attribute 'mode-line nil
@@ -181,20 +210,6 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
   (unless desired-transp
     (setq desired-transp (read-number "Desired transparency: " (car min-transp))))
   (set-frame-parameter frame 'alpha `(,desired-transp ,desired-transp)))
-
-(defun config-powerline ()
-  "Set up powerline faces for FRAME."
-  (load-file (expand-file-name "vendor/powerline.el" user-emacs-directory))
-
-  (setq powerline-arrow-shape 'arrow-14
-        powerline-color1 (get-color-config 'powerline-arrow)
-        powerline-color2 (get-color-config 'powerline-other)
-        powerline-column 50)
-
-  (set-face-attribute 'mode-line nil
-                      :box nil)
-  (set-face-attribute 'mode-line-inactive nil
-                      :box nil))
 
 ;; -- xterm256colors terminal frame --
 (defun config-xterm-256color-terminal-frame (frame)

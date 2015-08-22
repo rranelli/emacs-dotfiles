@@ -70,6 +70,7 @@
     smooth-scrolling
     solarized-theme
     synosaurus
+    telephone-line
     undo-tree
     w3m
     wanderlust
