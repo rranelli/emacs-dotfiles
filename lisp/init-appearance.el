@@ -19,7 +19,7 @@
 (defcustom rr/theme-custom-color-alist
   '((zenburn . '((cursor . "Red")
 		 (set-mode-line-faces-p . nil)
-		 (paren-highlight-style . expression)
+		 (paren-highlight-style . parenthesis)
 		 (custom-faces-fn . (lambda ()
 				      (set-face-attribute 'fringe nil
                                                           :background nil)
