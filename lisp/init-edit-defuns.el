@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'back-button)
+(back-button-mode 1)
+
 (defun rr/kill-word (arg)
   (interactive "p")
   (delete-region (point) (progn (forward-word arg) (point))))

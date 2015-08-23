@@ -16,6 +16,7 @@
     alchemist
     anzu
     auto-package-update
+    back-button
     better-registers
     cider
     color-theme-sanityinc-tomorrow

@@ -15,7 +15,7 @@
                     '("<f1>" "C-j" "C-x r"))
 
 ;; `C-x r' will also work for the registers map
-(define-key better-registers-map (kbd "M-m") better-registers-r-map)
+;; (define-key better-registers-map (kbd "C-S-j") better-registers-r-map)
 
 (provide 'init-registers)
 ;;; init-registers.el ends here
