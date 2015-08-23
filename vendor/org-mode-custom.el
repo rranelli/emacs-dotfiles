@@ -72,7 +72,7 @@
 
 (setq org-todo-keyword-faces
       (quote (("TODO" :foreground "red" :weight bold)
-              ("NEXT" :foreground "blue" :weight bold)
+              ("NEXT" :foreground "cyan" :weight bold)
               ("DONE" :foreground "forest green" :weight bold)
               ("WAITING" :foreground "orange" :weight bold)
               ("HOLD" :foreground "magenta" :weight bold)
@@ -167,20 +167,6 @@
          ((org-agenda-overriding-header "Habits")
           (org-agenda-sorting-strategy
            '(todo-state-down effort-up category-keep))))
-        ("k" "Kanbanery"
-         ((tags-todo "+KANBAN-CANCELLED-WAITING-HOLD-NEXT/TODO"
-                     ((org-agenda-overriding-header "TODO")
-                      (org-agenda-sorting-strategy
-                       '(category-keep))))
-          (tags-todo "+KANBAN-HABIT-REFILE/NEXT"
-                     ((org-agenda-overriding-header "Doing")
-                      (org-tags-match-list-sublevels nil)))
-          (tags-todo "+KANBAN/WAITING"
-                     ((org-agenda-overriding-header "Test")
-                      (org-tags-match-list-sublevels nil)))
-          (tags-todo "+KANBAN/HOLD"
-                     ((org-agenda-overriding-header "Waiting to deploy")
-                      (org-tags-match-list-sublevels nil)))))
         (" " "Agenda"
          ((agenda "" nil)
           (tags "REFILE"
@@ -192,12 +178,12 @@
           ;; 	    ;; (org-tags-match-list-sublevels 'indented)
           ;;             (org-agenda-sorting-strategy
           ;;              '(category-keep))))
-          (tags-todo "-KANBAN-HABIT/NEXT"
+          (tags-todo "-HABIT/NEXT"
                      ((org-agenda-overriding-header "Things you should take care as soon as possible -- Doing")
                       (org-tags-match-list-sublevels nil)
                       (org-agenda-todo-ignore-scheduled nil)
                       (org-agenda-todo-ignore-deadlines nil)))
-          (tags-todo "-KANBAN-CANCELLED+WAITING|HOLD-KANBAN/!"
+          (tags-todo "-CANCELLED+WAITING|HOLD/!"
                      ((org-agenda-overriding-header "Waiting and blocked tasks")
                       (org-agenda-skip-function 'bh/skip-stuck-projects)
                       (org-tags-match-list-sublevels nil)
@@ -232,7 +218,7 @@
           ;;             (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
           ;;             (org-agenda-sorting-strategy
           ;;              '(category-keep))))
-          (tags-todo "-KANBAN-REFILE-CANCELLED-WAITING-HOLD-NEXT/TODO"
+          (tags-todo "-REFILE-CANCELLED-WAITING-HOLD-NEXT/TODO"
                      ((org-agenda-overriding-header (concat "Standalone Tasks -- TODO"
                                                             (if bh/hide-scheduled-and-waiting-next-tasks
                                                                 ""
@@ -243,22 +229,11 @@
                       (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
                       (org-agenda-sorting-strategy
                        '(category-keep))))
-          (tags "-REFILE-KANBAN/"
+          (tags "-REFILE/"
                 ((org-agenda-overriding-header "Tasks to Archive")
                  (org-agenda-skip-function 'bh/skip-non-archivable-tasks)
                  (org-tags-match-list-sublevels nil))))
          nil)))
-
-(defun bh/org-auto-exclude-function (tag)
-  "Automatic task exclusion in the agenda with / RET"
-  (and (cond
-        ((string= tag "hold")
-         t)
-        ((string= tag "farm")
-         t))
-       (concat "-" tag)))
-
-(setq org-agenda-auto-exclude-function 'bh/org-auto-exclude-function)
 
 ;;
 ;; Resume clocking task when emacs is restarted
@@ -432,12 +407,14 @@ A prefix arg forces clock in of the default task."
 (setq org-agenda-log-mode-items (quote (closed state)))
 
 ;; Tags with fast selection keys
-(setq org-tag-alist (quote (("HABIT" . ?a)
-                            ("WAITING" . ?w)
-                            ("HOLD" . ?h)
-                            ("NOTE" . ?n)
-                            ("CANCELLED" . ?c)
-                            ("FLAGGED" . ??))))
+(setq org-tag-alist
+      '(("HABIT" . ?a)
+        ("WAITING" . ?w)
+        ("HOLD" . ?h)
+        ("NOTE" . ?n)
+        ("CANCELLED" . ?c)
+        ("LOCAWEB" . ?l)
+        ("FLAGGED" . ??)))
 
                                         ; Allow setting single tags without the menu
 (setq org-fast-tag-selection-single-key (quote expert))

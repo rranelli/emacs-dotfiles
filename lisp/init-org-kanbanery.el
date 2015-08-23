@@ -21,8 +21,8 @@
 ;; you can find this via: GET https://WORKSPACE.kanbanery.com/api/v1/user.json
 (setq rr/kanbanery-owner-id 49363)
 
-(setq rr/kanbanery-org-file (rr/file-join rr/org-files-directory "kanbanery.org"))
-
+(setq rr/kanbanery-org-file
+      (rr/file-join rr/org-files-directory "kanbanery.org"))
 (setq rr/kanbanery-api-token
       (apu--read-file-as-string (rr/file-join rr/org-files-directory "kanbanery.token")))
 
@@ -84,9 +84,7 @@
                                                    rr/columns)))
                              (todo-state (cdr (assoc (rr/get 'name column)
                                                      rr/kanbanery-column-to-todo-alist))))
-                        (let ((prefix-arg 0))
-                          (org-set-tags-to "KANBAN")
-                          (org-todo todo-state)))))
+                        (let ((prefix-arg 0)) (org-todo todo-state)))))
           rr/all-tasks)))
 
 ;; part3 -- update the things you need.
@@ -98,3 +96,5 @@
 
 (provide 'init-org-kanbanery)
 ;;; init-org-kanbanery.el ends here
+
+;; ((position . 24) (global_in_context_url . "https://kanbanery.com/tasks/1406487/in-context?project_id=45757") (type . "Task") (child_changed_at) (blocked . :json-false) (deadline) (moved_at . "2015-01-27T19:51:43+00:00") (ready_to_pull . :json-false) (priority . 0) (owner_id . 49363) (creator_id . 43570) (column_id . 311062) (estimate_id) (task_type_id . 270708) (description . "") (title . "[product] Configurar todos os Planos de Hospedagem utilizando o Modelo de Dados") (sync_created_at . 1402487766.916167) (sync_updated_at . 1422478833.646277) (weight . -18750000.0) (updated_at . "2015-01-28T21:00:33+00:00") (created_at . "2014-06-11T11:56:06+00:00") (id . 1406487))
