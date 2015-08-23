@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (require 'elixir-mode)
-;; (require 'alchemist)
+(require 'alchemist)
 
 ;; -- hooks --
 (add-hook 'elixir-mode-hook 'alchemist-mode)
