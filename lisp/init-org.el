@@ -52,6 +52,7 @@
       (require 'init-org-mobile)
       (require 'init-org-crypt)
       (require 'init-org-notify)
+      (require 'init-org-kanbanery)
 
       ;; setup keybindings
       (rr/expose-bindings org-agenda-mode-map '("C-c p"))
