@@ -17,6 +17,10 @@
 ;;
 ;;; Configuration
 ;;
+(setq rr/kanbanery-project-id "45757")
+;; you can find this via: GET https://WORKSPACE.kanbanery.com/api/v1/user.json
+(setq rr/kanbanery-owner-id 49363)
+
 (setq rr/kanbanery-org-file (rr/file-join rr/org-files-directory "kanbanery.org"))
 
 (setq rr/kanbanery-api-token
@@ -30,7 +34,6 @@
         ("Waiting to Deploy" . "HOLD")
         ("Done" . "DONE")))
 
-(setq rr/kanbanery-project-id "45757")
 (setq rr/kanbanery-endpoint "https://paaslocaweb.kanbanery.com/api/v1")
 (setq rr/all-columns-url (rr/file-join rr/kanbanery-endpoint "projects" rr/kanbanery-project-id "columns.json"))
 (setq rr/all-tasks-url (rr/file-join rr/kanbanery-endpoint "projects" rr/kanbanery-project-id "tasks.json"))
@@ -46,17 +49,22 @@
 
 (defun rr/kanbanery-load-data ()
   (setq rr/columns
-        (rr/kanbanery-response rr/all-columns-url))
+        (append (rr/kanbanery-response rr/all-columns-url) nil))
   (setq rr/all-tasks
-        (rr/kanbanery-response rr/all-tasks-url)))
+        (append (rr/kanbanery-response rr/all-tasks-url) nil)))
 
 (defun rr/kanbanery-create-tasks ()
   (with-current-buffer (find-buffer-visiting rr/kanbanery-org-file)
-    (->> (append rr/all-tasks nil)
+    (->> rr/all-tasks
+         (-filter (lambda (task)
+                    (eq rr/kanbanery-owner-id (rr/get 'owner_id task))))
          (-reject (lambda (task)
-                    (org-id-find-id-in-file (format "kanbanery:task:%s"
-                                                    (rr/get 'id task))
-                                            rr/kanbanery-org-file)))
+                    (or (org-id-find-id-in-file (format "kanbanery:task:%s"
+                                                        (rr/get 'id task))
+                                                rr/kanbanery-org-file)
+                        (org-id-find-id-in-file (format "kanbanery:task:%s"
+                                                        (rr/get 'id task))
+                                                (format "%s_archive" rr/kanbanery-org-file)))))
          (-map (lambda (task)
                  (goto-char (point-max))
                  (insert (format "* %s\n" (rr/get 'title task)))
@@ -73,13 +81,13 @@
                       (goto-char (cdr location))
                       (let* ((column (car (-filter (lambda (c) (eq (rr/get 'column_id task)
                                                               (rr/get 'id c)))
-                                                   (append rr/columns nil))))
+                                                   rr/columns)))
                              (todo-state (cdr (assoc (rr/get 'name column)
                                                      rr/kanbanery-column-to-todo-alist))))
                         (let ((prefix-arg 0))
                           (org-set-tags-to "KANBAN")
                           (org-todo todo-state)))))
-          (append rr/all-tasks nil))))
+          rr/all-tasks)))
 
 ;; part3 -- update the things you need.
 (defun rr/kanbanery-reload ()
