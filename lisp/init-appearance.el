@@ -100,8 +100,6 @@
   "Custom color configuration."
   :group 'init-appearance)
 
-(set-face-attribute 'default nil :height 115)
-
 ;; configuration
 (defun get-color-config (config-name)
   "Gets the configuration from the config list by CONFIG-NAME."
