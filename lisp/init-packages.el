@@ -65,7 +65,6 @@
     s
     scala-mode2
     smartparens
-    smartscan
     smex
     sml-mode
     smooth-scrolling
