@@ -112,11 +112,11 @@
 
 (define-key neotree-mode-map (kbd "C-x C-s") 'noop)
 
-(defun neotree-git-project ()
+(defun rr/neotree-git-project ()
   "Open dirtree using the git root."
   (interactive)
   (let ((file-name (buffer-file-name)))
-    (if project-dir
+    (if (projectile-project-p)
         (progn
           (neotree-dir (projectile-project-root))
           (neotree-find file-name))
@@ -135,7 +135,7 @@
                       ("\C-s" . ag-project-regexp)
 
                       ;; neotree
-                      ("d" . neotree-git-project)
+                      ("d" . rr/neotree-git-project)
                       ("x" . neotree-find)
 
                       ;; simple-highlight
