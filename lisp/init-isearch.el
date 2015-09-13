@@ -8,8 +8,8 @@
 (global-set-key [remap query-replace] 'anzu-query-replace)
 
 (global-set-key (kbd "C-'") 'anzu-query-replace-at-cursor)
-(global-set-key (kbd "C-S-f") 'highlight-symbol-next)
-(global-set-key (kbd "C-S-b") 'highlight-symbol-prev)
+(global-set-key (kbd "M-<down>") 'highlight-symbol-next)
+(global-set-key (kbd "M-<up>") 'highlight-symbol-prev)
 
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (define-key isearch-mode-map (kbd "C-o")
