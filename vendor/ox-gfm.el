@@ -86,7 +86,7 @@ channel."
 
 ;;;; Strike-Through
 
-(defun org-html-strike-through (strike-through contents info)
+(defun org-gfm-strike-through (strike-through contents info)
   "Transcode STRIKE-THROUGH from Org to Markdown (GFM).
 CONTENTS is the text with strike-through markup.  INFO is a plist
 holding contextual information."
