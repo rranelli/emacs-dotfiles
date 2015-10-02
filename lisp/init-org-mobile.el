@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq org-mobile-directory (expand-file-name "mobileorg/" rr/org-files-directory)
+(setq org-mobile-directory "~/Copy/mobileorg"
       org-mobile-inbox-for-pull (expand-file-name "refile.org" rr/org-files-directory))
 
 (defvar org-mobile-push-timer nil
