@@ -11,13 +11,17 @@
 
 (require 'erc-hl-nicks)
 (add-to-list 'erc-modules 'hl-nicks)
-(erc-update-modules)
 
 (require 'erc-image)
 (add-to-list 'erc-modules 'image)
-(erc-update-modules)
 
+;; vendorized libs
 (require 'erc-nick-notify)
+
+;;
+;;; update them modules !
+;;
+(erc-update-modules)
 
 (erc-hl-nicks-mode t)
 (erc-notifications-mode t)
@@ -81,7 +85,8 @@
 (global-set-key (kbd "C-c C-u") 'rr/clear-erc-unseen)
 
 (define-key erc-mode-map (kbd "C-x C-s") 'ignore)
+(define-key erc-mode-map (kbd "C-c C-u") 'rr/clear-erc-unseen)
 (define-key erc-mode-map (kbd "C-l") '(lambda () (interactive) (erc-cmd-CLEAR)))
 
-(provide 'init-irc)
-;;; init-irc.el ends here
+(provide 'init-erc)
+;;; init-erc.el ends here
