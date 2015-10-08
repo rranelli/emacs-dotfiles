@@ -52,8 +52,7 @@
  erc-log-write-after-insert t
  erc-log-write-after-send t
  erc-kill-buffer-on-part t
- erc-keywords '("deploy")
- erc-input-line-position -2
+ erc-keywords '("deploy", "Failure\\b")
  erc-prompt "⟹")
 
 (setq erc-autojoin-channels-alist
@@ -78,7 +77,6 @@
 
 (setq erc-view-log-nickname-face-function 'erc-get-face-for-nick)
 (setq erc-view-log-my-nickname-match `("milhouse" "milhouse`")) ;set this one in your .priv_emacs with your other nicks if needed
-(add-to-list 'auto-coding-alist '("\\.irclogs/.*\\.txt" . utf-8))
 (add-to-list 'auto-mode-alist '("\\.irclogs/.*\\.txt" . erc-view-log-mode))
 
 (defun rr/erc-browse-log ()
@@ -101,7 +99,7 @@
 (defun rr/irc-locaweb-slack ()
   "Connect to locaweb's Slack via IRC."
   (interactive)
-  (add-to-list 'erc-networks-alist '(locaweb "locaweb.irc.slack.com"))
+  (add-to-list 'erc-networks-alist '(Locaweb . "locaweb.irc.slack.com:6667"))
   (erc-tls :server "locaweb.irc.slack.com"
            :port 6667
            :nick "milhouse"
@@ -126,6 +124,18 @@
   (with-current-buffer buffer
     (not (erc-server-buffer-p))))
 
+(add-hook 'erc-text-matched-hook 'rr/erc-kw-notify)
+(defun rr/erc-kw-notify (match-type nick message)
+  "notify when text is matched"
+  (when (and (eq match-type 'keyword)
+             ;; I don't want to see anything from the erc server
+             (null (string-match "^[sS]erver" nick))
+             ;; or bots
+             (null (string-match "\\(bot\\|serv\\)!" nick)))
+    (notifications-notify
+     :title nick
+     :body message
+     :urgency 'normal))))
 ;;
 ;;; keybindings
 ;;
