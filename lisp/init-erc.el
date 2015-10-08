@@ -17,6 +17,8 @@
 (add-to-list 'erc-modules 'image)
 (erc-update-modules)
 
+(require 'erc-nick-notify)
+
 (erc-hl-nicks-mode t)
 (erc-notifications-mode t)
 (erc-match-mode t)
