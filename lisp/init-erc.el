@@ -57,7 +57,7 @@
  erc-prompt "⟹")
 
 (setq erc-autojoin-channels-alist
-      '(("freenode" "#haskell" "haskell-emacs" "#elixir-lang" "#emacs-elixir" "#emacs" "#ruby-lang")))
+      '(("freenode" "#haskell" "haskell-emacs" "#elixir-lang" "#emacs-elixir")))
 
 ;;; view logs
 (require 'erc-view-log)
@@ -129,10 +129,9 @@
 ;;
 ;;; keybindings
 ;;
-(global-set-key (kbd "C-c C-u") 'rr/clear-erc-unseen)
+(global-set-key (kbd "C-c e u") 'rr/clear-erc-unseen)
 
 (define-key erc-mode-map (kbd "C-x C-s") 'erc-save-buffer-in-logs)
-(define-key erc-mode-map (kbd "C-c C-u") 'rr/clear-erc-unseen)
 (define-key erc-mode-map (kbd "C-c C-l") 'rr/erc-browse-log)
 (define-key erc-mode-map (kbd "C-l") '(lambda () (interactive) (erc-cmd-CLEAR)))
 
