@@ -33,6 +33,7 @@
     init-org
     init-shell
     init-mail
+    init-erc
     init-appearance
     init-registers))
 

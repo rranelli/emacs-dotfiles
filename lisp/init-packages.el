@@ -26,6 +26,8 @@
     dockerfile-mode
     elixir-mode
     ensime
+    erc-hl-nicks
+    erc-image
     expand-region
     flycheck
     flycheck-rust
