@@ -52,7 +52,7 @@
  erc-log-write-after-insert t
  erc-log-write-after-send t
  erc-kill-buffer-on-part t
- erc-keywords '("deploy", "Failure\\b")
+ erc-keywords '("deploy" "Failure")
  erc-prompt "⟹")
 
 (setq erc-autojoin-channels-alist
