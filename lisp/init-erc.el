@@ -135,7 +135,7 @@
     (notifications-notify
      :title nick
      :body message
-     :urgency 'normal))))
+     :urgency 'normal)))
 ;;
 ;;; keybindings
 ;;

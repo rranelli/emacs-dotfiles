@@ -12,6 +12,9 @@
 ;; Don't add remote prefix when creating a tracking branch
 (setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-only)
 
+;; colorize the magit log
+(setq magit-log-arguments '("--graph" "--color" "--decorate" "-n256"))
+
 ;; Don't prompt everytime for push destination
 (setq magit-push-always-verify nil)
 
