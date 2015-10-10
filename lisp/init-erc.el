@@ -17,6 +17,7 @@
 
 ;; vendorized libs
 (require 'erc-nick-notify)
+(eval-after-load 'erc '(erc-nick-notify-mode t))
 
 ;;
 ;;; update them modules !
@@ -52,8 +53,7 @@
  erc-log-write-after-insert t
  erc-log-write-after-send t
  erc-kill-buffer-on-part t
- erc-keywords '("deploy" "Failure")
- erc-prompt "⟹")
+ erc-keywords '("deploy" "Failure" "@channel"))
 
 (setq erc-autojoin-channels-alist
       '(("freenode" "#haskell" "haskell-emacs" "#elixir-lang" "#emacs-elixir")))
@@ -76,7 +76,7 @@
     (:weight bold)))
 
 (setq erc-view-log-nickname-face-function 'erc-get-face-for-nick)
-(setq erc-view-log-my-nickname-match `("milhouse" "milhouse`")) ;set this one in your .priv_emacs with your other nicks if needed
+(setq erc-view-log-my-nickname-match '("milhouse" "milhouse`")) ;set this one in your .priv_emacs with your other nicks if needed
 (add-to-list 'auto-mode-alist '("\\.irclogs/.*\\.txt" . erc-view-log-mode))
 
 (defun rr/erc-browse-log ()
