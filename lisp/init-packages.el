@@ -28,6 +28,7 @@
     ensime
     erc-hl-nicks
     erc-image
+    erc-view-log
     expand-region
     flycheck
     flycheck-rust
