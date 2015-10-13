@@ -87,9 +87,20 @@
 ;;
 ;;; custom functions
 ;;
+(defun rr/load-irc-passwds ()
+  "Load irc passwords from mimipass"
+  (unless (and
+           (boundp 'rr/slack-passwd)
+           (boundp 'rr/freenode-passwd))
+    (->> "mimipass get irc-passwds"
+         (shell-command-to-string)
+         (read)
+         (eval))))
+
 (defun rr/irc-freenode ()
   "Connect to freenode IRC."
   (interactive)
+  (rr/load-irc-passwds)
   (erc-tls :server "irc.freenode.net"
            :port 6697
            :nick "milhouse`"
@@ -99,6 +110,7 @@
 (defun rr/irc-locaweb-slack ()
   "Connect to locaweb's Slack via IRC."
   (interactive)
+  (rr/load-irc-passwds)
   (add-to-list 'erc-networks-alist '(Locaweb . "locaweb.irc.slack.com:6667"))
   (erc-tls :server "locaweb.irc.slack.com"
            :port 6667
