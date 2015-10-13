@@ -10,12 +10,13 @@
 
 ;; -- haskell font lock --
 (add-hook 'haskell-mode-hook 'turn-on-haskell-font-lock)
-(add-hook 'haskell-mode-hook 'haskell-doc-mode)
 (remove-hook 'haskell-mode-hook 'pretty-symbols-mode)
 
-(add-hook 'haskell-mode-hook (lambda ()
-			       (make-local-variable 'flycheck-display-errors-delay)
-			       (setq flycheck-display-errors-delay 3600)))
+;; removing this because of the conflict with flycheck
+;; (add-hook 'haskell-mode-hook 'haskell-doc-mode)
+;; (add-hook 'haskell-mode-hook (lambda ()
+;; 			       (make-local-variable 'flycheck-display-errors-delay)
+;; 			       (setq flycheck-display-errors-delay 5)))
 
 (defvar rr/haskell-font-lock-extra-symbols
   '(("<alpha>" . #X03B1)
