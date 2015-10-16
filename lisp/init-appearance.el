@@ -227,12 +227,12 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
 
   (require 'telephone-line)
   (telephone-line-defsegment* rr/telephone-line-buffer-segment
-    `("" mode-line-remote " "
-      ,(telephone-line-raw mode-line-buffer-identification t)))
+                              `("" mode-line-remote " "
+                                ,(telephone-line-raw mode-line-buffer-identification t)))
 
   (telephone-line-defsegment* rr/telephone-line-projectile-project-name
-    `(""
-      ,(telephone-line-raw (ignore-errors (format "prj:%s" (projectile-project-name))))))
+                              `(""
+                                ,(telephone-line-raw (ignore-errors (format "prj:%s" (projectile-project-name))))))
 
   (setq telephone-line-lhs
         '((accent . (rr/telephone-line-buffer-segment

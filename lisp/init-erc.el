@@ -152,6 +152,7 @@
 ;;; keybindings
 ;;
 (global-set-key (kbd "C-c e u") 'rr/clear-erc-unseen)
+(global-set-key (kbd "C-c e q") 'erc-query)
 
 (define-key erc-mode-map (kbd "C-x C-s") 'erc-save-buffer-in-logs)
 (define-key erc-mode-map (kbd "C-c C-l") 'rr/erc-browse-log)
