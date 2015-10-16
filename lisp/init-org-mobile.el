@@ -5,6 +5,13 @@
 (setq org-mobile-directory "~/Copy/mobileorg"
       org-mobile-inbox-for-pull (expand-file-name "refile.org" rr/org-files-directory))
 
+(add-hook 'org-mobile-post-push-hook
+          (lambda () (shell-command "scp -r ~/Copy/mobileorg/* renan@cpro26266.publiccloud.com.br:/home/renan/mobileorg/ &")))
+(add-hook 'org-mobile-pre-pull-hook
+          (lambda () (shell-command "scp renan@cpro26266.publiccloud.com.br:/home/renan/mobileorg/mobileorg.org ~/Copy/mobileorg/")))
+(add-hook 'org-mobile-post-pull-hook
+          (lambda () (shell-command "scp ~/Copy/mobileorg/mobileorg.org renan@cpro26266.publiccloud.com.br:/home/renan/orgmobile/mobileorg.org")))
+
 (defvar org-mobile-push-timer nil
   "Timer that `org-mobile-push-timer' used to reschedule itself, or nil.")
 
@@ -23,7 +30,7 @@
                              (file-truename (buffer-file-name)))
                     (org-mobile-push-with-delay 1200))))))
 
- ;; refreshes agenda file each day
+;; refreshes agenda file each day
 (run-at-time "23:59" 86400 '(lambda () (org-mobile-push-with-delay 120)))
 (run-at-time "23:58" 86400 'org-mobile-pull)
 
