@@ -56,6 +56,7 @@
     projectile
     racer
     rainbow-mode
+    realgud
     request
     restclient
     rhtml-mode
