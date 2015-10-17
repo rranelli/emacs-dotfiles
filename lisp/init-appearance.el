@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'zenburn
+(defcustom chosen-x-theme 'dichromacy
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
@@ -12,12 +12,20 @@
 (defvar chosen-theme chosen-x-theme
   "Chosen theme to be used at the config loaders.")
 
-(defcustom min-transp '(87 87)
+(defcustom min-transp '(65 65)
   "Minimum transparency for Emacs in X."
   :group 'init-appearance)
 
 (defcustom rr/theme-custom-color-alist
-  '((zenburn . '((cursor . "Red")
+  '((dichromacy . '((cursor . "Red")
+                    (paren-highlight-style . parenthesis)
+                    (custom-faces-fn . (lambda ()
+                                         (set-face-attribute 'fringe nil
+                                                             :background nil)
+                                         (set-face-attribute 'default nil
+                                                             :height 130)
+                                         (rr/setup-telephone-line)))))
+    (zenburn . '((cursor . "Red")
 		 (set-mode-line-faces-p . nil)
 		 (paren-highlight-style . parenthesis)
 		 (custom-faces-fn . (lambda ()
