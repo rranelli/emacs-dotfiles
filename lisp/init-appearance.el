@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;; themes
-(defcustom chosen-x-theme 'dichromacy
+(defcustom chosen-x-theme 'sanityinc-tomorrow-night
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
@@ -17,7 +17,28 @@
   :group 'init-appearance)
 
 (defcustom rr/theme-custom-color-alist
-  '((dichromacy . '((cursor . "Red")
+  '((sanityinc-tomorrow-night . '((custom-faces-fn . (lambda ()
+                                                       (set-face-attribute 'fringe nil
+                                                                           :background nil)
+                                                       (set-face-attribute 'default nil
+                                                                           :height 130)
+                                                       (rr/setup-telephone-line)
+
+                                                       (set-face-attribute 'telephone-line-accent-active nil
+                                                                           :background "#b294bb"
+                                                                           :foreground "black"
+                                                                           :box nil)
+
+                                                       (set-face-attribute 'mode-line-inactive nil
+                                                                           :box nil
+                                                                           :foreground "#b294bb"
+                                                                           :background "#373b41")
+
+                                                       (set-face-attribute 'mode-line nil
+                                                                           :box '(:line-width -1 :style raised)
+                                                                           :foreground "#b294bb"
+                                                                           :background "#373b41")))))
+    (dichromacy . '((cursor . "Red")
                     (paren-highlight-style . parenthesis)
                     (custom-faces-fn . (lambda ()
                                          (set-face-attribute 'fringe nil
