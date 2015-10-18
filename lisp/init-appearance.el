@@ -12,7 +12,7 @@
 (defvar chosen-theme chosen-x-theme
   "Chosen theme to be used at the config loaders.")
 
-(defcustom min-transp '(65 65)
+(defcustom min-transp '(72 72)
   "Minimum transparency for Emacs in X."
   :group 'init-appearance)
 
@@ -20,8 +20,6 @@
   '((sanityinc-tomorrow-night . '((custom-faces-fn . (lambda ()
                                                        (set-face-attribute 'fringe nil
                                                                            :background nil)
-                                                       (set-face-attribute 'default nil
-                                                                           :height 130)
                                                        (rr/setup-telephone-line)
 
                                                        (set-face-attribute 'telephone-line-accent-active nil
