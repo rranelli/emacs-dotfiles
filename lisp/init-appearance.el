@@ -12,13 +12,15 @@
 (defvar chosen-theme chosen-x-theme
   "Chosen theme to be used at the config loaders.")
 
-(defcustom min-transp '(72 72)
+(defcustom min-transp '(87 87)
   "Minimum transparency for Emacs in X."
   :group 'init-appearance)
 
 (defcustom rr/theme-custom-color-alist
   '((sanityinc-tomorrow-night . '((custom-faces-fn . (lambda ()
                                                        (set-face-attribute 'fringe nil
+                                                                           :background nil)
+                                                       (set-face-attribute 'linum nil
                                                                            :background nil)
                                                        (rr/setup-telephone-line)
 
@@ -35,7 +37,9 @@
                                                        (set-face-attribute 'mode-line nil
                                                                            :box '(:line-width -1 :style raised)
                                                                            :foreground "#b294bb"
-                                                                           :background "#373b41")))))
+                                                                           :background "#373b41")
+
+                                                       (rr/set-transparency 70)))))
     (dichromacy . '((cursor . "Red")
                     (paren-highlight-style . parenthesis)
                     (custom-faces-fn . (lambda ()
