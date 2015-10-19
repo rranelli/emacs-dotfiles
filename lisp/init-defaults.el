@@ -65,6 +65,8 @@
  sentence-end-double-space nil
  ;; use firefox for browsing. Thanks.
  browse-url-default-browser 'browse-url-firefox
+ ;; make mans open in the same window
+ Man-notify-method 'pushy
  )
 
 ;; more depth and sizes
