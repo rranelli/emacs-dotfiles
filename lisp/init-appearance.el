@@ -39,6 +39,9 @@
                                                                            :foreground "#b294bb"
                                                                            :background "#373b41")
 
+                                                       (set-face-attribute 'default nil
+                                                                           :height 140)
+
                                                        (rr/set-transparency 70)))))
     (dichromacy . '((cursor . "Red")
                     (paren-highlight-style . parenthesis)
