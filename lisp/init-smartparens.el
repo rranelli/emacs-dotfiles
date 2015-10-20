@@ -14,6 +14,7 @@
 ;;
 (define-key sp-keymap (kbd "C-M-d") 'sp-down-sexp)
 (define-key sp-keymap (kbd "C-M-u") 'sp-backward-up-sexp)
+(define-key sp-keymap (kbd "C-M-y") 'sp-up-sexp)
 (define-key sp-keymap (kbd "C-M-a") 'sp-beginning-of-sexp)
 (define-key sp-keymap (kbd "C-M-e") 'sp-end-of-sexp)
 
