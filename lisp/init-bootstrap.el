@@ -24,6 +24,7 @@
     init-java
     init-lisp
     init-rust
+    init-c
     init-clojure
     init-scala
     init-elixir
