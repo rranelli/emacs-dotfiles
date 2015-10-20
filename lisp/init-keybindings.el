@@ -69,7 +69,9 @@
 (define-key emacs-lisp-mode-map (kbd "C-c C-r") 'eval-region)
 (define-key emacs-lisp-mode-map (kbd "C-c C-e") 'rr/eval-and-replace)
 (define-key emacs-lisp-mode-map (kbd "C-c C-v") 'eval-buffer)
+
 (global-set-key (kbd "C-c ,c") 'compile)
+(global-set-key (kbd "C-c !!") 'flycheck-mode)
 
 ;; indentation
 (global-set-key (kbd "C-i") 'indent-region)
