@@ -74,9 +74,9 @@
 (global-set-key (kbd "C-c !!") 'flycheck-mode)
 
 ;; indentation
-(global-set-key (kbd "C-i") 'indent-region)
-(global-set-key (kbd "C-c i") (lambda () (interactive)
-				(indent-region (point-min) (point-max))))
+(global-set-key (kbd "C-c i")
+                (lambda () (interactive)
+                  (indent-region (point-min) (point-max))))
 
 ;; movement and editing
 (global-set-key (kbd "C-q") 'comment-or-uncomment-region)
