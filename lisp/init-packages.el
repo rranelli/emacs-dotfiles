@@ -33,6 +33,7 @@
     flycheck
     flycheck-rust
     fuzzy
+    gist
     git-timemachine
     graphviz-dot-mode
     gruvbox-theme
