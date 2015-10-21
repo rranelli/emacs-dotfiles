@@ -21,6 +21,7 @@
     cider
     color-theme-sanityinc-tomorrow
     company
+    company-c-headers
     dash
     dash-functional
     dockerfile-mode
