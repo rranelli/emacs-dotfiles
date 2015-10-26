@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:dir
+# key: dir
+# --
+script_dir=$(cd "$(dirname ${BASH_SOURCE[0]}" && pwd))
