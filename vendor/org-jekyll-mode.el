@@ -40,6 +40,7 @@
 (defun org-jekyll-publish-org-to-jekyll ()
   "Renames draft prepending date, export to markdown and promote it to Jekyll's post folder."
   (interactive)
+  (delete-file (org-jekyll-get-md-filename))
   (org-jekyll-prepend-date-to-file-name)
   (org-jekyll-export-to-jekyll)
   (org-jekyll-promote-draft-to-post))
@@ -77,21 +78,21 @@
 
 (defun org-jekyll-promote-draft-to-post ()
   (let* ((org-jekyll-file-name (buffer-file-name))
-         (is-org-jekyll-draft-file-p (string-match "/_drafts" org-jekyll-file-name))
+         (is-org-jekyll-draft-file-p
+          (string-match "/_drafts" org-jekyll-file-name))
 
-         (md-file-name (replace-regexp-in-string "\\.org" ".md" org-jekyll-file-name))
-         (md-target-file-name (replace-regexp-in-string "/org" "" md-file-name))
+         (md-file-name (org-jekyll-get-md-filename))
+         (md-file-name-new
+          (replace-regexp-in-string "/_drafts" "/_posts" md-file-name))
 
-
-         (org-jekyll-file-name-new (replace-regexp-in-string "/_drafts" "/_posts" org-jekyll-file-name))
-         (md-file-name-new (replace-regexp-in-string "/_drafts" "/_posts" md-target-file-name)))
+         (org-jekyll-file-name-new
+          (replace-regexp-in-string "/_drafts" "/_posts" org-jekyll-file-name)))
     (when (and
            (org-jekyll-is-org-file-p)
            is-org-jekyll-draft-file-p)
       (set-visited-file-name org-jekyll-file-name-new t t)
       (rename-file org-jekyll-file-name org-jekyll-file-name-new t)
-
-      (rename-file md-target-file-name md-file-name-new))))
+      (rename-file md-file-name md-file-name-new))))
 
 (defun org-jekyll-new-draft ()
   "Open new draft file."
