@@ -293,6 +293,7 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
 
 ;; load the configuration
 (add-hook 'after-make-frame-functions 'config-frame-appearance)
+(add-hook 'after-init-hook 'config-frame-appearance)
 
 (provide 'init-appearance)
 ;;; init-appearance.el ends here
