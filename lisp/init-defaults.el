@@ -11,7 +11,6 @@
 (blink-cursor-mode t)
 (delete-selection-mode t)
 (show-paren-mode 1)
-(smartscan-mode t)
 (global-undo-tree-mode)
 (ido-mode t)
 (ido-vertical-mode)
