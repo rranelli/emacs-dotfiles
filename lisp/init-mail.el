@@ -129,7 +129,7 @@
 (add-hook 'wl-init-hook 'mime-w3m-insinuate)
 
 ;; -- bindings --
-(define-key global-map (kbd "<f11>") 'wl)
+(define-key global-map (kbd "C-x m") 'wl)
 
 (rr/define-bindings w3m-minor-mode-map
   `(("C-m" . w3m-view-url-with-browse-url)
