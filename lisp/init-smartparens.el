@@ -47,25 +47,23 @@
   (sp-local-tag "2" "**" "**")
   (sp-local-tag "s" "```scheme" "```")
   (sp-local-tag "/" "/" "/")
-  (sp-local-tag "_" "_" "_")
-  (sp-local-tag "<"  "<_>" "</_>" :transform 'sp-match-sgml-tags))
+  (sp-local-tag "_" "_" "_"))
 
 (sp-with-modes '(org-mode)
   (sp-local-pair "/" "/")
   (sp-local-pair "_" "_")
   (sp-local-pair "*" "*")
-  (sp-local-pair "=" "=")
-  (sp-local-tag "<"  "<_>" "</_>" :transform 'sp-match-sgml-tags))
+  (sp-local-pair "=" "="))
 
-(sp-with-modes '(tex-mode plain-tex-mode latex-mode)
+(sp-with-modes '(tex-mode latex-mode)
   (sp-local-pair "$" "$")
   (sp-local-tag "i" "\"<" "\">"))
 
+(sp-with-modes '(sgml-mode html-mode)
+  (sp-local-tag "<" "<_>" "</_>" :transform 'sp-match-sgml-tags))
+
 (sp-with-modes '(ruby-mode)
   (sp-local-pair "|" "|"))
-
-(sp-with-modes '(html-mode sgml-mode)
-  (sp-local-pair "<" ">"))
 
 (sp-with-modes '(elixir-mode)
   (sp-local-pair "fn" "end"
