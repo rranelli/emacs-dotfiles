@@ -11,7 +11,7 @@
 (setq pretty-symbol-patterns
       (append pretty-symbol-patterns
 	      `((?→ lambda "->" (elixir-mode))
-                (?⟵ lambda "<-" (elixir-mode))
+                (?⤌ lambda "<-" (elixir-mode))
 		(?𝆑 lambda "\\<fn\\>" (elixir-mode)))))
 
 (rr/define-bindings elixir-mode-map
@@ -24,6 +24,8 @@
                       ("C-c , s" . alchemist-mix-test-at-point)
                       ("C-c , v" . alchemist-mix-test-this-buffer)
                       ("C-c , c" . alchemist-mix-compile)))
+
+(define-key elixir-mode-map (kbd "C-c C-s") 'inferior-elixir)
 
 (provide 'init-elixir)
 ;;; init-elixir.el ends here
