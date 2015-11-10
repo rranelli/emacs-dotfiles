@@ -12,7 +12,7 @@
 language: english
 layout: post
 comments: true
-title: '${1:$(replace-regexp-in-string "-" " " yas-text)}'
+title: '${1:$(s-capitalize (replace-regexp-in-string "-" " " yas-text))}'
 ---
 #+END_HTML
 
