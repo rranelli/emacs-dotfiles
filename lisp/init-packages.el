@@ -11,7 +11,6 @@
 
 (defvar my-packages
   '(
-    ace-jump-mode
     ag
     alchemist
     anzu
@@ -36,6 +35,7 @@
     fuzzy
     gist
     git-timemachine
+    iedit
     graphviz-dot-mode
     gruvbox-theme
     haskell-mode
@@ -94,6 +94,7 @@
     ansi-color
     cl
     dash
+    iedit
     dash-functional
     dired-x
     dpkg-dev-el

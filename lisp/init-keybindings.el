@@ -92,8 +92,6 @@
 (global-set-key (kbd "M-Q") 'quoted-insert)
 (global-set-key (kbd "C-\\") 'join-line)
 
-(global-set-key (kbd "C-;") 'ace-jump-char-mode)
-
 ;; window and buffer manipulation
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-i") 'other-frame)
@@ -119,6 +117,7 @@
 
 (rr/expose-default-bindings markdown-mode-map)
 (rr/expose-default-bindings sh-mode-map)
+(rr/expose-default-bindings iedit-mode-keymap)
 (add-hook 'shell-mode-hook
           (lambda () (rr/expose-default-bindings shell-mode-map)))
 (add-hook 'sh-mode-hook
