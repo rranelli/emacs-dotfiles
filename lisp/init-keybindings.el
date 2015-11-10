@@ -92,6 +92,9 @@
 (global-set-key (kbd "M-Q") 'quoted-insert)
 (global-set-key (kbd "C-\\") 'join-line)
 
+(global-set-key (kbd "C-x r <RET>") 'iedit-rectangle-mode)
+(global-set-key (kbd "C-;") 'iedit-mode)
+
 ;; window and buffer manipulation
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-i") 'other-frame)
