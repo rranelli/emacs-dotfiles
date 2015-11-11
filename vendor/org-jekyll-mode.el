@@ -15,22 +15,24 @@
 ;;; Toggle functions
 ;;
 (defun org-jekyll-toggle-between-org-and-md ()
-  "Goes to exported markdown file"
+  "Go to exported markdown file."
   (interactive)
   (if (org-jekyll-is-org-file-p)
       (find-file (org-jekyll-get-md-filename))
     (find-file (org-jekyll-get-org-file-from-md-filename))))
 
 (defun org-jekyll-is-org-file-p ()
+  "Check wether current file is an org file."
   (string= (file-name-extension (buffer-file-name)) "org"))
 
 (defun org-jekyll-get-md-filename ()
-  "Finds target markdown file."
+  "Find target markdown file."
   (let* ((post-file-org (buffer-file-name))
          (post-file-md (replace-regexp-in-string "\\.org" ".md" post-file-org)))
     (replace-regexp-in-string "/org/" "/" post-file-md)))
 
 (defun org-jekyll-get-org-file-from-md-filename ()
+  "Get corresponding markdown filename for current visited file."
   (let* ((post-file-md (buffer-file-name))
          (post-file-org (replace-regexp-in-string "\\.md" ".org" post-file-md)))
     (replace-regexp-in-string "/_posts" "/org/_posts" post-file-org)))
@@ -46,6 +48,7 @@
   (org-jekyll-promote-draft-to-post))
 
 (defun org-jekyll-export-to-jekyll ()
+  "Export currenttly visited file to markdown."
   (interactive)
   (let* ((post-file-org (buffer-file-name))
          (post-file-md (replace-regexp-in-string "\\.org" ".md" post-file-org))
@@ -55,6 +58,7 @@
       (rename-file post-file-md target-file-md t))))
 
 (defun org-jekyll-prepend-date-to-file-name ()
+  "Prepend date to currently visited file."
   (let* ((org-jekyll-file-name
 	  (buffer-file-name))
          (org-jekyll-is-date-prepended
@@ -77,6 +81,7 @@
       (rename-file org-jekyll-file-name org-jekyll-file-name-new t))))
 
 (defun org-jekyll-promote-draft-to-post ()
+  "Promote draft to post."
   (let* ((org-jekyll-file-name (buffer-file-name))
          (is-org-jekyll-draft-file-p
           (string-match "/_drafts" org-jekyll-file-name))
@@ -109,6 +114,7 @@
     (org-jekyll-mode)))
 
 (defun org-jekyll-fill-and-indent ()
+  "Fill and indent current file with awareness of code blocks."
   (interactive)
   (cl-labels ((fill-and-ignore-block
 	       ()
@@ -129,6 +135,7 @@
       (fill-and-ignore-block))))
 
 (defun org-jekyll-include-code-file ()
+  "Include separate code file."
   (interactive)
   (let* ((file-name (file-name-base (buffer-file-name)))
          (relative-code-dir (format "../../_code/%s/" file-name))
@@ -147,6 +154,7 @@
                     chosen-code-file-language))))
 
 (defun org-jekyll-visit-code-dir ()
+  "Visit external code files directory."
   (interactive)
   (->> (buffer-file-name)
        (file-name-base)
@@ -154,6 +162,7 @@
        (find-file)))
 
 (defun org-jekyll-set-compile-on-save ()
+  "Add hook to export org files to markdown on save."
   (interactive)
   (add-hook 'after-save-hook 'org-jekyll-export-to-jekyll nil t))
 
