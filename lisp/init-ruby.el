@@ -160,9 +160,9 @@
 (defun rr/initialize-readers (text)
   (interactive)
   (let ((args (->> text
-                  (rr/extract-arg-names-from-declaration)
-                  (-map (lambda (x) (format ":%s" x)))
-                  (s-join ", "))))
+                   (rr/extract-arg-names-from-declaration)
+                   (-map (lambda (x) (format ":%s" x)))
+                   (s-join ", "))))
     (unless (string-empty-p args)
       (s-concat "attr_reader " args))))
 
@@ -181,6 +181,16 @@
     (find-file-other-window file)
     (goto-line line)))
 
+(defun rr/ruby-interpolate ()
+  "In a double quoted string, interpolate."
+  (interactive)
+  (insert "#")
+  (when (and
+         (looking-back "\".*")
+         (looking-at ".*\""))
+    (insert "{}")
+    (backward-char 1)))
+
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
   (rr/define-bindings map
@@ -196,7 +206,8 @@
                       ("C-c r m" . ruby-refactor-extract-to-method)
                       ("C-c r h" . rr/convert-to-ruby-1.9-hash-syntax)
                       ("C-c r s" . rr/split-module-nesting)
-                      ("C-c r l" . rr/wrap-in-stabby-lambda)))
+                      ("C-c r l" . rr/wrap-in-stabby-lambda)
+                      ("#" . rr/ruby-interpolate)))
 
 (rr/define-bindings inf-ruby-minor-mode-map
                     '(("C-M-x" . ruby-send-block)
