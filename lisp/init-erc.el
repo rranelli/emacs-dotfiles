@@ -103,7 +103,7 @@
   (rr/load-irc-passwds)
   (erc-tls :server "irc.freenode.net"
            :port 6697
-           :nick "milhouse`"
+           :nick "rranelli"
            :full-name "renanranelli@gmail.com"
            :password rr/freenode-passwd))
 
@@ -121,8 +121,8 @@
 (defun rr/join-irc ()
   "Connect to all irc servers"
   (interactive)
-  (rr/irc-freenode)
-  (rr/irc-locaweb-slack))
+  ;; (rr/irc-locaweb-slack)
+  (rr/irc-freenode))
 
 (defun rr/clear-erc-unseen ()
   "Clears irc modified channels notification."
