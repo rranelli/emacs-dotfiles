@@ -11,8 +11,9 @@
 ;;; Jumping between projects
 ;;
 (defvar rr/project-sources
-  '("~/code/"
-    "~/locaweb/"))
+  '("~/code"
+    "~/locaweb"
+    "~/xerpa"))
 
 (defvar rr/default-file-regexps
   '("Gemfile$"
