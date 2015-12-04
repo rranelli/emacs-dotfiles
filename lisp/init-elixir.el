@@ -23,6 +23,7 @@
                       ("C-c , a" . alchemist-mix-test)
                       ("C-c , s" . alchemist-mix-test-at-point)
                       ("C-c , v" . alchemist-mix-test-this-buffer)
+                      ("C-c , r" . alchemist-mix-rerun-last-test)
                       ("C-c , c" . alchemist-mix-compile)))
 
 (define-key elixir-mode-map (kbd "C-c C-s") 'inferior-elixir)
