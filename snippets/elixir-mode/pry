@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: defmodule :${1:name} do; use ExUnit.case; import :$1... ;end
+# --
+require IEx; IEx.pry

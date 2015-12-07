@@ -28,5 +28,12 @@
 
 (define-key elixir-mode-map (kbd "C-c C-s") 'inferior-elixir)
 
+(defun rr/iex-pry-command ()
+  "Format an `iex' command to call a test with `pry'."
+  (interactive)
+  (->> (rr/show-file-name)
+       (format "iex -S mix test %s")
+       (kill-new)))
+
 (provide 'init-elixir)
 ;;; init-elixir.el ends here
