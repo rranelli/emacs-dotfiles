@@ -4,6 +4,9 @@
 (require 'elixir-mode)
 (require 'alchemist)
 
+;; Do not change mode-line color based on test result
+(setq alchemist-test-status-modeline nil)
+
 ;; -- hooks --
 (add-hook 'elixir-mode-hook 'alchemist-mode)
 
@@ -22,18 +25,30 @@
                       ("C-c , y" . alchemist-project-toggle-file-and-tests-other-window)
                       ("C-c , a" . alchemist-mix-test)
                       ("C-c , s" . alchemist-mix-test-at-point)
-                      ("C-c , v" . alchemist-mix-test-this-buffer)
+                      ("C-c , v" . alchemist-project-run-tests-for-current-file)
                       ("C-c , r" . alchemist-mix-rerun-last-test)
-                      ("C-c , c" . alchemist-mix-compile)))
+                      ("C-c , c" . alchemist-mix-compile)
+                      ("C-c , S" . rr/iex-pry)))
 
 (define-key elixir-mode-map (kbd "C-c C-s") 'inferior-elixir)
 
 (defun rr/iex-pry-command ()
   "Format an `iex' command to call a test with `pry'."
   (interactive)
-  (->> (rr/show-file-name)
-       (format "iex -S mix test %s")
-       (kill-new)))
+  (new-kill (format "iex -S mix test %s"
+                    (rr/show-file-name))))
+
+(defun rr/iex-pry ()
+  (interactive)
+  (let ((default-directory (alchemist-project-root))
+        (cmd (rr/iex-pry-command)))
+    (ansi-term "/bin/bash" "iex-pry")
+    (sleep-for 1) ;; see emacs/24.5/lisp/term.el.gz:1440 ...
+                  ;; nothing I can do
+    (term-line-mode)
+    (goto-char (point-max))
+    (insert cmd)
+    (term-char-mode)))
 
 (provide 'init-elixir)
 ;;; init-elixir.el ends here
