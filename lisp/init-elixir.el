@@ -50,5 +50,9 @@
     (insert cmd)
     (term-char-mode)))
 
+(defun rr/set-mix-env ()
+  (interactive)
+  (setenv "MIX_ENV" (read-string "MIX_ENV= " "dev")))
+
 (provide 'init-elixir)
 ;;; init-elixir.el ends here
