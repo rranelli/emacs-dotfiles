@@ -35,7 +35,7 @@
 (defun rr/iex-pry-command ()
   "Format an `iex' command to call a test with `pry'."
   (interactive)
-  (new-kill (format "iex -S mix test %s"
+  (kill-new (format "iex -S mix test %s"
                     (rr/show-file-name))))
 
 (defun rr/iex-pry ()
