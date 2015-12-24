@@ -3,20 +3,19 @@
 ;;; Code:
 (require 'magit)
 
-;; Remove warning for `magit-auto-revert-mode'
-(setq magit-last-seen-setup-instructions "1.4.0")
-
-;; Always open magit in the same window
-(setq magit-status-buffer-switch-function 'switch-to-buffer)
-
-;; Don't add remote prefix when creating a tracking branch
-(setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-only)
-
-;; colorize the magit log
-(setq magit-log-arguments '("--graph" "--color" "--decorate" "-n256"))
-
-;; Don't prompt everytime for push destination
-(setq magit-push-always-verify nil)
+(setq
+ ;; Remove warning for `magit-auto-revert-mode'
+ magit-last-seen-setup-instructions "1.4.0"
+ ;; Always open magit in the same window
+ magit-status-buffer-switch-function 'switch-to-buffer
+ ;; Don't add remote prefix when creating a tracking branch
+ magit-default-tracking-name-function 'magit-default-tracking-name-branch-only
+ ;; colorize the magit log
+ magit-log-arguments '("--graph" "--color" "--decorate" "-n256")
+ ;; Don't prompt everytime for push destination
+ magit-push-always-verify nil
+ ;; Show gravatars
+ magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
 
 (defadvice magit-status
     (before magit-save-before-status activate)
