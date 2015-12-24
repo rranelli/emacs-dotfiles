@@ -13,8 +13,8 @@
 ;; pretty symbols
 (setq pretty-symbol-patterns
       (append pretty-symbol-patterns
-	      `((?→ lambda "->" (elixir-mode))
-                (?⤌ lambda "<-" (elixir-mode))
+	      `((?⟶ lambda "->" (elixir-mode))
+                (?⟵ lambda "<-" (elixir-mode))
 		(?𝆑 lambda "\\<fn\\>" (elixir-mode)))))
 
 (rr/define-bindings elixir-mode-map
