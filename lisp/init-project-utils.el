@@ -12,7 +12,7 @@
 ;;
 (defvar rr/project-sources
   '("~/code"
-    "~/locaweb"
+;;    "~/locaweb"
     "~/xerpa"))
 
 (defvar rr/default-file-regexps
@@ -81,7 +81,6 @@
 	 (expand-file-name gitignore-file gitignore-dir)
 	 (expand-file-name ".gitignore" repo-path)
 	 t))))
-
 
 ;;
 ;;; Colors in compilation buffer
