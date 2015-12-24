@@ -42,6 +42,8 @@
                                                        (set-face-attribute 'default nil
                                                                            :height 140)
 
+                                                       (set-default-font "Fira Code Bold")
+
                                                        (rr/set-transparency 70)))))
     (dichromacy . '((cursor . "Red")
                     (paren-highlight-style . parenthesis)
