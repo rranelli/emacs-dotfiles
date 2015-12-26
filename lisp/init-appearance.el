@@ -18,6 +18,10 @@
 
 (defcustom rr/theme-custom-color-alist
   '((sanityinc-tomorrow-night . '((custom-faces-fn . (lambda ()
+                                                       (set-face-attribute 'region nil
+                                                                           :background "black")
+                                                       (set-face-attribute 'iedit-occurrence nil
+                                                                           :background "blue")
                                                        (set-face-attribute 'fringe nil
                                                                            :background nil)
                                                        (set-face-attribute 'linum nil
