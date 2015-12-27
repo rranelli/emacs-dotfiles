@@ -48,7 +48,7 @@
 
                                                        (set-default-font "Fira Code Bold")
 
-                                                       (rr/set-transparency 70)))))
+                                                       (rr/set-transparency 76)))))
     (dichromacy . '((cursor . "Red")
                     (paren-highlight-style . parenthesis)
                     (custom-faces-fn . (lambda ()
