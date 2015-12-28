@@ -33,6 +33,8 @@
  ;; please, share the clipboard
  x-select-enable-clipboard t
  uniquify-buffer-name-style 'forward
+ ;; maybe this will fix the #filename auto-saved files
+ auto-save-visited-file-name t
  ;; improve rendering performance
  redisplay-dont-pause t
  ;; no backups
