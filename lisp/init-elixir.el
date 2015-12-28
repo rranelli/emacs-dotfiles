@@ -11,6 +11,10 @@
 ;;; hooks
 ;;
 (add-hook 'elixir-mode-hook 'alchemist-mode)
+(add-hook 'alchemist-test-report-mode-hook
+          (lambda ()
+            (toggle-truncate-lines 0)
+            (text-scale-set -1)))
 (add-hook 'flycheck-before-syntax-check-hook
           (lambda ()
             (when (equal 'elixir-mode major-mode)
