@@ -11,10 +11,6 @@
 ;;; hooks
 ;;
 (add-hook 'elixir-mode-hook 'alchemist-mode)
-(add-hook 'alchemist-test-report-mode-hook
-          (lambda ()
-            (toggle-truncate-lines 0)
-            (text-scale-set -1)))
 (add-hook 'flycheck-before-syntax-check-hook
           (lambda ()
             (when (equal 'elixir-mode major-mode)
@@ -96,6 +92,8 @@
                       ("C-c , c" . alchemist-mix-compile)
                       ("C-c , S" . rr/iex-pry)))
 
+(define-key alchemist-test-report-mode-map (kbd "T")
+  '(lambda () (interactive) (toggle-truncate-lines 0)))
 (define-key elixir-mode-map (kbd "C-c C-s") 'inferior-elixir)
 
 (provide 'init-elixir)
