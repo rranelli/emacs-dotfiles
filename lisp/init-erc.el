@@ -56,7 +56,7 @@
  erc-keywords '("deploy" "Failure" "@channel"))
 
 (setq erc-autojoin-channels-alist
-      '(("freenode" "#haskell" "haskell-emacs" "#elixir-lang" "#emacs-elixir")))
+      '(("freenode" "#haskell" "#elixir-lang" "#emacs-elixir")))
 
 ;;; view logs
 (require 'erc-view-log)
@@ -87,36 +87,26 @@
 ;;
 ;;; custom functions
 ;;
-(defun rr/load-irc-passwds ()
-  "Load irc passwords from mimipass"
-  (unless (and
-           (boundp 'rr/slack-passwd)
-           (boundp 'rr/freenode-passwd))
-    (->> "mimipass get irc-passwds"
-         (shell-command-to-string)
-         (read)
-         (eval))))
-
 (defun rr/irc-freenode ()
   "Connect to freenode IRC."
   (interactive)
-  (rr/load-irc-passwds)
   (erc-tls :server "irc.freenode.net"
            :port 6697
            :nick "rranelli"
            :full-name "renanranelli@gmail.com"
-           :password rr/freenode-passwd))
+           :password (-> "mimipass get irc-freenode"
+                         (shell-command-to-string))))
 
-(defun rr/irc-locaweb-slack ()
-  "Connect to locaweb's Slack via IRC."
-  (interactive)
-  (rr/load-irc-passwds)
-  (add-to-list 'erc-networks-alist '(Locaweb . "locaweb.irc.slack.com:6667"))
-  (erc-tls :server "locaweb.irc.slack.com"
-           :port 6667
-           :nick "milhouse"
-           :full-name "milhouse"
-           :password rr/slack-passwd))
+;; (defun rr/irc-locaweb-slack ()
+;;   "Connect to locaweb's Slack via IRC."
+;;   (interactive)
+;;   (rr/load-irc-passwds)
+;;   (add-to-list 'erc-networks-alist '(Locaweb . "locaweb.irc.slack.com:6667"))
+;;   (erc-tls :server "locaweb.irc.slack.com"
+;;            :port 6667
+;;            :nick "milhouse"
+;;            :full-name "milhouse"
+;;            :password rr/slack-passwd))
 
 (defun rr/join-irc ()
   "Connect to all irc servers"

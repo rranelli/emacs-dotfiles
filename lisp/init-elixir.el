@@ -93,7 +93,7 @@
                       ("C-c , S" . rr/iex-pry)))
 
 (define-key alchemist-test-report-mode-map (kbd "T")
-  '(lambda () (interactive) (toggle-truncate-lines 0)))
+  '(lambda () (interactive) (toggle-truncate-lines)))
 (define-key elixir-mode-map (kbd "C-c C-s") 'inferior-elixir)
 
 (provide 'init-elixir)
