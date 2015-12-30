@@ -80,7 +80,12 @@
 ;;; bindings
 ;;
 (rr/define-bindings elixir-mode-map
-                    '(("M-q" . elixir-mode-fill-doc-string)))
+                    '(("M-q" . elixir-mode-fill-doc-string)
+                      ("C-x C-f" . (lambda ()
+                                     (interactive)
+                                     (-> (buffer-file-name)
+                                         (file-name-directory)
+                                         (helm-find-files-1))))))
 
 (rr/define-bindings alchemist-mode-map
                     '(("C-c , t" . alchemist-project-toggle-file-and-tests)
