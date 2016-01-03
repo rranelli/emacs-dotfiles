@@ -49,7 +49,7 @@
 	 (latex . t)
 	 (sql . t)))
 
-      (require 'init-org-mobile)
+      ;; (require 'init-org-mobile)
       (require 'init-org-notify)
 
       ;; setup keybindings
