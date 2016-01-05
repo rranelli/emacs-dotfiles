@@ -56,6 +56,7 @@
     popup
     pretty-symbols
     projectile
+    erlang
     racer
     rainbow-mode
     realgud
