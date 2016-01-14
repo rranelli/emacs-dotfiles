@@ -15,6 +15,7 @@
 (ido-mode t)
 (ido-vertical-mode)
 (global-auto-revert-mode nil)
+(volatile-highlights-mode t)
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)

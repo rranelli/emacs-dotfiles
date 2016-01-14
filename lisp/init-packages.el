@@ -29,13 +29,13 @@
     erc-hl-nicks
     erc-image
     erc-view-log
+    erlang
     expand-region
     flycheck
     flycheck-rust
     fuzzy
     gist
     git-timemachine
-    iedit
     graphviz-dot-mode
     gruvbox-theme
     haskell-mode
@@ -45,6 +45,7 @@
     highlight-symbol
     hl-anything
     ido-vertical-mode
+    iedit
     inf-ruby
     javadoc-lookup
     langtool
@@ -56,7 +57,6 @@
     popup
     pretty-symbols
     projectile
-    erlang
     racer
     rainbow-mode
     realgud
@@ -79,6 +79,7 @@
     synosaurus
     telephone-line
     undo-tree
+    volatile-highlights
     w3m
     wanderlust
     writegood-mode
@@ -115,6 +116,7 @@
     smex
     uniquify
     visual-basic-mode
+    volatile-highlights
     yaml-mode
     ))
 

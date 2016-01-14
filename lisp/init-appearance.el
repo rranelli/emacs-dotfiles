@@ -46,6 +46,9 @@
                                                        (set-face-attribute 'default nil
                                                                            :height 140)
 
+                                                       (set-face-attribute 'vhl/default-face nil
+                                                                           :background "black")
+
                                                        (set-default-font "Fira Code Bold")
 
                                                        (rr/set-transparency 76)))))
