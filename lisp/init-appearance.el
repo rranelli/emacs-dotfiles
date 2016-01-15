@@ -47,7 +47,7 @@
                                                                            :height 140)
 
                                                        (set-face-attribute 'vhl/default-face nil
-                                                                           :background "black")
+                                                                           :background "dark slate blue")
 
                                                        (set-default-font "Fira Code Bold")
 
