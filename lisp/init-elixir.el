@@ -76,6 +76,19 @@
   (interactive)
   (setenv "MIX_ENV" (read-string "MIX_ENV= " "dev")))
 
+(defun rr/elixir-to-pipe ()
+  (interactive)
+  (re-search-backward "(")
+  (forward-char)
+  (set-mark (point))
+  (re-search-forward ", ")
+  (kill-region (point) (mark))
+  (sp-backward-up-sexp)
+  (backward-sexp)
+  (yank)
+  (delete-backward-char 2)
+  (insert " |> "))
+
 ;;
 ;;; bindings
 ;;
@@ -95,7 +108,8 @@
                       ("C-c , v" . alchemist-project-run-tests-for-current-file)
                       ("C-c , r" . alchemist-mix-rerun-last-test)
                       ("C-c , c" . alchemist-mix-compile)
-                      ("C-c , S" . rr/iex-pry)))
+                      ("C-c , S" . rr/iex-pry)
+                      ("C-c r p" . rr/elixir-to-pipe)))
 
 (define-key alchemist-test-report-mode-map (kbd "T")
   '(lambda () (interactive) (toggle-truncate-lines)))
