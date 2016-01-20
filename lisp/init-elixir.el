@@ -22,7 +22,7 @@
       (append pretty-symbol-patterns
 	      `((?⟶ lambda "->" (elixir-mode))
                 (?⟵ lambda "<-" (elixir-mode))
-		(?𝆑 lambda "\\<fn\\>" (elixir-mode)))))
+		(?𝛌 lambda "\\<fn\\>" (elixir-mode)))))
 
 (flycheck-define-checker elixir
   "An Elixir syntax checker using the Elixir interpreter."
