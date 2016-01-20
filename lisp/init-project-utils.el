@@ -16,10 +16,10 @@
     "~/xerpa"))
 
 (defvar rr/default-file-regexps
-  '("Gemfile$"
-    "mix.exs$"
-    "Readme"
-    "README"))
+  '("^Gemfile$"
+    "^mix.exs$"
+    "^Readme"
+    "^README"))
 
 (defun rr/helm-open-project ()
   "Bring up a Project search interface in helm."
