@@ -47,7 +47,7 @@
       ruby-align-to-stmt-keywords nil
       ruby-deep-indent-paren nil
       ruby-deep-indent-paren-style nil
-      ruby-use-smie nil)
+      ruby-use-smie t)
 
 (defadvice ruby-indent-line (after unindent-closing-paren activate)
   "Indent sole parenthesis in loca's way."
