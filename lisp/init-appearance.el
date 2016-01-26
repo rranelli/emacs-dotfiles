@@ -49,6 +49,9 @@
                                                        (set-face-attribute 'vhl/default-face nil
                                                                            :background "dark slate blue")
 
+                                                       (modify-all-frames-parameters `((cursor-type bar . 5)))
+                                                       (modify-all-frames-parameters `((cursor-color . "#cc6666")))
+
                                                        (set-default-font "Fira Code Bold")
 
                                                        (rr/set-transparency 76)))))
