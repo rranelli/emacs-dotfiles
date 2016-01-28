@@ -135,6 +135,7 @@
 (rr/expose-default-bindings-with-hook diff-mode)
 (rr/expose-default-bindings-with-hook c-mode)
 (rr/expose-default-bindings-with-hook makefile-mode)
+(rr/expose-default-bindings-with-hook web-mode)
 
 (add-hook 'makefile-mode-hook
           (lambda ()
