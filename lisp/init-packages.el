@@ -119,6 +119,7 @@
     uniquify
     volatile-highlights
     yaml-mode
+    web-mode
     ))
 
 ;; package loading
