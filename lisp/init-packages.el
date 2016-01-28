@@ -48,6 +48,7 @@
     iedit
     inf-ruby
     javadoc-lookup
+    js2-mode
     langtool
     magit
     markdown-mode+
