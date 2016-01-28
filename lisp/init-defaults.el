@@ -124,8 +124,6 @@
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
-(add-to-list 'auto-mode-alist '("\\.vbs$" . visual-basic-mode))
-(add-to-list 'auto-mode-alist '("\\.asp$" . visual-basic-mode))
 (add-to-list 'auto-mode-alist '("\\.html.eex$" . web-mode))
 
 (global-flycheck-mode t)

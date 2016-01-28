@@ -117,7 +117,6 @@
     sh-script
     smex
     uniquify
-    visual-basic-mode
     volatile-highlights
     yaml-mode
     ))
