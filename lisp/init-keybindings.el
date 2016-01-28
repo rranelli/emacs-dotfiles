@@ -95,6 +95,8 @@
 (global-set-key (kbd "C-x r <RET>") 'iedit-rectangle-mode)
 (global-set-key (kbd "C-;") 'iedit-mode)
 
+(global-set-key (kbd "C-,") 'avy-goto-word-1)
+
 ;; window and buffer manipulation
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-i") 'other-frame)

@@ -15,6 +15,7 @@
     alchemist
     anzu
     auto-package-update
+    avy
     back-button
     better-registers
     cider
