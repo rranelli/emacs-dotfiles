@@ -26,6 +26,7 @@
     dash-functional
     dockerfile-mode
     elixir-mode
+    emmet
     ensime
     erc-hl-nicks
     erc-image
@@ -42,6 +43,7 @@
     haskell-mode
     helm
     helm-bundle-show
+    helm-emmet
     helm-projectile
     highlight-symbol
     hl-anything
