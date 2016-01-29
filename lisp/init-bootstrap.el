@@ -35,6 +35,7 @@
     init-shell
     init-mail
     init-erc
+    init-web
     init-appearance
     init-registers))
 

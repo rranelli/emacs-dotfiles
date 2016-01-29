@@ -113,8 +113,6 @@
 (define-key ctl-x-map "-" 'swap-buffers-in-windows)
 (define-key ctl-x-map "n" 'narrow-or-widen-dwim)
 
-(define-key web-mode-map "M-y" 'emmet-expand-yas)
-
 ;;
 ;;; Customization compatibility with other modes
 ;;
