@@ -26,7 +26,7 @@
     dash-functional
     dockerfile-mode
     elixir-mode
-    emmet
+    emmet-mode
     ensime
     erc-hl-nicks
     erc-image
