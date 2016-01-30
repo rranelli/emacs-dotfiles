@@ -1,6 +1,7 @@
 ;;; init-appearance.el -- Configures some helpers for fast color scheme changing.
 ;;; Commentary:
 ;;; Code:
+(defvar rr/theme-loaded nil)
 
 ;; themes
 (defcustom chosen-x-theme 'sanityinc-tomorrow-night
@@ -180,7 +181,7 @@
   "Configure x FRAME."
 
   (setq chosen-theme chosen-x-theme)
-  (load-theme chosen-theme t)
+  (unless rr/theme-loaded (load-theme chosen-theme t))
 
   ;; make cursor type a bar
   (modify-all-frames-parameters `((cursor-type . bar)))
@@ -197,7 +198,7 @@
                         :foreground (get-color-config 'mode-line-foreground)))
   (funcall (get-color-config 'custom-faces-fn))
 
-  (setq theme-loaded t))
+  (setq rr/theme-loaded t))
 
 (defun toggle-transparency (&optional frame force-transp)
   "Toggle frame transparency for FRAME.
