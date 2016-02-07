@@ -139,15 +139,8 @@
                             (-map (lambda (name) (format "require_relative '%s/%s'" fbase name))))))
     (insert (s-join "\n" require-text))))
 
-(defun rr/toggle-vcr-off ()
-  "Toggles VCR_OFF environment variable between 'true' and nil"
-  (interactive)
-  (-> (getenv "VCR_OFF")
-      (equal "true")
-      (unless "true")
-      (->> (setenv "VCR_OFF")
-           (format "VCR_OFF set to %s"))
-      (message)))
+(rr/toggle-env "VCR_OFF")
+(rr/toggle-env "PRY_EXCEPTIONS")
 
 ;; initializer construction
 (defun rr/initialize-instance-vars (text)

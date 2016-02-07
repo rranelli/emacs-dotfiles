@@ -119,5 +119,15 @@ narrowed."
   (let ((name (file-relative-name file)))
     (vc-git-command buf 0 name "blame" "-w" rev)))
 
+(defmacro rr/toggle-env (env-var)
+  `(defun ,(intern (concat "rr/toggle-" env-var)) ()
+     (interactive)
+     (-> (getenv ,env-var)
+         (equal "true")
+         (unless "true")
+         (->> (setenv ,env-var)
+              (format "%s set to %s" ,env-var))
+         (message))))
+
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here
