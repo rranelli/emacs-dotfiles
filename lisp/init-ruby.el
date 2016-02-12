@@ -184,6 +184,12 @@
     (insert "{}")
     (backward-char 1)))
 
+(defun rr/find-file-at-point-with-vlc ()
+  "Open file at point with vlc.
+Useful for headless selenium tests."
+  (interactive)
+  (shell-command-to-string (format "vlc --rate 3x %s" (ffap-file-at-point))))
+
 ;; -- keybindings --
 (dolist (map '(rspec-mode-keymap rspec-verifiable-mode-keymap))
   (rr/define-bindings map
@@ -210,7 +216,8 @@
                     '(("C-c C-c" . rr/pry-byebug-jump-to-source)))
 
 (rr/define-bindings compilation-mode-map
-                    '(("e" . rr/pry-in-rspec-compilation)))
+                    '(("e" . rr/pry-in-rspec-compilation)
+                      ("v" . rr/find-file-at-point-with-vlc)))
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
