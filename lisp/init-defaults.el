@@ -96,6 +96,7 @@
 (setq-default
  display-buffer-reuse-frames t
  indent-tabs-mode nil
+ sh-basic-offset 2
  save-place t
  fill-column 80)
 
