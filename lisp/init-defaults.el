@@ -33,6 +33,8 @@
 
 ;; -- Variables --
 (setq
+ ;; never ask for if local-variables are safe to use
+ enable-local-variables :all
  ;; please, share the clipboard
  x-select-enable-clipboard t
  uniquify-buffer-name-style 'forward
@@ -108,7 +110,7 @@
 (defun custom-add-watchwords ()
   (font-lock-add-keywords
    nil '(("\\<\\(FIXME\\|TODO\\|HACK\\|NOCOMMIT\\)"
-	1 font-lock-warning-face t))))
+          1 font-lock-warning-face t))))
 
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
