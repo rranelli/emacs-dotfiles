@@ -7,7 +7,7 @@
   "Create an eshell with given name.
 If ARG is present, open a new eshell regardless."
   (interactive "P")
-  (let* ((custom-name (if arg (format "{%s}" (read-string "Shell name: ")) ""))
+  (let* ((custom-name (if arg (format "⭃ %s" (read-string "Shell tag: ")) ""))
 	 (shell-name (format "⍟ mimi-term ⍟ %s %s" (rr/shell-project-name) custom-name))
 	 (shell-exists-p (bufferp (get-buffer shell-name))))
 
@@ -36,9 +36,10 @@ If ARG is present, open a new eshell regardless."
       (projectile-project-root)
     default-directory))
 
-(defun rr/rename-tag-term-buffer ()
+(defun rr/rename-term ()
+  (interactive)
   (rename-buffer (read-string "set new buffer name: "
-                              (format "{%s}" (buffer-name)))))
+                              (format "%s ⭃" (buffer-name)))))
 
 ;; -- keybindings --
 
@@ -63,7 +64,7 @@ If ARG is present, open a new eshell regardless."
           (lambda ()
             (setq term-buffer-maximum-size 10000)
             (rr/expose-bindings term-raw-map
-                                (-difference (-concat rr/default-bindings-to-expose '("M-:" "M-w" "C-u"))
+                                (-difference (-concat rr/default-bindings-to-expose '("M-:" "M-w" "C-u" "C-x C-f"))
                                              '("C-h" "M-h" "C-r")))
             (rr/define-bindings term-raw-map
                                 '(("C-c C-c" . term-interrupt-subjob)
