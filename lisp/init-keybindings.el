@@ -81,6 +81,7 @@
 ;; movement and editing
 (global-set-key (kbd "C-q") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-a") 'rr/move-smart-beginning-of-line)
+(global-set-key (kbd "C-e") 'end-of-line)
 (global-set-key (kbd "C-h") 'backward-delete-char)
 (global-set-key (kbd "M-d") 'rr/kill-word)
 (global-set-key (kbd "M-h") 'rr/backward-kill-word)

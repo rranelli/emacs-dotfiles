@@ -23,6 +23,8 @@
 
 (smex-initialize)
 
+(server-start)
+
 ;; safe variables
 (add-to-list 'safe-local-variable-values '(encoding . utf-8))
 

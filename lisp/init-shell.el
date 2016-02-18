@@ -20,10 +20,6 @@ If ARG is present, open a new eshell regardless."
       (goto-char (point-max))
       (insert (format "cd %s # [Enter] cds to root" (rr/shell-wd))))))
 
-(defun rr/new-eshell (arg)
-  (interactive "P")
-  (rr/new-shell arg 'eshell 'eshell))
-
 (defun rr/new-ansi-term (arg)
   (interactive "P")
   (rr/new-shell arg '(lambda () (ansi-term "/bin/bash")) 'ansi-term))
@@ -40,37 +36,48 @@ If ARG is present, open a new eshell regardless."
       (projectile-project-root)
     default-directory))
 
-;; eshell compatibility
-(defun rr/run-command-in-bash (&rest cmd)
-  "Run CMD as if you were in a bash shell instead of Eshell."
-  (insert (format "bash -c 'source ~/.bashrc; cd %s; %s'"
-                  (eshell/pwd)
-                  (s-join " " (car cmd))))
-  (eshell-send-input))
-
 ;; -- keybindings --
 
 ;; term
+(defun last-line? ()
+  (<= (line-number-at-pos (- (point-max) 1))
+      (line-number-at-pos (point))))
+
+(defmacro rr/term-key (binding alternative-f)
+  `(defun ,(intern (format "rr/term-%s" binding)) ()
+     (interactive)
+     (funcall (if (last-line?)
+                               ',alternative-f
+                             ',(lookup-key (current-global-map) (kbd binding))))))
+
+(rr/term-key "C-a" term-send-raw)
+(rr/term-key "C-e" term-send-raw)
+(rr/term-key "C-f" term-send-right)
+(rr/term-key "C-b" term-send-left)
+
 (add-hook 'term-load-hook
           (lambda ()
+            (setq term-buffer-maximum-size 10000)
             (rr/expose-bindings term-raw-map
                                 (->> rr/default-bindings-to-expose
-                                     (remove "C-h")
-                                     (remove "M-h")
-                                     (remove "C-r")))))
+                                     (-concat '("M-:" "M-w"))
+                                     (--> (-difference it '("C-h" "M-h" "C-r")))))
+            (rr/define-bindings term-raw-map
+                                '(("C-c C-c" . term-interrupt-subjob)
+                                  ("C-p" . previous-line)
+                                  ("C-n" . next-line)
+                                  ("C-a" . rr/term-C-a)
+                                  ("C-e" . rr/term-C-e)
+                                  ("C-f" . rr/term-C-f)
+                                  ("C-b" . rr/term-C-b)
+                                  ("C-s" . isearch-forward)
+                                  ("M-n" . term-send-down)
+                                  ("M-p" . term-send-up)
+                                  ("M-." . completion-at-point)
+                                  ("C-y" . term-paste)))))
 
-;; eshell
-(global-set-key (kbd "C-x RET") 'rr/new-eshell)
 (global-set-key (kbd "C-x C-<return>") 'rr/new-ansi-term)
 (global-set-key (kbd "C-x M-RET") 'rr/new-ansi-term)
-
-(rr/expose-default-bindings-with-hook eshell-mode)
-(add-hook 'eshell-mode-hook
-          #'(lambda ()
-              (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
-              (rr/define-bindings eshell-mode-map
-                                  '(("C-x C-s" . ignore)
-                                    ("C-r" . helm-eshell-history)))))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here
