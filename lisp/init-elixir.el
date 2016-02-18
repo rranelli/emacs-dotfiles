@@ -113,6 +113,7 @@
 
 (define-key alchemist-test-report-mode-map (kbd "T")
   '(lambda () (interactive) (toggle-truncate-lines)))
+(define-key alchemist-test-report-mode-map (kbd "g") 'alchemist-mix-rerun-last-test)
 (define-key elixir-mode-map (kbd "C-c C-s") 'inferior-elixir)
 
 (provide 'init-elixir)
