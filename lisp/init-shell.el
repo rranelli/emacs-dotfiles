@@ -7,8 +7,8 @@
   "Create an eshell with given name.
 If ARG is present, open a new eshell regardless."
   (interactive "P")
-  (let* ((custom-name (if arg (format "[%s]" (read-string "Shell name: ")) ""))
-	 (shell-name (format "%s: %s %s" (symbol-name shell) (rr/shell-project-name) custom-name))
+  (let* ((custom-name (if arg (format "{%s}" (read-string "Shell name: ")) ""))
+	 (shell-name (format "⍟ mimi-term ⍟ %s %s" (rr/shell-project-name) custom-name))
 	 (shell-exists-p (bufferp (get-buffer shell-name))))
 
     (if (not shell-exists-p)
@@ -36,6 +36,10 @@ If ARG is present, open a new eshell regardless."
       (projectile-project-root)
     default-directory))
 
+(defun rr/rename-tag-term-buffer ()
+  (rename-buffer (read-string "set new buffer name: "
+                              (format "{%s}" (buffer-name)))))
+
 ;; -- keybindings --
 
 ;; term
@@ -47,8 +51,8 @@ If ARG is present, open a new eshell regardless."
   `(defun ,(intern (format "rr/term-%s" binding)) ()
      (interactive)
      (funcall (if (last-line?)
-                               ',alternative-f
-                             ',(lookup-key (current-global-map) (kbd binding))))))
+                  ',alternative-f
+                ',(lookup-key (current-global-map) (kbd binding))))))
 
 (rr/term-key "C-a" term-send-raw)
 (rr/term-key "C-e" term-send-raw)
@@ -59,9 +63,8 @@ If ARG is present, open a new eshell regardless."
           (lambda ()
             (setq term-buffer-maximum-size 10000)
             (rr/expose-bindings term-raw-map
-                                (->> rr/default-bindings-to-expose
-                                     (-concat '("M-:" "M-w" "C-u"))
-                                     (--> (-difference it '("C-h" "M-h" "C-r")))))
+                                (-difference (-concat rr/default-bindings-to-expose '("M-:" "M-w" "C-u"))
+                                             '("C-h" "M-h" "C-r")))
             (rr/define-bindings term-raw-map
                                 '(("C-c C-c" . term-interrupt-subjob)
                                   ("C-p" . previous-line)
