@@ -59,6 +59,7 @@ If ARG is present, open a new eshell regardless."
 (rr/term-key "C-e" term-send-raw)
 (rr/term-key "C-f" term-send-right)
 (rr/term-key "C-b" term-send-left)
+(rr/term-key "C-k" (lambda () (kill-line) (term-send-raw)))
 
 (add-hook 'term-load-hook
           (lambda ()
@@ -75,6 +76,7 @@ If ARG is present, open a new eshell regardless."
                                   ("C-e" . rr/term-C-e)
                                   ("C-f" . rr/term-C-f)
                                   ("C-b" . rr/term-C-b)
+                                  ("C-k" . rr/term-C-k)
                                   ("C-s" . isearch-forward)
                                   ("M-n" . term-send-down)
                                   ("M-p" . term-send-up)
