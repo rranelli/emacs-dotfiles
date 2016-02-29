@@ -40,8 +40,6 @@
  uniquify-buffer-name-style 'forward
  ;; maybe this will fix the #filename auto-saved files
  auto-save-visited-file-name t
- ;; improve rendering performance
- redisplay-dont-pause t
  ;; no backups
  make-backup-files nil
  auto-save-default nil
@@ -73,7 +71,8 @@
  browse-url-default-browser 'browse-url-firefox
  ;; make mans open in the same window
  Man-notify-method 'pushy
- )
+ ;; make tab complete and indent
+ tab-always-indent 'complete)
 
 ;; more depth and sizes
 (setq max-specpdl-size 10000
