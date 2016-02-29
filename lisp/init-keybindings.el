@@ -121,13 +121,14 @@
 (rr/expose-bindings yaml-mode-map '("C-m"))
 (rr/expose-bindings text-mode-map '("M-r"))
 
-(rr/expose-default-bindings markdown-mode-map)
+(rr/expose-default-bindings-with-hook gfm-mode)
+(add-hook 'gfm-mode-hook (lambda () (rr/expose-bindings gfm-mode-map '("`"))))
+
 (rr/expose-default-bindings sh-mode-map)
 (rr/expose-default-bindings iedit-mode-keymap)
-(add-hook 'shell-mode-hook
-          (lambda () (rr/expose-default-bindings shell-mode-map)))
-(add-hook 'sh-mode-hook
-          (lambda () (rr/expose-default-bindings sh-mode-map)))
+
+(rr/expose-default-bindings-with-hook shell-mode)
+(rr/expose-default-bindings-with-hook sh-mode)
 
 (rr/expose-default-bindings-with-hook python-mode)
 (rr/expose-default-bindings-with-hook sgml-mode)

@@ -66,7 +66,7 @@ If ARG is present, open a new eshell regardless."
             (setq term-buffer-maximum-size 10000)
             (rr/expose-bindings term-raw-map
                                 (-difference (-concat rr/default-bindings-to-expose
-                                                      '("M-:" "M-w" "C-u" "C-x" "C-x C-f"))
+                                                      '("M-:" "M-w" "C-u" "C-x" "C-x C-f" "C-c c"))
                                              '("C-h" "M-h" "C-r")))
             (rr/define-bindings term-raw-map
                                 '(("C-c C-c" . term-interrupt-subjob)
