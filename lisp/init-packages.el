@@ -84,8 +84,7 @@
     telephone-line
     undo-tree
     volatile-highlights
-    w3m
-    wanderlust
+    web-mode
     writegood-mode
     yaml-mode
     yard-mode
