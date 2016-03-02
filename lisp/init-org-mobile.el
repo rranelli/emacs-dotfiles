@@ -2,15 +2,15 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq org-mobile-directory "~/Copy/mobileorg"
+(setq org-mobile-directory "~/SpiderOak Hive/mobileorg"
       org-mobile-inbox-for-pull (expand-file-name "refile.org" rr/org-files-directory))
 
 (add-hook 'org-mobile-post-push-hook
-          (lambda () (shell-command "scp -r ~/Copy/mobileorg/* renan@cpro26266.publiccloud.com.br:/home/renan/mobileorg/ &")))
+          (lambda () (shell-command "scp -r '~/SpiderOak Hive/mobileorg/'* renan@cpro26266.publiccloud.com.br:/home/renan/mobileorg/ &")))
 (add-hook 'org-mobile-pre-pull-hook
-          (lambda () (shell-command "scp renan@cpro26266.publiccloud.com.br:/home/renan/mobileorg/mobileorg.org ~/Copy/mobileorg/")))
+          (lambda () (shell-command "scp renan@cpro26266.publiccloud.com.br:/home/renan/mobileorg/mobileorg.org ~/SpiderOak Hive/mobileorg/")))
 (add-hook 'org-mobile-post-pull-hook
-          (lambda () (shell-command "scp ~/Copy/mobileorg/mobileorg.org renan@cpro26266.publiccloud.com.br:/home/renan/mobileorg/mobileorg.org")))
+          (lambda () (shell-command "scp '~/SpiderOak Hive/mobileorg/mobileorg.org' renan@cpro26266.publiccloud.com.br:/home/renan/mobileorg/mobileorg.org")))
 
 (defvar org-mobile-push-timer nil
   "Timer that `org-mobile-push-timer' used to reschedule itself, or nil.")

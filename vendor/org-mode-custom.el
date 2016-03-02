@@ -19,7 +19,7 @@
 ;;
 (if (boundp 'org-user-agenda-files)
     (setq org-agenda-files org-user-agenda-files)
-  (setq org-agenda-files (quote ("~/Copy/org"))))
+  (setq org-agenda-files (quote ("~/SpiderOak Hive/org"))))
 
 ;; Custom Key Bindings
 (global-set-key (kbd "<f12>") 'org-agenda)
@@ -102,21 +102,21 @@
 
 ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
 (setq org-capture-templates
-      (quote (("t" "todo" entry (file "~/Copy/org/refile.org")
+      (quote (("t" "todo" entry (file "~/SpiderOak Hive/org/refile.org")
                "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("r" "respond" entry (file "~/Copy/org/refile.org")
+              ("r" "respond" entry (file "~/SpiderOak Hive/org/refile.org")
                "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
-              ("n" "note" entry (file "~/Copy/org/refile.org")
+              ("n" "note" entry (file "~/SpiderOak Hive/org/refile.org")
                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("j" "Journal" entry (file+datetree "~/Copy/org/diary.org")
+              ("j" "Journal" entry (file+datetree "~/SpiderOak Hive/org/diary.org")
                "* %?\n%U\n" :clock-in t :clock-resume t)
-              ("w" "org-protocol" entry (file "~/Copy/org/refile.org")
+              ("w" "org-protocol" entry (file "~/SpiderOak Hive/org/refile.org")
                "* TODO Review %c\n%U\n" :immediate-finish t)
-              ("m" "Meeting" entry (file "~/Copy/org/refile.org")
+              ("m" "Meeting" entry (file "~/SpiderOak Hive/org/refile.org")
                "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
-              ("p" "Phone call" entry (file "~/Copy/org/refile.org")
+              ("p" "Phone call" entry (file "~/SpiderOak Hive/org/refile.org")
                "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
-              ("h" "Habit" entry (file "~/Copy/org/refile.org")
+              ("h" "Habit" entry (file "~/SpiderOak Hive/org/refile.org")
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
 ;; Remove empty LOGBOOK drawers on clock out
@@ -1055,7 +1055,7 @@ so change the default 'F' binding in the agenda to allow both"
 (setq org-agenda-skip-timestamp-if-done t)
 
 (setq org-agenda-include-diary nil)
-(setq org-agenda-diary-file "~/Copy/org/diary.org")
+(setq org-agenda-diary-file "~/SpiderOak Hive/org/diary.org")
 
 (setq org-agenda-insert-diary-extract-time t)
 
@@ -1188,7 +1188,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 ;;
 (if (boundp 'org-mode-user-contrib-lisp-path)
     (add-to-list 'load-path org-mode-user-contrib-lisp-path)
-  (add-to-list 'load-path (expand-file-name "~/Copy/org-mode/contrib/lisp")))
+  (add-to-list 'load-path (expand-file-name "~/SpiderOak Hive/org-mode/contrib/lisp")))
 
 (require 'org-checklist)
 
@@ -1377,7 +1377,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (setq org-remove-highlights-with-change t)
 
-(add-to-list 'Info-default-directory-list "~/Copy/org-mode/doc")
+(add-to-list 'Info-default-directory-list "~/SpiderOak Hive/org-mode/doc")
 
 (setq org-read-date-prefer-future 'time)
 
