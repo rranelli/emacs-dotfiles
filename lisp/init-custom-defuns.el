@@ -129,5 +129,9 @@ narrowed."
               (format "%s set to %s" ,env-var))
          (message))))
 
+(defun rr/insert-today ()
+  (interactive)
+  (insert (shell-command-to-string "echo -n $(date +%Y-%m-%d)")))
+
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here
