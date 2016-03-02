@@ -89,6 +89,8 @@
   (delete-backward-char 2)
   (insert " |> "))
 
+(rr/toggle-env "MIX_TEST_SKIP_DB_SETUP")
+
 ;;
 ;;; bindings
 ;;
