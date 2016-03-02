@@ -133,5 +133,12 @@ narrowed."
   (interactive)
   (insert (shell-command-to-string "echo -n $(date +%Y-%m-%d)")))
 
+(defun rr/send-window-to-other-frame ()
+  (interactive)
+  (let ((bname (buffer-name)))
+    (delete-window)
+    (other-frame 1)
+    (switch-to-buffer bname)))
+
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here
