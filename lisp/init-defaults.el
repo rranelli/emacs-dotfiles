@@ -85,6 +85,11 @@
  tramp-persistency-file-name nil
  tramp-default-method "ssh")
 
+;; access remote machines with sudo via `C-x C-f /sudo:root@corp002.u:/etc/'
+(require 'tramp)
+(add-to-list 'tramp-default-proxies-alist
+             '("\\.u\\'" "\\`root\\'" "/ssh:%h:"))
+
 (setq
  ido-enable-prefix nil
  ido-enable-flex-matching t
