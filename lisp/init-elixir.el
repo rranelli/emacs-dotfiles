@@ -26,7 +26,7 @@
 
 (flycheck-define-checker elixir
   "An Elixir syntax checker using the Elixir interpreter."
-  :command ("/home/renan/code/linuxsetup/scripts/rr-mix-compile-anywhere"  ; Prevent tedious module redefinition warning.
+  :command ("env MIX_ENV=test /home/renan/code/linuxsetup/scripts/rr-mix-compile-anywhere"  ; Prevent tedious module redefinition warning.
             source)
   ;; Elixir compiler errors
   :error-patterns ((error line-start "** (" (zero-or-more not-newline) ") "
