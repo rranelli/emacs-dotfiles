@@ -4,6 +4,8 @@
 (require 'company)
 (global-company-mode)
 
+(add-to-list 'company-backends 'company-ansible)
+
 (global-set-key (kbd "M-/") 'company-complete)
 
 (rr/define-bindings company-active-map

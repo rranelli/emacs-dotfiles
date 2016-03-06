@@ -13,6 +13,8 @@
   '(
     ag
     alchemist
+    ansible
+    ansible-doc
     anzu
     auto-package-update
     avy
@@ -21,6 +23,7 @@
     cider
     color-theme-sanityinc-tomorrow
     company
+    company-ansible
     company-c-headers
     dash
     dash-functional

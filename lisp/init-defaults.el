@@ -116,6 +116,11 @@
    nil '(("\\<\\(FIXME\\|TODO\\|HACK\\|NOCOMMIT\\)"
           1 font-lock-warning-face t))))
 
+;; ansible config
+(define-key ansible-doc-module-mode-map (kbd "C-x C-s") 'ignore)
+(add-hook 'yaml-mode-hook '(lambda () (ansible-doc-mode)))
+(add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
+
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
