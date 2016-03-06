@@ -53,10 +53,10 @@
  erc-log-write-after-insert t
  erc-log-write-after-send t
  erc-kill-buffer-on-part t
- erc-keywords '("deploy" "Failure" "@channel"))
+ erc-keywords '("@here" "@channel"))
 
 (setq erc-autojoin-channels-alist
-      '(("freenode" "#haskell" "#elixir-lang" "#emacs-elixir")))
+      '(("freenode" "#elixir-lang")))
 
 ;;; view logs
 (require 'erc-view-log)
@@ -76,7 +76,7 @@
     (:weight bold)))
 
 (setq erc-view-log-nickname-face-function 'erc-get-face-for-nick)
-(setq erc-view-log-my-nickname-match '("milhouse" "milhouse`")) ;set this one in your .priv_emacs with your other nicks if needed
+(setq erc-view-log-my-nickname-match '("rranelli" "milhouse" "milhouse`")) ;set this one in your .priv_emacs with your other nicks if needed
 (add-to-list 'auto-mode-alist '("\\.irclogs/.*\\.txt" . erc-view-log-mode))
 
 (defun rr/erc-browse-log ()
@@ -94,19 +94,7 @@
            :port 6697
            :nick "rranelli"
            :full-name "renanranelli@gmail.com"
-           :password (-> "mimipass get irc-freenode"
-                         (shell-command-to-string))))
-
-;; (defun rr/irc-locaweb-slack ()
-;;   "Connect to locaweb's Slack via IRC."
-;;   (interactive)
-;;   (rr/load-irc-passwds)
-;;   (add-to-list 'erc-networks-alist '(Locaweb . "locaweb.irc.slack.com:6667"))
-;;   (erc-tls :server "locaweb.irc.slack.com"
-;;            :port 6667
-;;            :nick "milhouse"
-;;            :full-name "milhouse"
-;;            :password rr/slack-passwd))
+           :password (shell-command-to-string "mimipass get irc-freenode")))
 
 (defun rr/join-irc ()
   "Connect to all irc servers"
