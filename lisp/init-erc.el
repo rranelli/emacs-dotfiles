@@ -101,18 +101,14 @@
 
 (defun rr/join-znc (host)
   "Connect to znc IRC node."
-  (erc :server host :port 65063 :nick "renan")
+  (erc :server host
+       :port 65063
+       :nick "renan/freenode")
   (sleep-for 1)
   (erc-cmd-QUOTE (format "PASS renan:%s"
                          (shell-command-to-string "mimipass get usual")))
   (erc-cmd-MSG (format "NickServ identify rranelli %s"
                        (shell-command-to-string "mimipass get irc-freenode"))))
-
-(defun rr/join-irc ()
-  "Connect to all irc servers"
-  (interactive)
-  ;; (rr/irc-locaweb-slack)
-  (rr/irc-freenode))
 
 (defun rr/clear-erc-unseen ()
   "Clears irc modified channels notification."
