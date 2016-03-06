@@ -96,6 +96,18 @@
            :full-name "renanranelli@gmail.com"
            :password (shell-command-to-string "mimipass get irc-freenode")))
 
+(defun rr/join-local-znc () (interactive) (rr/join-znc "vengerberg.rep"))
+(defun rr/join-remote-znc () (interactive) (rr/join-znc "repdoxinho.no-ip.info"))
+
+(defun rr/join-znc (host)
+  "Connect to znc IRC node."
+  (erc :server host :port 65063 :nick "renan")
+  (sleep-for 1)
+  (erc-cmd-QUOTE (format "PASS renan:%s"
+                         (shell-command-to-string "mimipass get usual")))
+  (erc-cmd-MSG (format "NickServ identify rranelli %s"
+                       (shell-command-to-string "mimipass get irc-freenode"))))
+
 (defun rr/join-irc ()
   "Connect to all irc servers"
   (interactive)
