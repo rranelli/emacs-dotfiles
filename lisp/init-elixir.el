@@ -91,6 +91,21 @@
 
 (rr/toggle-env "MIX_TEST_SKIP_DB_SETUP")
 
+(defun rr/elixir-indent-buffer-no-docs (&rest start)
+  (interactive)
+  (save-excursion
+    (let ((begin (or (car start)
+                     (goto-char (point-min))))
+          (end   (or (re-search-forward (rx (or "@doc" "@moduledoc")) nil t)
+                     (point-max))))
+
+      (indent-region begin end)
+
+      (unless (= end (point-max))
+        (sp-forward-sexp)
+        (next-line)
+        (rr/elixir-indent-buffer-no-docs (point))))))
+
 ;;
 ;;; bindings
 ;;
@@ -100,7 +115,8 @@
                                      (interactive)
                                      (-> (buffer-file-name)
                                          (file-name-directory)
-                                         (helm-find-files-1))))))
+                                         (helm-find-files-1))))
+                      ("C-c i" . rr/elixir-indent-buffer-no-docs)))
 
 (rr/define-bindings alchemist-mode-map
                     '(("C-c , t" . alchemist-project-toggle-file-and-tests)

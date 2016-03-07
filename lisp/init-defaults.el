@@ -12,8 +12,8 @@
 (delete-selection-mode t)
 (show-paren-mode 1)
 (global-undo-tree-mode)
-(ido-mode t)
-(ido-vertical-mode)
+(ido-mode 1)
+(ido-vertical-mode 1)
 (global-auto-revert-mode nil)
 (volatile-highlights-mode t)
 
@@ -117,9 +117,11 @@
           1 font-lock-warning-face t))))
 
 ;; ansible config
-(define-key ansible-doc-module-mode-map (kbd "C-x C-s") 'ignore)
-(add-hook 'yaml-mode-hook '(lambda () (ansible-doc-mode)))
 (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
+(add-hook 'yaml-mode-hook '(lambda ()
+                             (ansible-doc-mode)
+                             (auto-fill-mode -1)
+                             (define-key ansible-doc-module-mode-map (kbd "C-x C-s") 'ignore)))
 
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -130,7 +132,7 @@
 
 (add-hook 'css-mode-hook 'rainbow-mode)
 (add-hook 'sql-mode-hook 'sql-highlight-mysql-keywords)
-(add-hook 'html-mode-hook #'(lambda () (auto-fill-mode 0)))
+(add-hook 'html-mode-hook #'(lambda () (auto-fill-mode -1)))
 
 (add-hook 'restclient-mode-hook 'custom-add-watchwords)
 
