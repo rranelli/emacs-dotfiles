@@ -94,7 +94,8 @@
 (global-set-key (kbd "C-\\") 'join-line)
 
 (global-set-key (kbd "C-x r <RET>") 'iedit-rectangle-mode)
-(global-set-key (kbd "C-,") 'iedit-mode)
+(global-set-key (kbd "C-<") 'iedit-mode)
+(global-set-key (kbd "C-,") 'highlight-symbol-query-replace)
 
 (global-set-key (kbd "C-;") 'avy-goto-word-1)
 
