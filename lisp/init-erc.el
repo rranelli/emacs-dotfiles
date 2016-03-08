@@ -97,7 +97,12 @@
            :password (shell-command-to-string "mimipass get irc-freenode")))
 
 (defun rr/join-local-znc () (interactive) (rr/join-znc "vengerberg.rep"))
-(defun rr/join-remote-znc () (interactive) (rr/join-znc "repdoxinho.no-ip.info"))
+(defun rr/join-remote-znc () (interactive) (rr/join-znc (rr/repz)))
+
+(defun rr/repz ()
+  "Get homeserver's ip"
+  (s-chomp (shell-command-to-string
+            "curl -sI http://repdoxinho.no-ip.info | egrep -o '[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}'")))
 
 (defun rr/join-znc (host)
   "Connect to znc IRC node."
