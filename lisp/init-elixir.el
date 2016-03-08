@@ -11,11 +11,11 @@
 ;;; hooks
 ;;
 (add-hook 'elixir-mode-hook 'alchemist-mode)
-(add-hook 'flycheck-before-syntax-check-hook
-          (lambda ()
-            (when (equal 'elixir-mode major-mode)
-              (setq default-directory
-                    (alchemist-project-root-or-default-dir)))))
+;; (add-hook 'flycheck-before-syntax-check-hook
+;;           (lambda ()
+;;             (when (equal 'elixir-mode major-mode)
+;;               (setq default-directory
+;;                     (alchemist-project-root-or-default-dir)))))
 
 ;; pretty symbols
 (setq pretty-symbol-patterns
@@ -24,16 +24,16 @@
                 (?⟵ lambda "<-" (elixir-mode))
 		(?𝞴  lambda "\\<fn " (elixir-mode)))))
 
-(flycheck-define-checker elixir
-  "An Elixir syntax checker using the Elixir interpreter."
-  :command ("env MIX_ENV=test /home/renan/code/linuxsetup/scripts/rr-mix-compile-anywhere"  ; Prevent tedious module redefinition warning.
-            source)
-  ;; Elixir compiler errors
-  :error-patterns ((error line-start "** (" (zero-or-more not-newline) ") "
-                          (file-name) ":" line ": " (message) line-end)
-                   ;; Warnings from Elixir >= 0.12.4
-                   (warning line-start (file-name) ":" line ": warning:" (message) line-end))
-  :modes elixir-mode)
+;; (flycheck-define-checker elixir
+;;   "An Elixir syntax checker using the Elixir interpreter."
+;;   :command ("env MIX_ENV=test /home/renan/code/linuxsetup/scripts/rr-mix-compile-anywhere"  ; Prevent tedious module redefinition warning.
+;;             source)
+;;   ;; Elixir compiler errors
+;;   :error-patterns ((error line-start "** (" (zero-or-more not-newline) ") "
+;;                           (file-name) ":" line ": " (message) line-end)
+;;                    ;; Warnings from Elixir >= 0.12.4
+;;                    (warning line-start (file-name) ":" line ": warning:" (message) line-end))
+;;   :modes elixir-mode)
 
 ;; elixir checker using elixirrc; left here for convenience
 ;; (flycheck-define-checker elixir
