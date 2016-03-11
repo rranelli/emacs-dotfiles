@@ -31,6 +31,13 @@
 ;; add pretty symbols for lambdas and relationals
 (setq pretty-symbol-categories '(lambda))
 
+;; smooth scroling!
+(setq redisplay-dont-pause t
+      scroll-margin 1
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
+
 ;; -- Variables --
 (setq
  ;; never ask for if local-variables are safe to use

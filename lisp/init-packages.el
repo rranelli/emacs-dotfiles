@@ -81,7 +81,6 @@
     smartparens
     smex
     sml-mode
-    smooth-scrolling
     solarized-theme
     synosaurus
     telephone-line
