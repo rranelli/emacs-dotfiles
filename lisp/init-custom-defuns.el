@@ -140,5 +140,10 @@ narrowed."
     (other-frame 1)
     (switch-to-buffer bname)))
 
+(defun rr/write-string (string file)
+  (with-temp-buffer
+    (insert string)
+    (write-region (point-min) (point-max) file)))
+
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here
