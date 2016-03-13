@@ -2,65 +2,76 @@
 ;;; Commentary:
 ;;; Code:
 
-;; new shells
-(defun rr/new-shell (arg shell-fn shell)
+;;;;;;;;;;;;;;;
+;; Mimiterm! ;;
+;;;;;;;;;;;;;;;
+
+(defvar rr/mimiterm-buffer-name-prefix
+  "⍟ mimiterm ⍟ "
+  "Prefix for mimiterm buffers.")
+
+(defvar rr/helm-mimiterm--source
+  '((name . "Open terminal")
+    (accept-empty)
+    (candidates . rr/mimiterm-list)
+    (action     . rr/mimiterm-open)))
+
+(defun rr/mimiterm-helm ()
+  "Bring up a Project search interface in helm."
+  (interactive)
+  (helm :sources 'rr/helm-mimiterm--source
+	:buffer "*helm-list-mimiterms*"
+        :prompt "terminal: "
+        :input rr/mimiterm-buffer-name-prefix
+        :preselect (rr/mimiterm-default-name)))
+
+(defun rr/mimiterm-list ()
+  "Lists all projects given project sources."
+  (->> (buffer-list)
+       (-map 'buffer-name)
+       (cons (rr/mimiterm-default-name))
+       (-filter (-partial 's-contains? rr/mimiterm-buffer-name-prefix))
+       (-sort 's-less?)))
+
+(defun rr/mimiterm-default-name ()
+  (s-concat rr/mimiterm-buffer-name-prefix (rr/project-name)))
+
+(defun rr/mimiterm-open (&optional input)
   "Create an eshell with given name.
 If ARG is present, open a new eshell regardless."
-  (interactive "P")
-  (let* ((custom-name (if arg (format "𝈙 %s" (read-string "Shell tag: ")) ""))
-	 (shell-name (format "⍟ mimi-term ⍟ %s %s" (rr/shell-project-name) custom-name))
+  (let* ((shell-name (or input (rr/mimiterm-default-name))) ;
 	 (shell-exists-p (bufferp (get-buffer shell-name))))
+    (if shell-exists-p
+        (switch-to-buffer shell-name)
+      (let ((default-directory (rr/project-root))) ;; dynamic scope ftw!
+        (ansi-term "/bin/bash")
+        (rename-buffer shell-name)))))
 
-    (if (not shell-exists-p)
-        (progn (funcall shell-fn)
-               (rename-buffer shell-name))
-      (switch-to-buffer shell-name))
-
-    (when (not shell-exists-p)
-      (goto-char (point-max))
-      (insert (format "cd %s # [Enter] cds to root" (rr/shell-wd))))))
-
-(defun rr/new-ansi-term (arg)
-  (interactive "P")
-  (rr/new-shell arg '(lambda () (ansi-term "/bin/bash")) 'ansi-term))
-
-(defun rr/shell-project-name ()
-  "Return project name from directory."
-  (->> (if (projectile-project-p) (projectile-project-root) default-directory)
-       (directory-file-name)
-       (file-name-base)))
-
-(defun rr/shell-wd ()
-  "Return what should be the shell working directory."
-  (if (projectile-project-p)
-      (projectile-project-root)
-    default-directory))
-
-(defun rr/rename-term ()
-  (interactive)
-  (rename-buffer (read-string "set new buffer name: "
-                              (format "%s 𝈙" (buffer-name)))))
-
-;; -- keybindings --
+(defun rr/set-no-process-query-on-exit ()
+  (let ((proc (get-buffer-process (current-buffer))))
+    (when (processp proc)
+      (set-process-query-on-exit-flag proc nil))))
 
 ;; term
 (defun last-line? ()
   (<= (line-number-at-pos (- (point-max) 1))
       (line-number-at-pos (point))))
 
-(defmacro rr/term-key (binding alternative-f)
-  `(defun ,(intern (format "rr/term-%s" binding)) ()
+(defmacro rr/mimiterm-key (binding alternative-f)
+  `(defun ,(intern (format "rr/mimiterm-%s" binding)) ()
      (interactive)
      (funcall (if (last-line?)
                   ',alternative-f
                 ',(lookup-key (current-global-map) (kbd binding))))))
+(rr/mimiterm-key "C-a" term-send-raw)
+(rr/mimiterm-key "C-e" term-send-raw)
+(rr/mimiterm-key "C-f" term-send-right)
+(rr/mimiterm-key "C-b" term-send-left)
+(rr/mimiterm-key "C-k" (lambda () (kill-line) (term-send-raw)))
 
-(rr/term-key "C-a" term-send-raw)
-(rr/term-key "C-e" term-send-raw)
-(rr/term-key "C-f" term-send-right)
-(rr/term-key "C-b" term-send-left)
-(rr/term-key "C-k" (lambda () (kill-line) (term-send-raw)))
-
+;; -- keybindings --
+(add-hook 'term-exec-hook 'goto-address-mode)
+(add-hook 'term-exec-hook 'rr/set-no-process-query-on-exit)
 (add-hook 'term-load-hook
           (lambda ()
             (setq term-buffer-maximum-size 10000)
@@ -69,22 +80,46 @@ If ARG is present, open a new eshell regardless."
                                                       '("M-:" "M-w" "C-u" "C-x" "C-x C-f" "C-c c"))
                                              '("C-h" "M-h" "C-r")))
             (rr/define-bindings term-raw-map
-                                '(("C-c C-c" . term-interrupt-subjob)
+                                '(("C-x C-s" . ignore)
+                                  ("C-c C-c" . term-interrupt-subjob)
                                   ("C-p" . previous-line)
                                   ("C-n" . next-line)
-                                  ("C-a" . rr/term-C-a)
-                                  ("C-e" . rr/term-C-e)
-                                  ("C-f" . rr/term-C-f)
-                                  ("C-b" . rr/term-C-b)
-                                  ("C-k" . rr/term-C-k)
+                                  ("C-a" . rr/mimiterm-C-a)
+                                  ("C-e" . rr/mimiterm-C-e)
+                                  ("C-f" . rr/mimiterm-C-f)
+                                  ("C-b" . rr/mimiterm-C-b)
+                                  ("C-k" . rr/mimiterm-C-k)
                                   ("C-s" . isearch-forward)
                                   ("M-n" . term-send-down)
                                   ("M-p" . term-send-up)
                                   ("M-." . completion-at-point)
                                   ("C-y" . term-paste)))))
 
-(global-set-key (kbd "C-x C-<return>") 'rr/new-ansi-term)
-(global-set-key (kbd "C-x M-RET") 'rr/new-ansi-term)
+(global-set-key (kbd "C-x C-<return>") 'rr/mimiterm-helm)
+(global-set-key (kbd "C-x M-RET") 'rr/mimiterm-helm)
+
+;;; quoting inside double quotes
+(defun sh-script-extra-font-lock-match-var-in-double-quoted-string (limit)
+  "Search for variables in double-quoted strings."
+  (let (res)
+    (while
+        (and (setq res (progn (if (eq (get-byte) ?$) (backward-char))
+                              (re-search-forward
+                               "[^\\]\\$\\({#?\\)?\\([[:alpha:]_][[:alnum:]_]*\\|[-#?@!]\\|[[:digit:]]+\\)"
+                               limit t)))
+             (not (eq (nth 3 (syntax-ppss)) ?\")))) res))
+
+(defvar sh-script-extra-font-lock-keywords
+  '((sh-script-extra-font-lock-match-var-in-double-quoted-string
+     (2 font-lock-variable-name-face prepend))))
+
+(defun sh-script-extra-font-lock-activate ()
+  (interactive)
+  (font-lock-add-keywords nil sh-script-extra-font-lock-keywords)
+  (if (fboundp 'font-lock-flush)
+      (font-lock-flush)
+    (when font-lock-mode (with-no-warnings (font-lock-fontify-buffer)))))
+(add-hook sh-mode-hook 'sh-script-extra-font-lock-activate)
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

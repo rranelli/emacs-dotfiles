@@ -145,5 +145,17 @@ narrowed."
     (insert string)
     (write-region (point-min) (point-max) file)))
 
+(defun rr/project-root ()
+  "Return project name from directory."
+  (if (projectile-project-p)
+      (projectile-project-root)
+    default-directory))
+
+(defun rr/project-name ()
+  "Return project name from directory."
+  (-> (rr/project-root)
+      (directory-file-name)
+      (file-name-base)))
+
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here
