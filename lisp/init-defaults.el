@@ -127,7 +127,7 @@
 (defun rr/set-ansible-vault-mimipass-pwd ()
   (interactive)
   (rr/write-string (format "#!/bin/bash\nmimipass get %s"
-                             (read-string "Which mimipass password? " "xerpa-ansible-vault"))
+                             (read-string "Which mimipass password? " "xerpa/ansible-vault"))
                      ansible::vault-password-file))
 
 ;; ansible config

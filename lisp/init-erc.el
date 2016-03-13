@@ -111,7 +111,7 @@
        :nick "renan/freenode")
   (sleep-for 1)
   (erc-cmd-QUOTE (format "PASS renan:%s"
-                         (shell-command-to-string "mimipass get usual")))
+                         (shell-command-to-string "mimipass get weak")))
   (erc-cmd-MSG (format "NickServ identify rranelli %s"
                        (shell-command-to-string "mimipass get irc-freenode"))))
 
