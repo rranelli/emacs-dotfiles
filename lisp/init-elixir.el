@@ -136,5 +136,14 @@
 (define-key alchemist-test-report-mode-map (kbd "g") 'alchemist-mix-rerun-last-test)
 (define-key elixir-mode-map (kbd "C-c C-s") 'inferior-elixir)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; TODO FIXME: crazy hot fix of alchemist-project-root                          ;;
+(defun alchemist-project-root (&optional dir)                                   ;;
+  (let ((start-dir (or dir (expand-file-name default-directory))))              ;;
+    (or                                                                         ;;
+     (locate-dominating-file start-dir alchemist-project-mix-project-indicator) ;;
+     (locate-dominating-file start-dir alchemist-project-hex-pkg-indicator))))  ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (provide 'init-elixir)
 ;;; init-elixir.el ends here
