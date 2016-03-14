@@ -120,7 +120,8 @@ If ARG is present, open a new eshell regardless."
   (if (fboundp 'font-lock-flush)
       (font-lock-flush)
     (when font-lock-mode (with-no-warnings (font-lock-fontify-buffer)))))
-(add-hook sh-mode-hook 'sh-script-extra-font-lock-activate)
+
+(add-hook 'sh-mode-hook 'sh-script-extra-font-lock-activate)
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

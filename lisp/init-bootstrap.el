@@ -42,9 +42,13 @@
 (defun safe-require (feature)
   "Safely requires FEATURE."
   (condition-case ex
-      (require feature)
+      (progn
+        (message (format "loading %s"
+                         (symbol-name feature)))
+        (require feature))
     ('error (add-to-list 'rr/initialization-errors
-			 (format "[ERROR LOADING \"%s\"]: %s" (symbol-name feature) ex)))))
+			 (format "[ERROR LOADING \"%s\"]: %s"
+                                 (symbol-name feature) ex)))))
 
 (defun rr/safe-load-init-files ()
   (dolist (file init-files)

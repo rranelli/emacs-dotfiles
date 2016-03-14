@@ -47,7 +47,8 @@
  uniquify-buffer-name-style 'forward
  ;; maybe this will fix the #filename auto-saved files
  auto-save-visited-file-name t
- ;; no backups
+ ;; no backups & locks
+ create-lockfiles nil
  make-backup-files nil
  auto-save-default nil
  backup-inhibited t
