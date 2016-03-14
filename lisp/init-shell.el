@@ -82,8 +82,7 @@ If ARG is present, open a new eshell regardless."
                                                       '("M-:" "M-w" "C-u" "C-x" "C-x C-f" "C-c c"))
                                              '("C-h" "M-h" "C-r")))
             (rr/define-bindings term-raw-map
-                                '(("C-x C-s" . ignore)
-                                  ("C-c C-c" . term-interrupt-subjob)
+                                '(("C-c C-c" . term-interrupt-subjob)
                                   ("C-p" . previous-line)
                                   ("C-n" . next-line)
                                   ("C-a" . rr/mimiterm-C-a)
