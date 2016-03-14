@@ -12,9 +12,10 @@
 
 (defvar rr/helm-mimiterm--source
   '((name . "Open terminal")
-    (accept-empty)
+    (volatile)
     (candidates . rr/mimiterm-list)
-    (action     . rr/mimiterm-open)))
+    (action     . rr/mimiterm-open)
+    (persistent-action . helm-yank-selection)))
 
 (defun rr/mimiterm-helm ()
   "Bring up a Project search interface in helm."
@@ -30,6 +31,7 @@
   (->> (buffer-list)
        (-map 'buffer-name)
        (cons (rr/mimiterm-default-name))
+       (cons helm-pattern)
        (-filter (-partial 's-contains? rr/mimiterm-buffer-name-prefix))
        (-sort 's-less?)))
 
@@ -95,8 +97,7 @@ If ARG is present, open a new eshell regardless."
                                   ("M-." . completion-at-point)
                                   ("C-y" . term-paste)))))
 
-(global-set-key (kbd "C-x C-<return>") 'rr/mimiterm-helm)
-(global-set-key (kbd "C-x M-RET") 'rr/mimiterm-helm)
+(global-set-key (kbd "C-o") 'rr/mimiterm-helm)
 
 ;;; quoting inside double quotes
 (defun sh-script-extra-font-lock-match-var-in-double-quoted-string (limit)
