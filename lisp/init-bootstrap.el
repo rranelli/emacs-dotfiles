@@ -36,6 +36,7 @@
     init-mail
     init-erc
     init-web
+    init-ansible
     init-appearance
     init-registers))
 

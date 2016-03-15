@@ -124,20 +124,6 @@
    nil '(("\\<\\(FIXME\\|TODO\\|HACK\\|NOCOMMIT\\)"
           1 font-lock-warning-face t))))
 
-(setq ansible::vault-password-file "/home/renan/code/emacs-dotfiles/ansible-vault")
-(defun rr/set-ansible-vault-mimipass-pwd ()
-  (interactive)
-  (rr/write-string (format "#!/bin/bash\nmimipass get %s"
-                             (read-string "Which mimipass password? " "xerpa/ansible-vault"))
-                     ansible::vault-password-file))
-
-;; ansible config
-(add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
-(add-hook 'yaml-mode-hook '(lambda ()
-                             (ansible-doc-mode)
-                             (auto-fill-mode -1)
-                             (define-key ansible-doc-module-mode-map (kbd "C-x C-s") 'ignore)))
-
 ;; -- Hooks --
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
