@@ -2,16 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 (require 'cider)
-
 ;; -- pretty lambda --
 (add-to-list 'pretty-symbol-patterns
 	     `(?λ lambda "\\<fn\\>" (clojure-mode)))
 
 ;; -- bindings --
 (rr/expose-bindings cider-mode-map '("C-c C-f"))
-
-;; -- hooks --
-;; TODO: Add smartparens things like lisp mode
 
 (provide 'init-clojure)
 ;;; init-clojure.el ends here
