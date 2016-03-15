@@ -33,7 +33,7 @@
     init-smartparens
     init-org
     init-shell
-    init-mail
+    ;; init-mail
     init-erc
     init-web
     init-ansible
