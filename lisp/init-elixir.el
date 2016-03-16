@@ -11,6 +11,8 @@
 ;;; hooks
 ;;
 (add-hook 'elixir-mode-hook 'alchemist-mode)
+(add-hook 'alchemist-test-report-mode-hook
+          (lambda () (setq-local default-directory (alchemist-project-root))))
 ;; (add-hook 'flycheck-before-syntax-check-hook
 ;;           (lambda ()
 ;;             (when (equal 'elixir-mode major-mode)
