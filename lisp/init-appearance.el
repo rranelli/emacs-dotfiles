@@ -45,7 +45,7 @@
                                                                            :background "#373b41")
 
                                                        (set-face-attribute 'default nil
-                                                                           :height 140)
+                                                                           :height 160)
 
                                                        (set-face-attribute 'vhl/default-face nil
                                                                            :background "dark slate blue")
