@@ -96,7 +96,7 @@ If ARG is present, open a new eshell regardless."
                                   ("M-." . completion-at-point)
                                   ("C-y" . term-paste)))))
 
-(global-set-key (kbd "C-o") 'rr/mimiterm-helm)
+(global-set-key (kbd "C-O") 'rr/mimiterm-helm)
 
 ;;; quoting inside double quotes
 (defun sh-script-extra-font-lock-match-var-in-double-quoted-string (limit)
