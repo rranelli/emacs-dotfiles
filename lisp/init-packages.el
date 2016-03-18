@@ -70,7 +70,6 @@
     request
     restclient
     rhtml-mode
-    rinari
     robe
     rspec-mode
     rubocop
@@ -80,19 +79,16 @@
     scala-mode2
     smartparens
     smex
-    sml-mode
     solarized-theme
     synosaurus
     telephone-line
     undo-tree
     volatile-highlights
     web-mode
-    writegood-mode
     yaml-mode
     yard-mode
     yasnippet
-    zenburn-theme
-    )
+    zenburn-theme)
   "A list of packages to ensure are installed at launch.")
 
 ;; -- vendor packages --

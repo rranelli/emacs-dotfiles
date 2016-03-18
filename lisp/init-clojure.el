@@ -4,7 +4,7 @@
 (require 'cider)
 ;; -- pretty lambda --
 (add-to-list 'pretty-symbol-patterns
-	     `(?λ lambda "\\<fn\\>" (clojure-mode)))
+	     `(?𝝺 lambda "\\<fn\\>" (clojure-mode)))
 
 ;; -- bindings --
 (rr/expose-bindings cider-mode-map '("C-c C-f"))

@@ -54,6 +54,7 @@
                                                        (modify-all-frames-parameters `((cursor-color . "#cc6666")))
 
                                                        (set-default-font "Fira Code Bold")
+                                                       (rr/fix-fira-symbol-size)
 
                                                        (rr/set-transparency 76)))))
     (dichromacy . '((cursor . "Red")
@@ -268,6 +269,12 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
   (set-face-attribute 'magit-log-head-label-local frame
                       :foreground "red"
                       :background "black"))
+
+(defun rr/fix-fira-symbol-size ()
+  (set-fontset-font t #x27f6 "Symbola-19") ;; ⟶
+  (set-fontset-font t #x27f5 "Symbola-19") ;; ⟵
+  (set-fontset-font t #x27eb "Symbola-19") ;; ⟫
+  )
 
 (defun rr/setup-telephone-line ()
   "Set up telephone line !"
