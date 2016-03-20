@@ -120,7 +120,7 @@
 ;;
 ;;; Customization compatibility with other modes
 ;;
-(rr/expose-bindings dired-mode-map '("M-o"))
+(rr/expose-bindings dired-mode-map '("M-o" "C-o"))
 (rr/expose-bindings yaml-mode-map '("C-m"))
 (rr/expose-bindings text-mode-map '("M-r"))
 

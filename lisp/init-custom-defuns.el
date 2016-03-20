@@ -157,5 +157,24 @@ narrowed."
       (directory-file-name)
       (file-name-base)))
 
+(global-set-key (kbd "C-c m") 'rr/helm-mimipass)
+(defun rr/helm-mimipass ()
+  "Helm interface to `mimipass copy'."
+  (interactive)
+  (helm :sources '((name . "Mimipass")
+                   (candidates . (lambda ()
+                                   (->> "mimipass list 2>/dev/null | cut -c 3-"
+                                        (shell-command-to-string)
+                                        (split-string))))
+                   (action     . (lambda (selection)
+                                   (->> selection
+                                        (format "mimipass get %s 2>/dev/null")
+                                        (shell-command-to-string)
+                                        (gui-set-selection 'CLIPBOARD))
+                                   (message "Done!")))
+                   (persistent-action . helm-yank-selection))
+        :prompt "Select password: "
+        :buffer "*helm-mimipass*"))
+
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here
