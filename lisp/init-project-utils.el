@@ -123,9 +123,9 @@
                       ("n" . rr/show-file-name)
                       ("m" . git-timemachine)
                       ;; ag
-                      ("S"    . ag)
-                      ("s"    . ag-project)
-                      ("\C-s" . ag-project-regexp)
+                      ("S"   . ag)
+                      ("s"   . ag-project)
+                      ("C-s" . ag-project-regexp)
                       ;; neotree
                       ("d" . rr/neotree-git-project)
                       ("x" . neotree-find)

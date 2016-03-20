@@ -20,7 +20,7 @@
     git clone https://github.com/rranelli/emacs-dotfiles/ && ./emacs-dotfiles/setup_dotfiles
     #+END_SRC
 
-*** Other very nice configurations.
+*** Other very nice configurations
     I have started using Emacs with [[https://github.com/technomancy/emacs-starter-kit][emacs-starter-kit]], but [[https://github.com/bbatsov/prelude][Emacs Prelude]] and Purcell's
     [[https://github.com/purcell/emacs.d][emacs.d]] are also good choices. If you're a (+hopefully former+) vim user,
     you should take a look at [[https://github.com/syl20bnr/spacemacs][spacemacs]].
