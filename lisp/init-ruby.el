@@ -19,7 +19,7 @@
 	      "\\Gemfile$"
 	      "\\Godfile$"
 	      "\\.god$"))
-  (add-to-list 'auto-mode-alist `(,fp . ruby-mode)))
+  (add-to-list 'auto-mode-alist (cons fp 'ruby-mode)))
 
 ;; pretty stabby lambda
 (setq pretty-symbol-patterns
