@@ -22,6 +22,6 @@ executable_path = get_executable("emacsclient")
 template_path = "emacs.template.desktop"
 content = make_content(template_path, executable_path)
 
-shortcut_path = "/usr/share/applications/emacs24.desktop"
+shortcut_path = "/usr/local/share/applications/emacs.desktop"
 
 create_file(content, shortcut_path)
