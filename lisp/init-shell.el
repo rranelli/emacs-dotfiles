@@ -56,8 +56,11 @@ If ARG is present, open a new eshell regardless."
 
 ;; term
 (defun last-line? ()
-  (<= (line-number-at-pos (- (point-max) 1))
-      (line-number-at-pos (point))))
+  (>= (line-number-at-pos (point))
+      (line-number-at-pos (or (save-excursion
+                                (goto-char (point-max))
+                                (re-search-backward "ξ\\[[0-9][0-9]:[0-9][0-9]\\]𝞵(renan" nil t))
+                              0))))
 
 (defmacro rr/mimiterm-key (binding alternative-f)
   `(defun ,(intern (format "rr/mimiterm-%s" binding)) ()
