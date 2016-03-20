@@ -176,5 +176,10 @@ narrowed."
         :prompt "Select password: "
         :buffer "*helm-mimipass*"))
 
+(defun rr/ls (dir &optional match)
+  "List all files in directory DIR.
+If MATCH regexp is given, return only the files that match it"
+  (directory-files dir t (or match directory-files-no-dot-files-regexp)))
+
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here

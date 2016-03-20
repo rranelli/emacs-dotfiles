@@ -3,27 +3,27 @@
 ;;; Code:
 
 ;; undisable upcase
-(put 'upcase-region 'disabled nil)
+(put 'upcase-region   'disabled nil)
 (put 'downcase-region 'disabled nil)
 
 ;; -- Mode preferences --
-(winner-mode 1)
-(blink-cursor-mode t)
-(delete-selection-mode t)
-(show-paren-mode 1)
-(global-undo-tree-mode)
-(ido-mode 1)
-(ido-vertical-mode 1)
-(global-auto-revert-mode nil)
-(volatile-highlights-mode t)
+(--each '(winner-mode
+          blink-cursor-mode
+          delete-selection-mode
+          show-paren-mode
+          global-undo-tree-mode
+          ido-mode
+          ido-vertical-mode
+          volatile-highlights-mode)
+  (funcall it 1))
 
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
+(--each '(global-auto-revert-mode
+          menu-bar-mode
+          tool-bar-mode
+          scroll-bar-mode)
+  (funcall it -1))
 
 (smex-initialize)
-
-;; (server-start)
 
 ;; safe variables
 (add-to-list 'safe-local-variable-values '(encoding . utf-8))
@@ -39,82 +39,74 @@
       scroll-preserve-screen-position 1)
 
 ;; -- Variables --
-(setq
- ;; never ask for if local-variables are safe to use
- enable-local-variables :all
- ;; please, share the clipboard
- x-select-enable-clipboard t
- uniquify-buffer-name-style 'forward
- ;; maybe this will fix the #filename auto-saved files
- auto-save-visited-file-name t
- ;; no backups & locks
- create-lockfiles nil
- make-backup-files nil
- auto-save-default nil
- backup-inhibited t
- ;; set initial mode
- initial-major-mode 'emacs-lisp-mode
- initial-scratch-message ";;This be scratch Buffer.\n"
- ;; underline at next line
- x-underline-at-descent-line t
- suggest-key-bindings t
- column-number-mode t
- show-trailing-whitespace t
- ;; ignore case completion on emacs lisp and find files
- eshell-cmpl-ignore-case t
- pcomplete-ignore-case t
- ;; more itens to recentf
- recentf-max-saved-items 250
- ;; more memory. it's the distant future
- gc-cons-threshold 20000000
- ;; Real emacs knights don't use shift to mark things
- shift-select-mode nil
- visible-bell t
- save-place t
- whitespace-style '(face trailing lines-tail tabs)
- whitespace-line-column 80
- ;; no more two spaces to end sentences. Jeez.
- sentence-end-double-space nil
- ;; use firefox for browsing. Thanks.
- browse-url-default-browser 'browse-url-firefox
- ;; make mans open in the same window
- Man-notify-method 'pushy
- ;; make tab complete and indent
- tab-always-indent 'complete)
+(setq select-enable-clipboard t ;; please, share the clipboard
+      uniquify-buffer-name-style 'forward
+      ;; maybe this will fix the #filename auto-saved files
+      auto-save-visited-file-name t
+      ;; no backups & locks
+      create-lockfiles nil
+      make-backup-files nil
+      auto-save-default nil
+      backup-inhibited t
+      ;; set initial mode
+      initial-major-mode 'emacs-lisp-mode
+      initial-scratch-message ";;This be scratch Buffer.\n"
+      ;; underline at next line
+      x-underline-at-descent-line t
+      suggest-key-bindings t
+      column-number-mode t
+      show-trailing-whitespace t
+      ;; ignore case completion on emacs lisp and find files
+      pcomplete-ignore-case t
+      ;; more itens to recentf
+      recentf-max-saved-items 250
+      ;; more memory. it's the distant future
+      gc-cons-threshold 20000000
+      ;; Real emacs knights don't use shift to mark things
+      shift-select-mode nil
+      visible-bell t
+      save-place t
+      whitespace-style '(face trailing lines-tail tabs)
+      whitespace-line-column 80
+      ;; no more two spaces to end sentences. Jeez.
+      sentence-end-double-space nil
+      ;; use firefox for browsing. Thanks.
+      browse-url-default-browser 'browse-url-firefox
+      ;; make mans open in the same window
+      Man-notify-method 'pushy
+      ;; make tab complete and indent
+      tab-always-indent 'complete)
 
 ;; more depth and sizes
 (setq max-specpdl-size 10000
       max-lisp-eval-depth 20000)
 
 ;; -- tramp stuff --
-(setq
- recentf-keep '(file-remote-p file-readable-p)
- recentf-auto-cleanup 'never
- tramp-persistency-file-name nil
- tramp-default-method "ssh")
+(setq recentf-keep '(file-remote-p file-readable-p)
+      recentf-auto-cleanup 'never
+      tramp-persistency-file-name nil
+      tramp-default-method "ssh")
 
 ;; access remote machines with sudo via `C-x C-f /sudo:root@corp002.u:/etc/'
 (require 'tramp)
 (add-to-list 'tramp-default-proxies-alist
              '("\\.u\\'" "\\`root\\'" "/ssh:%h:"))
 
-(setq
- ido-enable-prefix nil
- ido-enable-flex-matching t
- ido-auto-merge-work-directories-length nil
- ido-create-new-buffer 'always
- ido-use-filename-at-point 'guess
- ido-use-virtual-buffers t
- ido-handle-duplicate-virtual-buffers 2
- ido-max-prospects 10
- ido-vertical-define-keys 'C-n-and-C-p-only)
+(setq ido-enable-prefix nil
+      ido-enable-flex-matching t
+      ido-auto-merge-work-directories-length nil
+      ido-create-new-buffer 'always
+      ido-use-filename-at-point 'guess
+      ido-use-virtual-buffers t
+      ido-handle-duplicate-virtual-buffers 2
+      ido-max-prospects 10
+      ido-vertical-define-keys 'C-n-and-C-p-only)
 
-(setq-default
- display-buffer-reuse-frames t
- indent-tabs-mode nil
- sh-basic-offset 2
- save-place t
- fill-column 80)
+(setq-default display-buffer-reuse-frames t
+              indent-tabs-mode nil
+              sh-basic-offset 2
+              save-place t
+              fill-column 80)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 

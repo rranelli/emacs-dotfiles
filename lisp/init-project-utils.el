@@ -12,7 +12,7 @@
 ;;
 (defvar rr/project-sources
   '("~/code"
-;;    "~/locaweb"
+    ;; "~/locaweb"
     "~/xerpa"))
 
 (defvar rr/default-file-regexps
@@ -24,26 +24,20 @@
 (defun rr/helm-open-project ()
   "Bring up a Project search interface in helm."
   (interactive)
-  (helm :sources '(rr/helm-open-project--source)
-	:buffer "*helm-list-projects*"))
-
-(defvar rr/helm-open-project--source
-  '((name . "Open Project")
-    (delayed)
-    (candidates . rr/list-projects)
-    (action . rr/open-project)))
-
-(defun rr/list-projects ()
-  "Lists all projects given project sources."
-  (->> rr/project-sources
-       (-filter 'file-exists-p)
-       (-mapcat (lambda (dir) (directory-files dir t directory-files-no-dot-files-regexp)))))
-
-(defun rr/open-project (path)
-  "Open project available at PATH."
-  (let* ((candidates (-mapcat (lambda (d) (directory-files path t d)) rr/default-file-regexps))
-         (elected (car candidates)))
-    (find-file (or elected path))))
+  (helm :sources '((name . "Open Project")
+                   (delayed)
+                   (candidates . (lambda () (->> rr/project-sources
+                                            (-filter 'file-exists-p)
+                                            (-mapcat 'rr/ls)
+                                            (-map (lambda (path) `(,(file-name-base path) . ,path))))))
+                   (action . (lambda (selection)
+                               (let* ((default-file (->> rr/default-file-regexps
+                                                         (-mapcat (-partial 'rr/ls selection))
+                                                         (car))))
+                                 (find-file (or default-file
+                                                selection))))))
+	:buffer "*helm-list-projects*"
+        :prompt "Select project: "))
 
 ;;
 ;;; Creating new git project
@@ -96,10 +90,9 @@
 ;;
 ;;; ag config
 ;;
-(setq
- ag-highlight-search t ;; highlight the matches
- ag-reuse-window nil   ;; do not use the same window for the search result
- ag-reuse-buffers t)   ;; use the same buffer for many searches
+(setq ag-highlight-search t ;; highlight the matches
+      ag-reuse-window nil   ;; do not use the same window for the search result
+      ag-reuse-buffers t)   ;; use the same buffer for many searches
 
 ;;
 ;;; neotree config
@@ -110,7 +103,7 @@
 
 (require 'neotree)
 
-(define-key neotree-mode-map (kbd "C-x C-s") 'noop)
+(define-key neotree-mode-map (kbd "C-x C-s") 'ignore)
 
 (defun rr/neotree-git-project ()
   "Open dirtree using the git root."
@@ -129,19 +122,16 @@
                     '(;; misc
                       ("n" . rr/show-file-name)
                       ("m" . git-timemachine)
-
                       ;; ag
-                      ("s" . ag-project)
+                      ("S"    . ag)
+                      ("s"    . ag-project)
                       ("\C-s" . ag-project-regexp)
-
                       ;; neotree
                       ("d" . rr/neotree-git-project)
                       ("x" . neotree-find)
-
-                      ;; simple-highlight
+                      ;; highlight-symbol
                       ("h" . highlight-symbol)
                       ("u" . highlight-symbol-remove-all)
-
                       ;; projectile extras
                       ("f" . rr/helm-open-project)
                       ("y" . projectile-find-implementation-or-test-other-window)
