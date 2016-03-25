@@ -133,7 +133,7 @@
                       ("h" . highlight-symbol)
                       ("u" . highlight-symbol-remove-all)
                       ;; projectile extras
-                      ("f" . rr/helm-open-project)
+                      ("f" . helm-projectile-find-file)
                       ("y" . projectile-find-implementation-or-test-other-window)
                       ("a" . projectile-test-project)
                       ("F" . helm-projectile-find-file-in-known-projects)))
