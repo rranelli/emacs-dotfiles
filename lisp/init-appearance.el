@@ -50,6 +50,10 @@
                                                        (set-face-attribute 'vhl/default-face nil
                                                                            :background "dark slate blue")
 
+                                                       (set-face-attribute 'hl-line nil
+                                                                           :box '(:line-width -1 :color "black" :style released-button)
+                                                                           :background nil)
+
                                                        (modify-all-frames-parameters `((cursor-type bar . 5)))
                                                        (modify-all-frames-parameters `((cursor-color . "#cc6666")))
 

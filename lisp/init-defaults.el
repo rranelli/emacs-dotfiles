@@ -120,6 +120,7 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'prog-mode-hook 'hl-line-mode)
 (add-hook 'prog-mode-hook 'pretty-symbols-mode)
 (add-hook 'prog-mode-hook 'custom-add-watchwords)
 
