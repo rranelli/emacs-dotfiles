@@ -32,7 +32,7 @@
 ;;
 ;;; splicing
 ;;
-(define-key sp-keymap (kbd "M-s") 'sp-splice-sexp)
+(define-key sp-keymap (kbd "M-R") 'sp-splice-sexp)
 (define-key sp-keymap (kbd "M-r") 'sp-splice-sexp-killing-around)
 
 ;;
