@@ -59,7 +59,7 @@ If ARG is present, open a new eshell regardless."
   (>= (line-number-at-pos (point))
       (line-number-at-pos (or (save-excursion
                                 (goto-char (point-max))
-                                (re-search-backward "ξ\\[[0-9][0-9]:[0-9][0-9]\\]𝞵(renan" nil t))
+                                (re-search-backward "𝞵(renan@" nil t))
                               0))))
 
 (defmacro rr/mimiterm-key (binding alternative-f)

@@ -43,9 +43,8 @@
                                                                            :box '(:line-width -1 :style raised)
                                                                            :foreground "#b294bb"
                                                                            :background "#373b41")
-
                                                        (set-face-attribute 'default nil
-                                                                           :height 160)
+                                                                           :height 145)
 
                                                        (set-face-attribute 'vhl/default-face nil
                                                                            :background "dark slate blue")
@@ -67,7 +66,7 @@
                                          (set-face-attribute 'fringe nil
                                                              :background nil)
                                          (set-face-attribute 'default nil
-                                                             :height 130)
+                                                             :height 220)
                                          (rr/setup-telephone-line)))))
     (zenburn . '((cursor . "Red")
 		 (set-mode-line-faces-p . nil)
