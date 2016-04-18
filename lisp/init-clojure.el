@@ -1,6 +1,8 @@
 ;;; init-clojure.el -- Configures simple and usefull things for working with clojure.
 ;;; Commentary:
 ;;; Code:
+(setq cider-use-tooltips nil)
+
 (require 'cider)
 ;; -- pretty lambda --
 (add-to-list 'pretty-symbol-patterns
