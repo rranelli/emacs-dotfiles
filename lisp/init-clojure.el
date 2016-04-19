@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 (setq cider-use-tooltips nil)
-
 (require 'cider)
+
 ;; -- pretty lambda --
 (add-to-list 'pretty-symbol-patterns
 	     `(?𝝺 lambda "\\<fn\\>" (clojure-mode)))
@@ -29,6 +29,9 @@
 
 (advice-add 'eval-last-sexp :filter-return
             (lambda (r) (endless/eval-overlay r (point))))
+
+;; -- hooks --
+(add-hook 'cider-mode-hook (lambda () (tooltip-mode -1)))
 
 (provide 'init-clojure)
 ;;; init-clojure.el ends here
