@@ -90,6 +90,7 @@
   (insert " |> "))
 
 (rr/toggle-env "MIX_TEST_SKIP_DB_SETUP")
+(rr/toggle-env "MIX_ELIXIRC_NO_WALL")
 (rr/toggle-env "lukla_elastic_search_enabled")
 
 (defun rr/elixir-indent-buffer-no-docs (&rest start)
