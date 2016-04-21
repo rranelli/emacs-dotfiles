@@ -14,30 +14,30 @@
     init-defaults
     init-company
     init-helm
+    init-isearch
     init-project-utils
     init-path
     init-magit
+    init-smartparens
     init-yas
-    init-octave
+    init-shell
     init-haskell
     init-ruby
-    init-java
     init-lisp
-    init-rust
-    init-c
     init-clojure
-    init-scala
     init-csharp
     init-elixir
-    init-isearch
-    init-writing
-    init-smartparens
-    init-org
-    init-shell
-    ;; init-mail
-    init-erc
     init-web
     init-ansible
+    init-writing
+    ;; init-octave
+    ;; init-java
+    ;; init-rust
+    ;; init-c
+    ;; init-scala
+    ;; init-mail
+    init-org
+    init-erc
     init-appearance
     init-registers))
 
