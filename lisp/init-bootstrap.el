@@ -27,6 +27,7 @@
     init-c
     init-clojure
     init-scala
+    init-csharp
     init-elixir
     init-isearch
     init-writing
