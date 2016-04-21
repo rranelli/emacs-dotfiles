@@ -10,8 +10,7 @@
 (setq save-abbrevs nil)
 
 (defvar my-packages
-  '(
-    ag
+  '(ag
     alchemist
     ansible
     ansible-doc
@@ -25,6 +24,7 @@
     company
     company-ansible
     company-c-headers
+    csharp-mode
     dash
     dash-functional
     dockerfile-mode
