@@ -25,6 +25,7 @@
     company-ansible
     company-c-headers
     csharp-mode
+    omnisharp
     dash
     dash-functional
     dockerfile-mode
@@ -97,8 +98,8 @@
     ansi-color
     cl
     dash
-    iedit
     dash-functional
+    iedit
     dired-x
     dpkg-dev-el
     ffap
@@ -118,8 +119,7 @@
     uniquify
     volatile-highlights
     yaml-mode
-    web-mode
-    ))
+    web-mode))
 
 ;; package loading
 (setq packaged-contents-refreshed-p nil)
