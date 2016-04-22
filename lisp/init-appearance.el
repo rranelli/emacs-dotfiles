@@ -18,48 +18,54 @@
   :group 'init-appearance)
 
 (defcustom rr/theme-custom-color-alist
-  '((sanityinc-tomorrow-night . '((custom-faces-fn . (lambda ()
-                                                       (set-face-attribute 'region nil
-                                                                           :background "black")
-                                                       (set-face-attribute 'iedit-occurrence nil
-                                                                           :background "blue")
-                                                       (set-face-attribute 'fringe nil
-                                                                           :background nil)
-                                                       (set-face-attribute 'linum nil
-                                                                           :background nil)
-                                                       (rr/setup-telephone-line)
+  '((sanityinc-tomorrow-night .
+                              '((custom-faces-fn . (lambda ()
+                                                     (set-face-attribute 'region nil
+                                                                         :background "black")
+                                                     (set-face-attribute 'iedit-occurrence nil
+                                                                         :background "blue")
+                                                     (set-face-attribute 'fringe nil
+                                                                         :background nil)
+                                                     (set-face-attribute 'linum nil
+                                                                         :background nil)
+                                                     (rr/setup-telephone-line)
 
-                                                       (set-face-attribute 'telephone-line-accent-active nil
-                                                                           :background "#b294bb"
-                                                                           :foreground "black"
-                                                                           :box nil)
+                                                     (set-face-attribute 'telephone-line-accent-active nil
+                                                                         :background "#b294bb"
+                                                                         :foreground "black"
+                                                                         :box nil)
 
-                                                       (set-face-attribute 'mode-line-inactive nil
-                                                                           :box nil
-                                                                           :foreground "#b294bb"
-                                                                           :background "#373b41")
+                                                     (set-face-attribute 'mode-line-inactive nil
+                                                                         :box nil
+                                                                         :foreground "#b294bb"
+                                                                         :background "#373b41")
 
-                                                       (set-face-attribute 'mode-line nil
-                                                                           :box '(:line-width -1 :style raised)
-                                                                           :foreground "#b294bb"
-                                                                           :background "#373b41")
-                                                       (set-face-attribute 'default nil
-                                                                           :height 145)
+                                                     (set-face-attribute 'mode-line nil
+                                                                         :box '(:line-width -1 :style raised)
+                                                                         :foreground "#b294bb"
+                                                                         :background "#373b41")
+                                                     (set-face-attribute 'default nil
+                                                                         :height 145)
 
-                                                       (set-face-attribute 'vhl/default-face nil
-                                                                           :background "dark slate blue")
+                                                     (set-face-attribute 'vhl/default-face nil
+                                                                         :background "dark slate blue")
 
-                                                       (set-face-attribute 'hl-line nil
-                                                                           :box '(:line-width -1 :color "black" :style released-button)
-                                                                           :background nil)
+                                                     (set-face-attribute 'hl-line nil
+                                                                         :box '(:line-width -1 :color "black" :style released-button)
+                                                                         :background nil)
 
-                                                       (modify-all-frames-parameters `((cursor-type bar . 5)))
-                                                       (modify-all-frames-parameters `((cursor-color . "#cc6666")))
+                                                     (set-face-attribute 'popup-isearch-match nil
+                                                                         :box '(:line-width -1 :color "black" :style released-button)
+                                                                         :background "grey"
+                                                                         :foreground "black")
 
-                                                       (set-default-font "Fira Code Bold")
-                                                       (rr/fix-fira-symbol-size)
+                                                     (modify-all-frames-parameters `((cursor-type bar . 5)))
+                                                     (modify-all-frames-parameters `((cursor-color . "#cc6666")))
 
-                                                       (rr/set-transparency 76)))))
+                                                     (set-default-font "Fira Code Bold")
+                                                     (rr/fix-fira-symbol-size)
+
+                                                     (rr/set-transparency 76)))))
     (dichromacy . '((cursor . "Red")
                     (paren-highlight-style . parenthesis)
                     (custom-faces-fn . (lambda ()
