@@ -55,7 +55,7 @@
                                                                          :background nil)
 
                                                      (set-face-attribute 'popup-isearch-match nil
-                                                                         :box '(:line-width -1 :color "black" :style released-button)
+                                                                         :box '(:line-width -1 :color "black")
                                                                          :background "grey"
                                                                          :foreground "black")
 
