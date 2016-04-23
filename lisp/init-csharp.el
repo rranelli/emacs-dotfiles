@@ -29,6 +29,7 @@
   '(add-to-list 'company-backends 'company-omnisharp))
 
 (add-hook 'csharp-mode-hook 'omnisharp-mode)
+(add-hook 'csharp-mode-hook (lambda () (setq c-basic-offset 2)))
 
 (provide 'init-csharp)
 ;;; init-csharp.el ends here
