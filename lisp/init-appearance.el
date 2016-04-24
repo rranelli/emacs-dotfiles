@@ -54,11 +54,6 @@
                                                                          :box '(:line-width -1 :color "black" :style released-button)
                                                                          :background nil)
 
-                                                     (set-face-attribute 'popup-isearch-match nil
-                                                                         :box '(:line-width -1 :color "black")
-                                                                         :background "grey"
-                                                                         :foreground "black")
-
                                                      (modify-all-frames-parameters `((cursor-type bar . 5)))
                                                      (modify-all-frames-parameters `((cursor-color . "#cc6666")))
 

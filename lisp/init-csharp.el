@@ -14,9 +14,11 @@
                       ("C-c i"   . omnisharp-code-format)
                       ("C-c C-c" . omnisharp-fix-code-issue-at-point)
                       ("C-c x"   . omnisharp-run-code-action-refactoring)
-                      ("C-c r r"   . omnisharp-rename)
-                      ("C-c r u"   . omnisharp-fix-usings)
-                      ("C-c r l"   . omnisharp-reload-solution)
+                      ("C-c r r" . omnisharp-rename-interactively)
+                      ("C-c r R" . omnisharp-rename)
+                      ("C-c r F" . rr/omnisharp-rename-file)
+                      ("C-c r u" . omnisharp-fix-usings)
+                      ("C-c r l" . omnisharp-reload-solution)
                       ("C-c r i" . omnisharp-current-type-information)
                       ("C-c ?"   . omnisharp-current-type-documentation)))
 
@@ -30,14 +32,18 @@
                        nil)
     (omnisharp-add-to-solution-current-file)))
 
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-omnisharp))
-
 (add-hook 'csharp-mode-hook 'omnisharp-mode)
 (add-hook 'csharp-mode-hook (lambda () (setq c-basic-offset 2)))
 
 ;; this will automagically add files to omnisharp solution
 (add-hook 'omnisharp-mode-hook 'omnisharp-add-to-solution-current-file)
+
+;; this will fix a terribly ugly face for popup completion
+(add-hook 'omnisharp-mode-hook
+          (lambda () (set-face-attribute 'popup-isearch-match nil
+                                    :box '(:line-width -1 :color "black")
+                                    :background "grey"
+                                    :foreground "black")))
 
 (provide 'init-csharp)
 ;;; init-csharp.el ends here
