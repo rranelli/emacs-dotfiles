@@ -16,11 +16,13 @@ title: '${1:$(s-capitalize (replace-regexp-in-string "-" " " yas-text))}'
 ---
 #+END_HTML
 
-* <p hidden>${1:title}<p hidden>
+<p hidden>
+* ${1:title}
+</p>
 
 *TL;DR*: $0
 
-_<p hidden>excerpt-separator<p hidden>_
+<p hidden> _excerpt-separator_ </p>
 
 /rest of the content/
 
