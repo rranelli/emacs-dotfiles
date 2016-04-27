@@ -25,7 +25,6 @@
     company-ansible
     company-c-headers
     csharp-mode
-    omnisharp
     dash
     dash-functional
     dockerfile-mode
@@ -36,6 +35,7 @@
     erc-image
     erc-view-log
     erlang
+    es-mode
     expand-region
     flycheck
     flycheck-rust
@@ -62,6 +62,7 @@
     maven-test-mode
     neotree
     nginx-mode
+    omnisharp
     popup
     pretty-symbols
     projectile
