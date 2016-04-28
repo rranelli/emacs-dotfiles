@@ -55,6 +55,14 @@ If ARG is present, open a new eshell regardless."
       (set-process-query-on-exit-flag proc nil))))
 
 ;; term
+(defun rr/mimiterm-clear ()
+  (interactive)
+  (save-excursion
+    (term-line-mode)
+    (delete-region (point-min) (point-max))
+    (term-char-mode)
+    (term-send-raw)))
+
 (defun last-line? ()
   (>= (line-number-at-pos (point))
       (line-number-at-pos (or (save-excursion
@@ -89,6 +97,7 @@ If ARG is present, open a new eshell regardless."
                                   ("C-x C-f" . helm-find-files)
                                   ("C-p" . previous-line)
                                   ("C-n" . next-line)
+                                  ("C-l" . rr/mimiterm-clear)
                                   ("C-a" . rr/mimiterm-C-a)
                                   ("C-e" . rr/mimiterm-C-e)
                                   ("C-f" . rr/mimiterm-C-f)
