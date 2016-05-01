@@ -8,12 +8,13 @@
 (setq ansible::vault-password-file "/home/renan/.emacs.d/.ansible-vault")
 
 (defun rr/set-ansible-vault-mimipass-pwd ()
-  ""
+  "Choose which mimipass password to be used for ansible vault."
   (interactive)
   (rr/write-string (format "#!/bin/bash\nmimipass get %s"
-                           (read-string "Which mimipass password? "
-                                        "xerpa/ansible-vault"))
-                   ansible::vault-password-file))
+                           (rr/helm-mimipass))
+                   ansible::vault-password-file)
+  (chmod ansible::vault-password-file
+         (string-to-number "700" 8)))
 
 ;;; Hooks
 (add-hook 'yaml-mode-hook (-partial 'ansible 1))

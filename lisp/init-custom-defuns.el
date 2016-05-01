@@ -171,7 +171,7 @@ narrowed."
                                         (format "mimipass get %s 2>/dev/null")
                                         (shell-command-to-string)
                                         (gui-set-selection 'CLIPBOARD))
-                                   (message "Done!")))
+                                   selection))
                    (persistent-action . helm-yank-selection))
         :prompt "Select password: "
         :buffer "*helm-mimipass*"))
