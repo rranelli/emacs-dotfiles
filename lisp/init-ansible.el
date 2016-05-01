@@ -19,6 +19,7 @@
 (add-hook 'yaml-mode-hook (-partial 'ansible 1))
 (add-hook 'yaml-mode-hook 'ansible-doc-mode)
 (add-hook 'yaml-mode-hook (-partial 'auto-fill-mode -1))
+(add-hook 'yaml-mode-hook 'flyspell-mode-off)
 
 (add-hook 'ansible-hook 'ansible::auto-decrypt-encrypt)
 
