@@ -82,33 +82,36 @@ If ARG is present, open a new eshell regardless."
 (rr/mimiterm-key "C-b" term-send-left)
 (rr/mimiterm-key "C-k" (lambda () (kill-line) (term-send-raw)))
 
+(defun rr/mimiterm-fix-keybindings ()
+  (interactive)
+  (rr/expose-bindings term-raw-map
+                      (-difference (-concat rr/default-bindings-to-expose
+                                            '("M-:" "M-w" "C-u" "C-x" "C-x C-f" "C-c c"))
+                                   '("C-h" "M-h" "C-r")))
+  (rr/define-bindings term-raw-map
+                      '(("C-c C-c" . term-interrupt-subjob)
+                        ("C-x C-f" . helm-find-files)
+                        ("C-p" . previous-line)
+                        ("C-n" . next-line)
+                        ("C-l" . rr/mimiterm-clear)
+                        ("C-a" . rr/mimiterm-C-a)
+                        ("C-e" . rr/mimiterm-C-e)
+                        ("C-f" . rr/mimiterm-C-f)
+                        ("C-b" . rr/mimiterm-C-b)
+                        ("C-k" . rr/mimiterm-C-k)
+                        ("C-s" . isearch-forward)
+                        ("M-n" . term-send-down)
+                        ("M-p" . term-send-up)
+                        ("M-." . completion-at-point)
+                        ("C-y" . term-paste))))
+
 ;; -- keybindings --
 (add-hook 'term-exec-hook 'goto-address-mode)
 (add-hook 'term-exec-hook 'rr/set-no-process-query-on-exit)
-(add-hook 'term-load-hook
+(add-hook 'term-exec-hook
           (lambda ()
             (setq term-buffer-maximum-size 10000)
-            (rr/expose-bindings term-raw-map
-                                (-difference (-concat rr/default-bindings-to-expose
-                                                      '("M-:" "M-w" "C-u" "C-x" "C-x C-f" "C-c c"))
-                                             '("C-h" "M-h" "C-r")))
-            (rr/define-bindings term-raw-map
-                                '(("C-c C-c" . term-interrupt-subjob)
-                                  ("C-x C-f" . helm-find-files)
-                                  ("C-x C-s" . ignore)
-                                  ("C-p" . previous-line)
-                                  ("C-n" . next-line)
-                                  ("C-l" . rr/mimiterm-clear)
-                                  ("C-a" . rr/mimiterm-C-a)
-                                  ("C-e" . rr/mimiterm-C-e)
-                                  ("C-f" . rr/mimiterm-C-f)
-                                  ("C-b" . rr/mimiterm-C-b)
-                                  ("C-k" . rr/mimiterm-C-k)
-                                  ("C-s" . isearch-forward)
-                                  ("M-n" . term-send-down)
-                                  ("M-p" . term-send-up)
-                                  ("M-." . completion-at-point)
-                                  ("C-y" . term-paste)))))
+            (rr/mimiterm-fix-keybindings)))
 
 (global-set-key (kbd "C-O") 'rr/mimiterm-helm)
 
