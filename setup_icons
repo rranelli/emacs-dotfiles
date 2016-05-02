@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-for s in 512 128 20 256 36 48 64 16 22 32 40 72 192 24 32 96; do
-  size="${s}x${s}"
-  sudo convert icon.png -resize "${size}" \
-       "/usr/share/icons/hicolor/${size}/apps/emacs25.png"
-done
