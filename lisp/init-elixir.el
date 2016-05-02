@@ -13,11 +13,8 @@
 (add-hook 'elixir-mode-hook 'alchemist-mode)
 (add-hook 'alchemist-test-report-mode-hook
           (lambda () (setq-local default-directory (alchemist-project-root))))
-;; (add-hook 'flycheck-before-syntax-check-hook
-;;           (lambda ()
-;;             (when (equal 'elixir-mode major-mode)
-;;               (setq default-directory
-;;                     (alchemist-project-root-or-default-dir)))))
+(add-hook 'alchemist-mode-hook
+          (lambda () (partial 'setq-local default-directory (alchemist-project-root))))
 
 ;; pretty symbols
 (setq pretty-symbol-patterns
@@ -26,31 +23,18 @@
                 (?⟵ lambda "<-" (elixir-mode))
 		(?𝝺  lambda "\\<fn" (elixir-mode)))))
 
-;; (flycheck-define-checker elixir
-;;   "An Elixir syntax checker using the Elixir interpreter."
-;;   :command ("/home/renan/code/linuxsetup/scripts/rr-mix-compile-anywhere")
-;;   :error-patterns ((error line-start "** (" (zero-or-more not-newline) ") "
-;;                           (file-name) ":" line ": " (message) line-end)
-;;                    ;; Warnings from Elixir >= 0.12.4
-;;                    (warning line-start (file-name) ":" line ": warning:" (message) line-end))
-;;   :modes elixir-mode)
-
-;; elixir checker using elixirrc; left here for convenience
-;; (flycheck-define-checker elixir
-;;   "An Elixir syntax checker using the Elixir interpreter."
-;;   :command ("elixirc"  ; Prevent tedious module redefinition warning.
-;;             "-o" temporary-directory
-;;             "--ignore-module-conflict"
-;;             source-original)
-;;   :predicate (lambda () (not (string-equal "exs" (file-name-extension (buffer-file-name)))))
-;;   ;; Elixir compiler errors
-;;   :error-patterns ((error line-start "** (" (zero-or-more not-newline) ") "
-;;                           (file-name) ":" line ": " (message) line-end)
-;;                    ;; Warnings from Elixir >= 0.12.4
-;;                    (warning line-start (file-name) ":" line ": warning:" (message) line-end))
-;;   :modes elixir-mode)
-
+;;
+;;; Flycheck checker
+;;
+(flycheck-define-checker elixir
+  "An Elixir syntax checker using the Mix compiler."
+  :modes 'elixir-mode
+  :command ("/home/renan/code/linuxsetup/desktop/scripts/rr-mix-compile-anywhere")
+  :error-patterns ((error line-start "** (" (zero-or-more not-newline) ") "
+                          (file-name) ":" line ": " (message) line-end)
+                   (warning line-start (file-name) ":" line ": warning:" (message) line-end)))
 (add-to-list 'flycheck-checkers 'elixir)
+
 ;;
 ;;; helper functions
 ;;
@@ -76,24 +60,12 @@
   (interactive)
   (setenv "MIX_ENV" (read-string "MIX_ENV= " "dev")))
 
-(defun rr/elixir-to-pipe ()
-  (interactive)
-  (re-search-backward "(")
-  (forward-char)
-  (set-mark (point))
-  (re-search-forward ", ")
-  (kill-region (point) (mark))
-  (sp-backward-up-sexp)
-  (backward-sexp)
-  (yank)
-  (delete-backward-char 2)
-  (insert " |> "))
-
 (rr/toggle-env "MIX_TEST_SKIP_DB_SETUP")
 (rr/toggle-env "MIX_ELIXIRC_NO_WALL")
 (rr/toggle-env "lukla_elastic_search_enabled")
 
 (defun rr/elixir-indent-buffer-no-docs (&rest start)
+  "Indent buffer from START onward, but skip @doc and @moduledoc strings."
   (interactive)
   (save-excursion
     (let ((begin (or (car start)
