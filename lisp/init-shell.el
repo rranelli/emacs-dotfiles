@@ -95,6 +95,7 @@ If ARG is present, open a new eshell regardless."
             (rr/define-bindings term-raw-map
                                 '(("C-c C-c" . term-interrupt-subjob)
                                   ("C-x C-f" . helm-find-files)
+                                  ("C-x C-s" . ignore)
                                   ("C-p" . previous-line)
                                   ("C-n" . next-line)
                                   ("C-l" . rr/mimiterm-clear)
