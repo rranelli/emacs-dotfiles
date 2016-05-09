@@ -1,27 +1,17 @@
-#!/usr/bin/env python
-# backup argument does not delete ~/.emacs.d
-import os, shutil, getpass, sys
+#!/usr/bin/env bash
+set -euo pipefail
 
-def remove_any(path):
-    if os.path.islink(path): os.unlink(path)
-    if os.path.isfile(path): os.remove(path)
-    if os.path.isdir(path): shutil.rmtree(path)
+__DIR__=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
+__GIT_ROOT__=$(git rev-parse --show-toplevel)
+EMACSD_DIR="${HOME}/.emacs.d"
 
-def make_path(*args):
-    return '/'.join(args)
+cd "${__GIT_ROOT__}"
 
-scriptpath = os.path.dirname(os.path.realpath(__file__))
-dirname = scriptpath
+for f in $(find . -type f -not -path *.git*); do
+  mkdir -p "${EMACSD_DIR}/$(dirname "${f}")"
 
-homedir  = os.path.expanduser('~')
-dot_emacs_dir = make_path(homedir, '.emacs.d')
+  rm "${EMACSD_DIR}/${f}" 2>/dev/null || true
+  ln -sf "$(pwd)/${f}" "${EMACSD_DIR}/${f}"
+done
 
-if not 'backup' in sys.argv:
-    remove_any(dot_emacs_dir)
-    os.mkdir(dot_emacs_dir)
-
-for name in os.listdir(dirname):
-    head = make_path(dirname, name)
-    tail = make_path(dot_emacs_dir, name)
-    remove_any(tail)
-    os.symlink(head, tail)
+echo -e "\e[0;32mDone!\e[0m"
