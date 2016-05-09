@@ -13,8 +13,8 @@
 (add-hook 'elixir-mode-hook 'alchemist-mode)
 (add-hook 'alchemist-test-report-mode-hook
           (lambda () (setq-local default-directory (alchemist-project-root))))
-(add-hook 'alchemist-mode-hook
-          (lambda () (partial 'setq-local default-directory (alchemist-project-root))))
+(add-hook 'elixir-mode-hook
+          (lambda () (setq-local default-directory (alchemist-project-root))))
 
 ;; pretty symbols
 (setq pretty-symbol-patterns
