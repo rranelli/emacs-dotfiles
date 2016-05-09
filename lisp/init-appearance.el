@@ -275,9 +275,9 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
                       :background "black"))
 
 (defun rr/fix-fira-symbol-size ()
-  (set-fontset-font t #x27f6 "Symbola-19") ;; ⟶
-  (set-fontset-font t #x27f5 "Symbola-19") ;; ⟵
-  (set-fontset-font t #x27eb "Symbola-19") ;; ⟫
+  (set-fontset-font t #x27f6 "Symbola-16") ;; ⟶
+  (set-fontset-font t #x27f5 "Symbola-16") ;; ⟵
+  (set-fontset-font t #x27eb "Symbola-16") ;; ⟫
   )
 
 (defun rr/setup-telephone-line ()
