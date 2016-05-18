@@ -15,6 +15,8 @@
           (lambda () (setq-local default-directory (alchemist-project-root))))
 (add-hook 'elixir-mode-hook
           (lambda () (setq-local default-directory (alchemist-project-root))))
+(add-hook 'alchemist-iex-mode-hook
+          (lambda () (company-mode -1)))
 
 ;; pretty symbols
 (setq pretty-symbol-patterns
@@ -26,13 +28,13 @@
 ;;
 ;;; Flycheck checker
 ;;
-(flycheck-define-checker elixir
-  "An Elixir syntax checker using the Mix compiler."
-  :modes 'elixir-mode
-  :command ("/home/renan/code/linuxsetup/desktop/scripts/rr-mix-compile-anywhere")
-  :error-patterns ((error line-start "** (" (zero-or-more not-newline) ") "
-                          (file-name) ":" line ": " (message) line-end)
-                   (warning line-start (file-name) ":" line ": warning:" (message) line-end)))
+;; (flycheck-define-checker elixir
+;;   "An Elixir syntax checker using the Mix compiler."
+;;   :modes 'elixir-mode
+;;   :command ("/home/renan/code/linuxsetup/desktop/scripts/rr-mix-compile-anywhere")
+;;   :error-patterns ((error line-start "** (" (zero-or-more not-newline) ") "
+;;                           (file-name) ":" line ": " (message) line-end)
+;;                    (warning line-start (file-name) ":" line ": warning:" (message) line-end)))
 (add-to-list 'flycheck-checkers 'elixir)
 
 ;;
