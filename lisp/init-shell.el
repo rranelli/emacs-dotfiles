@@ -113,7 +113,7 @@ If ARG is present, open a new eshell regardless."
             (setq term-buffer-maximum-size 10000)
             (rr/mimiterm-fix-keybindings)))
 
-(global-set-key (kbd "C-O") 'rr/mimiterm-helm)
+(global-set-key (kbd "C-x m") 'rr/mimiterm-helm)
 
 ;;; quoting inside double quotes
 (defun sh-script-extra-font-lock-match-var-in-double-quoted-string (limit)
