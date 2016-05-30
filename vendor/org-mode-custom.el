@@ -1353,7 +1353,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
       (org-cycle)
       (bh/insert-inactive-timestamp))))
 
-(add-hook 'org-insert-heading-hook 'bh/insert-heading-inactive-timestamp 'append)
+;; (add-hook 'org-insert-heading-hook 'bh/insert-heading-inactive-timestamp 'append)
 
 (setq org-export-with-timestamps nil)
 
