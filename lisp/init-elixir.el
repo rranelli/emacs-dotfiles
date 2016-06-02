@@ -15,8 +15,7 @@
           (lambda () (setq-local default-directory (alchemist-project-root))))
 (add-hook 'elixir-mode-hook
           (lambda () (setq-local default-directory (alchemist-project-root))))
-(add-hook 'alchemist-iex-mode-hook
-          (lambda () (company-mode -1)))
+(delete 'company-dabbrev company-backends) ;; fix issue with iex
 
 ;; pretty symbols
 (setq pretty-symbol-patterns
