@@ -78,7 +78,7 @@
     ruby-refactor
     rust-mode
     s
-    ;; scala-mode2
+    scala-mode
     smartparens
     smex
     solarized-theme
