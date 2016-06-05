@@ -34,7 +34,7 @@
     ;; init-java
     ;; init-rust
     ;; init-c
-    ;; init-scala
+    init-scala
     ;; init-mail
     init-org
     init-erc
