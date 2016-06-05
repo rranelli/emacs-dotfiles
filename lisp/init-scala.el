@@ -1,7 +1,7 @@
 ;;; init-scala.el -- Configures utilities and nice-to-have features for Scala development.
 ;;; Commentary:
 ;;; Code:
-(require 'scala-mode2)
+(require 'scala-mode)
 (require 'ensime)
 
 ;; -- hooks --
