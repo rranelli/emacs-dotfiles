@@ -57,7 +57,7 @@
                                                      (modify-all-frames-parameters `((cursor-type bar . 5)))
                                                      (modify-all-frames-parameters `((cursor-color . "#cc6666")))
 
-                                                     (set-default-font "Fira Code Bold 16")
+                                                     (set-default-font "Fira Code Bold 14")
                                                      (rr/fix-fira-symbol-size)
 
                                                      (rr/set-transparency 76)))))
@@ -275,9 +275,9 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
                       :background "black"))
 
 (defun rr/fix-fira-symbol-size ()
-  (set-fontset-font t #x27f6 "Symbola-16") ;; ⟶
-  (set-fontset-font t #x27f5 "Symbola-16") ;; ⟵
-  (set-fontset-font t #x27eb "Symbola-16") ;; ⟫
+  (set-fontset-font t #x27f6 "Symbola-15") ;; ⟶
+  (set-fontset-font t #x27f5 "Symbola-15") ;; ⟵
+  (set-fontset-font t #x27eb "Symbola-15") ;; ⟫
   )
 
 (defun rr/setup-telephone-line ()
