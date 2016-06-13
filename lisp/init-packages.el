@@ -38,6 +38,7 @@
     es-mode
     expand-region
     flycheck
+    flycheck-mix
     flycheck-rust
     fuzzy
     gist

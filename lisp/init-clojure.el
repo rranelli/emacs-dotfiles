@@ -8,12 +8,7 @@
 (add-to-list 'pretty-symbol-patterns
 	     `(?𝝺 lambda "\\<fn\\>" (clojure-mode)))
 
-;; -- bindings --
-(rr/expose-bindings cider-mode-map '("C-c C-f"))
-
-(rr/define-bindings cider-mode-map '(("C-c ?"   . cider-doc)
-                                     ("C-c C-v" . cider-eval-buffer)))
-
+;; eval overlay for elisp
 (defun endless/eval-overlay (value point)
   ""
   (cider--make-result-overlay (format "%S" value)
@@ -29,6 +24,11 @@
 
 (advice-add 'eval-last-sexp :filter-return
             (lambda (r) (endless/eval-overlay r (point))))
+
+;; -- bindings --
+(rr/expose-bindings cider-mode-map '("C-c C-f"))
+(rr/define-bindings cider-mode-map '(("C-c ?"   . cider-doc)
+                                     ("C-c C-v" . cider-eval-buffer)))
 
 ;; -- hooks --
 (add-hook 'cider-mode-hook (lambda () (tooltip-mode -1)))

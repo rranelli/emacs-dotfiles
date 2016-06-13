@@ -24,17 +24,9 @@
                 (?⟵ lambda "<-" (elixir-mode))
 		(?𝝺  lambda "\\<fn" (elixir-mode)))))
 
-;;
-;;; Flycheck checker
-;;
-;; (flycheck-define-checker elixir
-;;   "An Elixir syntax checker using the Mix compiler."
-;;   :modes 'elixir-mode
-;;   :command ("/home/renan/code/linuxsetup/desktop/scripts/rr-mix-compile-anywhere")
-;;   :error-patterns ((error line-start "** (" (zero-or-more not-newline) ") "
-;;                           (file-name) ":" line ": " (message) line-end)
-;;                    (warning line-start (file-name) ":" line ": warning:" (message) line-end)))
-(add-to-list 'flycheck-checkers 'elixir)
+;; Flycheck!
+(require 'flycheck-mix)
+(flycheck-mix-setup)
 
 ;;
 ;;; helper functions
