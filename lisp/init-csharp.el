@@ -7,6 +7,9 @@
 (setq omnisharp-server-executable-path "/home/renan/code/omnisharp-server/OmniSharp/bin/Debug/OmniSharp.exe"
       omnisharp-auto-complete-popup-help-delay 2)
 
+;; Open csproj files into nxml-mode
+(add-to-list 'auto-mode-alist '("\\.csproj" . nxml-mode))
+
 (rr/define-bindings csharp-mode-map
                     '(("M-/"     . omnisharp-auto-complete)
                       ("M-."     . omnisharp-go-to-definition)
