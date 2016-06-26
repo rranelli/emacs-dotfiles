@@ -22,7 +22,7 @@
       (append pretty-symbol-patterns
 	      `((?⟶ lambda "->" (elixir-mode))
                 (?⟵ lambda "<-" (elixir-mode))
-		(?𝝺  lambda "\\<fn" (elixir-mode)))))
+		(?λ  lambda "\\<fn" (elixir-mode)))))
 
 ;; Flycheck!
 (require 'flycheck-mix)
