@@ -29,6 +29,7 @@
                    (candidates . (lambda () (->> rr/project-sources
                                             (-filter 'file-exists-p)
                                             (-mapcat 'rr/ls)
+                                            (-filter 'file-directory-p)
                                             (-map (lambda (path) `(,(file-name-base path) . ,path))))))
                    (action . (lambda (selection)
                                (let* ((default-file (->> rr/default-file-regexps
