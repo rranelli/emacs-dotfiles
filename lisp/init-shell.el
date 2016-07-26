@@ -68,6 +68,9 @@ If ARG is present, open a new eshell regardless."
       (line-number-at-pos (or (save-excursion
                                 (goto-char (point-max))
                                 (re-search-backward "υ\\[" nil t))
+                              (save-excursion
+                                (goto-char (point-max))
+                                (re-search-backward "iex\([0-9]+\)>" nil t))
                               0))))
 
 (defmacro rr/mimiterm-key (binding alternative-f)

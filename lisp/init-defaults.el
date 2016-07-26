@@ -48,6 +48,8 @@
       make-backup-files nil
       auto-save-default nil
       backup-inhibited t
+      ;; js mode offset
+      js-indent-level 2
       ;; set initial mode
       initial-major-mode 'emacs-lisp-mode
       initial-scratch-message ";;This be scratch Buffer.\n"
