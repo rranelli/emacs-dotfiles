@@ -162,6 +162,7 @@ narrowed."
   "Helm interface to `mimipass copy'."
   (interactive)
   (helm :sources '((name . "Mimipass")
+                   (match . helm-mm-match)
                    (candidates . (lambda ()
                                    (->> "mimipass list 2>/dev/null | cut -c 3-"
                                         (shell-command-to-string)
