@@ -25,7 +25,7 @@
   "Bring up a Project search interface in helm."
   (interactive)
   (helm :sources '((name . "Open Project")
-                   (match . helm-mm-match)
+                   (match . (helm-mm-match))
                    (candidates . (lambda () (->> rr/project-sources
                                             (-filter 'file-exists-p)
                                             (-mapcat 'rr/ls)

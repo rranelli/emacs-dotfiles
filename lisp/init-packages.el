@@ -63,6 +63,7 @@
     maven-test-mode
     neotree
     nginx-mode
+    org-journal
     omnisharp
     popup
     pretty-symbols

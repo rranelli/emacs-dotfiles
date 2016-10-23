@@ -17,6 +17,8 @@
                        dir-files)))
 
       (setq org-user-agenda-files org-files)
+      (setq org-journal-dir (expand-file-name "journal" rr/org-files-directory))
+      (setq org-journal-file-format "%Y.org")
 
       ;; loading org custom
       (require 'org-mode-custom)
