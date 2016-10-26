@@ -1,7 +1,10 @@
-# -*- mode: snippet -*-
-# name: verse
-# key: verse
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: journal
+# key: jrn
 # --
-#+begin_verse
-        $0
-#+end_verse
+
+   - Food     (0-5) : $1
+   - Exercise (0-5) : $2
+   - Alcohol  (y/n) : $3
+
+$0
