@@ -31,9 +31,10 @@
                       ("C-1" . magit-section-show-level-1-all)
                       ("C-2" . magit-section-show-level-2-all)
                       ("C-3" . magit-section-show-level-3-all)
-                      ("C-4" . magit-section-show-level-4-all)))
+                      ("C-4" . magit-section-show-level-4-all)
+                      ("C-x C-s" . ignore)))
 
-(define-key magit-mode-map (kbd "C-x C-s") 'ignore)
+(define-key magit-branch-section-map (kbd "RET") 'magit-checkout)
 
 (rr/expose-bindings magit-mode-map '("M-1" "M-2" "M-3"))
 
