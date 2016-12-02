@@ -35,6 +35,7 @@
                       ("C-x C-s" . ignore)))
 
 (define-key magit-branch-section-map (kbd "RET") 'magit-checkout)
+(define-key magit-branch-section-map (kbd "S-<return>") 'magit-branch-and-checkout)
 
 (rr/expose-bindings magit-mode-map '("M-1" "M-2" "M-3"))
 
