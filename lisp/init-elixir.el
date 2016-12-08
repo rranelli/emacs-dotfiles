@@ -25,8 +25,8 @@
 		(?λ  lambda "\\<fn" (elixir-mode)))))
 
 ;; Flycheck!
-(require 'flycheck-mix)
-(flycheck-mix-setup)
+;; (require 'flycheck-mix)
+;; (flycheck-mix-setup)
 
 ;;
 ;;; helper functions
