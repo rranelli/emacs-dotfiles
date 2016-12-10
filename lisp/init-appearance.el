@@ -67,7 +67,7 @@
                                          (set-face-attribute 'fringe nil
                                                              :background nil)
                                          (set-face-attribute 'default nil
-                                                             :height 220)
+                                                             :height 280)
                                          (rr/setup-telephone-line)))))
     (zenburn . '((cursor . "Red")
 		 (set-mode-line-faces-p . nil)
