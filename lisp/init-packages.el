@@ -38,6 +38,7 @@
     es-mode
     expand-region
     flycheck
+    flycheck-credo
     flycheck-mix
     flycheck-rust
     fuzzy
