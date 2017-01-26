@@ -12,7 +12,6 @@
 ;;
 (defvar rr/project-sources
   '("~/code"
-    ;; "~/locaweb"
     "~/xerpa"))
 
 (defvar rr/default-file-regexps
@@ -20,6 +19,11 @@
     "^mix.exs$"
     "^Readme"
     "^README"))
+
+(add-to-list 'projectile-project-root-files-bottom-up ".fetch")
+
+;; TODO: this
+;; (defun rr/helm-open-mix-dep ())
 
 (defun rr/helm-open-project ()
   "Bring up a Project search interface in helm."
