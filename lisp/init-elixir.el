@@ -3,7 +3,7 @@
 ;;; Code:
 (require 'elixir-mode)
 (require 'alchemist)
-(require 'flycheck-mix)
+;; (require 'flycheck-mix)
 
 ;; Do not change mode-line color based on test result
 (setq alchemist-test-status-modeline nil)
@@ -26,12 +26,12 @@
 		(?λ  lambda "\\<fn" (elixir-mode)))))
 
 ;; Flycheck!
-(setq flycheck-elixir-credo-strict t)
+;; (setq flycheck-elixir-credo-strict t)
 
-(flycheck-mix-setup)
-(flycheck-credo-setup)
+;; (flycheck-mix-setup)
+;; (flycheck-credo-setup)
 
-(add-hook 'elixir-mode-hook 'flycheck-mode)
+;; (add-hook 'elixir-mode-hook 'flycheck-mode)
 
 ;;
 ;;; helper functions
