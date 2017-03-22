@@ -4,7 +4,7 @@
 (defvar rr/theme-loaded nil)
 
 ;; themes
-(defcustom chosen-x-theme 'sanityinc-tomorrow-night
+(defcustom chosen-x-theme 'gruvbox
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
@@ -104,7 +104,11 @@
 							  :background "#282828"
 							  :foreground "#fb4934")
 				      (set-face-attribute 'wl-highlight-summary-refiled-face nil
-							  :foreground "dark turquoise")))))
+							  :foreground "dark turquoise")
+                                      (set-default-font "Fira Code Bold 14")
+                                      (rr/fix-fira-symbol-size)
+
+                                      (rr/set-transparency 76)))))
 
     (solarized-dark . '((mode-line-background . "DeepSkyBlue4")
 			(mode-line-foreground . "snow")
