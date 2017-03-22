@@ -109,12 +109,22 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; TODO FIXME: crazy hot fix of alchemist-project-root                          ;;
-(defun alchemist-project-root (&optional dir)                                   ;;
-  (let ((start-dir (or dir (expand-file-name default-directory))))              ;;
-    (or                                                                         ;;
-     (locate-dominating-file start-dir alchemist-project-mix-project-indicator) ;;
-     (locate-dominating-file start-dir alchemist-project-hex-pkg-indicator))))  ;;
+;; (defun alchemist-project-root (&optional dir)                                   ;;
+;;   (let ((start-dir (or dir (expand-file-name default-directory))))              ;;
+;;     (or                                                                         ;;
+;;      (locate-dominating-file start-dir alchemist-project-mix-project-indicator) ;;
+;;      (locate-dominating-file start-dir alchemist-project-hex-pkg-indicator))))  ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defadvice alchemist-project-root (around seancribbs/alchemist-project-root activate)
+  (let ((alchemist-project-mix-project-indicator ".git"))
+    ad-do-it))
+
+(defun seancribbs/activate-alchemist-root-advice ()
+  "Activates advice to override alchemist's root-finding logic"
+  (ad-activate 'alchemist-project-root))
+
+(add-to-list 'elixir-mode-hook 'seancribbs/activate-alchemist-root-advice)
 
 (provide 'init-elixir)
 ;;; init-elixir.el ends here
