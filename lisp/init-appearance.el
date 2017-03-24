@@ -103,8 +103,6 @@
 				      (set-face-attribute 'helm-ff-directory nil
 							  :background "#282828"
 							  :foreground "#fb4934")
-				      (set-face-attribute 'wl-highlight-summary-refiled-face nil
-							  :foreground "dark turquoise")
                                       (set-default-font "Fira Code Bold 14")
                                       (rr/fix-fira-symbol-size)
 

@@ -114,17 +114,40 @@
 ;;     (or                                                                         ;;
 ;;      (locate-dominating-file start-dir alchemist-project-mix-project-indicator) ;;
 ;;      (locate-dominating-file start-dir alchemist-project-hex-pkg-indicator))))  ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defadvice alchemist-project-root (around seancribbs/alchemist-project-root activate)
-  (let ((alchemist-project-mix-project-indicator ".git"))
-    ad-do-it))
-
-(defun seancribbs/activate-alchemist-root-advice ()
-  "Activates advice to override alchemist's root-finding logic"
-  (ad-activate 'alchemist-project-root))
-
-(add-to-list 'elixir-mode-hook 'seancribbs/activate-alchemist-root-advice)
+;; HOTFIX FIXME for test jumping in umbrella projects                                 ;;
+(defun alchemist-project-file-under-test (file directory)                             ;;
+  "Return the file which are tested by FILE.                                          ;;
+DIRECTORY is the place where the file under test is located."                         ;;
+  (let* ((filename (file-relative-name file (alchemist-project-root)))                ;;
+         (filename (replace-regexp-in-string "test/" (s-concat directory "/") filename))              ;;
+         (filename (replace-regexp-in-string "_test\.exs$" "\.ex" filename)))         ;;
+    (concat (alchemist-project-root) filename)))                                      ;;
+                                                                                      ;;
+(defun alchemist-project-open-tests-for-current-file (opener)                         ;;
+  "Visit the test file for the current buffer with OPENER."                           ;;
+  (let* ((filename (file-relative-name (buffer-file-name) (alchemist-project-root)))  ;;
+         (filename (replace-regexp-in-string "lib/" "test/" filename))                ;;
+         (filename (replace-regexp-in-string "^web/" "test/" filename))               ;;
+         (filename (replace-regexp-in-string "\.ex$" "_test\.exs" filename))          ;;
+         (filename (format "%s/%s" (alchemist-project-root) filename)))               ;;
+    (if (file-exists-p filename)                                                      ;;
+        (funcall opener filename)                                                     ;;
+      (if (y-or-n-p "No test file found; create one now?")                            ;;
+          (alchemist-project--create-test-for-current-file                            ;;
+           filename (current-buffer))                                                 ;;
+        (message "No test file found.")))))                                           ;;
+                                                                                      ;;
+(defadvice alchemist-project-root (around seancribbs/alchemist-project-root activate) ;;
+  (let ((alchemist-project-mix-project-indicator ".git"))                             ;;
+    ad-do-it))                                                                        ;;
+                                                                                      ;;
+(defun seancribbs/activate-alchemist-root-advice ()                                   ;;
+  "Activates advice to override alchemist's root-finding logic"                       ;;
+  (ad-activate 'alchemist-project-root))                                              ;;
+                                                                                      ;;
+(add-to-list 'elixir-mode-hook 'seancribbs/activate-alchemist-root-advice)            ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (provide 'init-elixir)
 ;;; init-elixir.el ends here
