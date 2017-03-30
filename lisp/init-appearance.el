@@ -4,7 +4,7 @@
 (defvar rr/theme-loaded nil)
 
 ;; themes
-(defcustom chosen-x-theme 'gruvbox
+(defcustom chosen-x-theme 'tsdh-dark
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
@@ -121,6 +121,7 @@
 		   (set-mode-line-faces-p . t)
 		   (paren-highlight-style . expression)
 		   (custom-faces-fn . (lambda ()
+                                        (rr/setup-telephone-line)
                                         (set-face-attribute 'mode-line-inactive nil
                                                             :background "gray33")
                                         (set-face-attribute 'fringe nil
