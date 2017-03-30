@@ -18,6 +18,7 @@
   (funcall it 1))
 
 (--each '(global-auto-revert-mode
+          global-flycheck-mode
           menu-bar-mode
           tool-bar-mode
           scroll-bar-mode)
