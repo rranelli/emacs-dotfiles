@@ -137,7 +137,5 @@
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 
-(global-flycheck-mode t)
-
 (provide 'init-defaults)
 ;;; init-defaults.el ends here
