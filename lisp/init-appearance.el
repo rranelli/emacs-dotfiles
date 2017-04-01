@@ -122,6 +122,13 @@
 		   (paren-highlight-style . expression)
 		   (custom-faces-fn . (lambda ()
                                         (rr/setup-telephone-line)
+                                        (set-face-attribute 'telephone-line-accent-inactive nil
+                                                            :background "grey"
+                                                            :foreground "black")
+                                        (set-face-attribute 'telephone-line-accent-active nil
+                                                          :background "brown4"
+                                                          :foreground "white"
+                                                          :box "red")
                                         (set-face-attribute 'mode-line-inactive nil
                                                             :background "gray33")
                                         (set-face-attribute 'fringe nil
@@ -151,7 +158,8 @@
                                                             :background nil)
                                         (set-face-attribute 'helm-ff-directory nil
                                                             :background "#282828"
-                                                            :foreground "#fb4934"))))))
+                                                            :foreground "#fb4934")
+                                        (set-default-font "Fira Code Bold 14"))))))
   "Custom color configuration."
   :group 'init-appearance)
 
