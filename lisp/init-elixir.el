@@ -128,7 +128,7 @@ DIRECTORY is the place where the file under test is located."                   
   "Visit the test file for the current buffer with OPENER."                           ;;
   (let* ((filename (file-relative-name (buffer-file-name) (alchemist-project-root)))  ;;
          (filename (replace-regexp-in-string "lib/" "test/" filename))                ;;
-         (filename (replace-regexp-in-string "^web/" "test/" filename))               ;;
+         (filename (replace-regexp-in-string "/web/" "/test/" filename))              ;;
          (filename (replace-regexp-in-string "\.ex$" "_test\.exs" filename))          ;;
          (filename (format "%s/%s" (alchemist-project-root) filename)))               ;;
     (if (file-exists-p filename)                                                      ;;
