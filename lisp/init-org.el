@@ -53,6 +53,7 @@
 	 (sh . t)
 	 (org . t)
 	 (latex . t)
+         (elixir . t)
 	 (sql . t)))
 
       ;; (require 'init-org-mobile)

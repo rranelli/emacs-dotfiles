@@ -64,6 +64,7 @@
     maven-test-mode
     neotree
     nginx-mode
+    ob-elixir
     org-journal
     omnisharp
     popup
