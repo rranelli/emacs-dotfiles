@@ -4,7 +4,7 @@
 (defvar rr/theme-loaded nil)
 
 ;; themes
-(defcustom chosen-x-theme 'tsdh-dark
+(defcustom chosen-x-theme 'zenburn
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
@@ -76,7 +76,7 @@
 				      (set-face-attribute 'fringe nil
                                                           :background nil)
                                       (set-face-attribute 'default nil
-                                                          :height 130)
+                                                          :height 140)
                                       (rr/setup-telephone-line)
 
                                       ;; telephone line faces !!
