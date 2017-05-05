@@ -182,5 +182,26 @@ narrowed."
 If MATCH regexp is given, return only the files that match it"
   (directory-files dir t (or match directory-files-no-dot-files-regexp)))
 
+(defun rr/setup-presentation ()
+  (interactive)
+  (defun rr/next-slide (p)
+    (interactive "P")
+    (narrow-or-widen-dwim p)
+    (outline-next-visible-heading 1)
+    (org-show-subtree)
+    (narrow-or-widen-dwim p))
+
+  (defun rr/previous-slide (p)
+    (interactive "P")
+    (narrow-or-widen-dwim p)
+    (outline-previous-visible-heading 1)
+    (org-show-subtree)
+    (narrow-or-widen-dwim p))
+
+  (global-set-key (kbd "C-x C-n") 'rr/next-slide)
+  (global-set-key (kbd "C-x C-p") 'rr/previous-slide))
+
+
+
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here

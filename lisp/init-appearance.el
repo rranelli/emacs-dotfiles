@@ -4,7 +4,7 @@
 (defvar rr/theme-loaded nil)
 
 ;; themes
-(defcustom chosen-x-theme 'zenburn
+(defcustom chosen-x-theme 'zenburn ;; 'dichromacy
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
@@ -68,6 +68,12 @@
                                                              :background nil)
                                          (set-face-attribute 'default nil
                                                              :height 280)
+                                         (set-face-attribute 'org-level-1 nil
+                                                             :height 500)
+                                         (set-face-attribute 'org-level-2 nil
+                                                             :height 450)
+                                         (set-face-attribute 'org-level-3 nil
+                                                             :height 400)
                                          (rr/setup-telephone-line)))))
     (zenburn . '((cursor . "Red")
 		 (set-mode-line-faces-p . nil)
@@ -199,8 +205,8 @@
   (setq chosen-theme chosen-x-theme)
   (unless rr/theme-loaded (load-theme chosen-theme t))
 
-  ;; make cursor type a bar
-  (modify-all-frames-parameters `((cursor-type . bar)))
+  ;; ;; make cursor type a bar
+  ;; (modify-all-frames-parameters `((cursor-type . bar)))
 
   (toggle-transparency frame t)
 
