@@ -128,6 +128,7 @@
 (add-hook 'gfm-mode-hook (lambda () (rr/expose-bindings gfm-mode-map '("`"))))
 
 (rr/expose-default-bindings sh-mode-map)
+(rr/expose-default-bindings markdown-mode-map)
 (rr/expose-default-bindings iedit-mode-keymap)
 
 (rr/expose-default-bindings-with-hook shell-mode)
