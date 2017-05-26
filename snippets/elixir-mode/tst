@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
-# name: defmodule :${1:name} do; use ExUnit.case; import :$1... ;end
+# name: defmodule ${1}Test
 # --
-defmodule ${1:name}.Test do
+defmodule ${1:name}Test do
   use ExUnit.Case
   import $1
 

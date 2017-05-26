@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: IO.inspect
+# key: ins
+# --
+|> IO.inspect(label: ">>>>>>>>>>>>>>>> $0")

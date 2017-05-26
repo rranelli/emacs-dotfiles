@@ -1,4 +1,4 @@
 # -*- mode: snippet -*-
-# name: defmodule :${1:name} do; use ExUnit.case; import :$1... ;end
+# name: pry
 # --
 require IEx; IEx.pry
