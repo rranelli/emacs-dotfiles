@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'web-mode)
+
 (add-to-list 'auto-mode-alist '("\\.html.eex$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css$" . web-mode))
 

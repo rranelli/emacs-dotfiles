@@ -184,6 +184,17 @@ If MATCH regexp is given, return only the files that match it"
 
 (defun rr/setup-presentation ()
   (interactive)
+
+  (set-face-attribute 'default nil
+                      :height 280)
+  (set-face-attribute 'org-level-1 nil
+                      :height 500)
+  (set-face-attribute 'org-level-2 nil
+                      :height 450)
+  (set-face-attribute 'org-level-3 nil
+                      :height 400)
+  (setq-default mode-line-format nil)
+
   (defun rr/next-slide (p)
     (interactive "P")
     (narrow-or-widen-dwim p)
@@ -198,10 +209,27 @@ If MATCH regexp is given, return only the files that match it"
     (org-show-subtree)
     (narrow-or-widen-dwim p))
 
-  (global-set-key (kbd "C-x C-n") 'rr/next-slide)
-  (global-set-key (kbd "C-x C-p") 'rr/previous-slide))
+  (defun rr/clear-with-separation ()
+    (interactive)
+    (save-excursion
+      (mark-whole-buffer)
+      (delete-region (point) (mark))
+      (insert "--- compiled stuff will show up above this line 🖢🖢🖢\n")
+)
+    (goto-char (point-max)))
 
+  (defun rr/org-babel-tangle-block ()
+    (interactive)
+    (let ((current-prefix-arg '(4)))
+      (call-interactively 'org-babel-tangle)
+      (shell-command-to-string "cd '/home/renan/SpiderOak Hive/empex' && mix compile >/dev/null")))
 
+  (define-key org-mode-map (kbd "C-c c") 'rr/org-babel-tangle-block)
+  (define-key org-mode-map (kbd "<f5>") 'rr/next-slide)
+  (define-key org-mode-map (kbd "<f4>") 'rr/previous-slide)
+  (define-key org-mode-map (kbd "C-x C-n") 'rr/next-slide)
+  (define-key org-mode-map (kbd "C-x C-p") 'rr/previous-slide)
+  (global-set-key (kbd "C-l") 'rr/clear-with-separation))
 
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here
