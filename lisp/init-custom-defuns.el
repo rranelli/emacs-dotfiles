@@ -214,8 +214,7 @@ If MATCH regexp is given, return only the files that match it"
     (save-excursion
       (mark-whole-buffer)
       (delete-region (point) (mark))
-      (insert "--- compiled stuff will show up above this line 🖢🖢🖢\n")
-)
+      (insert "--- compiled stuff will show up above this line 🖢🖢🖢\n"))
     (goto-char (point-max)))
 
   (defun rr/org-babel-tangle-block ()
@@ -229,7 +228,10 @@ If MATCH regexp is given, return only the files that match it"
   (define-key org-mode-map (kbd "<f4>") 'rr/previous-slide)
   (define-key org-mode-map (kbd "C-x C-n") 'rr/next-slide)
   (define-key org-mode-map (kbd "C-x C-p") 'rr/previous-slide)
+
   (global-set-key (kbd "C-l") 'rr/clear-with-separation))
+  (global-set-key (kbd "C-x C-n") 'rr/next-slide)
+  (global-set-key (kbd "C-x C-p") 'rr/previous-slide))
 
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here

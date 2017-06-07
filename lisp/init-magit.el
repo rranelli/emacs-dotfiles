@@ -3,6 +3,12 @@
 ;;; Code:
 (require 'magit)
 
+(defun rr/magit-current-timemachine-review ()
+  (interactive)
+  (magit-show-commit (car git-timemachine-revision)))
+
+(define-key git-timemachine-mode-map "v" 'rr/magit-current-timemachine-review)
+
 (setq
  ;; Remove warning for `magit-auto-revert-mode'
  magit-last-seen-setup-instructions "1.4.0"

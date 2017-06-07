@@ -75,7 +75,7 @@
                                                           :background nil)
                                       (set-face-attribute 'default nil
                                                           :height 140)
-                                      (rr/setup-telephone-line)
+                                      ;; (rr/setup-telephone-line)
 
                                       ;; telephone line faces !!
                                       (set-face-attribute 'telephone-line-accent-active nil

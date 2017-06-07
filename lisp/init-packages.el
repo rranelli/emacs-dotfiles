@@ -26,6 +26,7 @@
     company-c-headers
     csharp-mode
     dash
+    diminish
     dash-functional
     dockerfile-mode
     elixir-mode

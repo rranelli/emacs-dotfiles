@@ -26,6 +26,21 @@
 
 (smex-initialize)
 
+;; diminish stuff
+(--each '(smartparens-mode
+          projectile-mode
+          anzu-mode
+          helm-mode
+          yas-minor-mode
+          company-mode
+          undo-tree-mode
+          eldoc-mode
+          volatile-highlights-mode
+          pretty-symbols-mode
+          alchemist-mode
+          back-button-mode)
+  (funcall 'diminish it))
+
 ;; safe variables
 (add-to-list 'safe-local-variable-values '(encoding . utf-8))
 
