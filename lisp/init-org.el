@@ -1,7 +1,7 @@
 ;;; init-org.el -- Sanely configures org-mode related stuff.
 ;;; Commentary:
 ;;; Code:
-(defcustom rr/org-files-directory "~/SpiderOak Hive/org/"
+(defcustom rr/org-files-directory "~/Dropbox/org/"
   "Directory for org files."
   :group 'init-org)
 

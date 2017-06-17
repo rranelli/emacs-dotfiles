@@ -221,7 +221,7 @@ If MATCH regexp is given, return only the files that match it"
     (interactive)
     (let ((current-prefix-arg '(4)))
       (call-interactively 'org-babel-tangle)
-      (shell-command-to-string "cd '/home/renan/SpiderOak Hive/empex' && mix compile >/dev/null")))
+      (shell-command-to-string "cd '/home/renan/Dropbox/empex' && mix compile >/dev/null")))
 
   (define-key org-mode-map (kbd "C-c c") 'rr/org-babel-tangle-block)
   (define-key org-mode-map (kbd "<f5>") 'rr/next-slide)
