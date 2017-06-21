@@ -65,6 +65,10 @@
       (rr/expose-bindings org-agenda-mode-map '("C-c p"))
       (rr/expose-bindings org-mode-map '("M-h" "C-c C-f" "C-a"))
 
+      (defun rr/dump-inbox-to-refile ()
+        (interactive)
+        (shell-command " cd ~/Dropbox/org; cat refile.org inbox.org > refile2.org; mv refile{2,}.org; echo > inbox.org; echo ok"))
+
       (message "Org-mode agenda config loaded."))
   (message "skipping org-mode agenda load."))
 
