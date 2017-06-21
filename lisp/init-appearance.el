@@ -75,21 +75,20 @@
                                                           :background nil)
                                       (set-face-attribute 'default nil
                                                           :height 140)
-                                      ;; (rr/setup-telephone-line)
-
-                                      ;; telephone line faces !!
-                                      (set-face-attribute 'telephone-line-accent-active nil
-                                                          :background "#8FB28F"
-                                                          :foreground "black"
-                                                          :box nil)
-
                                       (set-face-attribute 'mode-line-inactive nil
                                                           :box nil
                                                           :foreground "#8FB28F")
 
                                       (set-face-attribute 'mode-line nil
                                                           :box '(:line-width -1 :style raised)
-                                                          :foreground "#8FB28F")))))
+                                                          :foreground "#8FB28F")
+                                      ;; telephone line faces !!
+                                      ;; (rr/setup-telephone-line)
+                                      ;; (set-face-attribute 'telephone-line-accent-active nil
+                                      ;;                     :background "#8FB28F"
+                                      ;;                     :foreground "black"
+                                      ;;                     :box nil)
+                                      ))))
     (gruvbox . '((mode-line-background . "peru")
 		 (mode-line-foreground . "snow")
 		 (cursor . nil)
