@@ -3,8 +3,6 @@
 ;;; Code:
 (require 'org-jekyll-mode)
 
-;;;;; UPDATE ox-gfm
-
 (add-to-list 'auto-mode-alist '("\\.md$" . gfm-mode))
 
 ;; langtool

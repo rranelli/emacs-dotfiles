@@ -7,7 +7,7 @@
   (interactive)
   (magit-show-commit (car git-timemachine-revision)))
 
-(define-key git-timemachine-mode-map "v" 'rr/magit-current-timemachine-review)
+(define-key git-timemachine-mode-map "s" 'rr/magit-current-timemachine-review)
 
 (setq
  ;; Remove warning for `magit-auto-revert-mode'

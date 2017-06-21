@@ -229,7 +229,7 @@ If MATCH regexp is given, return only the files that match it"
   (define-key org-mode-map (kbd "C-x C-n") 'rr/next-slide)
   (define-key org-mode-map (kbd "C-x C-p") 'rr/previous-slide)
 
-  (global-set-key (kbd "C-l") 'rr/clear-with-separation))
+  (global-set-key (kbd "C-l") 'rr/clear-with-separation)
   (global-set-key (kbd "C-x C-n") 'rr/next-slide)
   (global-set-key (kbd "C-x C-p") 'rr/previous-slide))
 

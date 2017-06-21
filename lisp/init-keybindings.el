@@ -80,6 +80,7 @@
                   (indent-region (point-min) (point-max))))
 
 ;; movement and editing
+(global-set-key (kbd "C-x (") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "C-q") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-a") 'rr/move-smart-beginning-of-line)
 (global-set-key (kbd "C-e") 'end-of-line)

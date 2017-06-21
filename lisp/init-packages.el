@@ -105,12 +105,13 @@
     cl
     dash
     dash-functional
-    iedit
     dired-x
     dpkg-dev-el
     ffap
     flyspell
+    git-timemachine
     hl-anything
+    iedit
     iso-transl
     linum
     markdown-mode
