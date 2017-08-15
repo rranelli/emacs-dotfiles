@@ -66,7 +66,8 @@
                     (custom-faces-fn . (lambda ()
                                          (set-face-attribute 'fringe nil
                                                              :background nil)
-                                         (rr/setup-telephone-line)))))
+                                         ;; (rr/setup-telephone-line)
+                                         ))))
     (zenburn . '((cursor . "Red")
 		 (set-mode-line-faces-p . nil)
 		 (paren-highlight-style . parenthesis)
