@@ -1079,9 +1079,9 @@ so change the default 'F' binding in the agenda to allow both"
 (setq org-agenda-start-on-weekday 1)
 
 ;; Enable display of the time grid so we can see the marker for the current time
-(setq org-agenda-time-grid (quote ((daily today remove-match)
-                                   #("----------------" 0 16 (org-heading t))
-                                   (0900 1100 1300 1500 1700))))
+(setq org-agenda-time-grid '((daily today require-timed)
+                             (800 1000 1200 1400 1600 1800 2000)
+                             "......" "----------------"))
 
 ;; Display tags farther right
 (setq org-agenda-tags-column -102)
