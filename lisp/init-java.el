@@ -16,7 +16,9 @@
 
 (add-hook 'java-mode-hook (lambda ()
 			    (c-set-style "cc-mode")
-			    (set (make-local-variable 'c-basic-offset) 2)))
+			    (set (make-local-variable 'c-basic-offset) 2)
+                            (make-local-variable 'before-save-hook)
+                            (remove-hook 'before-save-hook 'delete-trailing-whitespace)))
 
 (provide 'init-java)
 ;;; init-java.el ends here
