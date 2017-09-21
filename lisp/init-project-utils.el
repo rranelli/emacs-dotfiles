@@ -12,13 +12,14 @@
 ;;
 (defvar rr/project-sources
   '("~/code"
-    "~/xerpa"))
+    "~/5a"))
 
 (defvar rr/default-file-regexps
   '("^Gemfile$"
     "^mix.exs$"
     "^Readme"
-    "^README"))
+    "^README"
+    "__init__.py"))
 
 (add-to-list 'projectile-project-root-files-bottom-up ".fetch")
 
