@@ -64,6 +64,8 @@
       make-backup-files nil
       auto-save-default nil
       backup-inhibited t
+      ;; case insensitive sort lines
+      sort-fold-case t
       ;; js mode offset
       js-indent-level 2
       ;; set initial mode
