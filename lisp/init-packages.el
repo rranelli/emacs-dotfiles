@@ -6,6 +6,8 @@
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+             '("elpy" . "https://jorgenschaefer.github.io/packages/"))
 
 (setq save-abbrevs nil)
 
@@ -30,6 +32,7 @@
     dash-functional
     dockerfile-mode
     elixir-mode
+    elpy
     emmet-mode
     ensime
     erc-hl-nicks
@@ -71,6 +74,7 @@
     popup
     pretty-symbols
     projectile
+    python-mode
     racer
     rainbow-mode
     realgud

@@ -24,6 +24,7 @@
     init-haskell
     init-ruby
     init-lisp
+    init-python
     init-clojure
     init-csharp
     init-elixir
