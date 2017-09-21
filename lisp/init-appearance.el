@@ -80,6 +80,9 @@
                                                           :box nil
                                                           :foreground "#8FB28F")
 
+                                      (set-face-attribute 'markdown-code-face nil
+                                                          :background nil )
+
                                       (set-face-attribute 'mode-line nil
                                                           :box '(:line-width -1 :style raised)
                                                           :foreground "#8FB28F")
