@@ -75,6 +75,7 @@
     pretty-symbols
     projectile
     python-mode
+    pyenv-mode-auto
     racer
     rainbow-mode
     realgud

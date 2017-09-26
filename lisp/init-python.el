@@ -3,8 +3,10 @@
 ;;; Code:
 
 ;; run this command to install required dependencies:
-;; `sudo pip3 install jedi flake8 importmagic autopep8 ipython rope`'
+;; `pip install jedi flake8 importmagic autopep8 ipython rope`'
 (require 'elpy)
+(require 'pyenv-mode-auto)
+
 (setq elpy-rpc-backend "jedi")
 (elpy-enable)
 
