@@ -2,9 +2,9 @@
 set -euo pipefail
 
 __DIR__=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
-__GIT_ROOT__=$(git rev-parse --show-toplevel)
-EMACS_DIR="${HOME}/.emacs.d"
+__GIT_ROOT__=$(cd "${__DIR__}" && git rev-parse --show-toplevel)
 
-ln -sf "${__GIT_ROOT__}/lisp" "${EMACS_DIR}"
+mkdir -p "${HOME}/.emacs.d"
+ln -sf "${__GIT_ROOT__}/lisp" "${HOME}/.emacs.d"
 
 echo -e "\e[0;32mDone!\e[0m"
