@@ -5,15 +5,12 @@
 ;; run this command to install required dependencies:
 ;; `sudo pip3 install jedi flake8 importmagic autopep8 ipython rope`'
 (require 'elpy)
-
 (setq elpy-rpc-backend "jedi")
 (elpy-enable)
 
-(setq-default py-shell-name "ipython")
-(setq-default py-which-bufname "IPython")
-(setq py-python-command-args ; use the wx backend, for both mayavi and matplotlib
-  '("--gui=wx" "--pylab=wx" "-colors" "Linux"))
-(setq py-force-py-shell-name-p t)
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "--simple-prompt -i")
+
 (setq py-shell-switch-buffers-on-execute-p t) ; switch to the interpreter after executing code
 (setq py-switch-buffers-on-execute-p t)
 (setq py-split-windows-on-execute-p nil) ; don't split windows
@@ -25,6 +22,8 @@
 (add-hook 'elpy-mode-hook (lambda ()
                             (flymake-mode -1)
                             (flycheck-mode 1)))
+
+(rr/expose-bindings elpy-mode-map '("M-<up>" "M-<down>"))
 
 (provide 'init-python)
 ;;; init-python.el ends here
