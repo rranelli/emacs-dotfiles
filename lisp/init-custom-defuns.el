@@ -194,6 +194,7 @@ If MATCH regexp is given, return only the files that match it"
   (set-face-attribute 'org-level-3 nil
                       :height 400)
   (setq-default mode-line-format nil)
+  (rr/set-transparency 100)
 
   (defun rr/next-slide (p)
     (interactive "P")
