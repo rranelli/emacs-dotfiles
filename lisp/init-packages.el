@@ -5,9 +5,9 @@
 (package-initialize)
 
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives
              '("elpy" . "https://jorgenschaefer.github.io/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (setq save-abbrevs nil)
 
@@ -75,7 +75,6 @@
     pretty-symbols
     projectile
     python-mode
-    pyenv-mode-auto
     racer
     rainbow-mode
     realgud

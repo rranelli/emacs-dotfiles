@@ -23,6 +23,7 @@
     init-shell
     init-haskell
     init-ruby
+    init-js
     init-lisp
     init-python
     init-clojure
