@@ -22,6 +22,8 @@
 (define-key python-mode-map (kbd "C-c i") 'elpy-autopep8-fix-code)
 (define-key python-mode-map (kbd "C-c C-d") 'elpy-doc)
 
+(define-key elpy-mode-map (kbd "C-c C-e") 'python-shell-send-region)
+
 (add-hook 'elpy-mode-hook (lambda ()
                             (flymake-mode -1)
                             (flycheck-mode 1)))

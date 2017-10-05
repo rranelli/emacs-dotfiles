@@ -59,6 +59,7 @@
     hl-anything
     ido-vertical-mode
     iedit
+    indium
     inf-ruby
     javadoc-lookup
     js2-mode

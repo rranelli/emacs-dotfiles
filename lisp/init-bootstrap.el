@@ -6,6 +6,13 @@
   (add-to-list 'load-path lisp-dir)
   (add-to-list 'load-path vendor-dir))
 
+;; (require 'cl-lib)
+;; (defmacro defmodule (module-name &rest args)
+;;   (let ((packages (plist-get args :packages))
+;;         (config (plist-get args :config)))
+;;     `(progn ,@config
+;;             (provide ',module-name))))
+
 (defvar init-files
   '(init-packages
     init-custom-defuns
