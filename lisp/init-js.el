@@ -8,5 +8,7 @@
 
 (add-hook 'js2-mode-hook 'indium-interaction-mode)
 
+(rr/expose-default-bindings js2-mode-map)
+
 (provide 'init-js)
 ;;; init-js.el ends here
