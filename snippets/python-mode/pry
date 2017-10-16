@@ -1,0 +1,4 @@
+#name : pry
+#group : general
+# --
+import code; code.interact(local=dict(globals(), **locals()))
