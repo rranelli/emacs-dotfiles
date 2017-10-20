@@ -65,7 +65,7 @@
     js2-mode
     langtool
     magit
-    magit-gh-pulls
+    magithub
     markdown-mode+
     maven-test-mode
     neotree
