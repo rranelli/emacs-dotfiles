@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 (require 'magit)
-(require 'magithub)
-(magithub-feature-autoinject t)
 
 (defun rr/magit-current-timemachine-review ()
   (interactive)
