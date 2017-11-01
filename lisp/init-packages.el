@@ -95,6 +95,7 @@
     solarized-theme
     synosaurus
     telephone-line
+    tern
     undo-tree
     volatile-highlights
     web-mode
