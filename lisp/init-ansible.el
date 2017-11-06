@@ -27,6 +27,7 @@
 ;;; Keybindings
 (define-key ansible-doc-module-mode-map (kbd "C-x C-s") 'ignore)
 (define-key ansible::key-map (kbd "C-c v") 'rr/set-ansible-vault-mimipass-pwd)
+(define-key ansible::key-map (kbd "C-c C-d") 'ansible-doc)
 
 (provide 'init-ansible)
 ;;; init-ansible.el ends here

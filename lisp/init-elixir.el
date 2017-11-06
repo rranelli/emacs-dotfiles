@@ -100,7 +100,7 @@
                       ("C-c , c" . alchemist-mix-compile)
                       ("C-c , S" . rr/iex-pry)
                       ("C-c r p" . rr/elixir-to-pipe)
-                      ("C-c ?" . alchemist-help-search-at-point)))
+                      ("C-c C-d" . alchemist-help-search-at-point)))
 
 (define-key alchemist-test-report-mode-map (kbd "T")
   '(lambda () (interactive) (toggle-truncate-lines)))

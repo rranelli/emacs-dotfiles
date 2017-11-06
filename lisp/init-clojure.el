@@ -27,7 +27,7 @@
 
 ;; -- bindings --
 (rr/expose-bindings cider-mode-map '("C-c C-f"))
-(rr/define-bindings cider-mode-map '(("C-c ?"   . cider-doc)
+(rr/define-bindings cider-mode-map '(("C-c C-d"   . cider-doc)
                                      ("C-c C-v" . cider-eval-buffer)))
 
 ;; -- hooks --

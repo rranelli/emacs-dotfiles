@@ -23,7 +23,7 @@
                       ("C-c r u" . omnisharp-fix-usings)
                       ("C-c r l" . omnisharp-reload-solution)
                       ("C-c r i" . omnisharp-current-type-information)
-                      ("C-c ?"   . omnisharp-current-type-documentation)))
+                      ("C-c C-d"   . omnisharp-current-type-documentation)))
 
 (defun rr/omnisharp-rename-file ()
   "Rename current file and fix the file path in .csproj file."
