@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name : main
+# group : general
+# --
+if __name__ == 'main':
+    $0
