@@ -15,11 +15,8 @@
     "~/code"))
 
 (defvar rr/default-file-regexps
-  '("^Gemfile$"
-    "^mix.exs$"
-    "^Readme"
-    "^README"
-    "__init__.py"))
+  '("^mix.exs$"
+    "^package.json$"))
 
 (add-to-list 'projectile-project-root-files-bottom-up ".fetch")
 
