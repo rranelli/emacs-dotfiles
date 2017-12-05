@@ -40,7 +40,7 @@
     init-ansible
     init-writing
     ;; init-octave
-    ;; init-java
+    init-java
     ;; init-rust
     ;; init-c
     init-scala
