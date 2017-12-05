@@ -10,15 +10,17 @@
 
 ;; -- keybindings --
 (rr/define-bindings java-mode-map
-  '(("C-c j d" . javadoc-lookup)
+  '(("C-c C-d" . javadoc-lookup)
     ("C-c j s" . sort-java-imports)
     ("C-c j i" . add-java-import)))
 
 (add-hook 'java-mode-hook (lambda ()
 			    (c-set-style "cc-mode")
-			    (set (make-local-variable 'c-basic-offset) 2)
-                            (make-local-variable 'before-save-hook)
-                            (remove-hook 'before-save-hook 'delete-trailing-whitespace)))
+			    (setq tab-width 4
+				  indent-tabs-mode t
+				  c-basic-offset 4)
+                            (remove-hook (make-local-variable 'before-save-hook)
+					 'delete-trailing-whitespace)))
 
 (provide 'init-java)
 ;;; init-java.el ends here
