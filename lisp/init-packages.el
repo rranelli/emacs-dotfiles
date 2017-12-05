@@ -77,7 +77,7 @@
     pretty-symbols
     projectile
     python-mode
-    racer
+    ;; racer
     rainbow-mode
     realgud
     request
