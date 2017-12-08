@@ -65,21 +65,26 @@
 ;;
 ;;; testing functions
 ;;
+(defun rr/pytest-compile (command)
+  (compile (format "cd %s && %s"
+                   (locate-dominating-file (buffer-file-name) ".git")
+                   command)))
+
 (defun rr/pytest-file ()
   (interactive)
-  (compile (format "pytest %s" (buffer-file-name))))
+  (rr/pytest-compile (format "pytest %s" (buffer-file-name))))
 
 (defun rr/pytest-this ()
   (interactive)
-  (compile (format "pytest %s::%s"
-                   (buffer-file-name)
-                   (save-excursion
-                     (re-search-backward "def \\(test_.+?\\)(.*):")
-                     (match-string 1)))))
+  (rr/pytest-compile (format "pytest %s::%s"
+                             (buffer-file-name)
+                             (save-excursion
+                               (re-search-backward "def \\(test_.+?\\)(.*):")
+                               (match-string 1)))))
 
 (defun rr/pytest-all ()
   (interactive)
-  (compile "pytest"))
+  (rr/pytest-compile "pytest"))
 
 (defun rr/pytest-find-file ()
   (find-file-other-window (->> (buffer-file-name)
