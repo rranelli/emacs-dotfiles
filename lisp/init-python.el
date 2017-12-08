@@ -54,9 +54,57 @@
            ;; ("Iterable" . #x1d50a)
            ;; ("Any" .      #x2754)
            ;; ("Union" .    #x22c3)
-           ))))
+           ))
+   (prettify-symbols-mode)))
 
 (rr/expose-bindings elpy-mode-map '("M-<up>" "M-<down>" "C-c C-f"))
+
+(define-key python-mode-map (kbd "C-c i") 'elpy-autopep8-fix-code)
+(define-key python-mode-map (kbd "C-c C-d") 'elpy-doc)
+
+;;
+;;; testing functions
+;;
+(defun rr/pytest-file ()
+  (interactive)
+  (compile (format "pytest %s" (buffer-file-name))))
+
+(defun rr/pytest-this ()
+  (interactive)
+  (compile (format "pytest %s::%s"
+                   (buffer-file-name)
+                   (save-excursion
+                     (re-search-backward "def \\(test_.+?\\)(.*):")
+                     (match-string 1)))))
+
+(defun rr/pytest-all ()
+  (interactive)
+  (compile "pytest"))
+
+(defun rr/pytest-find-file ()
+  (find-file-other-window (->> (buffer-file-name)
+                               (s-replace "/tests/" "/")
+                               (s-replace "_test.py" ".py"))))
+
+(defun rr/pytest-find-test ()
+  (let ((root-dir (-> (buffer-file-name)
+                      (locate-dominating-file  ".git")
+                      (expand-file-name))))
+    (find-file-other-window (->> (buffer-file-name)
+                                 (s-replace root-dir (file-name-as-directory (f-join root-dir "tests")))
+                                 (s-replace ".py" "_test.py")))))
+
+(defun rr/pytest-find-other ()
+  (interactive)
+  (if (s-ends-with? "_test.py" (buffer-file-name))
+      (rr/pytest-find-file)
+    (rr/pytest-find-test)))
+
+(rr/define-bindings python-mode-map '(("C-c , s" . rr/pytest-this)
+                                      ("C-c , v" . rr/pytest-file)
+                                      ("C-c , a" . rr/pytest-all)
+                                      ("C-c , y" . rr/pytest-find-other)
+                                      ("C-c , r" . recompile)))
 
 (provide 'init-python)
 ;;; init-python.el ends here
