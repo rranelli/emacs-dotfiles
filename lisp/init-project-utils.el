@@ -102,7 +102,8 @@
 ;;
 (setq
  neo-persist-show nil
- neo-keymap-style 'concise)
+ neo-keymap-style 'concise
+ neo-window-fixed-size nil)
 
 (require 'neotree)
 
