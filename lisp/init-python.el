@@ -2,8 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-;; run this command to install required dependencies:
-;; `pip install jedi flake8 importmagic autopep8 ipython rope yapf`'
+;;
+;;; Configure elpy
+;;
+;; install-it: `pip install jedi flake8 importmagic autopep8 ipython rope yapf`'
 (require 'elpy)
 
 (setq elpy-rpc-backend "jedi")
@@ -27,6 +29,7 @@
 (add-hook 'elpy-mode-hook (lambda ()
                             (flymake-mode -1)
                             (flycheck-mode 1)))
+
 ;; pretty symbols
 (add-hook
  'python-mode-hook
@@ -63,7 +66,7 @@
 (define-key python-mode-map (kbd "C-c C-d") 'elpy-doc)
 
 ;;
-;;; testing functions
+;;; pytest testing tools
 ;;
 (defun rr/pytest-compile (command)
   (compile (format "cd %s && %s"
@@ -79,6 +82,7 @@
   (rr/pytest-compile (format "pytest %s::%s"
                              (buffer-file-name)
                              (save-excursion
+                               (end-of-line)
                                (re-search-backward "def \\(test_.+?\\)(.*):")
                                (match-string 1)))))
 
@@ -86,18 +90,30 @@
   (interactive)
   (rr/pytest-compile "pytest"))
 
+(defun rr/pytest-find-file-other-window ()
+  (find-file-other-window (rr/--pytest-find-file)))
+
+(defun rr/pytest-find-test-other-window ()
+  (find-file-other-window (rr/--pytest-find-test)))
+
 (defun rr/pytest-find-file ()
-  (find-file-other-window (->> (buffer-file-name)
-                               (s-replace "/tests/" "/")
-                               (s-replace "_test.py" ".py"))))
+  (find-file (rr/--pytest-find-file)))
 
 (defun rr/pytest-find-test ()
+  (find-file (rr/--pytest-find-test)))
+
+(defun rr/--pytest-find-file ()
+  (->> (buffer-file-name)
+       (s-replace "/tests/" "/")
+       (s-replace "_test.py" ".py")))
+
+(defun rr/--pytest-find-test ()
   (let ((root-dir (-> (buffer-file-name)
                       (locate-dominating-file  ".git")
                       (expand-file-name))))
-    (find-file-other-window (->> (buffer-file-name)
-                                 (s-replace root-dir (file-name-as-directory (f-join root-dir "tests")))
-                                 (s-replace ".py" "_test.py")))))
+    (->> (buffer-file-name)
+         (s-replace root-dir (file-name-as-directory (f-join root-dir "tests")))
+         (s-replace ".py" "_test.py"))))
 
 (defun rr/pytest-find-other ()
   (interactive)
@@ -105,10 +121,17 @@
       (rr/pytest-find-file)
     (rr/pytest-find-test)))
 
+(defun rr/pytest-find-other-other-window ()
+  (interactive)
+  (if (s-ends-with? "_test.py" (buffer-file-name))
+      (rr/pytest-find-file-other-window)
+    (rr/pytest-find-test-other-window)))
+
 (rr/define-bindings python-mode-map '(("C-c , s" . rr/pytest-this)
                                       ("C-c , v" . rr/pytest-file)
                                       ("C-c , a" . rr/pytest-all)
-                                      ("C-c , y" . rr/pytest-find-other)
+                                      ("C-c , t" . rr/pytest-find-other)
+                                      ("C-c , y" . rr/pytest-find-other-other-window)
                                       ("C-c , r" . recompile)))
 
 (provide 'init-python)
