@@ -23,7 +23,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(magit-commit-arguments (quote ("--gpg-sign=8AB21633BDD12B22")))
+ '(magit-commit-arguments (quote ("--signoff" "--gpg-sign=8AB21633BDD12B22")))
  '(safe-local-variable-values
    (quote
     ((ag-ignore-list "priv/static/**" "vendor/**" "node_modules/**")

@@ -8,7 +8,7 @@
 ;; install-it: `pip install jedi flake8 importmagic autopep8 ipython rope yapf`'
 (require 'elpy)
 
-(setq elpy-rpc-backend "jedi")
+(setq elpy-rpc-backend "rope")
 (delete 'elpy-module-flymake elpy-modules)
 
 (elpy-enable)
