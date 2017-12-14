@@ -6,5 +6,6 @@ __GIT_ROOT__=$(cd "${__DIR__}" && git rev-parse --show-toplevel)
 
 mkdir -p "${HOME}/.emacs.d"
 ln -sf "${__GIT_ROOT__}/lisp" "${HOME}/.emacs.d"
+ln -sf "${__GIT_ROOT__}/init.el" "${HOME}/.emacs.d/init.el"
 
 echo -e "\e[0;32mDone!\e[0m"
