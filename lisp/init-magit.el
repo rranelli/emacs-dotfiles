@@ -3,7 +3,11 @@
 ;;; Code:
 (require 'magit)
 (require 'magit-gh-pulls)
+(require 'git-timemachine)
 (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+
+(defun magit-insert-recent-commits (&rest args)
+  "this is a monkeypatch to hide recent commits forever")
 
 (defun rr/magit-current-timemachine-review ()
   (interactive)
@@ -44,6 +48,7 @@
 
 (define-key magit-branch-section-map (kbd "RET") 'magit-checkout)
 (define-key magit-branch-section-map (kbd "S-<return>") 'magit-branch-and-checkout)
+()
 
 (rr/expose-bindings magit-mode-map '("M-1" "M-2" "M-3"))
 
