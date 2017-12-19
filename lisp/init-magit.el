@@ -15,6 +15,7 @@
 
 (define-key git-timemachine-mode-map "s" 'rr/magit-current-timemachine-review)
 
+
 (setq
  ;; Remove warning for `magit-auto-revert-mode'
  magit-last-seen-setup-instructions "1.4.0"

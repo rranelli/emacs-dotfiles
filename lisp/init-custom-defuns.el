@@ -182,11 +182,6 @@ narrowed."
 If MATCH regexp is given, return only the files that match it"
   (directory-files dir t (or match directory-files-no-dot-files-regexp)))
 
-(defvar rr/current-jira-task '[RNT-897])
-(defun rr/insert-current-jira-task ()
-  (interactive)
-  rr/current-jira-task)
-
 (defun rr/setup-presentation ()
   (interactive)
 

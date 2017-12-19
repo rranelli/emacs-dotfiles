@@ -58,12 +58,14 @@
 
       ;; (require 'init-org-mobile)
       (require 'init-org-notify)
+      (require 'init-org-jira)
 
       ;; setup keybindings
       (global-set-key (kbd "C-o") 'org-agenda)
       (global-set-key (kbd "M-g v") 'org-clock-goto)
       (rr/expose-bindings org-agenda-mode-map '("C-c p"))
       (rr/expose-bindings org-mode-map '("M-h" "C-c C-f" "C-a"))
+
 
       (defun rr/dump-inbox-to-refile ()
         (interactive)
