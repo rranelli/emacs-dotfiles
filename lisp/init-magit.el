@@ -48,8 +48,7 @@
 
 (define-key magit-branch-section-map (kbd "RET") 'magit-checkout)
 (define-key magit-branch-section-map (kbd "S-<return>") 'magit-branch-and-checkout)
-()
-
+(define-key text-mode-map (kbd "C-c C-e") 'rr/eval-and-replace)
 (rr/expose-bindings magit-mode-map '("M-1" "M-2" "M-3"))
 
 (provide 'init-magit)
