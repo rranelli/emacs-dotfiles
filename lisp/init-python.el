@@ -43,6 +43,7 @@
                    ("for" .      #x2200)
                    ("return" .   #x27fc)
                    ("yield" .    #x27fb)
+                   ("raise" .    #x1f4a3)
                    ;; definitions
                    ("@" .        #xff20)
                    ("async" .    #x1f5d8)
