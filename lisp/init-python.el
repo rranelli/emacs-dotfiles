@@ -31,29 +31,35 @@
                             (flycheck-mode 1)))
 
 (setq rr/symbols '(;; Syntax
-                   ("lambda" .       #x1d77a)
                    ("==" .       #x2a75)
                    ("!=" .       #x2260)
                    ("->" .       #x27f6)
-                   ("def" .      #x2131)
+                   ("<=" .       #x2a7d)
+                   (">=" .       #x2a7e)
                    ("not" .      #x2757)
                    ("in" .       #x2208)
                    ("not in" .   #x2209)
+                   ("lambda" .   #x1d6cc)
+                   ("for" .      #x2200)
                    ("return" .   #x27fc)
                    ("yield" .    #x27fb)
-                   ("for" .      #x2200)
+                   ;; definitions
+                   ("@" .        #xff20)
                    ("async" .    #x1f5d8)
                    ("await" .    #x2b33)
-                   ("class" .    #x2102)
-                   ("self" .     #x1d564)
-                   ;; ;; Base Types
+                   ("def" .      #x2131)
+                   ("class" .    #x1d49e)
+                   ("self" .     #x3f0)
+                   ("from" .     #x2abc)
+                   ("import" .   #x2abb)
+                   ;; Base Types
                    ("int" .      #x2124)
                    ("float" .    #x211d)
                    ("str" .      #x1d54a)
                    ("True" .     #x1d54b)
                    ("False" .    #x1d53d)
                    ("None" .     #x2205)
-                   ;; ;; Mypy
+                   ;; Mypy
                    ("Dict" .     #x1d507)
                    ("List" .     #x2112)
                    ("Tuple" .    #x2a02)
@@ -61,8 +67,6 @@
                    ("Iterable" . #x1d50a)
                    ("Any" .      #x2754)
                    ("Union" .    #x22c3)))
-
-(--map rr/symbols (lambda (pair) (set-fontset-font t (cdr pair) "Symbola-15")))
 
 ;; pretty symbols
 (add-hook
