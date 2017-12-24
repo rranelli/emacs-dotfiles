@@ -45,9 +45,6 @@
 ;; safe variables
 (add-to-list 'safe-local-variable-values '(encoding . utf-8))
 
-;; add pretty symbols for lambdas and relationals
-(setq pretty-symbol-categories '(lambda))
-
 ;; smooth scroling!
 (setq redisplay-dont-pause t
       scroll-margin 1
@@ -143,7 +140,6 @@
 
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'hl-line-mode)
-(add-hook 'prog-mode-hook 'pretty-symbols-mode)
 (add-hook 'prog-mode-hook 'custom-add-watchwords)
 
 (add-hook 'css-mode-hook 'rainbow-mode)

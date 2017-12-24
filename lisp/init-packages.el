@@ -30,6 +30,8 @@
     dash
     diminish
     dash-functional
+    ;; flycheck-credo
+    ;; racer
     dockerfile-mode
     elixir-mode
     elpy
@@ -42,7 +44,6 @@
     es-mode
     expand-region
     flycheck
-    ;; flycheck-credo
     flycheck-mix
     flycheck-rust
     fuzzy
@@ -71,13 +72,12 @@
     neotree
     nginx-mode
     ob-elixir
-    org-journal
     omnisharp
+    org-journal
     popup
     pretty-symbols
     projectile
     python-mode
-    ;; racer
     rainbow-mode
     realgud
     request
@@ -95,6 +95,7 @@
     solarized-theme
     synosaurus
     telephone-line
+    unicode-fonts
     tern
     undo-tree
     volatile-highlights
