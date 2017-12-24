@@ -44,6 +44,7 @@
                    ("return" .   #x27fc)
                    ("yield" .    #x27fb)
                    ("raise" .    #x1f4a3)
+                   ("pass" .     #x26d2)
                    ;; definitions
                    ("@" .        #xff20)
                    ("async" .    #x1f5d8)
