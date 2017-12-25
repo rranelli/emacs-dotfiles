@@ -17,8 +17,6 @@
 (setq use-package-always-ensure t)
 
 (use-package init-packages :ensure nil)
-(use-package init-git :ensure nil)
-(use-package init-python :ensure nil)
 (use-package init-custom-defuns :ensure nil)
 (use-package init-edit-defuns :ensure nil)
 (use-package init-keybindings :ensure nil)
@@ -35,7 +33,6 @@
 (use-package init-js :ensure nil)
 (use-package init-lisp :ensure nil)
 (use-package init-elixir :ensure nil)
-(use-package init-ansible :ensure nil)
 (use-package init-java :ensure nil)
 (use-package init-org :ensure nil)
 (use-package init-appearance :ensure nil)

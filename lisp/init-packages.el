@@ -8,8 +8,6 @@
 (defvar my-packages
   '(ag
     alchemist
-    ansible
-    ansible-doc
     anzu
     auto-package-update
     avy
@@ -18,7 +16,6 @@
     cider
     color-theme-sanityinc-tomorrow
     company
-    company-ansible
     company-c-headers
     csharp-mode
     dash
