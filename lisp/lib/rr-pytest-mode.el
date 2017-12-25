@@ -71,9 +71,10 @@
 ;;;###autoload
 (define-minor-mode rr/pytest-mode
   "pytest utilities"
-  :init-value t
+  :init-value nil
+  :global nil
+  :lighter " pytest"
   :keymap rr/pytest-mode-map
-  :lighter "rr/pytest"
   :group 'rr/pytest)
 
-(provide 'rr-pytest)
+(provide 'rr/pytest-mode)

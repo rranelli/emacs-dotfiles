@@ -135,7 +135,6 @@
 (rr/expose-default-bindings-with-hook shell-mode)
 (rr/expose-default-bindings-with-hook sh-mode)
 
-(rr/expose-default-bindings-with-hook python-mode)
 (rr/expose-default-bindings-with-hook sgml-mode)
 (rr/expose-default-bindings-with-hook html-mode)
 (rr/expose-default-bindings-with-hook nxml-mode)

@@ -6,7 +6,7 @@
 (defvar rr/theme-loaded nil)
 
 ;; themes
-(defcustom chosen-x-theme 'zenburn ;; 'dichromacy
+(defcustom chosen-x-theme 'gruvbox ;; 'dichromacy
   "Theme chosen to be initialized."
   :group 'init-appearance)
 (defcustom chosen-terminal-theme 'gruvbox
@@ -122,7 +122,6 @@
 		   (set-mode-line-faces-p . t)
 		   (paren-highlight-style . expression)
 		   (custom-faces-fn . (lambda ()
-                                        (rr/setup-telephone-line)
                                         (set-face-attribute 'telephone-line-accent-inactive nil
                                                             :background "grey"
                                                             :foreground "black")

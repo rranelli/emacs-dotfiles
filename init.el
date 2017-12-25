@@ -16,7 +16,12 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
+(use-package init-git :ensure nil)
+(use-package init-python :ensure nil)
+(use-package init-ansible :ensure nil)
+(use-package init-flycheck :ensure nil)
 (use-package init-packages :ensure nil)
+
 (use-package init-custom-defuns :ensure nil)
 (use-package init-edit-defuns :ensure nil)
 (use-package init-keybindings :ensure nil)
