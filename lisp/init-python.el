@@ -6,7 +6,9 @@
 (use-package rr-pytest-mode
   :ensure nil
   :diminish
-  :hook (python-mode . rr/pytest-mode))
+
+  :hook
+  (python-mode . rr/pytest-mode))
 
 (use-package python-mode
   :mode "\\.py"
@@ -63,8 +65,8 @@
         ("C-c C-e" . python-shell-send-region))
 
   :hook
-  ((python-mode . prettify-symbols-mode)
-   (python-mode . rr/set-prettify-symbols))
+  (python-mode . prettify-symbols-mode)
+  (python-mode . rr/set-prettify-symbols)
 
   :config
   (defun rr/set-prettify-symbols ()
@@ -82,8 +84,8 @@
         ("C-c C-d" . elpy-doc))
 
   :hook
-  ((python-mode . elpy-mode)
-   (python-mode . elpy-enable))
+  (python-mode . elpy-mode)
+  (python-mode . elpy-enable)
 
   :config
   (delete 'elpy-module-flymake elpy-modules)
