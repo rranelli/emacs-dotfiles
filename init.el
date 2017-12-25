@@ -10,49 +10,46 @@
 (add-to-list 'package-archives
              '("elpy" . "https://jorgenschaefer.github.io/packages/"))
 
-(setq use-package-always-ensure t)
 (eval-when-compile
   (package-install 'use-package)
   (require 'use-package))
+(setq use-package-always-ensure t)
 
-(require 'init-git)
+(use-package init-packages :ensure nil)
+;; (use-package init-git :ensure nil)
+(use-package init-custom-defuns :ensure nil)
+(use-package init-edit-defuns :ensure nil)
+(use-package init-keybindings :ensure nil)
+(use-package init-defaults :ensure nil)
+(use-package init-company :ensure nil)
+(use-package init-helm :ensure nil)
+(use-package init-isearch :ensure nil)
+(use-package init-project-utils :ensure nil)
+(use-package init-path :ensure nil)
+(use-package init-smartparens :ensure nil)
+(use-package init-yas :ensure nil)
+(use-package init-shell :ensure nil)
+(use-package init-ruby :ensure nil)
+(use-package init-js :ensure nil)
+(use-package init-lisp :ensure nil)
+(use-package init-python :ensure nil)
+(use-package init-elixir :ensure nil)
+(use-package init-ansible :ensure nil)
+(use-package init-java :ensure nil)
+(use-package init-org :ensure nil)
+(use-package init-appearance :ensure nil)
+(use-package init-registers :ensure nil)
+;; init-haskell
+;; init-clojure
+;; init-csharp
+;; init-web
+;; init-writing
+;; init-octave
+;; init-rust
+;; init-c
+;; init-scala
+;; init-mail
+;; init-erc
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; legacy initialization                                          ;;
-(setq rr/initialization-errors nil)                               ;;
-(require 'init-bootstrap)                                         ;;
-(rr/safe-load-init-files)                                         ;;
-(message (if rr/initialization-errors                             ;;
-             (mapconcat #'identity rr/initialization-errors "\n") ;;
-           "All is sane, and init.el got to its end"))            ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(magit-commit-arguments
-   (quote
-    ("--no-verify" "--signoff" "--gpg-sign=8AB21633BDD12B22")))
- '(magit-default-tracking-name-function (quote magit-default-tracking-name-branch-only) t)
- '(magit-last-seen-setup-instructions "1.4.0" t)
- '(magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256")))
- '(magit-push-always-verify nil t)
- '(magit-revision-show-gravatars (quote ("^Author:     " . "^Commit:     ")))
- '(magit-status-buffer-switch-function (quote switch-to-buffer) t)
- '(package-selected-packages
-   (quote
-    (magit zenburn-theme yard-mode yaml-mode web-mode wakatime-mode volatile-highlights use-package unicode-fonts undo-tree tern telephone-line synosaurus solarized-theme smex smartparens rust-mode ruby-refactor rubocop rspec-mode robe rhtml-mode restclient realgud rainbow-mode python-mode pretty-symbols org-journal omnisharp ob-elixir nginx-mode neotree maven-test-mode markdown-mode+ magit-gh-pulls langtool javadoc-lookup indium iedit ido-vertical-mode hl-anything highlight-symbol helm-projectile helm-emmet helm-bundle-show haskell-mode gruvbox-theme graphviz-dot-mode git-timemachine gist fuzzy flycheck-rust flycheck-mix expand-region es-mode erlang erc-view-log erc-image erc-hl-nicks ensime elpy dockerfile-mode diminish dash-functional company-c-headers company-ansible color-theme-sanityinc-tomorrow cider better-registers back-button avy auto-package-update anzu ansible-doc ansible alchemist ag)))
- '(safe-local-variable-values
-   (quote
-    ((ag-ignore-list "priv/static/**" "vendor/**" "node_modules/**")
-     (encoding . utf-8))))
- '(wakatime-cli-path "/usr/local/bin/wakatime")
- '(wakatime-python-bin nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)

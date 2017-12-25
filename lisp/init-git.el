@@ -1,11 +1,9 @@
 ;;; init-git.el -- Configures the amazing and magic magit interface to git.
 ;;; Commentary:
 ;;; Code:
-(use-package magit-gh-pulls
-  :ensure t)
+(use-package magit-gh-pulls)
 
 (use-package magit
-  :ensure t
   :config
   (defadvice magit-status
       (before magit-save-before-status activate)
@@ -24,28 +22,27 @@
   (magit-commit-arguments '("--no-verify" "--signoff" "--gpg-sign=8AB21633BDD12B22"))
 
   :bind (:map magit-mode-map
-         ("s" . magit-status)
-         ("X" . magit-reset-hard)
-         ("C-1" . magit-section-show-level-1-all)
-         ("C-2" . magit-section-show-level-2-all)
-         ("C-3" . magit-section-show-level-3-all)
-         ("C-4" . magit-section-show-level-4-all)
-         ("C-x C-s" . ignore)
-         ("M-1" . nil)
-         ("M-2" . nil)
-         ("M-3" . nil)
-         :map magit-branch-section-map
-         ("RET" . magit-checkout)
-         ("S-<return>" . magit-branch-and-checkout)
-         :map text-mode-map
-         ("C-c C-e" . rr/eval-and-replace)
-         :map magit-log-mode-map
-         ("C-c C-f" . nil))
+              ("s" . magit-status)
+              ("X" . magit-reset-hard)
+              ("C-1" . magit-section-show-level-1-all)
+              ("C-2" . magit-section-show-level-2-all)
+              ("C-3" . magit-section-show-level-3-all)
+              ("C-4" . magit-section-show-level-4-all)
+              ("C-x C-s" . ignore)
+              ("M-1" . nil)
+              ("M-2" . nil)
+              ("M-3" . nil))
+  :bind (:map magit-branch-section-map
+              ("RET" . magit-checkout)
+              ("S-<return>" . magit-branch-and-checkout))
+  :bind (:map text-mode-map
+              ("C-c C-e" . rr/eval-and-replace))
+  :bind (:map magit-log-mode-map
+              ("C-c C-f" . nil))
 
   :hook ((magit-mode-hook . turn-on-magit-gh-pulls)))
 
 (use-package git-timemachine
-  :ensure t
   :config
   (defun rr/magit-current-timemachine-review ()
     (interactive)
