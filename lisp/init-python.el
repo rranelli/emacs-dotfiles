@@ -6,10 +6,21 @@
 ;;; Configure elpy
 ;;
 ;; install-it: `pip install jedi flake8 importmagic autopep8 ipython rope yapf`'
+(use-package python-mode
+  :interpreter "ipython"
+  :mode "\\.py\\'")
+
+(use-package elpy
+  :interpreter "ipython"
+  :config
+  (delete 'elpy-module-flymake elpy-modules)
+  :custom (elpy-rpc-backend . "rope"))
+
+
 (require 'elpy)
 
 (setq elpy-rpc-backend "rope")
-(delete 'elpy-module-flymake elpy-modules)
+
 
 (elpy-enable)
 
