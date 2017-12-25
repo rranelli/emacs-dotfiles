@@ -15,7 +15,7 @@
   (package-install 'use-package)
   (require 'use-package))
 
-(require 'init-magit)
+(require 'init-git)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; legacy initialization                                          ;;

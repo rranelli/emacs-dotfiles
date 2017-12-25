@@ -1,4 +1,4 @@
-;;; init-magit.el -- Configures the amazing and magic magit interface to git.
+;;; init-git.el -- Configures the amazing and magic magit interface to git.
 ;;; Commentary:
 ;;; Code:
 (use-package magit-gh-pulls
@@ -53,5 +53,5 @@
 
   (define-key git-timemachine-mode-map "s" 'rr/magit-current-timemachine-review))
 
-(provide 'init-magit)
-;;; init-magit.el ends here
+(provide 'init-git)
+;;; init-git.el ends here

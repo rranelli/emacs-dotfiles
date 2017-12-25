@@ -4,7 +4,7 @@
 
 
 (defvar init-files
-  '(init-packages
+  '(init-packages ;; will be deprecated
     init-custom-defuns
     init-edit-defuns
     init-keybindings
@@ -14,29 +14,28 @@
     init-isearch
     init-project-utils
     init-path
-    init-magit
     init-smartparens
     init-yas
     init-shell
-    init-haskell
+    ;; init-haskell
     init-ruby
     init-js
     init-lisp
     init-python
-    init-clojure
-    init-csharp
+    ;; init-clojure
+    ;; init-csharp
     init-elixir
-    init-web
+    ;; init-web
     init-ansible
-    init-writing
+    ;; init-writing
     ;; init-octave
     init-java
     ;; init-rust
     ;; init-c
-    init-scala
+    ;; init-scala
     ;; init-mail
     init-org
-    init-erc
+    ;; init-erc
     init-appearance
     init-registers))
 

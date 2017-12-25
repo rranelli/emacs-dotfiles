@@ -1,15 +1,9 @@
 ;;; init-packages.el --- Declare, install and update Emacs packages.
 ;;; Commentary:
 ;;; Code:
-;; (require 'package)
-;; (package-initialize)
-
-;; (add-to-list 'package-archives
-;;              '("elpy" . "https://jorgenschaefer.github.io/packages/"))
-;; (add-to-list 'package-archives
-;;              '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-(setq save-abbrevs nil)
+(use-package auto-package-update
+  :config
+  (auto-package-update-at-time "05:00"))
 
 (defvar my-packages
   '(ag
@@ -48,7 +42,6 @@
     flycheck-rust
     fuzzy
     gist
-    git-timemachine
     graphviz-dot-mode
     gruvbox-theme
     haskell-mode
@@ -107,8 +100,7 @@
 
 ;; -- vendor packages --
 (defvar libs-to-require
-  '(
-    ansi-color
+  '(ansi-color
     cl
     dash
     dash-functional
@@ -116,7 +108,6 @@
     dpkg-dev-el
     ffap
     flyspell
-    git-timemachine
     hl-anything
     iedit
     iso-transl
@@ -150,11 +141,6 @@
 ;; vendor loading
 (dolist (lib libs-to-require)
   (require lib))
-
-;; Automagically updating packages
-(require 'auto-package-update)
-(auto-package-update-maybe)
-(auto-package-update-at-time "05:00")
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
