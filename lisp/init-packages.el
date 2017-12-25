@@ -28,7 +28,6 @@
     ;; racer
     dockerfile-mode
     elixir-mode
-    elpy
     emmet-mode
     ensime
     erc-hl-nicks
@@ -68,7 +67,6 @@
     popup
     pretty-symbols
     projectile
-    python-mode
     rainbow-mode
     realgud
     request

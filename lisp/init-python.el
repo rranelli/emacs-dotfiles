@@ -1,45 +1,45 @@
-;;; init-python.el -- Configures python development features
-;;; Commentary:
-;;; Code:
+(use-package rr-pytest
+  :ensure nil
+  :diminish rr/pytest-mode
+  :hook (python-mode . rr/pytest-mode))
 
-;;
-;;; Configure elpy
-;;
-;; install-it: `pip install jedi flake8 importmagic autopep8 ipython rope yapf`'
 (use-package python-mode
-  :interpreter "ipython"
-  :mode "\\.py\\'")
+  :mode "\\.py"
+
+  :custom
+  (python-shell-interpreter "ipython")
+  (python-shell-interpreter-args "--simple-prompt -i")
+  (py-shell-switch-buffers-on-execute-p t)
+  (py-switch-buffers-on-execute-p t)
+  (py-split-windows-on-execute-p nil)
+  (py-smart-indentation t)
+
+  :bind
+  (:map python-mode-map
+        ("C-c C-e" . python-shell-send-region))
+
+  :config
+  (rr/expose-default-bindings python-mode-map)
+  (add-hook 'python-mode-hook (lambda ()
+                                (mapc (lambda (pair) (push pair prettify-symbols-alist))
+                                      rr/symbols)
+                                (prettify-symbols-mode))))
 
 (use-package elpy
-  :interpreter "ipython"
+  ;; install-it: `pip install jedi flake8 importmagic autopep8 ipython rope yapf`'
+  :custom
+  (elpy-rpc-backend "rope")
+
+  :bind
+  (:map elpy-mode-map
+        ("C-c i" . elpy-autopep8-fix-code)
+        ("C-c C-d" . elpy-doc))
+
+  :hook (python-mode . elpy-mode)
+
   :config
   (delete 'elpy-module-flymake elpy-modules)
-  :custom (elpy-rpc-backend . "rope"))
-
-
-(require 'elpy)
-
-(setq elpy-rpc-backend "rope")
-
-
-(elpy-enable)
-
-(setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args "--simple-prompt -i")
-
-(setq py-shell-switch-buffers-on-execute-p t) ; switch to the interpreter after executing code
-(setq py-switch-buffers-on-execute-p t)
-(setq py-split-windows-on-execute-p nil) ; don't split windows
-(setq py-smart-indentation t) ; try to automagically figure out indentation
-
-(define-key python-mode-map (kbd "C-c i") 'elpy-autopep8-fix-code)
-(define-key python-mode-map (kbd "C-c C-d") 'elpy-doc)
-
-(define-key elpy-mode-map (kbd "C-c C-e") 'python-shell-send-region)
-
-(add-hook 'elpy-mode-hook (lambda ()
-                            (flymake-mode -1)
-                            (flycheck-mode 1)))
+  (rr/expose-default-bindings elpy-mode-map))
 
 (setq rr/symbols '(;; Syntax
                    ("==" .       #x2a75)
@@ -81,88 +81,4 @@
                    ("Any" .      #x2754)
                    ("Union" .    #x22c3)))
 
-;; pretty symbols
-(add-hook
- 'python-mode-hook
- (lambda ()
-   (mapc (lambda (pair) (push pair prettify-symbols-alist)) rr/symbols)
-   (prettify-symbols-mode)))
-
-(rr/expose-default-bindings python-mode-map)
-(rr/expose-default-bindings elpy-mode-map)
-(rr/expose-bindings elpy-mode-map '("M-<up>" "M-<down>" "C-c C-f"))
-
-(define-key python-mode-map (kbd "C-c i") 'elpy-autopep8-fix-code)
-(define-key python-mode-map (kbd "C-c C-d") 'elpy-doc)
-
-;;
-;;; pytest testing tools
-;;
-(defun rr/pytest-compile (command)
-  (compile (format "cd %s && %s"
-                   (locate-dominating-file (buffer-file-name) ".git")
-                   command)))
-
-(defun rr/pytest-file ()
-  (interactive)
-  (rr/pytest-compile (format "pytest %s" (buffer-file-name))))
-
-(defun rr/pytest-this ()
-  (interactive)
-  (rr/pytest-compile (format "pytest %s::%s"
-                             (buffer-file-name)
-                             (save-excursion
-                               (end-of-line)
-                               (re-search-backward "def \\(test_.+?\\)(.*):")
-                               (match-string 1)))))
-
-(defun rr/pytest-all ()
-  (interactive)
-  (rr/pytest-compile "pytest"))
-
-(defun rr/pytest-find-file-other-window ()
-  (find-file-other-window (rr/--pytest-find-file)))
-
-(defun rr/pytest-find-test-other-window ()
-  (find-file-other-window (rr/--pytest-find-test)))
-
-(defun rr/pytest-find-file ()
-  (find-file (rr/--pytest-find-file)))
-
-(defun rr/pytest-find-test ()
-  (find-file (rr/--pytest-find-test)))
-
-(defun rr/--pytest-find-file ()
-  (->> (buffer-file-name)
-       (s-replace "/tests/" "/")
-       (s-replace "_test.py" ".py")))
-
-(defun rr/--pytest-find-test ()
-  (let ((root-dir (-> (buffer-file-name)
-                      (locate-dominating-file  ".git")
-                      (expand-file-name))))
-    (->> (buffer-file-name)
-         (s-replace root-dir (file-name-as-directory (f-join root-dir "tests")))
-         (s-replace ".py" "_test.py"))))
-
-(defun rr/pytest-find-other ()
-  (interactive)
-  (if (s-ends-with? "_test.py" (buffer-file-name))
-      (rr/pytest-find-file)
-    (rr/pytest-find-test)))
-
-(defun rr/pytest-find-other-other-window ()
-  (interactive)
-  (if (s-ends-with? "_test.py" (buffer-file-name))
-      (rr/pytest-find-file-other-window)
-    (rr/pytest-find-test-other-window)))
-
-(rr/define-bindings python-mode-map '(("C-c , s" . rr/pytest-this)
-                                      ("C-c , v" . rr/pytest-file)
-                                      ("C-c , a" . rr/pytest-all)
-                                      ("C-c , t" . rr/pytest-find-other)
-                                      ("C-c , y" . rr/pytest-find-other-other-window)
-                                      ("C-c , r" . recompile)))
-
 (provide 'init-python)
-;;; init-python.el ends here

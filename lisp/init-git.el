@@ -1,4 +1,5 @@
-(use-package magit-gh-pulls)
+(use-package magit-gh-pulls
+  :hook (magit-mode . turn-on-magit-gh-pulls))
 
 (use-package magit
   :custom
@@ -30,9 +31,6 @@
   (:map magit-log-mode-map
         ("C-c C-f" . nil))
 
-  :hook
-  ((magit-mode-hook . turn-on-magit-gh-pulls))
-
   :config
   (defadvice magit-status
       (before magit-save-before-status activate)
@@ -50,3 +48,5 @@
   :bind
   (:map git-timemachine-mode-map
         ("s" . rr/magit-current-timemachine-review)))
+
+(provide 'init-git)
