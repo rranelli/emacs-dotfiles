@@ -1,13 +1,13 @@
 ;;; init-packages.el --- Declare, install and update Emacs packages.
 ;;; Commentary:
 ;;; Code:
-(require 'package)
-(package-initialize)
+;; (require 'package)
+;; (package-initialize)
 
-(add-to-list 'package-archives
-             '("elpy" . "https://jorgenschaefer.github.io/packages/"))
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;; (add-to-list 'package-archives
+;;              '("elpy" . "https://jorgenschaefer.github.io/packages/"))
+;; (add-to-list 'package-archives
+;;              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (setq save-abbrevs nil)
 
@@ -65,8 +65,6 @@
     javadoc-lookup
     js2-mode
     langtool
-    magit
-    magit-gh-pulls
     markdown-mode+
     maven-test-mode
     neotree

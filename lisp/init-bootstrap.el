@@ -1,17 +1,7 @@
 ;;; init-bootstrap.el --- Configures the bootstrapping of the Emacs configuration.
 ;;; Commentary:
 ;;; Code:
-(let* ((lisp-dir (expand-file-name "lisp" user-emacs-directory))
-       (vendor-dir (expand-file-name "vendor" user-emacs-directory)))
-  (add-to-list 'load-path lisp-dir)
-  (add-to-list 'load-path vendor-dir))
 
-;; (require 'cl-lib)
-;; (defmacro defmodule (module-name &rest args)
-;;   (let ((packages (plist-get args :packages))
-;;         (config (plist-get args :config)))
-;;     `(progn ,@config
-;;             (provide ',module-name))))
 
 (defvar init-files
   '(init-packages
