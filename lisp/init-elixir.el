@@ -1,153 +1,126 @@
 ;;; init-elixir.el -- Configures utilities and nice-to-have features for Elixir development.
 ;;; Commentary:
 ;;; Code:
-(require 'elixir-mode)
-(require 'alchemist)
-;; (require 'flycheck-mix)
+(use-package elixir-mode
+  :mode "\\.exs?"
 
-;; Do not change mode-line color based on test result
-(setq alchemist-test-status-modeline nil)
+  :custom
+  (rr/elixir-symbols '(;; Syntax
+                       ("==" .       #x2a75)
+                       ("!=" .       #x2260)
+                       ("->" .       #x27f6)
+                       ("<-" .       #x27f5)
+                       ("<=" .       #x2a7d)
+                       (">=" .       #x2a7e)
+                       ("::" .       #x2e2c)
+                       ("|>" .       #x2b9a)
+                       ("not" .      #x2757)
+                       ("in" .       #x2208)
+                       ("not in" .   #x2209)
+                       ("fn" .       #x1d6cc)
+                       ("for" .      #x2200)
+                       ("raise" .    #x1f4a3)
+                       ("when" . #x2235)
+                       ;; definitions
+                       ("def" .      #x2131)
+                       ("defp" .     #x1d4ab)
+                       ("defmodule" . #x1d4dc)
+                       ("self" .     #x3f0)
+                       ("alias" .     #x2abc)
+                       ("import" .   #x2abb)
+                       ;; Base Types
+                       ("true" .     #x1d54b)
+                       ("false" .    #x1d53d)
+                       ("nil" .     #x2205)
+                       ;; types
+                       ("any" .      #x2754)))
 
-;;
-;;; hooks
-;;
-(add-hook 'elixir-mode-hook 'alchemist-mode)
-(add-hook 'alchemist-test-report-mode-hook
-          (lambda () (setq-local default-directory (alchemist-project-root))))
-(add-hook 'elixir-mode-hook
-          (lambda () (setq-local default-directory (alchemist-project-root))))
-(delete 'company-dabbrev company-backends) ;; fix issue with iex
+  :bind
+  (:map elixir-mode-map
+        ("C-c C-s" . inferior-elixir)
+        ("M-q" . elixir-mode-fill-doc-string)
+        ("C-x C-f" . (lambda ()
+                       (interactive)
+                       (-> (buffer-file-name)
+                           (file-name-directory)
+                           (helm-find-files-1))))
+        ("C-c i" . rr/elixir-indent-buffer-no-docs))
 
-;; pretty symbols
-(setq pretty-symbol-patterns
-      (append pretty-symbol-patterns
-	      `((?⟶ lambda "->" (elixir-mode))
-                (?⟵ lambda "<-" (elixir-mode))
-		(?λ  lambda "\\<fn" (elixir-mode)))))
+  :hook
+  (elixir-mode . prettify-symbols-mode)
+  (elixir-mode . rr/set-prettify-elixir-symbols)
 
-;; Flycheck!
-;; (setq flycheck-elixir-credo-strict t)
+  :config
+  (defun rr/set-prettify-elixir-symbols ()
+    (setq prettify-symbols-alist rr/elixir-symbols))
 
-;; (flycheck-mix-setup)
-;; (flycheck-credo-setup)
+  :config
+  (defun rr/elixir-indent-buffer-no-docs (&rest start)
+    "Indent buffer from START onward, but skip @doc and @moduledoc strings."
+    (interactive)
+    (save-excursion
+      (let ((begin (or (car start)
+                       (goto-char (point-min))))
+            (end   (or (re-search-forward (rx (or "@doc" "@moduledoc")) nil t)
+                       (point-max))))
 
-;; (add-hook 'elixir-mode-hook 'flycheck-mode)
+        (indent-region begin end)
 
-;;
-;;; helper functions
-;;
-(defun rr/iex-pry-command ()
-  "Format an `iex' command to call a test with `pry'."
-  (interactive)
-  (kill-new (format "iex -S mix test %s"
-                    (rr/show-file-name))))
+        (unless (= end (point-max))
+          (sp-forward-sexp)
+          (next-line)
+          (rr/elixir-indent-buffer-no-docs (point))))))
+  (defun rr/set-mix-env ()
+    (interactive)
+    (setenv "MIX_ENV" (read-string "MIX_ENV= " "dev"))))
 
-(defun rr/iex-pry ()
-  (interactive)
-  (let ((default-directory (alchemist-project-root))
-        (cmd (rr/iex-pry-command)))
-    (ansi-term "/bin/bash" "iex-pry")
-    (sleep-for 1) ;; see emacs/24.5/lisp/term.el.gz:1440 ...
-    ;; nothing I can do
-    (term-line-mode)
-    (goto-char (point-max))
-    (insert cmd)
-    (term-char-mode)))
+(use-package alchemist
+  :custom
+  (alchemist-test-status-modeline nil)
 
-(defun rr/set-mix-env ()
-  (interactive)
-  (setenv "MIX_ENV" (read-string "MIX_ENV= " "dev")))
+  :hook
+  (elixir-mode . alchemist-mode)
 
-(rr/toggle-env "MIX_TEST_SKIP_DB_SETUP")
-(rr/toggle-env "MIX_ELIXIRC_NO_WALL")
-(rr/toggle-env "lukla_elastic_search_enabled")
+  :bind
+  (:map alchemist-mode-map
+        ("C-c , t" . alchemist-project-toggle-file-and-tests)
+        ("C-c , y" . alchemist-project-toggle-file-and-tests-other-window)
+        ("C-c , a" . alchemist-mix-test)
+        ("C-c , s" . alchemist-mix-test-at-point)
+        ("C-c , v" . alchemist-project-run-tests-for-current-file)
+        ("C-c , r" . alchemist-mix-rerun-last-test)
+        ("C-c , c" . alchemist-mix-compile)
+        ("C-c , S" . rr/iex-pry)
+        ("C-c r p" . rr/elixir-to-pipe)
+        ("C-c C-d" . alchemist-help-search-at-point))
+  (:map alchemist-test-report-mode-map
+        ("T" . toggle-truncate-lines)
+        ("g" . alchemist-mix-rerun-last-test))
 
-(defun rr/elixir-indent-buffer-no-docs (&rest start)
-  "Indent buffer from START onward, but skip @doc and @moduledoc strings."
-  (interactive)
-  (save-excursion
-    (let ((begin (or (car start)
-                     (goto-char (point-min))))
-          (end   (or (re-search-forward (rx (or "@doc" "@moduledoc")) nil t)
-                     (point-max))))
+  :config
+  (add-hook 'alchemist-test-report-mode-hook
+            (lambda () (setq-local default-directory (alchemist-project-root))))
+  (add-hook 'elixir-mode-hook
+            (lambda () (setq-local default-directory (alchemist-project-root))))
+  (add-hook 'elixir-mde-hook
+            (lambda () (delete 'company-dabbrev company-backends))))
 
-      (indent-region begin end)
+(use-package flycheck-credo
+  :after (flycheck elixir-mode)
 
-      (unless (= end (point-max))
-        (sp-forward-sexp)
-        (next-line)
-        (rr/elixir-indent-buffer-no-docs (point))))))
+  :custom
+  (flycheck-elixir-credo-strict t)
 
-;;
-;;; bindings
-;;
-(rr/define-bindings elixir-mode-map
-                    '(("M-q" . elixir-mode-fill-doc-string)
-                      ("C-x C-f" . (lambda ()
-                                     (interactive)
-                                     (-> (buffer-file-name)
-                                         (file-name-directory)
-                                         (helm-find-files-1))))
-                      ("C-c i" . rr/elixir-indent-buffer-no-docs)))
+  :hook
+  (elixir-mode . flycheck-credo-setup))
 
-(rr/define-bindings alchemist-mode-map
-                    '(("C-c , t" . alchemist-project-toggle-file-and-tests)
-                      ("C-c , y" . alchemist-project-toggle-file-and-tests-other-window)
-                      ("C-c , a" . alchemist-mix-test)
-                      ("C-c , s" . alchemist-mix-test-at-point)
-                      ("C-c , v" . alchemist-project-run-tests-for-current-file)
-                      ("C-c , r" . alchemist-mix-rerun-last-test)
-                      ("C-c , c" . alchemist-mix-compile)
-                      ("C-c , S" . rr/iex-pry)
-                      ("C-c r p" . rr/elixir-to-pipe)
-                      ("C-c C-d" . alchemist-help-search-at-point)))
+(use-package flycheck-mix
+  :after (flycheck elixir-mode)
 
-(define-key alchemist-test-report-mode-map (kbd "T")
-  '(lambda () (interactive) (toggle-truncate-lines)))
-(define-key alchemist-test-report-mode-map (kbd "g") 'alchemist-mix-rerun-last-test)
-(define-key elixir-mode-map (kbd "C-c C-s") 'inferior-elixir)
+  :hook
+  (elixir-mode . flycheck-mix-setup))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; TODO FIXME: crazy hot fix of alchemist-project-root                          ;;
-;; (defun alchemist-project-root (&optional dir)                                   ;;
-;;   (let ((start-dir (or dir (expand-file-name default-directory))))              ;;
-;;     (or                                                                         ;;
-;;      (locate-dominating-file start-dir alchemist-project-mix-project-indicator) ;;
-;;      (locate-dominating-file start-dir alchemist-project-hex-pkg-indicator))))  ;;
-
-;; HOTFIX FIXME for test jumping in umbrella projects                                 ;;
-(defun alchemist-project-file-under-test (file directory)                             ;;
-  "Return the file which are tested by FILE.                                          ;;
-DIRECTORY is the place where the file under test is located."                         ;;
-  (let* ((filename (file-relative-name file (alchemist-project-root)))                ;;
-         (filename (replace-regexp-in-string "test/" (s-concat directory "/") filename))              ;;
-         (filename (replace-regexp-in-string "_test\.exs$" "\.ex" filename)))         ;;
-    (concat (alchemist-project-root) filename)))                                      ;;
-                                                                                      ;;
-(defun alchemist-project-open-tests-for-current-file (opener)                         ;;
-  "Visit the test file for the current buffer with OPENER."                           ;;
-  (let* ((filename (file-relative-name (buffer-file-name) (alchemist-project-root)))  ;;
-         (filename (replace-regexp-in-string "lib/" "test/" filename))                ;;
-         (filename (replace-regexp-in-string "/web/" "/test/" filename))              ;;
-         (filename (replace-regexp-in-string "\.ex$" "_test\.exs" filename))          ;;
-         (filename (format "%s/%s" (alchemist-project-root) filename)))               ;;
-    (if (file-exists-p filename)                                                      ;;
-        (funcall opener filename)                                                     ;;
-      (if (y-or-n-p "No test file found; create one now?")                            ;;
-          (alchemist-project--create-test-for-current-file                            ;;
-           filename (current-buffer))                                                 ;;
-        (message "No test file found.")))))                                           ;;
-                                                                                      ;;
-(defadvice alchemist-project-root (around seancribbs/alchemist-project-root activate) ;;
-  (let ((alchemist-project-mix-project-indicator ".git"))                             ;;
-    ad-do-it))                                                                        ;;
-                                                                                      ;;
-(defun seancribbs/activate-alchemist-root-advice ()                                   ;;
-  "Activates advice to override alchemist's root-finding logic"                       ;;
-  (ad-activate 'alchemist-project-root))                                              ;;
-                                                                                      ;;
-(add-to-list 'elixir-mode-hook 'seancribbs/activate-alchemist-root-advice)            ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package ob-elixir)
 
 (provide 'init-elixir)
 ;;; init-elixir.el ends here

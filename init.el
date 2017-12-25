@@ -21,6 +21,7 @@
 (use-package init-ansible :ensure nil)
 (use-package init-flycheck :ensure nil)
 (use-package init-packages :ensure nil)
+(use-package init-elixir :ensure nil)
 
 (use-package init-custom-defuns :ensure nil)
 (use-package init-edit-defuns :ensure nil)
@@ -37,7 +38,6 @@
 (use-package init-ruby :ensure nil)
 (use-package init-js :ensure nil)
 (use-package init-lisp :ensure nil)
-(use-package init-elixir :ensure nil)
 (use-package init-java :ensure nil)
 (use-package init-org :ensure nil)
 (use-package init-appearance :ensure nil)
