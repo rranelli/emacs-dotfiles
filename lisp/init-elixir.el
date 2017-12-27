@@ -21,6 +21,7 @@
                        ("for" .      #x2200)
                        ("raise" .    #x1f4a3)
                        ("when" . #x2235)
+                       ("end" . #x26ac)
                        ;; definitions
                        ("def" .      #x2131)
                        ("defp" .     #x1d4ab)
@@ -44,7 +45,7 @@
                        (-> (buffer-file-name)
                            (file-name-directory)
                            (helm-find-files-1))))
-        ("C-c i" . rr/elixir-indent-buffer-no-docs))
+        ("C-c i" . rr/mix-format))
 
   :hook
   (elixir-mode . prettify-symbols-mode)
@@ -55,24 +56,14 @@
     (setq prettify-symbols-alist rr/elixir-symbols))
 
   :config
-  (defun rr/elixir-indent-buffer-no-docs (&rest start)
-    "Indent buffer from START onward, but skip @doc and @moduledoc strings."
-    (interactive)
-    (save-excursion
-      (let ((begin (or (car start)
-                       (goto-char (point-min))))
-            (end   (or (re-search-forward (rx (or "@doc" "@moduledoc")) nil t)
-                       (point-max))))
-
-        (indent-region begin end)
-
-        (unless (= end (point-max))
-          (sp-forward-sexp)
-          (next-line)
-          (rr/elixir-indent-buffer-no-docs (point))))))
   (defun rr/set-mix-env ()
     (interactive)
-    (setenv "MIX_ENV" (read-string "MIX_ENV= " "dev"))))
+    (setenv "MIX_ENV" (read-string "MIX_ENV= " "dev")))
+  (defun rr/mix-format ()
+    (interactive)
+    (save-buffer)
+    (shell-command (format "mix format %s" (buffer-file-name)))
+    (revert-buffer t t)))
 
 (use-package alchemist
   :custom
