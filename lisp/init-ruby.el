@@ -217,7 +217,8 @@ Useful for headless selenium tests."
 
 (rr/define-bindings compilation-mode-map
                     '(("e" . rr/pry-in-rspec-compilation)
-                      ("v" . rr/find-file-at-point-with-vlc)))
+                      ("v" . rr/find-file-at-point-with-vlc)
+                      ("o" . compilation-display-error)))
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here

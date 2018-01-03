@@ -58,7 +58,8 @@
                        ("Set" .      #x2126)
                        ("Iterable" . #x1d50a)
                        ("Any" .      #x2754)
-                       ("Union" .    #x22c3)))
+                       ("Union" .    #x22c3)
+                       ("Type" .     ?𝓣)))
 
   :bind
   (:map python-mode-map

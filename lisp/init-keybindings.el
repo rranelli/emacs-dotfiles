@@ -21,7 +21,9 @@
     "M-5"
     "M-0"
     "M-i"
-    "M-l")
+    "M-l"
+    "M-<up>"
+    "M-<down>")
   "Custom keybindings to expose on every mode.")
 
 (defun rr/expose-default-bindings (mode-map)
