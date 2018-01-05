@@ -15,7 +15,7 @@
 (defvar chosen-theme chosen-x-theme
   "Chosen theme to be used at the config loaders.")
 
-(defcustom min-transp '(87 87)
+(defcustom min-transp '(92 92)
   "Minimum transparency for Emacs in X."
   :group 'init-appearance)
 
