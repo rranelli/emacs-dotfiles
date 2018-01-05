@@ -12,7 +12,7 @@
   :after yaml-mode
 
   :custom
-  (ansible::vault-password-file "/home/renan/.emacs.d/.ansible-vault")
+  (ansible::vault-password-file "~/.emacs.d/.ansible-vault")
 
   :hook (yaml-mode . ansible)
 
