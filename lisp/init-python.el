@@ -1,8 +1,6 @@
 ;;; init-python.el --- Summary
 ;;; Commentary:
 ;;; Code:
-(require 'use-package)
-
 (use-package rr-pytest-mode
   :ensure nil
   :diminish
