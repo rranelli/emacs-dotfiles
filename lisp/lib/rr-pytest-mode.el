@@ -5,16 +5,18 @@
 
 (defun rr/pytest-file ()
   (interactive)
-  (rr/pytest-compile (format "pytest %s" (buffer-file-name))))
+  (rr/pytest-compile (format "pytest %s" (rr/--pytest-find-test))))
 
 (defun rr/pytest-this ()
   (interactive)
-  (rr/pytest-compile (format "pytest %s::%s"
-                             (buffer-file-name)
-                             (save-excursion
-                               (end-of-line)
-                               (re-search-backward "def \\(test_.+?\\)(.*):")
-                               (match-string 1)))))
+  (if (rr/--pytest-is-test-file)
+      (rr/pytest-compile (format "pytest %s::%s"
+                                 (rr/--pytest-find-test)
+                                 (save-excursion
+                                   (end-of-line)
+                                   (re-search-backward "def \\(test_.+?\\)(.*):")
+                                   (match-string 1))))
+    (error "You're not in a pytest file")))
 
 (defun rr/pytest-all ()
   (interactive)
@@ -32,18 +34,25 @@
 (defun rr/pytest-find-test ()
   (find-file (rr/--pytest-find-test)))
 
+(defun rr/--pytest-is-test-file ()
+  (s-matches? "/tests/.+?_test.py" (buffer-file-name)))
+
 (defun rr/--pytest-find-file ()
-  (->> (buffer-file-name)
-       (s-replace "/tests/" "/")
-       (s-replace "_test.py" ".py")))
+  (if (rr/--pytest-is-test-file)
+      (->> (buffer-file-name)
+           (s-replace "/tests/" "/")
+           (s-replace "_test.py" ".py"))
+    (buffer-file-name)))
 
 (defun rr/--pytest-find-test ()
-  (let ((root-dir (-> (buffer-file-name)
-                      (locate-dominating-file  ".git")
-                      (expand-file-name))))
-    (->> (buffer-file-name)
-         (s-replace root-dir (file-name-as-directory (f-join root-dir "tests")))
-         (s-replace ".py" "_test.py"))))
+  (if (rr/--pytest-is-test-file)
+      (buffer-file-name)
+    (let ((root-dir (-> (buffer-file-name)
+                        (locate-dominating-file  ".git")
+                        (expand-file-name))))
+      (->> (buffer-file-name)
+           (s-replace root-dir (file-name-as-directory (f-join root-dir "tests")))
+           (s-replace ".py" "_test.py")))))
 
 (defun rr/pytest-find-other ()
   (interactive)
