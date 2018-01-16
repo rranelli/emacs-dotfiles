@@ -12,7 +12,8 @@
 ;;
 (defvar rr/project-sources
   '("~/5a"
-    "~/code"))
+    "~/code"
+    "~/tamingchaos"))
 
 (defvar rr/default-file-regexps
   '("^mix.exs$"
