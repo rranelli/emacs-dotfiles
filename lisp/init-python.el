@@ -88,6 +88,7 @@
 
   :config
   (delete 'elpy-module-flymake elpy-modules)
+  (delete 'elpy-module-highlight-indentation elpy-modules)
   (rr/expose-default-bindings elpy-mode-map))
 
 (provide 'init-python)
