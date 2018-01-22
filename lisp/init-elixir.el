@@ -111,7 +111,7 @@
   :hook
   (elixir-mode . flycheck-mix-setup))
 
-(use-package ob-elixir)
+;; (use-package ob-elixir)
 
 (provide 'init-elixir)
 ;;; init-elixir.el ends here
