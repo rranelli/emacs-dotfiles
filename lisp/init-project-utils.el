@@ -11,9 +11,7 @@
 ;;; Jumping between projects
 ;;
 (defvar rr/project-sources
-  '("~/5a"
-    "~/code"
-    "~/tamingchaos"))
+  (cdr (s-split ":" (getenv "CDPATH"))))
 
 (defvar rr/default-file-regexps
   '("^mix.exs$"
