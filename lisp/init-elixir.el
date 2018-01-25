@@ -93,7 +93,7 @@
             (lambda () (setq-local default-directory (alchemist-project-root))))
   (add-hook 'elixir-mode-hook
             (lambda () (setq-local default-directory (alchemist-project-root))))
-  (add-hook 'elixir-mde-hook
+  (add-hook 'elixir-mode-hook
             (lambda () (delete 'company-dabbrev company-backends))))
 
 (use-package flycheck-credo
