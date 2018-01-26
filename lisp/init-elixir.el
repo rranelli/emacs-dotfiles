@@ -18,21 +18,40 @@
                        ("in" .       #x2208)
                        ("not in" .   #x2209)
                        ("fn" .       #x1d6cc)
-                       ("for" .      #x2200)
+                       ("for" .      ?∀)
                        ("raise" .    #x1f4a3)
-                       ("when" . #x2235)
-                       ("end" . #x26ac)
-                       ;; definitions
-                       ("def" .      #x2131)
-                       ("defp" .     #x1d4ab)
-                       ("defmodule" . #x1d4dc)
-                       ("self" .     #x3f0)
-                       ("alias" .     #x2abc)
-                       ("import" .   #x2abb)
+                       ("when" .     #x2235)
+                       ("do" .       ?：)
+                       ("end" .      ?・)
+                       ("self" . (?𝔰 (Br . Bl) ?𝔢 (Br . Bl) ?𝔩 (Br . Bl) ?𝔣))
+                       ;; ("self" . (?𝔖 (Br . Bl) ?𝔈 (Br . Bl) ?𝔏 (Br . Bl) ?𝔉))
+
+                       ;; Defs
+                       ("def" . ?ℱ)
+                       ("defp" .     (?ℱ (Br . Bl) ?  (Br . Bl) ?➖))
+                       ("defmodule" . ?ℳ)
+                       ("defprotocol" . ?𝒫)
+                       ("defimpl" . ?𝒥)
+                       ("defexception" . ?ℰ)
+                       ("defstruct" . ?𝑺)
+                       ("defmacro" . ?𝒎)
+                       ("defmacrop" . (?𝒎 (Br . Bl) ?  (Br . Bl) ?➖))
+
+                       ;; quote unquote
+                       ("quote" . ?𝔔)
+                       ("unquote" . ?𝔘)
+
+                       ;; modules
+                       ("alias" .    ?α)
+                       ("import" .   ?𝜾)
+                       ("use" .      ?μ)
+                       ("require" .  ?ρ)
+
                        ;; Base Types
                        ("true" .     #x1d54b)
                        ("false" .    #x1d53d)
-                       ("nil" .     #x2205)
+                       ("nil" .      #x2205)
+
                        ;; types
                        ("any" .      #x2754)))
 

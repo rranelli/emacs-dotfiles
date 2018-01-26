@@ -39,7 +39,7 @@
                        ("await" .    #x2b33)
                        ("def" .      #x2131)
                        ("class" .    #x1d49e)
-                       ("self" .     #x3f0)
+                       ("self" . (?𝔰 (Br . Bl) ?𝔢 (Br . Bl) ?𝔩 (Br . Bl) ?𝔣))
                        ("from" .     #x2abc)
                        ("import" .   #x2abb)
                        ;; Base Types
