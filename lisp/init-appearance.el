@@ -100,6 +100,10 @@
 		 (set-mode-line-faces-p . t)
 		 (paren-highlight-style . parenthesis)
 		 (custom-faces-fn . (lambda ()
+                                      (set-face-attribute 'hl-line nil
+                                                          :background nil)
+                                      (set-face-attribute 'hl-line nil
+                                                          :box '(:line-width -2 :color "gray30" :style raised))
 				      (set-face-attribute 'helm-selection nil
 							  :background "gray20")
 				      (set-face-attribute 'helm-ff-directory nil
