@@ -185,6 +185,8 @@ If MATCH regexp is given, return only the files that match it"
 (defun rr/setup-presentation ()
   (interactive)
 
+  (setq global-prettify-symbols-mode nil)
+
   (set-face-attribute 'default nil
                       :height 280)
   (set-face-attribute 'org-level-1 nil
