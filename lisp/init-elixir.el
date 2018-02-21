@@ -140,6 +140,12 @@
   :config
   (add-hook 'alchemist-test-report-mode-hook
             (lambda () (setq-local default-directory (alchemist-project-root))))
+  (add-hook 'alchemist-mode-hook
+            (lambda ()
+              (setq alchemist-goto-elixir-source-dir (concat "/home/milhouse/.asdf/installs/elixir/"
+                                                        (shell-command-to-string "echo -n $(asdf current elixir | cut -d ' ' -f1)")))
+              (setq alchemist-goto-erlang-source-dir (concat "/home/milhouse/.asdf/installs/erlang/"
+                                                        (shell-command-to-string "echo -n $(asdf current erlang | cut -d ' ' -f1)")))))
   (add-hook 'elixir-mode-hook
             (lambda () (setq-local default-directory (alchemist-project-root))))
   (add-hook 'elixir-mode-hook
