@@ -1248,7 +1248,6 @@ Late deadlines first, then scheduled, then non-late deadlines"
                           org-mew
                           org-mhe
                           org-protocol
-                          org-rmail
                           org-vm
                           org-wl
                           org-w3m)))
@@ -1360,21 +1359,6 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (setq org-return-follows-link t)
 
-(defun bh/prepare-meeting-notes ()
-  "Prepare meeting notes for email
-   Take selected region and convert tabs to spaces, mark TODOs with leading >>>, and copy to kill ring for pasting"
-  (interactive)
-  (let (prefix)
-    (save-excursion
-      (save-restriction
-        (narrow-to-region (region-beginning) (region-end))
-        (untabify (point-min) (point-max))
-        (goto-char (point-min))
-        (while (re-search-forward "^\\( *-\\\) \\(TODO\\|DONE\\): " (point-max) t)
-          (replace-match (concat (make-string (length (match-string 1)) ?>) " " (match-string 2) ": ")))
-        (goto-char (point-min))
-        (kill-ring-save (point-min) (point-max))))))
-
 (setq org-remove-highlights-with-change t)
 
 (add-to-list 'Info-default-directory-list "~/Dropbox/org-mode/doc")
@@ -1397,8 +1381,6 @@ Late deadlines first, then scheduled, then non-late deadlines"
 (setq org-tags-match-list-sublevels t)
 
 (setq org-agenda-persistent-filter t)
-
-(setq org-link-mailto-program (quote (compose-mail "%a" "%s")))
 
 (require 'smex)
 (smex-initialize)
@@ -1487,16 +1469,6 @@ Late deadlines first, then scheduled, then non-late deadlines"
              (org-defkey org-mode-map "\C-c;" 'undefined)
              (org-defkey org-mode-map "\C-c\C-x\C-q" 'undefined))
           'append)
-
-(add-hook 'org-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c M-o") 'bh/mail-subtree))
-          'append)
-
-(defun bh/mail-subtree ()
-  (interactive)
-  (org-mark-subtree)
-  (org-mime-subtree))
 
 (setq org-src-preserve-indentation nil)
 (setq org-edit-src-content-indentation 0)
