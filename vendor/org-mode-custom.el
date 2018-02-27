@@ -124,7 +124,7 @@
   (save-excursion
     (beginning-of-line)
     (re-search-forward "LOGBOOK" nil t)
-    (org-remove-empty-drawer-at (point))))
+    (org-remove-empty-drawer-at "LOGBOOK" (point))))
 (add-hook 'org-clock-out-hook 'bh/remove-empty-drawer-on-clock-out 'append)
 
                                         ; Targets include this file and any file contributing to the agenda - up to 9 levels deep
