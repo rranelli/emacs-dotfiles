@@ -42,7 +42,6 @@
 (use-package init-org :ensure nil)
 (use-package init-appearance :ensure nil)
 (use-package init-registers :ensure nil)
-(use-package init-feed :ensure nil)
 ;; init-haskell
 ;; init-clojure
 ;; init-csharp
