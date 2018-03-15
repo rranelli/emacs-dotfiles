@@ -22,7 +22,6 @@
 (use-package init-flycheck :ensure nil)
 (use-package init-packages :ensure nil)
 (use-package init-elixir :ensure nil)
-
 (use-package init-custom-defuns :ensure nil)
 (use-package init-edit-defuns :ensure nil)
 (use-package init-keybindings :ensure nil)
@@ -42,6 +41,7 @@
 (use-package init-org :ensure nil)
 (use-package init-appearance :ensure nil)
 (use-package init-registers :ensure nil)
+(use-package init-c :ensure nil)
 ;; init-haskell
 ;; init-clojure
 ;; init-csharp
@@ -49,7 +49,6 @@
 ;; init-writing
 ;; init-octave
 ;; init-rust
-;; init-c
 ;; init-scala
 ;; init-mail
 ;; init-erc
