@@ -76,6 +76,7 @@ If ARG is present, open a new eshell regardless."
      (funcall (if (last-line?)
                   ',alternative-f
                 ',(lookup-key (current-global-map) (kbd binding))))))
+(rr/mimiterm-key "C-r" term-send-raw)
 (rr/mimiterm-key "C-a" term-send-raw)
 (rr/mimiterm-key "C-e" term-send-raw)
 (rr/mimiterm-key "C-f" term-send-right)
@@ -85,9 +86,8 @@ If ARG is present, open a new eshell regardless."
 (defun rr/mimiterm-fix-keybindings ()
   (interactive)
   (rr/expose-bindings term-raw-map
-                      (-difference (-concat rr/default-bindings-to-expose
-                                            '("M-:" "M-w" "C-u" "C-x" "C-x C-f" "C-c c"))
-                                   '("C-h" "M-h" "C-r")))
+                      (-concat (-difference rr/default-bindings-to-expose '("C-h" "M-h"))
+                               '("M-:" "M-w" "C-u" "C-x" "C-x C-f" "C-c c")))
   (rr/define-bindings term-raw-map
                       '(("C-c C-c" . term-interrupt-subjob)
                         ("C-x C-f" . helm-find-files)
@@ -108,7 +108,7 @@ If ARG is present, open a new eshell regardless."
 ;; -- keybindings --
 (add-hook 'term-exec-hook 'goto-address-mode)
 (add-hook 'term-exec-hook 'rr/set-no-process-query-on-exit)
-(add-hook 'term-exec-hook
+(add-hook 'term-load-hook
           (lambda ()
             (setq term-buffer-maximum-size 10000)
             (rr/mimiterm-fix-keybindings)))

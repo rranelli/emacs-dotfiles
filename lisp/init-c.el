@@ -1,24 +1,28 @@
 ;;; init-clojure.el -- Configures simple and usefull things for working with C.
 ;;; Commentary:
 ;;; Code:
-(require 'cc-mode)
-(require 'cedet)
-(require 'semantic)
+(use-package cc-mode
+  :config
+  (rr/expose-default-bindings c-mode-base-map)
+  (define-key c-mode-base-map (kbd "RET") 'newline-and-indent))
 
-;; completion for C headers
-(require 'company-c-headers)
-(add-to-list 'company-backends 'company-c-headers)
+(use-package semantic
+  :hook
+  (c-mode . semantic-mode)
+  (c-mode . semantic-idle-summary-mode)
+  (c-mode . semantic-stickyfunc-mode)
 
-(add-hook 'c-mode-hook 'semantic-mode)
-(add-hook 'c-mode-hook 'semantic-idle-summary-mode)
-(add-hook 'c-mode-hook 'semantic-stickyfunc-mode)
+  :config
+  (global-semantic-idle-scheduler-mode 1)
+  (global-semanticdb-minor-mode 1))
 
-(global-semantic-idle-scheduler-mode 1)
-(global-semanticdb-minor-mode 1)
+(use-package company-c-headers
+  :after cc-mode
+  :config
+  (add-to-list 'company-backends 'company-c-headers))
 
-;; bindings
-(define-key c-mode-base-map (kbd "RET") 'newline-and-indent)
-(define-key c-mode-base-map (kbd "C-c f") 'ff-find-other-file)
+(use-package cedet
+  :ensure nil)
 
 (provide 'init-c)
 ;;; init-c.el ends here

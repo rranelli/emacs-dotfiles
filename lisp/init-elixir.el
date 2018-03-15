@@ -97,7 +97,7 @@
         ("C-c i" . rr/mix-format))
 
   :hook
-  (elixir-mode . prettify-symbols-mode)
+  ;; (elixir-mode . prettify-symbols-mode)
   (elixir-mode . rr/set-prettify-elixir-symbols)
 
   :config
@@ -151,20 +151,20 @@
   (add-hook 'elixir-mode-hook
             (lambda () (delete 'company-dabbrev company-backends))))
 
-(use-package flycheck-credo
-  :after (flycheck elixir-mode)
+;; (use-package flycheck-credo
+;;   :after (flycheck elixir-mode)
 
-  :custom
-  (flycheck-elixir-credo-strict t)
+;;   :custom
+;;   (flycheck-elixir-credo-strict t)
 
-  :hook
-  (elixir-mode . flycheck-credo-setup))
+;;   :hook
+;;   (elixir-mode . flycheck-credo-setup))
 
-(use-package flycheck-mix
-  :after (flycheck elixir-mode)
+;; (use-package flycheck-mix
+;;   :after (flycheck elixir-mode)
 
-  :hook
-  (elixir-mode . flycheck-mix-setup))
+;;   :hook
+;;   (elixir-mode . flycheck-mix-setup))
 
 ;; (use-package ob-elixir)
 
