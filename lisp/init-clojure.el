@@ -1,6 +1,8 @@
 ;;; init-clojure.el -- Configures simple and usefull things for working with clojure.
 ;;; Commentary:
 ;;; Code:
+(use-package cider)
+
 (setq cider-use-tooltips nil)
 (require 'cider)
 

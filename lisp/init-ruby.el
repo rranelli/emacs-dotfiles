@@ -210,5 +210,14 @@
   :config
   (require 'company-robe))
 
+(use-package helm-bundle-show
+  :after ruby-mode)
+
+(use-package rhtml-mode
+  :mode "\\.html.erb$")
+
+(use-package ruby-refactor
+  :hook (ruby-mode . ruby-refactor-mode))
+
 (provide 'init-ruby)
 ;;; init-ruby.el ends here

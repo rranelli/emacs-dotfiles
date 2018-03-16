@@ -1,6 +1,9 @@
 ;;; init-writting.el -- Configures features that enhance one's prose writing in Emacs.
 ;;; Commentary:
 ;;; Code:
+(use-package langtool)
+(use-package synosaurus)
+
 (require 'org-jekyll-mode)
 
 (add-to-list 'auto-mode-alist '("\\.md$" . gfm-mode))

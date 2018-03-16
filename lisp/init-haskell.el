@@ -1,6 +1,8 @@
 ;;; init-haskell.el --- Configures haskell-mode.
 ;;; Commentary:
 ;;; Code:
+(use-package haskell-mode)
+
 (setq haskell-font-lock-symbols t)
 
 (setq haskell-program-name "ghci") ;; ghci rules !

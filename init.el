@@ -42,14 +42,14 @@
 (use-package init-appearance :ensure nil)
 (use-package init-registers :ensure nil)
 (use-package init-c :ensure nil)
+(use-package init-scala :ensure nil)
+(use-package init-rust :ensure nil)
 ;; init-haskell
 ;; init-clojure
 ;; init-csharp
 ;; init-web
 ;; init-writing
 ;; init-octave
-;; init-rust
-;; init-scala
 ;; init-mail
 ;; init-erc
 

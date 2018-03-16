@@ -1,6 +1,9 @@
 ;;; init-elixir.el -- Configures utilities and nice-to-have features for Elixir development.
 ;;; Commentary:
 ;;; Code:
+(use-package erlang
+  :mode "\\.erl$")
+
 (use-package elixir-mode
   :mode "\\.exs?"
 
@@ -151,20 +154,20 @@
   (add-hook 'elixir-mode-hook
             (lambda () (delete 'company-dabbrev company-backends))))
 
-;; (use-package flycheck-credo
-;;   :after (flycheck elixir-mode)
+(use-package flycheck-credo
+  :after (flycheck elixir-mode)
 
-;;   :custom
-;;   (flycheck-elixir-credo-strict t)
+  :custom
+  (flycheck-elixir-credo-strict t)
 
-;;   :hook
-;;   (elixir-mode . flycheck-credo-setup))
+  :hook
+  (elixir-mode . flycheck-credo-setup))
 
-;; (use-package flycheck-mix
-;;   :after (flycheck elixir-mode)
+(use-package flycheck-mix
+  :after (flycheck elixir-mode)
 
-;;   :hook
-;;   (elixir-mode . flycheck-mix-setup))
+  :hook
+  (elixir-mode . flycheck-mix-setup))
 
 ;; (use-package ob-elixir)
 

@@ -2,6 +2,12 @@
 ;;; Commentary:
 ;;;   Omfg, this is so frikin nice
 ;;; Code:
+(use-package csharp-mode
+  :mode "\\.cs$")
+
+(use-package omnisharp
+  :after csharp-mode)
+
 (require 'csharp-mode)
 
 (setq omnisharp-server-executable-path "/home/renan/code/omnisharp-server/OmniSharp/bin/Debug/OmniSharp.exe"

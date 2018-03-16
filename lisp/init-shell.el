@@ -2,6 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
+(use-package sh-script
+  :ensure nil
+  :config
+  (rr/expose-default-bindings sh-mode-map))
+
 ;;;;;;;;;;;;;;;
 ;; Mimiterm! ;;
 ;;;;;;;;;;;;;;;

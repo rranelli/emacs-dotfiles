@@ -1,6 +1,8 @@
 ;;; init-wel.el -- Configures web-mode for edition of html templates
 ;;; Commentary:
 ;;; Code:
+(use-package emmet-mode)
+(use-package helm-emmet)
 
 (require 'web-mode)
 
@@ -9,8 +11,7 @@
 
 (defun rr/web-mode-conf ()
   (setq web-mode-extra-auto-pairs
-        '(("eex"  . (("do" "end")))
-          ))
+        '(("eex"  . (("do" "end")))))
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-enable-current-column-highlight t)

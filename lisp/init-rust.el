@@ -1,29 +1,30 @@
 ;;; init-rust.el -- Configuration for working with rust code.
 ;;; Commentary:
 ;;; Code:
-(require 'rust-mode)
+(use-package rust-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.toml" . conf-unix-mode))
 
-(add-to-list 'auto-mode-alist '("\\.toml" . conf-unix-mode))
+  :bind
+  (:map rust-mode-map
+        ("TAB" . racer-complete-or-indent)
+        ("M-." . racer-find-definition)))
 
-;;
-;;; Racer configuration
-;;
-(require 'racer)
+(use-package racer
+  :after rust-mode
 
-(setq racer-rust-src-path "~/code/rust/src/")
-(setq racer-cmd "~/code/racer/target/release/racer")
-(add-hook 'rust-mode-hook #'racer-activate)
+  :custom
+  (racer-rust-src-path "~/code/rust/src/")
+  (racer-cmd "~/code/racer/target/release/racer")
 
-;;
-;;; Keybindings
-;;
-(define-key rust-mode-map (kbd "TAB") #'racer-complete-or-indent)
-(define-key rust-mode-map (kbd "M-.") #'racer-find-definition)
+  :hook
+  (rust-mode . racer-activate))
 
-;;
-;;; Hooks
-;;
-(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+(use-package flycheck-rust
+  :after (flycheck rust-mode)
+
+  :hook
+  (flycheck-mode . flycheck-rust-setup))
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

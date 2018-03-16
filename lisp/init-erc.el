@@ -1,6 +1,10 @@
 ;;; init-irc.el --- Sets up `IRC' with `erc'.
 ;;; Commentary:
 ;;; Code
+(use-package erc-hl-nicks)
+(use-package erc-image)
+(use-package erc-view-log)
+
 (require 'erc)
 (require 'erc-join)
 (require 'erc-match)

@@ -24,8 +24,6 @@
           scroll-bar-mode)
   (funcall it -1))
 
-(smex-initialize)
-
 ;; diminish stuff
 (--each '(smartparens-mode
           projectile-mode
@@ -37,8 +35,7 @@
           eldoc-mode
           volatile-highlights-mode
           pretty-symbols-mode
-          alchemist-mode
-          back-button-mode)
+          alchemist-mode)
   (funcall 'diminish it))
 
 ;; safe variables

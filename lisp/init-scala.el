@@ -1,25 +1,27 @@
 ;;; init-scala.el -- Configures utilities and nice-to-have features for Scala development.
 ;;; Commentary:
 ;;; Code:
-(require 'scala-mode)
-(require 'ensime)
+(use-package scala-mode
+  :mode "\\.scala$"
 
-;; -- hooks --
-(add-hook 'scala-mode-hook 'ensime-mode)
+  :config
+  (setq pretty-symbol-patterns
+        (append pretty-symbol-patterns
+                `((?⟶ lambda "->" (scala-mode))
+                  (?⟵ lambda "<-" (scala-mode))
+                  (?⟹ lambda "=>" (scala-mode))))))
+(use-package ensime
+  :hook
+  (scala-mode . ensime-mode)
 
-;; pretty symbols
-(setq pretty-symbol-patterns
-      (append pretty-symbol-patterns
-	      `((?⟶ lambda "->" (scala-mode))
-                (?⟵ lambda "<-" (scala-mode))
-                (?⟹ lambda "=>" (scala-mode)))))
+  :config
+  (rr/expose-default-bindings ensime-mode-map)
 
-(rr/define-bindings scala-mode-map
-                    '(("C-c , c" . ensime-sbt-do-compile)
-                      ("C-c , a" . ensime-sbt-do-test)
-                      ("M-/" . ensime-company)))
-
-(rr/expose-default-bindings ensime-mode-map)
+  :bind
+  (:map scala-mode-map
+        ("C-c , c" . ensime-sbt-do-compile)
+        ("C-c , a" . ensime-sbt-do-test)
+        ("M-/" . ensime-company)))
 
 (provide 'init-scala)
 ;;; init-scala.el ends here
