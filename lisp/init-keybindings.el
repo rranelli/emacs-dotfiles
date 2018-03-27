@@ -89,7 +89,6 @@
 (global-set-key (kbd "C-h") 'backward-delete-char)
 (global-set-key (kbd "M-d") 'rr/kill-word)
 (global-set-key (kbd "M-h") 'rr/backward-kill-word)
-(global-set-key (kbd "C-S-y") 'helm-show-kill-ring)
 (global-set-key (kbd "M-u") 'zap-to-char)
 (global-set-key (kbd "C-M-SPC") 'er/expand-region)
 (global-set-key (kbd "M-u") 'er/expand-region)
