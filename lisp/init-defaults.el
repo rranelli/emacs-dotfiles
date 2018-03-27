@@ -28,7 +28,6 @@
 (--each '(smartparens-mode
           projectile-mode
           anzu-mode
-          helm-mode
           yas-minor-mode
           company-mode
           undo-tree-mode

@@ -19,7 +19,7 @@
 (use-package expand-region)
 (use-package gist)
 (use-package graphviz-dot-mode)
-(use-package helm)
+(use-package helm :diminish t)
 (use-package helm-projectile)
 (use-package highlight-symbol)
 ;; (use-package hl-anything)
@@ -43,7 +43,7 @@
 (use-package web-mode)
 (use-package yaml-mode)
 (use-package yasnippet)
-(use-package wakatime-mode)
+(use-package wakatime-mode :diminish t)
 
 (use-package solarized-theme :defer t)
 (use-package zenburn-theme :defer t)

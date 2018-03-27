@@ -2,6 +2,8 @@
   :hook (magit-mode . turn-on-magit-gh-pulls))
 
 (use-package magit
+  :diminish t
+
   :custom
   (magit-last-seen-setup-instructions "1.4.0")
   (magit-status-buffer-switch-function 'switch-to-buffer)

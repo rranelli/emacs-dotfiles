@@ -125,6 +125,7 @@
                     '(;; misc
                       ("n" . rr/show-file-name)
                       ("m" . git-timemachine)
+                      ("v" . magit-status)
                       ;; ag
                       ("S"   . ag)
                       ("s"   . ag-project)

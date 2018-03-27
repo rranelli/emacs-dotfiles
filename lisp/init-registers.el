@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 (use-package better-registers
-  :preface
+  :init
   (setq-default better-registers-use-C-r nil)
 
   :config
