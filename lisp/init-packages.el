@@ -12,6 +12,7 @@
 (use-package dash)
 (use-package dash-functional)
 (use-package diminish)
+(use-package dired-x :ensure nil)
 (use-package dockerfile-mode
   :mode ("^Dockerfile$"
          "\\.dockerfile$"))
