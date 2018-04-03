@@ -5,6 +5,7 @@
   :after org)
 
 (use-package org
+  :commands org-mode
   :mode ("\\.org$")
 
   :custom

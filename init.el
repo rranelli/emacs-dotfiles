@@ -11,9 +11,11 @@
 (add-to-list 'package-archives
              '("elpy" . "https://jorgenschaefer.github.io/packages/"))
 
-(eval-when-compile
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package)
   (require 'use-package))
+
 (setq use-package-always-ensure t)
 
 (use-package init-git :ensure nil)
@@ -40,7 +42,7 @@
 (use-package init-java :ensure nil)
 (use-package init-org :ensure nil)
 (use-package init-appearance :ensure nil)
-(use-package init-registers :ensure nil)
+;; (use-package init-registers :ensure nil)
 (use-package init-c :ensure nil)
 (use-package init-scala :ensure nil)
 (use-package init-rust :ensure nil)
@@ -54,4 +56,5 @@
 ;; init-erc
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
+(if (file-exists-p custom-file)
+    (load custom-file))
