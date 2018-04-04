@@ -100,10 +100,13 @@
         ("C-c i" . rr/mix-format))
 
   :hook
-  ;; (elixir-mode . prettify-symbols-mode)
+  (elixir-mode . prettify-symbols-mode)
   (elixir-mode . rr/set-prettify-elixir-symbols)
 
   :config
+  (defun rr/disable-elixir-pretty-symbols ()
+    (interactive)
+    (remove-hook 'elixir-mode-hook 'prettify-symbols-mode))
   (defun rr/set-prettify-elixir-symbols ()
     (setq prettify-symbols-alist rr/elixir-symbols))
 
