@@ -68,6 +68,9 @@
   (python-mode . rr/set-prettify-symbols)
 
   :config
+  (defun rr/disable-python-pretty-symbols ()
+    (interactive)
+    (remove-hook 'python-mode-hook 'prettify-symbols-mode))
   (defun rr/set-prettify-symbols ()
     (setq prettify-symbols-alist rr/python-symbols))
   (rr/expose-default-bindings python-mode-map))
