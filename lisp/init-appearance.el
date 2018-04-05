@@ -82,13 +82,13 @@
 (add-hook 'emacs-lisp-mode-hook 'expression-style-show-paren)
 
 ;; -- config frames
-(defun config-frame-appearance ()
+(defun config-frame-appearance (&optional frame)
   "Configure x FRAME."
   (unless rr/theme-loaded (load-theme rr/chosen-theme t))
 
   (modify-all-frames-parameters `((cursor-type . bar)))
 
-  (rr/toggle-transparency (selected-frame) t)
+  (rr/toggle-transparency (or frame (selected-frame)) t)
 
   (when (get-color-config 'cursor)
     (set-face-attribute 'cursor nil
