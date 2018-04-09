@@ -1,10 +1,9 @@
 ;;; init-helm.el --- Configures helm usage preferences and keybindings.
 ;;; Commentary:
 ;;; Code:
-(use-package helm-config :ensure nil)
-
 (use-package helm
-  :after helm-config
+  :init
+  (require 'helm-config)
 
   :custom
   ;; the following configuratin makes helm-find WAY better
@@ -17,6 +16,9 @@
   (helm-M-x-fuzzy-match nil)
   (helm-locate-fuzzy-match nil)
   (helm-recentf-fuzzy-match nil)
+
+  :config
+  (helm-mode t)
 
   :bind
   (:map global-map

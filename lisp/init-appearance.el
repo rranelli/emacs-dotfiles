@@ -60,6 +60,7 @@
     (solarized-dark . '((mode-line-background . "DeepSkyBlue4")
 			(mode-line-foreground . "snow")
 			(cursor . "SkyBlue")
+                        (set-face-attribute 'default nil :height 120)
 			(set-mode-line-faces-p . t)
 			(paren-highlight-style . parenthesis)
 			(custom-faces-fn . (lambda ()

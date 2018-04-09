@@ -68,9 +68,16 @@
   (python-mode . rr/set-prettify-symbols)
 
   :config
+  (defun rr/enable-elixir-pretty-symbols ()
+    (interactive)
+    (add-hook 'python-mode-hook 'prettify-symbols-mode)
+    (add-hook 'python-mode-hook 'rr/set-prettify-symbols)
+    (revert-buffer t t t))
   (defun rr/disable-python-pretty-symbols ()
     (interactive)
-    (remove-hook 'python-mode-hook 'prettify-symbols-mode))
+    (remove-hook 'python-mode-hook 'prettify-symbols-mode)
+    (remove-hook 'python-mode-hook 'rr/set-prettify-symbols)
+    (revert-buffer t t t))
   (defun rr/set-prettify-symbols ()
     (setq prettify-symbols-alist rr/python-symbols))
   (rr/expose-default-bindings python-mode-map))

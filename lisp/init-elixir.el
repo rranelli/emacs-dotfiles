@@ -100,13 +100,21 @@
         ("C-c i" . rr/mix-format))
 
   :hook
+  (elixir-mode . electric-indent-mode)
   (elixir-mode . prettify-symbols-mode)
   (elixir-mode . rr/set-prettify-elixir-symbols)
 
   :config
+  (defun rr/enable-elixir-pretty-symbols ()
+    (interactive)
+    (add-hook 'elixir-mode-hook 'prettify-symbols-mode)
+    (add-hook 'elixir-mode-hook 'rr/set-prettify-elixir-symbols)
+    (revert-buffer))
   (defun rr/disable-elixir-pretty-symbols ()
     (interactive)
-    (remove-hook 'elixir-mode-hook 'prettify-symbols-mode))
+    (remove-hook 'elixir-mode-hook 'prettify-symbols-mode)
+    (remove-hook 'elixir-mode-hook 'rr/set-prettify-elixir-symbols)
+    (revert-buffer))
   (defun rr/set-prettify-elixir-symbols ()
     (setq prettify-symbols-alist rr/elixir-symbols))
 
@@ -149,9 +157,9 @@
   (add-hook 'alchemist-mode-hook
             (lambda ()
               (setq alchemist-goto-elixir-source-dir (concat "/home/milhouse/.asdf/installs/elixir/"
-                                                        (shell-command-to-string "echo -n $(asdf current elixir | cut -d ' ' -f1)")))
+                                                             (shell-command-to-string "echo -n $(asdf current elixir | cut -d ' ' -f1)")))
               (setq alchemist-goto-erlang-source-dir (concat "/home/milhouse/.asdf/installs/erlang/"
-                                                        (shell-command-to-string "echo -n $(asdf current erlang | cut -d ' ' -f1)")))))
+                                                             (shell-command-to-string "echo -n $(asdf current erlang | cut -d ' ' -f1)")))))
   (add-hook 'elixir-mode-hook
             (lambda () (setq-local default-directory (alchemist-project-root))))
   (add-hook 'elixir-mode-hook
