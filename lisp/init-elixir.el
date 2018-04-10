@@ -118,7 +118,6 @@
   (defun rr/set-prettify-elixir-symbols ()
     (setq prettify-symbols-alist rr/elixir-symbols))
 
-  :config
   (defun rr/set-mix-env ()
     (interactive)
     (setenv "MIX_ENV" (read-string "MIX_ENV= " "dev")))
@@ -159,11 +158,19 @@
               (setq alchemist-goto-elixir-source-dir (concat "/home/milhouse/.asdf/installs/elixir/"
                                                              (shell-command-to-string "echo -n $(asdf current elixir | cut -d ' ' -f1)")))
               (setq alchemist-goto-erlang-source-dir (concat "/home/milhouse/.asdf/installs/erlang/"
-                                                             (shell-command-to-string "echo -n $(asdf current erlang | cut -d ' ' -f1)")))))
   (add-hook 'elixir-mode-hook
             (lambda () (setq-local default-directory (alchemist-project-root))))
   (add-hook 'elixir-mode-hook
-            (lambda () (delete 'company-dabbrev company-backends))))
+            (lambda () (delete 'company-dabbrev company-backends)))
+
+  (defadvice alchemist-project-root (around seancribbs/alchemist-project-root activate)
+    (let ((alchemist-project-mix-project-indicator ".git"))
+      ad-do-it))
+  (defun seancribbs/activate-alchemist-root-advice ()
+    "Activates advice to override alchemist's root-finding logic"
+    (ad-activate 'alchemist-project-root))
+
+  (add-to-list 'elixir-mode-hook 'seancribbs/activate-alchemist-root-advice))
 
 (use-package flycheck-credo
   :after (flycheck elixir-mode)
