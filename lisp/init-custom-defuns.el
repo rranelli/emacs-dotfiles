@@ -185,6 +185,8 @@ If MATCH regexp is given, return only the files that match it"
 (defun rr/setup-presentation ()
   (interactive)
 
+  (require 'org)
+
   (setq global-prettify-symbols-mode nil)
 
   (set-face-attribute 'default nil
@@ -231,6 +233,7 @@ If MATCH regexp is given, return only the files that match it"
   (define-key org-mode-map (kbd "<f4>") 'rr/previous-slide)
   (define-key org-mode-map (kbd "C-x C-n") 'rr/next-slide)
   (define-key org-mode-map (kbd "C-x C-p") 'rr/previous-slide)
+  (define-key org-src-mode-map (kbd "C-x n") 'org-edit-src-exit)
 
   (global-set-key (kbd "C-l") 'rr/clear-with-separation)
   (global-set-key (kbd "C-x C-n") 'rr/next-slide)
