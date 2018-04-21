@@ -21,6 +21,7 @@
 (--each '(global-auto-revert-mode
           menu-bar-mode
           tool-bar-mode
+          electric-indent-mode
           scroll-bar-mode)
   (funcall it -1))
 
