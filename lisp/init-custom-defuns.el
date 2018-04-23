@@ -228,6 +228,15 @@ If MATCH regexp is given, return only the files that match it"
       (call-interactively 'org-babel-tangle)
       (shell-command-to-string "cd '/home/renan/Dropbox/empex' && mix compile >/dev/null")))
 
+  (defun rr/send-ruby-buffer-and-go ()
+    (interactive)
+    (unless (get-buffer "*ruby*")
+      (save-window-excursion
+        (inf-ruby)))
+    (ruby-send-buffer)
+    (switch-to-buffer "*ruby*"))
+  (define-key inf-ruby-minor-mode-map (kbd "C-c C-c") 'rr/send-ruby-buffer-and-go)
+
   (define-key org-mode-map (kbd "C-c c") 'rr/org-babel-tangle-block)
   (define-key org-mode-map (kbd "<f5>") 'rr/next-slide)
   (define-key org-mode-map (kbd "<f4>") 'rr/previous-slide)
