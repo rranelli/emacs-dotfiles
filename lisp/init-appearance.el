@@ -85,6 +85,7 @@
 ;; -- config frames
 (defun config-frame-appearance (&optional frame)
   "Configure x FRAME."
+  (interactive)
   (unless rr/theme-loaded (load-theme rr/chosen-theme t))
 
   (modify-all-frames-parameters `((cursor-type . bar)))
