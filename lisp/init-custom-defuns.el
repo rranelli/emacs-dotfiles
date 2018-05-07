@@ -235,6 +235,7 @@ If MATCH regexp is given, return only the files that match it"
         (inf-ruby)))
     (ruby-send-buffer)
     (switch-to-buffer "*ruby*"))
+  (require 'inf-ruby)
   (define-key inf-ruby-minor-mode-map (kbd "C-c C-c") 'rr/send-ruby-buffer-and-go)
 
   (define-key org-mode-map (kbd "C-c c") 'rr/org-babel-tangle-block)
