@@ -190,7 +190,7 @@ If MATCH regexp is given, return only the files that match it"
   (setq global-prettify-symbols-mode nil)
 
   (set-face-attribute 'default nil
-                      :height 280)
+                      :height 290)
   (set-face-attribute 'org-level-1 nil
                       :height 500)
   (set-face-attribute 'org-level-2 nil
