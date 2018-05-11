@@ -116,7 +116,7 @@
 (define-key ctl-x-map "2" 'vsplit-last-buffer)
 (define-key ctl-x-map "3" 'hsplit-last-buffer)
 (define-key ctl-x-map "-" 'swap-buffers-in-windows)
-(define-key ctl-x-map "n" 'narrow-or-widen-dwim)
+(define-key ctl-x-map "n" 'rr/narrow-or-widen-dwim)
 (define-key ctl-x-map (kbd "% @") 'rr/send-window-to-other-frame)
 
 ;;

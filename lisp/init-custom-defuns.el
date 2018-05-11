@@ -49,7 +49,7 @@ The symbol is returned using `intern'"
     (shell-command-on-region (point-min) (point-max) "xmllint --format -" (buffer-name) t)
     (indent-region begin end)))
 
-(defun narrow-or-widen-dwim (p)
+(defun rr/narrow-or-widen-dwim (p)
   "If the buffer is narrowed, it widens. Otherwise, it narrows intelligently.
 Intelligently means: region, org-src-block, org-subtree, or defun,
 whichever applies first.
@@ -185,9 +185,15 @@ If MATCH regexp is given, return only the files that match it"
 (defun rr/setup-presentation ()
   (interactive)
 
+  (require 'inf-ruby)
   (require 'org)
+  (setq-default mode-line-format nil)
+  (with-current-buffer (get-buffer " *Echo Area 0*")
+    (setq-local face-remapping-alist '((default (:height 0) variable-pitch))))
+  (rr/set-transparency 100)
 
   (setq global-prettify-symbols-mode nil)
+  (set-frame-parameter nil 'internal-border-width 35)
 
   (set-face-attribute 'default nil
                       :height 290)
@@ -197,22 +203,19 @@ If MATCH regexp is given, return only the files that match it"
                       :height 450)
   (set-face-attribute 'org-level-3 nil
                       :height 400)
-  (setq-default mode-line-format nil)
-  (rr/set-transparency 100)
-
   (defun rr/next-slide (p)
     (interactive "P")
-    (narrow-or-widen-dwim p)
+    (rr/narrow-or-widen-dwim p)
     (outline-next-visible-heading 1)
     (org-show-subtree)
-    (narrow-or-widen-dwim p))
+    (rr/narrow-or-widen-dwim p))
 
   (defun rr/previous-slide (p)
     (interactive "P")
-    (narrow-or-widen-dwim p)
+    (rr/narrow-or-widen-dwim p)
     (outline-previous-visible-heading 1)
     (org-show-subtree)
-    (narrow-or-widen-dwim p))
+    (rr/narrow-or-widen-dwim p))
 
   (defun rr/clear-with-separation ()
     (interactive)
@@ -235,7 +238,7 @@ If MATCH regexp is given, return only the files that match it"
         (inf-ruby)))
     (ruby-send-buffer)
     (switch-to-buffer "*ruby*"))
-  (require 'inf-ruby)
+
   (define-key inf-ruby-minor-mode-map (kbd "C-c C-c") 'rr/send-ruby-buffer-and-go)
 
   (define-key org-mode-map (kbd "C-c c") 'rr/org-babel-tangle-block)

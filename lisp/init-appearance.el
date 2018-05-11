@@ -5,7 +5,10 @@
 (defvar rr/theme-loaded nil)
 
 ;; themes
-(defcustom rr/chosen-theme 'solarized-dark ;; 'dichromacy
+(defvar rr/presenting? t)
+(defvar rr/presentation-theme 'dichromacy)
+
+(defcustom rr/chosen-theme 'solarized-dark
   "Theme chosen to be initialized."
   :group 'init-appearance)
 
@@ -76,14 +79,19 @@
     color))
 
 ;; nice paren-style highlight, but with buffer local configuration ;)
-(defun expression-style-show-paren ()
+(defun rr/expression-style-show-paren ()
   "Make show-paren expression only for LISP modes."
   (make-variable-buffer-local 'show-paren-style)
   (setq show-paren-style (get-color-config 'paren-highlight-style)))
-(add-hook 'emacs-lisp-mode-hook 'expression-style-show-paren)
+(add-hook 'emacs-lisp-mode-hook 'rr/expression-style-show-paren)
 
 ;; -- config frames
-(defun config-frame-appearance (&optional frame)
+(defun rr/config-frame-appearance-with-presentation-awareness (&optional frame)
+  (if rr/presenting?
+      (setq rr/chosen-theme rr/presentation-theme))
+  (rr/config-frame-appearance frame))
+
+(defun rr/config-frame-appearance (&optional frame)
   "Configure x FRAME."
   (interactive)
   (unless rr/theme-loaded (load-theme rr/chosen-theme t))
@@ -132,8 +140,8 @@ If FORCE-TRANSP is non-nil, sets transparency to the custom variable min-transp.
   (set-frame-parameter frame 'alpha `(,desired-transp ,desired-transp)))
 
 ;; load the configuration
-(add-hook 'after-make-frame-functions 'config-frame-appearance)
-(add-hook 'after-init-hook 'config-frame-appearance)
+(add-hook 'after-make-frame-functions 'rr/config-frame-appearance-with-presentation-awareness)
+(add-hook 'after-init-hook 'rr/config-frame-appearance-with-presentation-awareness)
 
 (provide 'init-appearance)
 ;;; init-appearance.el ends here
