@@ -5,7 +5,7 @@
 (defvar rr/theme-loaded nil)
 
 ;; themes
-(defvar rr/presenting? t)
+(defvar rr/presenting? nil)
 (defvar rr/presentation-theme 'dichromacy)
 
 (defcustom rr/chosen-theme 'solarized-dark
