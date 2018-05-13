@@ -1,6 +1,7 @@
 ;;; init-defaults.el -- Sets default global configurations and general Emacs behavior.
 ;;; Commentary:
 ;;; Code:
+(require 'iso-transl)
 
 ;; undisable upcase
 (put 'upcase-region   'disabled nil)
