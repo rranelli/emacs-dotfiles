@@ -5,7 +5,7 @@
 (defvar rr/theme-loaded nil)
 
 ;; themes
-(defvar rr/presenting? nil)
+(defvar rr/presenting? (getenv "KEYNOTEMACS"))
 (defvar rr/presentation-theme 'dichromacy)
 
 (defcustom rr/chosen-theme 'solarized-dark
