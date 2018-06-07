@@ -2,4 +2,4 @@
 # name: IO.inspect
 # key: ins
 # --
-|> IO.inspect(limit: :infinity, label: ">>>>>>>>>>>>>>>> $0")
+|> IO.inspect(limit: :infinity, label: "x>>>>>>>>>>>>>>>> $0")

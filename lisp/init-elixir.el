@@ -30,7 +30,7 @@
                        ("for" . ?∀)
                        ("raise" . ?🔥)
                        ("when" . #x2235)
-                       ("do" . (?\s (Bl Bl 35 25) ?：))
+                       ("do" . (?\s (Bl Bl 35 25) ?〯))
                        ("end" . ?·)
 
                        ;; messages
@@ -67,12 +67,8 @@
                        ("defimpl" . ?𝒥)
                        ("defexception" . ?ℰ)
                        ("defstruct" . ?𝑺)
-                       ("defmacro" . ?𝒎)
-                       ("defmacrop" . (?𝒎 (Br Bl 50 0) ?➖))
-
-                       ;; quote unquote
-                       ("quote" . ?𝔔)
-                       ("unquote" . ?𝔘)
+                       ("defmacro" . ?𝛴)
+                       ("defmacrop" . (?𝛴 (Br Bl 50 0) ?➖))
 
                        ;; modules
                        ("alias" . ?α)
@@ -86,7 +82,9 @@
                        ("nil" . #x2205)
 
                        ;; types
-                       ("any" . #x2754)))
+                       ("any" . #x2754)
+                       ("integer" . #x2124)
+                       ("float" . #x211d)))
 
   :bind
   (:map elixir-mode-map
