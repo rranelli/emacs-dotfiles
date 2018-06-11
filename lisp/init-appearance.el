@@ -62,7 +62,7 @@
 
     (solarized-dark . '((mode-line-background . "DeepSkyBlue4")
 			(mode-line-foreground . "snow")
-			(cursor . "SkyBlue")
+			;; (cursor . nil)
                         (set-face-attribute 'default nil :height 120)
 			(set-mode-line-faces-p . t)
 			(paren-highlight-style . parenthesis)
@@ -96,7 +96,7 @@
   (interactive)
   (unless rr/theme-loaded (load-theme rr/chosen-theme t))
 
-  (modify-all-frames-parameters `((cursor-type . bar)))
+  ;; (modify-all-frames-parameters `((cursor-type . block)))
 
   (rr/toggle-transparency (or frame (selected-frame)) t)
 
