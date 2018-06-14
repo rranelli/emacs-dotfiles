@@ -5,6 +5,7 @@
   :diminish t
 
   :custom
+  (magit-global-file-mode nil)
   (magit-last-seen-setup-instructions "1.4.0")
   (magit-status-buffer-switch-function 'switch-to-buffer)
   (magit-default-tracking-name-function 'magit-default-tracking-name-branch-only)
