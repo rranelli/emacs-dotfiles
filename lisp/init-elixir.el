@@ -89,7 +89,6 @@
   :bind
   (:map elixir-mode-map
         ("C-c C-s" . inferior-elixir)
-        ("M-q" . elixir-mode-fill-doc-string)
         ("C-x C-f" . (lambda ()
                        (interactive)
                        (-> (buffer-file-name)
