@@ -1217,7 +1217,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 
 (setq org-id-method (quote uuidgen))
 
-(setq org-deadline-warning-days 7)
+(setq org-deadline-warning-days 3)
 
 (setq org-table-export-default-format "orgtbl-to-csv")
 
