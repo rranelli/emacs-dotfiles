@@ -3,6 +3,7 @@
 ;;; Code:
 ;; you need to do this before requiring the lib
 (setq helm-projectile-fuzzy-match nil)
+
 (require 'helm-projectile)
 (defun helm-projectile-file-persistent-action (candidate)
   "fuck off")
@@ -123,6 +124,7 @@
 ;;
 ;;; extensions to projectile keymap
 ;;
+(define-key global-map (kbd "C-c p") 'projectile-command-map)
 (rr/define-bindings projectile-command-map
                     '(;; misc
                       ("n" . rr/show-file-name)
