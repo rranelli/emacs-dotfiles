@@ -178,11 +178,11 @@ If MATCH regexp is given, return only the files that match it"
   (set-face-attribute 'default nil
                       :height 290)
   (set-face-attribute 'org-level-1 nil
-                      :height 500)
-  (set-face-attribute 'org-level-2 nil
                       :height 450)
-  (set-face-attribute 'org-level-3 nil
+  (set-face-attribute 'org-level-2 nil
                       :height 400)
+  (set-face-attribute 'org-level-3 nil
+                      :height 350)
   (defun rr/next-slide (p)
     (interactive "P")
     (rr/narrow-or-widen-dwim p)
@@ -226,6 +226,8 @@ If MATCH regexp is given, return only the files that match it"
   (define-key org-mode-map (kbd "<f4>") 'rr/previous-slide)
   (define-key org-mode-map (kbd "C-x C-n") 'rr/next-slide)
   (define-key org-mode-map (kbd "C-x C-p") 'rr/previous-slide)
+  (define-key org-mode-map (kbd "<next>") 'rr/next-slide)
+  (define-key org-mode-map (kbd "<prior>") 'rr/previous-slide)
   (define-key org-src-mode-map (kbd "C-x n") 'org-edit-src-exit)
 
   (global-set-key (kbd "C-l") 'rr/clear-with-separation)
