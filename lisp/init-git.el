@@ -1,5 +1,6 @@
-(use-package magit-gh-pulls
-  :hook (magit-mode . turn-on-magit-gh-pulls))
+;;; Remove because we're on the trunk based train now
+;; (use-package magit-gh-pulls
+;;   :hook (magit-mode . turn-on-magit-gh-pulls))
 
 (use-package magit
   :diminish t
