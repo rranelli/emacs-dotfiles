@@ -2,15 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun rr/kill-word (arg)
-  (interactive "p")
-  (delete-region (point) (progn (forward-word arg) (point))))
-
+;; -- movement --
 (defun rr/backward-kill-word (arg)
   (interactive "p")
   (delete-region (point) (progn (backward-word arg) (point))))
 
-;; -- movement --
 (defun rr/move-smart-beginning-of-line ()
   "Move to beginning of line or to beginning of indentation depending on POINT."
   (interactive)
@@ -18,10 +14,10 @@
       (back-to-indentation)
     (move-beginning-of-line nil)))
 
-(defun sudo-edit (&optional arg)
+(defun rr/sudo-edit (&optional arg)
   "Edit file as sudo. ARG as point."
   (interactive "p")
-  (find-file (concat "/sudo:root@localhost:" (helm-read-file-name "File: "))))
+  (find-file (concat "/sudo:root@localhost:" (read-file-name "File: "))))
 
 (defun rr/show-file-name ()
   "Show the full path filename in the minibuffer."
@@ -30,7 +26,7 @@
     (message text)
     (kill-new text)))
 
-(defun uniquify-all-lines-region (start end)
+(defun rr/uniquify-all-lines-region (start end)
   "Find duplicate lines in region START to END keeping first occurrence."
   (interactive "*r")
   (save-excursion

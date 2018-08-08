@@ -90,11 +90,6 @@
   :bind
   (:map elixir-mode-map
         ("C-c C-s" . inferior-elixir)
-        ("C-x C-f" . (lambda ()
-                       (interactive)
-                       (-> (buffer-file-name)
-                           (file-name-directory)
-                           (helm-find-files-1))))
         ("C-c i" . rr/mix-format))
 
   :hook

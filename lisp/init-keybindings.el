@@ -87,7 +87,6 @@
 (global-set-key (kbd "C-a") 'rr/move-smart-beginning-of-line)
 (global-set-key (kbd "C-e") 'end-of-line)
 (global-set-key (kbd "C-h") 'backward-delete-char)
-(global-set-key (kbd "M-d") 'rr/kill-word)
 (global-set-key (kbd "M-h") 'rr/backward-kill-word)
 (global-set-key (kbd "M-u") 'zap-to-char)
 (global-set-key (kbd "C-M-SPC") 'er/expand-region)
@@ -112,6 +111,8 @@
 (global-set-key (kbd "M-3") 'split-window-horizontally)
 (global-set-key (kbd "M-4") 'delete-other-windows)
 (global-set-key (kbd "M-5") 'delete-window)
+(global-set-key (kbd "M-<down>") 'highlight-symbol-next)
+(global-set-key (kbd "M-<up>") 'highlight-symbol-prev)
 
 (define-key ctl-x-map "2" 'vsplit-last-buffer)
 (define-key ctl-x-map "3" 'hsplit-last-buffer)
@@ -140,7 +141,6 @@
 (rr/expose-default-bindings-with-hook diff-mode)
 (rr/expose-default-bindings-with-hook c-mode)
 (rr/expose-default-bindings-with-hook makefile-mode)
-(rr/expose-default-bindings-with-hook web-mode)
 
 (add-hook 'makefile-mode-hook
           (lambda ()

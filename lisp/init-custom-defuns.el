@@ -157,26 +157,6 @@ narrowed."
       (directory-file-name)
       (file-name-base)))
 
-(global-set-key (kbd "C-c m") 'rr/helm-mimipass)
-(defun rr/helm-mimipass ()
-  "Helm interface to `mimipass copy'."
-  (interactive)
-  (helm :sources '((name . "Mimipass")
-                   (match . helm-mm-match)
-                   (candidates . (lambda ()
-                                   (->> "mimipass list 2>/dev/null | cut -c 3-"
-                                        (shell-command-to-string)
-                                        (split-string))))
-                   (action     . (lambda (selection)
-                                   (->> selection
-                                        (format "mimipass get %s 2>/dev/null")
-                                        (shell-command-to-string)
-                                        (gui-set-selection 'CLIPBOARD))
-                                   selection))
-                   (persistent-action . helm-yank-selection))
-        :prompt "Select password: "
-        :buffer "*helm-mimipass*"))
-
 (defun rr/ls (dir &optional match)
   "List all files in directory DIR.
 If MATCH regexp is given, return only the files that match it"

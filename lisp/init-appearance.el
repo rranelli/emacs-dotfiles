@@ -52,11 +52,6 @@
                                                           :background nil)
                                       (set-face-attribute 'hl-line nil
                                                           :box '(:line-width -2 :color "gray30" :style raised))
-				      (set-face-attribute 'helm-selection nil
-							  :background "gray20")
-				      (set-face-attribute 'helm-ff-directory nil
-							  :background "#282828"
-							  :foreground "#fb4934")
                                       (set-default-font "Fira Code Bold 14")))))
 
 

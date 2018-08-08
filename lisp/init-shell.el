@@ -10,35 +10,33 @@
 ;;;;;;;;;;;;;;;
 ;; Mimiterm! ;;
 ;;;;;;;;;;;;;;;
-
 (defvar rr/mimiterm-buffer-name-prefix
   "⍟ mimiterm ⍟ "
   "Prefix for mimiterm buffers.")
 
-(defvar rr/helm-mimiterm--source
+(defvar rr/ivy-mimiterm--source
   '((name . "Open terminal")
     (volatile)
     (candidates . rr/mimiterm-list)
     (action     . rr/mimiterm-open)
-    (persistent-action . helm-yank-selection)))
+    (persistent-action . ivy-yank-selection)))
 
-(defun rr/mimiterm-helm ()
-  "Bring up a Project search interface in helm."
+(defun rr/ivy-mimiterm ()
+  "Bring up a Project search interface in ivy."
   (interactive)
-  (helm :sources 'rr/helm-mimiterm--source
-	:buffer "*helm-list-mimiterms*"
-        :prompt "terminal: "
-        :input rr/mimiterm-buffer-name-prefix
-        :preselect (rr/mimiterm-default-name)))
+  (ivy-read "terminal: " (rr/mimiterm-list)
+            :initial-input rr/mimiterm-buffer-name-prefix
+            :action 'rr/mimiterm-open))
 
 (defun rr/mimiterm-list ()
   "Lists all projects given project sources."
   (->> (buffer-list)
        (-map 'buffer-name)
        (cons (rr/mimiterm-default-name))
-       (cons helm-pattern)
        (-filter (-partial 's-contains? rr/mimiterm-buffer-name-prefix))
        (-sort 's-less?)))
+
+(global-set-key (kbd "C-x m") 'rr/ivy-mimiterm)
 
 (defun rr/mimiterm-default-name ()
   (s-concat rr/mimiterm-buffer-name-prefix (rr/project-name)))
@@ -95,7 +93,6 @@ If ARG is present, open a new eshell regardless."
                                '("M-:" "M-w" "C-u" "C-x" "C-x C-f" "C-c c")))
   (rr/define-bindings term-raw-map
                       '(("C-c C-c" . term-interrupt-subjob)
-                        ("C-x C-f" . helm-find-files)
                         ("C-p" . previous-line)
                         ("C-n" . next-line)
                         ("C-l" . rr/mimiterm-clear)
@@ -104,7 +101,7 @@ If ARG is present, open a new eshell regardless."
                         ("C-f" . rr/mimiterm-C-f)
                         ("C-b" . rr/mimiterm-C-b)
                         ("C-k" . rr/mimiterm-C-k)
-                        ("C-s" . isearch-forward)
+                        ("C-s" . swiper)
                         ("M-n" . term-send-down)
                         ("M-p" . term-send-up)
                         ("M-." . completion-at-point)
@@ -117,8 +114,6 @@ If ARG is present, open a new eshell regardless."
           (lambda ()
             (setq term-buffer-maximum-size 10000)
             (rr/mimiterm-fix-keybindings)))
-
-(global-set-key (kbd "C-x m") 'rr/mimiterm-helm)
 
 ;;; quoting inside double quotes
 (defun sh-script-extra-font-lock-match-var-in-double-quoted-string (limit)

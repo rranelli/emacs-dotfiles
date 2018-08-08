@@ -29,7 +29,6 @@
 ;; diminish stuff
 (--each '(smartparens-mode
           projectile-mode
-          anzu-mode
           yas-minor-mode
           company-mode
           undo-tree-mode
