@@ -120,7 +120,7 @@
     (delete-other-windows)
     (when (save-excursion (search-backward-regexp "From: \\(.*\.rb\\) @ line \\([0-9]+\\)")))
     (let ((file (match-string 1))
-          (line (string-to-int (match-string 2))))
+          (line (string-to-number (match-string 2))))
       (find-file-other-window file)
       (goto-line line)))
 

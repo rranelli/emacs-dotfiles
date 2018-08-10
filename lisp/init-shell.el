@@ -84,7 +84,7 @@ If ARG is present, open a new eshell regardless."
 (rr/mimiterm-key "C-e" term-send-raw)
 (rr/mimiterm-key "C-f" term-send-right)
 (rr/mimiterm-key "C-b" term-send-left)
-(rr/mimiterm-key "C-k" (lambda () (kill-line) (term-send-raw)))
+(rr/mimiterm-key "C-k" term-send-raw)
 
 (defun rr/mimiterm-fix-keybindings ()
   (interactive)
