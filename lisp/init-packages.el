@@ -42,9 +42,5 @@
 (use-package yasnippet)
 (use-package wakatime-mode :diminish t)
 
-(use-package solarized-theme :defer t)
-(use-package zenburn-theme :defer t)
-(use-package gruvbox-theme :defer t)
-
 (provide 'init-packages)
 ;;; init-packages.el ends here

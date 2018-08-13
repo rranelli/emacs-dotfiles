@@ -4,11 +4,13 @@
 (unicode-fonts-setup)
 (defvar rr/theme-loaded nil)
 
+(use-package northcode-theme)
+
 ;; themes
 (defvar rr/presenting? (getenv "KEYNOTEMACS"))
 (defvar rr/presentation-theme 'dichromacy)
 
-(defcustom rr/chosen-theme 'solarized-dark
+(defcustom rr/chosen-theme 'northcode
   "Theme chosen to be initialized."
   :group 'init-appearance)
 
@@ -21,48 +23,9 @@
                     (paren-highlight-style . parenthesis)
                     (custom-faces-fn . (lambda ()
                                          (set-face-attribute 'fringe nil :background nil)))))
-
-    (zenburn . '((cursor . "Red")
-		 (set-mode-line-faces-p . nil)
-		 (paren-highlight-style . parenthesis)
-		 (custom-faces-fn . (lambda ()
-				      (set-face-attribute 'fringe nil
-                                                          :background nil)
-                                      (set-face-attribute 'default nil
-                                                          :height 140)
-                                      (set-face-attribute 'mode-line-inactive nil
-                                                          :box nil
-                                                          :foreground "#8FB28F")
-
-                                      (set-face-attribute 'markdown-code-face nil
-                                                          :background nil )
-
-                                      (set-face-attribute 'mode-line nil
-                                                          :box '(:line-width -1 :style raised)
-                                                          :foreground "#8FB28F")
-                                      ))))
-
-    (gruvbox . '((mode-line-background . "peru")
-		 (mode-line-foreground . "snow")
-		 (cursor . nil)
-		 (set-mode-line-faces-p . t)
-		 (paren-highlight-style . parenthesis)
-		 (custom-faces-fn . (lambda ()
-                                      (set-face-attribute 'hl-line nil
-                                                          :background nil)
-                                      (set-face-attribute 'hl-line nil
-                                                          :box '(:line-width -2 :color "gray30" :style raised))
-                                      (set-default-font "Fira Code Bold 14")))))
-
-
-    (solarized-dark . '((mode-line-background . "DeepSkyBlue4")
-			(mode-line-foreground . "snow")
-			;; (cursor . nil)
-                        (set-face-attribute 'default nil :height 120)
-			(set-mode-line-faces-p . t)
-			(paren-highlight-style . parenthesis)
-			(custom-faces-fn . (lambda ()
-                                             (set-default-font "Fira Code Bold 14"))))))
+    (northcode . '((custom-faces-fn . (lambda ()
+                                        (set-face-attribute 'hl-line nil :background "gray21")
+                                        (set-face-attribute 'vhl/default-face nil :background "gray")))))))))))
   "Custom color configuration."
   :group 'init-appearance)
 
