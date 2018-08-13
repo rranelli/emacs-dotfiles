@@ -13,8 +13,8 @@
          ("<f2> u" . counsel-unicode-char)
          ("C-x C-l" . counsel-locate)
          ("M-n b b" . counsel-bookmarks)
-         ("C-S-y" . counsel-yank-pop)
-         ("C-M-y" . counsel-yank-pop)))
+         ("C-M-y" . counsel-yank-pop)
+         ("C-c h M-y" . counsel-yank-pop)))
 
 (use-package ivy
   :defer 0.1
