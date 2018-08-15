@@ -26,7 +26,8 @@
     (northcode . '((custom-faces-fn . (lambda ()
                                         (set-face-attribute 'hl-line nil :background "gray21")
                                         (set-face-attribute 'vhl/default-face nil :background "gray")
-                                        (set-face-attribute 'region nil :foreground "gray21"))))))
+                                        (set-face-attribute 'region nil :foreground "gray21")
+                                        (set-default-font "Fira Code Bold 14"))))))
   "Custom color configuration."
   :group 'init-appearance)
 
