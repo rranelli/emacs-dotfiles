@@ -17,6 +17,8 @@
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 
+(define-key yas-minor-mode-map (kbd "C-M-y") 'yas-expand)
+
 (define-key yas-minor-mode-map (kbd "C-c y n") 'yas-new-snippet)
 (define-key yas-minor-mode-map (kbd "C-c y f") 'yas-visit-snippet-file)
 (define-key yas-minor-mode-map (kbd "C-c y i") 'company-yasnippet)

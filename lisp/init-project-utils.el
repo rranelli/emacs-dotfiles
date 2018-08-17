@@ -89,5 +89,7 @@
 (global-set-key (kbd "C-c C-f") 'projectile-find-file)
 (global-set-key (kbd "C-c o") 'rr/ivy-open-project)
 
+(rr/expose-default-bindings ag-mode-map)
+
 (provide 'init-project-utils)
 ;;; init-project-utils.el ends here
