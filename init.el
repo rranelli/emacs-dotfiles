@@ -36,7 +36,7 @@
 (use-package init-yas :ensure nil)
 (use-package init-shell :ensure nil)
 (use-package init-ruby :ensure nil)
-(use-package init-js :ensure nil)
+;; (use-package init-js :ensure nil)
 (use-package init-lisp :ensure nil)
 (use-package init-java :ensure nil)
 (use-package init-org :ensure nil)
