@@ -1,9 +1,6 @@
 ;;; init-org.el -- Sanely configures org-mode related stuff.
 ;;; Commentary:
 ;;; Code:
-(use-package org-journal
-  :after org)
-
 (use-package org
   :commands org-mode
   :mode ("\\.org$")
@@ -38,12 +35,6 @@
                          dir-files)))
 
         (setq org-user-agenda-files org-files)
-        (setq org-journal-dir (expand-file-name "journal" rr/org-files-directory))
-        (setq org-journal-file-format "%Y-%m-%d.org")
-        (setq org-journal-date-format "%A, %x
-   - Food     (0-5) :
-   - Exercise (0-5) :
-   - Alcohol  (y/n) :")
 
         ;; loading org custom
         (require 'org-mode-custom)
