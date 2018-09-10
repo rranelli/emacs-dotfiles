@@ -43,8 +43,9 @@
 (use-package init-appearance :ensure nil)
 ;; (use-package init-registers :ensure nil)
 (use-package init-c :ensure nil)
-(use-package init-scala :ensure nil)
-(use-package init-rust :ensure nil)
+;; (use-package init-scala :ensure nil)
+;; (use-package init-rust :ensure nil)
+(use-package init-restclient :ensure nil)
 ;; init-haskell
 ;; init-clojure
 ;; init-csharp

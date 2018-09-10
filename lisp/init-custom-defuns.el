@@ -84,13 +84,6 @@ narrowed."
 	  "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in "
 	  "culpa qui officia deserunt mollit anim id est laborum."))
 
-(defun rr/restclient-scratch ()
-  "Create a new restclient scratch buffer."
-  (interactive)
-  (switch-to-buffer
-   (get-buffer-create "*restclient-scratch*"))
-  (restclient-mode))
-
 ;;
 ;;; Fix line endings encodings
 ;;

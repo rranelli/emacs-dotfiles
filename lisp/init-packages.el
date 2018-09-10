@@ -32,7 +32,6 @@
 (use-package pretty-symbols)
 (use-package projectile)
 (use-package rainbow-mode)
-(use-package restclient)
 (use-package s)
 (use-package smartparens)
 (use-package unicode-fonts)

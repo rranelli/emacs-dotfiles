@@ -142,8 +142,6 @@
 (add-hook 'sql-mode-hook 'sql-highlight-mysql-keywords)
 (add-hook 'html-mode-hook #'(lambda () (auto-fill-mode -1)))
 
-(add-hook 'restclient-mode-hook 'custom-add-watchwords)
-
 ;; -- some automodes --
 (add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
