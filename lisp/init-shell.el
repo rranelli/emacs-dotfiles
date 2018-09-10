@@ -26,6 +26,7 @@
   (interactive)
   (ivy-read "terminal: " (rr/mimiterm-list)
             :initial-input rr/mimiterm-buffer-name-prefix
+            :preselect (rr/mimiterm-default-name)
             :action 'rr/mimiterm-open))
 
 (defun rr/mimiterm-list ()
@@ -34,7 +35,8 @@
        (-map 'buffer-name)
        (cons (rr/mimiterm-default-name))
        (-filter (-partial 's-contains? rr/mimiterm-buffer-name-prefix))
-       (-sort 's-less?)))
+       (-sort 's-less?)
+       (-uniq)))
 
 (global-set-key (kbd "C-x m") 'rr/ivy-mimiterm)
 
@@ -54,8 +56,8 @@
   (s-concat rr/mimiterm-buffer-name-prefix (rr/project-name)))
 
 (defun rr/mimiterm-open (&optional input)
-  "Create an eshell with given name.
-If ARG is present, open a new eshell regardless."
+  "Create a shell with name INPUT.
+If ARG is present, open a new shell regardless."
   (let* ((shell-name (or input (rr/mimiterm-default-name))) ;
 	 (shell-exists-p (bufferp (get-buffer shell-name))))
     (if shell-exists-p
@@ -91,6 +93,7 @@ If ARG is present, open a new eshell regardless."
      (funcall (if (last-line?)
                   ',alternative-f
                 ',(lookup-key (current-global-map) (kbd binding))))))
+
 (rr/mimiterm-key "C-r" term-send-raw)
 (rr/mimiterm-key "C-a" term-send-raw)
 (rr/mimiterm-key "C-e" term-send-raw)
