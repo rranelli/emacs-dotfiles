@@ -11,6 +11,8 @@
 (use-package python-mode
   :mode "\\.py"
 
+  :commands (rr/disable-python-pretty-symbols)
+
   :custom
   (python-shell-interpreter "ipython")
   (python-shell-interpreter-args "--simple-prompt -i")

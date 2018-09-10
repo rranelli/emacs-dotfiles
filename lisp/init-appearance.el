@@ -20,7 +20,7 @@
 
 (defcustom rr/theme-custom-color-alist
   '((dichromacy . '((cursor . "Red")
-                    (paren-highlight-style . parenthesis)
+                    (paren-highlight-style . nil)
                     (custom-faces-fn . (lambda ()
                                          (set-face-attribute 'fringe nil :background nil)))))
     (northcode . '((custom-faces-fn . (lambda ()

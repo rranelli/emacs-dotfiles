@@ -197,14 +197,6 @@ If MATCH regexp is given, return only the files that match it"
     (org-show-subtree)
     (rr/narrow-or-widen-dwim p))
 
-  (defun rr/clear-with-separation ()
-    (interactive)
-    (save-excursion
-      (mark-whole-buffer)
-      (delete-region (point) (mark))
-      (insert "--- compiled stuff will show up above this line 🖢🖢🖢\n"))
-    (goto-char (point-max)))
-
   (defun rr/org-babel-tangle-block ()
     (interactive)
     (let ((current-prefix-arg '(4)))
@@ -230,9 +222,14 @@ If MATCH regexp is given, return only the files that match it"
   (define-key org-mode-map (kbd "<prior>") 'rr/previous-slide)
   (define-key org-src-mode-map (kbd "C-x n") 'org-edit-src-exit)
 
-  (global-set-key (kbd "C-l") 'rr/clear-with-separation)
   (global-set-key (kbd "C-x C-n") 'rr/next-slide)
-  (global-set-key (kbd "C-x C-p") 'rr/previous-slide))
+  (global-set-key (kbd "C-x C-p") 'rr/previous-slide)
+
+  (global-flycheck-mode -1)
+  (show-smartparens-global-mode -1)
+
+  (rr/disable-elixir-pretty-symbols)
+  (rr/disable-python-pretty-symbols))
 
 (provide 'init-custom-defuns)
 ;;; init-custom-defuns.el ends here

@@ -7,6 +7,8 @@
 (use-package elixir-mode
   :mode "\\.exs?"
 
+  :commands (rr/disable-elixir-pretty-symbols)
+
   :custom
   (rr/elixir-symbols '(;; Syntax
                        ("*" . ?⚹)
