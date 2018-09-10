@@ -23,6 +23,11 @@
 
   :config
   (add-hook 'ansible-hook 'ansible::auto-decrypt-encrypt)
+  (defun rr/write-string (string file)
+    (with-temp-buffer
+      (insert string)
+      (write-region (point-min) (point-max) file)))
+
   (defun rr/set-ansible-vault-mimipass-pwd ()
     "Choose which mimipass password to be used for ansible vault."
     (interactive)

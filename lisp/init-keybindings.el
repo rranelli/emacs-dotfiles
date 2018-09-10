@@ -114,9 +114,9 @@
 (global-set-key (kbd "M-<down>") 'highlight-symbol-next)
 (global-set-key (kbd "M-<up>") 'highlight-symbol-prev)
 
-(define-key ctl-x-map "2" 'vsplit-last-buffer)
-(define-key ctl-x-map "3" 'hsplit-last-buffer)
-(define-key ctl-x-map "-" 'swap-buffers-in-windows)
+(define-key ctl-x-map "2" 'rr/vsplit-last-buffer)
+(define-key ctl-x-map "3" 'rr/hsplit-last-buffer)
+(define-key ctl-x-map "-" 'rr/swap-buffers-in-windows)
 (define-key ctl-x-map "n" 'rr/narrow-or-widen-dwim)
 (define-key ctl-x-map (kbd "% @") 'rr/send-window-to-other-frame)
 

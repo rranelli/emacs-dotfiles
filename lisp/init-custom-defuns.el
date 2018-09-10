@@ -10,21 +10,21 @@ The symbol is returned using `intern'"
   `(intern (format ,template ,@(mapcar 'symbol-name symbols))))
 
 ;; -- window management --
-(defun vsplit-last-buffer ()
+(defun rr/vsplit-last-buffer ()
   "Vertically split window showing last buffer."
   (interactive)
   (split-window-vertically)
   (other-window 1 nil)
   (switch-to-next-buffer))
 
-(defun hsplit-last-buffer ()
+(defun rr/hsplit-last-buffer ()
   "Horizontally split window showing last buffer."
   (interactive)
   (split-window-horizontally)
   (other-window 1 nil)
   (switch-to-next-buffer))
 
-(defun swap-buffers-in-windows ()
+(defun rr/swap-buffers-in-windows ()
   "Put the buffer from the selected window in next window, and vice versa."
   (interactive)
   (let* ((this (selected-window))
@@ -42,7 +42,7 @@ The symbol is returned using `intern'"
     (message "Thank you ;)")))
 
 ;; -- misc --
-(defun nxml-pretty-format (begin end)
+(defun rr/nxml-pretty-format (begin end)
   "Pretty print xml in region BEGIN to END."
   (interactive "r")
   (save-excursion
@@ -73,7 +73,7 @@ narrowed."
 	       (t (org-narrow-to-subtree))))
 	(t (narrow-to-defun))))
 
-(defun insert-lorem ()
+(defun rr/insert-lorem ()
   "Insert a lorem ipsum."
   (interactive)
   (insert "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do "
@@ -139,28 +139,6 @@ narrowed."
     (delete-window)
     (other-frame 1)
     (switch-to-buffer bname)))
-
-(defun rr/write-string (string file)
-  (with-temp-buffer
-    (insert string)
-    (write-region (point-min) (point-max) file)))
-
-(defun rr/project-root ()
-  "Return project name from directory."
-  (if (projectile-project-p)
-      (projectile-project-root)
-    default-directory))
-
-(defun rr/project-name ()
-  "Return project name from directory."
-  (-> (rr/project-root)
-      (directory-file-name)
-      (file-name-base)))
-
-(defun rr/ls (dir &optional match)
-  "List all files in directory DIR.
-If MATCH regexp is given, return only the files that match it"
-  (directory-files dir t (or match directory-files-no-dot-files-regexp)))
 
 (defun rr/setup-presentation ()
   (interactive)

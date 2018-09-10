@@ -16,6 +16,11 @@
 
 (add-to-list 'projectile-project-root-files-bottom-up ".fetch")
 
+(defun rr/ls (dir &optional match)
+  "List all files in directory DIR.
+If MATCH regexp is given, return only the files that match it"
+  (directory-files dir t (or match directory-files-no-dot-files-regexp)))
+
 (defun rr/ivy-open-project ()
   "Bring up a Project search interface in ivy."
   (interactive)

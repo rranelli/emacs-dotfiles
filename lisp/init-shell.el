@@ -38,6 +38,18 @@
 
 (global-set-key (kbd "C-x m") 'rr/ivy-mimiterm)
 
+(defun rr/project-root ()
+  "Return project name from directory."
+  (if (projectile-project-p)
+      (projectile-project-root)
+    default-directory))
+
+(defun rr/project-name ()
+  "Return project name from directory."
+  (-> (rr/project-root)
+      (directory-file-name)
+      (file-name-base)))
+
 (defun rr/mimiterm-default-name ()
   (s-concat rr/mimiterm-buffer-name-prefix (rr/project-name)))
 
@@ -105,7 +117,8 @@ If ARG is present, open a new eshell regardless."
                         ("M-n" . term-send-down)
                         ("M-p" . term-send-up)
                         ("M-." . completion-at-point)
-                        ("C-y" . term-paste))))
+                        ("C-y" . term-paste)
+                        ("C-x C-s" . ignore))))
 
 ;; -- keybindings --
 (add-hook 'term-exec-hook 'goto-address-mode)
