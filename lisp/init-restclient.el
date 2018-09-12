@@ -3,7 +3,7 @@
   (restclient-mode . custom-add-watchwords)
   :config
   (defun rr/pairs-to-query (pairs)
-    (url-build-query-string (-map (lambda (pair) (list (car pair) (cdr pair))) pairs) nil t))
+    (s-replace "=%3A" "=:" (url-build-query-string (-map (lambda (pair) (list (car pair) (cdr pair))) pairs) nil t)))
 
   (defun rr/restclient-scratch ()
     "Create a new restclient scratch buffer."

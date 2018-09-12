@@ -120,8 +120,7 @@ If ARG is present, open a new shell regardless."
                         ("M-n" . term-send-down)
                         ("M-p" . term-send-up)
                         ("M-." . completion-at-point)
-                        ("C-y" . term-paste)
-                        ("C-x C-s" . ignore))))
+                        ("C-y" . term-paste))))
 
 ;; -- keybindings --
 (add-hook 'term-exec-hook 'goto-address-mode)
