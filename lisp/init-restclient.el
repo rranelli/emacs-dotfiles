@@ -1,4 +1,6 @@
 (use-package restclient
+  :mode "\\.restclient$"
+
   :hook
   (restclient-mode . custom-add-watchwords)
   :config

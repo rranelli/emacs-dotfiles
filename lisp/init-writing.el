@@ -5,6 +5,7 @@
 (use-package synosaurus)
 
 (require 'org-jekyll-mode)
+(require 'flyspell)
 
 (add-to-list 'auto-mode-alist '("\\.md$" . gfm-mode))
 

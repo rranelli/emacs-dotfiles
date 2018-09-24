@@ -50,7 +50,7 @@
 ;; init-clojure
 ;; init-csharp
 ;; init-web
-;; init-writing
+;; (use-package init-writing :ensure nil)
 ;; init-octave
 ;; init-mail
 ;; init-erc
