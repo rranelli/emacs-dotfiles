@@ -133,6 +133,12 @@ narrowed."
     (other-frame 1)
     (switch-to-buffer bname)))
 
+(defun rr/display-ansi-colors ()
+  (interactive)
+  (require 'ansi-color)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
 (defun rr/setup-presentation ()
   (interactive)
 

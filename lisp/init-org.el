@@ -17,7 +17,8 @@
   :bind
   (:map global-map
         ("C-o" . org-agenda)
-        ("M-g v" . org-clock-goto))
+        ("M-g v" . org-clock-goto)
+        ("C-c c" . org-capture))
 
   :config
   (defun rr/dump-inbox-to-refile ()
@@ -48,10 +49,7 @@
            (dot . t)
            (python . t)
            (ruby . t)
-           (haskell . t)
-           (java . t)
            (clojure . t)
-           (sh . t)
            (org . t)
            (latex . t)
            ;; (elixir . t)
