@@ -25,6 +25,7 @@
                                          (set-face-attribute 'fringe nil :background nil)))))
     (northcode . '((custom-faces-fn . (lambda ()
                                         (require 'hl-line)
+                                        (set-face-attribute 'sp-show-pair-match-face nil :background "gray5")
                                         (set-face-attribute 'hl-line nil :background "gray21")
                                         (set-face-attribute 'vhl/default-face nil :background "gray")
                                         (set-face-attribute 'region nil :foreground "gray21")

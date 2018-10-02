@@ -95,7 +95,7 @@
         ("C-c i" . rr/mix-format))
 
   :hook
-  (elixir-mode . prettify-symbols-mode)
+  ;; (elixir-mode . prettify-symbols-mode)
   (elixir-mode . rr/set-prettify-elixir-symbols)
 
   :config
