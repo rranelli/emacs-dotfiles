@@ -43,7 +43,9 @@
 (use-package swiper
   :after ivy
   :bind (("C-s" . swiper)
-         ("C-r" . swiper)))
+         ("C-r" . swiper))
+
+  :bind (:map swiper-map ("C-;" . swiper-avy)))
 
 (provide 'init-ivy)
 ;;; init-ivy.el ends here

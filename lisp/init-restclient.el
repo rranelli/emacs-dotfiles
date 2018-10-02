@@ -1,4 +1,5 @@
-(use-package restclient
+(use-package restclient-mode
+  :ensure restclient
   :mode "\\.restclient$"
 
   :hook
