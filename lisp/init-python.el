@@ -66,7 +66,7 @@
         ("C-c C-e" . python-shell-send-region))
 
   :hook
-  (python-mode . prettify-symbols-mode)
+  ;; (python-mode . prettify-symbols-mode)
   (python-mode . rr/set-prettify-symbols)
 
   :config
