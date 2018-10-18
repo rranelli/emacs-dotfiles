@@ -43,6 +43,7 @@
 (use-package swiper
   :after ivy
   :bind (("C-s" . swiper)
+         ("C-S" . isearch-forward)
          ("C-r" . swiper))
 
   :bind (:map swiper-map ("C-;" . swiper-avy)))
