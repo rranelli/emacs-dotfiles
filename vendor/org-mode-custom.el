@@ -417,7 +417,7 @@ A prefix arg forces clock in of the default task."
         ("HOLD" . ?h)
         ("NOTE" . ?n)
         ("CANCELLED" . ?c)
-        ("LOCAWEB" . ?l)
+        ("REFILE" . ?l)
         ("FLAGGED" . ??)))
 
                                         ; Allow setting single tags without the menu
