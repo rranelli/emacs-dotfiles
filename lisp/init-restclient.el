@@ -1,4 +1,4 @@
-(use-package restclient-mode
+(use-package restclient
   :ensure restclient
   :mode "\\.restclient$"
   :commands rr/pairs-to-query
