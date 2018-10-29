@@ -1,8 +1,8 @@
 ;;; init-org.el -- Sanely configures org-mode related stuff.
 ;;; Commentary:
 ;;; Code:
-(use-package org
-  :commands org-mode
+(use-package org-mode
+  :ensure org
   :mode ("\\.org$")
 
   :custom
