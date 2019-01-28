@@ -129,12 +129,14 @@
   (elixir-mode . alchemist-mode)
 
   :bind
+  (:map alchemist-test-mode-map
+        ("C-c , a" . nil)
+        ("C-c , s" . nil)
+        ("C-c , v" . nil)
+        ("C-c , e" . nil))
   (:map alchemist-mode-map
         ("C-c , t" . alchemist-project-toggle-file-and-tests)
         ("C-c , y" . alchemist-project-toggle-file-and-tests-other-window)
-        ("C-c , a" . alchemist-mix-test)
-        ("C-c , s" . alchemist-mix-test-at-point)
-        ("C-c , v" . alchemist-project-run-tests-for-current-file)
         ("C-c , r" . alchemist-mix-rerun-last-test)
         ("C-c , c" . alchemist-mix-compile)
         ("C-c , S" . rr/iex-pry)
@@ -160,8 +162,24 @@
   (defun seancribbs/activate-alchemist-root-advice ()
     "Activates advice to override alchemist's root-finding logic"
     (ad-activate 'alchemist-project-root))
+  (defun rr/toggle-dialplan-update-fixture ()
+    (interactive)
+    (setenv "DIALPLAN_UPDATE_REGRESSION_FIXTURES"
+            (if (equalp "true" (getenv "DIALPLAN_UPDATE_REGRESSION_FIXTURES"))
+                "false"
+              "true")))
 
   (add-to-list 'elixir-mode-hook 'seancribbs/activate-alchemist-root-advice))
+
+(use-package exunit
+  :after (alchemist)
+
+  :bind
+  (:map elixir-mode-map
+        ("C-c , a" . exunit-verify-all)
+        ("C-c , s" . exunit-verify-single)
+        ("C-c , v" . exunit-verify)
+        ("C-c , r" . exunit-rerun)))
 
 (use-package flycheck-credo
   :after (flycheck elixir-mode)
