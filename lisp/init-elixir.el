@@ -177,6 +177,7 @@
   :bind
   (:map elixir-mode-map
         ("C-c , a" . exunit-verify-all)
+        ("C-c , A" . exunit-verify-all-in-umbrella)
         ("C-c , s" . exunit-verify-single)
         ("C-c , v" . exunit-verify)
         ("C-c , r" . exunit-rerun)))
