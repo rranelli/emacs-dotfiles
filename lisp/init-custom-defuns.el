@@ -126,6 +126,10 @@ narrowed."
   (interactive)
   (insert (shell-command-to-string "echo -n $(date +%Y-%m-%d)")))
 
+(defun rr/insert-now ()
+  (interactive)
+  (insert (shell-command-to-string "echo -n $(date)")))
+
 (defun rr/send-window-to-other-frame ()
   (interactive)
   (let ((bname (buffer-name)))
