@@ -118,7 +118,7 @@
   (defun rr/mix-format ()
     (interactive)
     (save-buffer)
-    (shell-command (format "mix format %s" (buffer-file-name)))
+    (shell-command (format "cd %s && mix format %s" (exunit-umbrella-project-root) (buffer-file-name)))
     (revert-buffer t t)))
 
 (use-package alchemist
@@ -133,7 +133,8 @@
         ("C-c , a" . nil)
         ("C-c , s" . nil)
         ("C-c , v" . nil)
-        ("C-c , e" . nil))
+        ("C-c , e" . nil)
+        ("C-c , r" . nil))
   (:map alchemist-mode-map
         ("C-c , t" . alchemist-project-toggle-file-and-tests)
         ("C-c , y" . alchemist-project-toggle-file-and-tests-other-window)
@@ -152,7 +153,7 @@
   (add-hook 'alchemist-mode-hook
             (lambda ()
               (setq alchemist-goto-elixir-source-dir (concat "/home/milhouse/.asdf/installs/elixir/" (shell-command-to-string "echo -n $(asdf current elixir | cut -d ' ' -f1)")))
-              (setq alchemist-goto-erlang-source-dir (concat "/home/milhouse/.asdf/installs/erlang/"))))
+              (setq alchemist-goto-erlang-source-dir (concat "/home/milhouse/.asdf/plugins/erlang/kerl-home/builds/asdf_20.2/otp_src_20.2"))))
   (add-hook 'elixir-mode-hook
             (lambda () (delete 'company-dabbrev company-backends)))
 
@@ -172,7 +173,7 @@
   (add-to-list 'elixir-mode-hook 'seancribbs/activate-alchemist-root-advice))
 
 (use-package exunit
-  :after (alchemist)
+  :after (elixir-mode)
 
   :bind
   (:map elixir-mode-map
