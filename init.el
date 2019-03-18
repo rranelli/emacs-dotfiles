@@ -1,6 +1,20 @@
 ;;; Package --- Summary
 ;;; Commentary:
 ;;; Code:
+(setq load-prefer-newer t)
+(setq gc-cons-threshold (* 512 1024 1024)
+      gc-cons-percentage 0.6)
+
+(defvar meta--file-name-handler-alist file-name-handler-alist)
+(setq file-name-handler-alist nil)
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 64 1024 1024)
+                  gc-cons-percentage 0.1)
+
+            (setq file-name-handler-alist meta--file-name-handler-alist)))
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "lisp/lib" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "vendor" user-emacs-directory))
