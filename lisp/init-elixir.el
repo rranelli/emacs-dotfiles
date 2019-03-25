@@ -114,12 +114,7 @@
 
   (defun rr/set-mix-env ()
     (interactive)
-    (setenv "MIX_ENV" (read-string "MIX_ENV= " "dev")))
-  (defun rr/mix-format ()
-    (interactive)
-    (save-buffer)
-    (shell-command (format "cd %s && mix format %s" (exunit-umbrella-project-root) (buffer-file-name)))
-    (revert-buffer t t)))
+    (setenv "MIX_ENV" (read-string "MIX_ENV= " "dev"))))
 
 (use-package alchemist
   :custom
@@ -175,13 +170,22 @@
 (use-package exunit
   :after (elixir-mode)
 
+  :commands (rr/mix-format)
+
   :bind
   (:map elixir-mode-map
         ("C-c , a" . exunit-verify-all)
         ("C-c , A" . exunit-verify-all-in-umbrella)
         ("C-c , s" . exunit-verify-single)
         ("C-c , v" . exunit-verify)
-        ("C-c , r" . exunit-rerun)))
+        ("C-c , r" . exunit-rerun))
+
+  :config
+  (defun rr/mix-format ()
+    (interactive)
+    (save-buffer)
+    (shell-command (format "cd %s && mix format %s" (exunit-umbrella-project-root) (buffer-file-name)))
+    (revert-buffer t t)))
 
 (use-package flycheck-credo
   :after (flycheck elixir-mode)
