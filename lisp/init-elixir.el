@@ -91,8 +91,7 @@
 
   :bind
   (:map elixir-mode-map
-        ("C-c C-s" . inferior-elixir)
-        ("C-c i" . rr/mix-format))
+        ("C-c C-s" . inferior-elixir))
 
   :hook
   ;; (elixir-mode . prettify-symbols-mode)
@@ -179,6 +178,8 @@
         ("C-c , s" . exunit-verify-single)
         ("C-c , v" . exunit-verify)
         ("C-c , r" . exunit-rerun))
+  (:map elixir-mode-map
+        ("C-c i" . rr/mix-format))
 
   :config
   (defun rr/mix-format ()
