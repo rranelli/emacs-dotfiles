@@ -185,7 +185,11 @@
   (defun rr/mix-format ()
     (interactive)
     (save-buffer)
-    (shell-command (format "cd %s && mix format %s" (exunit-umbrella-project-root) (buffer-file-name)))
+    (shell-command (format "cd %s && mix format %s"
+                           (or
+                            (ignore-errors (exunit-umbrella-project-root))
+                            (exunit-project-root))
+                           (buffer-file-name)))
     (revert-buffer t t)))
 
 (use-package flycheck-credo
