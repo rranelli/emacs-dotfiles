@@ -130,6 +130,7 @@
         ("C-c , e" . nil)
         ("C-c , r" . nil))
   (:map alchemist-mode-map
+        ("C-c , r" . nil)
         ("C-c , t" . alchemist-project-toggle-file-and-tests)
         ("C-c , y" . alchemist-project-toggle-file-and-tests-other-window)
         ("C-c , r" . alchemist-mix-rerun-last-test)
