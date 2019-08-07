@@ -5,7 +5,7 @@
   :mode "\\.erl$")
 
 (use-package elixir-mode
-  :mode "\\.exs?"
+  :mode ("\\.exs?" "mix.lock")
 
   :commands (rr/disable-elixir-pretty-symbols)
 
