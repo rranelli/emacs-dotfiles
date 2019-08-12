@@ -51,20 +51,6 @@ If MATCH regexp is given, return only the files that match it"
       neo-keymap-style 'concise
       neo-window-fixed-size nil)
 
-(require 'neotree)
-
-(define-key neotree-mode-map (kbd "C-x C-s") 'ignore)
-
-(defun rr/neotree-git-project ()
-  "Open dirtree using the git root."
-  (interactive)
-  (let ((file-name (buffer-file-name)))
-    (if (projectile-project-p)
-        (progn
-          (neotree-dir (projectile-project-root))
-          (neotree-find file-name))
-      (message "Could not find git project root."))))
-
 ;;
 ;;; extensions to projectile keymap
 ;;
@@ -81,7 +67,6 @@ If MATCH regexp is given, return only the files that match it"
                       ("s"   . ag-project)
                       ("C-s" . ag-project-regexp)
                       ;; neotree
-                      ("d" . rr/neotree-git-project)
                       ("x" . neotree-find)
                       ;; highlight-symbol
                       ("h" . highlight-symbol)

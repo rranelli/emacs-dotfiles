@@ -138,7 +138,6 @@
 (add-hook 'prog-mode-hook 'hl-line-mode)
 (add-hook 'prog-mode-hook 'custom-add-watchwords)
 
-(add-hook 'css-mode-hook 'rainbow-mode)
 (add-hook 'sql-mode-hook 'sql-highlight-mysql-keywords)
 (add-hook 'html-mode-hook #'(lambda () (auto-fill-mode -1)))
 

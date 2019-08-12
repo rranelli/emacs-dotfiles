@@ -28,11 +28,10 @@
   :after (init-custom-defuns)
   :config
   (rr/expose-default-bindings markdown-mode-map))
-(use-package neotree)
+(use-package treemacs)
 (use-package nginx-mode :defer t)
 (use-package pretty-symbols)
 (use-package projectile)
-(use-package rainbow-mode)
 (use-package s)
 (use-package smartparens)
 (use-package unicode-fonts)
