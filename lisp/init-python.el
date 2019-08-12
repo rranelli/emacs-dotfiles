@@ -84,24 +84,24 @@
     (setq prettify-symbols-alist rr/python-symbols))
   (rr/expose-default-bindings python-mode-map))
 
-(use-package elpy
-  ;; install-it: `pip install jedi flake8 importmagic autopep8 ipython rope yapf epc`'
-  :custom
-  (elpy-rpc-backend "rope")
+;; (use-package elpy
+;;   ;; install-it: `pip install jedi flake8 importmagic autopep8 ipython rope yapf epc`'
+;;   :custom
+;;   (elpy-rpc-backend "rope")
 
-  :bind
-  (:map elpy-mode-map
-        ("C-c i" . elpy-autopep8-fix-code)
-        ("C-c C-d" . elpy-doc))
+;;   :bind
+;;   (:map elpy-mode-map
+;;         ("C-c i" . elpy-autopep8-fix-code)
+;;         ("C-c C-d" . elpy-doc))
 
-  :hook
-  (python-mode . elpy-mode)
-  (python-mode . elpy-enable)
+;;   :hook
+;;   (python-mode . elpy-mode)
+;;   (python-mode . elpy-enable)
 
-  :config
-  (delete 'elpy-module-flymake elpy-modules)
-  (delete 'elpy-module-highlight-indentation elpy-modules)
-  (rr/expose-default-bindings elpy-mode-map))
+;;   :config
+;;   (delete 'elpy-module-flymake elpy-modules)
+;;   (delete 'elpy-module-highlight-indentation elpy-modules)
+;;   (rr/expose-default-bindings elpy-mode-map))
 
 (provide 'init-python)
 ;;; init-python.el ends here
