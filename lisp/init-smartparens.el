@@ -64,23 +64,5 @@
 (sp-with-modes '(ruby-mode)
   (sp-local-pair "|" "|"))
 
-(sp-with-modes '(elixir-mode)
-  (sp-local-pair "fn" "end"
-		 :when '(("SPC" "RET"))
-		 :post-handlers '(sp-elixir-fn-post-handler)
-                 :actions '(insert navigate))
-  (sp-local-pair "do" "end"
-		 :when '(("SPC" "RET"))
-		 :post-handlers '(sp-ruby-def-post-handler)
-		 :actions '(insert navigate)))
-
-(defun sp-elixir-fn-post-handler (id action context)
-  "Handler for elixir fn inserts."
-  (when (equal action 'insert)
-    (save-excursion
-      (insert " -> ")
-      (indent-according-to-mode)))
-  (sp-ruby-post-handler id action context))
-
 (provide 'init-smartparens)
 ;;; init-smartparens.el ends here
