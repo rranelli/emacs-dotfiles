@@ -4,8 +4,37 @@
 (use-package erlang
   :mode "\\.erl$")
 
+(use-package lsp-mode
+  :commands lsp
+  :custom
+  (lsp-auto-guess-root t)
+  (lsp-response-timeout 5)
+  (lsp-prefer-flymake nil))
+
+(use-package lsp-ui
+  :commands lsp-ui-mode
+
+  :custom
+  (lsp-ui-doc nil)
+  (lsp-ui-flycheck-enable t)
+  (lsp-ui-sideline-enable nil)
+  (lsp-ui-peek-enable nil)
+  (lsp-ui-doc-delay 0.2)
+  (lsp-ui-doc-include-signature t)
+
+  :bind
+  (:map lsp-ui-mode-map
+        ("C-c C-d" . lsp-ui-doc-show)))
+
+(use-package company-lsp
+  :commands company-lsp)
+
+(use-package lsp-elixir
+  :after (lsp-mode))
+
 (use-package elixir-mode
   :mode ("\\.exs?" "mix.lock")
+  :after (lsp-mode lsp-elixir)
 
   :commands (rr/disable-elixir-pretty-symbols)
 
@@ -96,6 +125,7 @@
   :hook
   ;; (elixir-mode . prettify-symbols-mode)
   (elixir-mode . rr/set-prettify-elixir-symbols)
+  (elixir-mode . lsp)
 
   :config
   (defun rr/enable-elixir-pretty-symbols ()
@@ -115,57 +145,57 @@
     (interactive)
     (setenv "MIX_ENV" (read-string "MIX_ENV= " "dev"))))
 
-(use-package alchemist
-  :custom
-  (alchemist-test-status-modeline nil)
+;; (use-package alchemist
+;;   :custom
+;;   (alchemist-test-status-modeline nil)
 
-  :hook
-  (elixir-mode . alchemist-mode)
+;;   :hook
+;;   (elixir-mode . alchemist-mode)
 
-  :bind
-  (:map alchemist-test-mode-map
-        ("C-c , a" . nil)
-        ("C-c , s" . nil)
-        ("C-c , v" . nil)
-        ("C-c , e" . nil)
-        ("C-c , r" . nil))
-  (:map alchemist-mode-map
-        ("C-c , r" . nil)
-        ("C-c , t" . alchemist-project-toggle-file-and-tests)
-        ("C-c , y" . alchemist-project-toggle-file-and-tests-other-window)
-        ("C-c , r" . alchemist-mix-rerun-last-test)
-        ("C-c , c" . alchemist-mix-compile)
-        ("C-c , S" . rr/iex-pry)
-        ("C-c r p" . rr/elixir-to-pipe)
-        ("C-c C-d" . alchemist-help-search-at-point))
-  (:map alchemist-test-report-mode-map
-        ("T" . toggle-truncate-lines)
-        ("g" . alchemist-mix-rerun-last-test))
+;;   :bind
+;;   (:map alchemist-test-mode-map
+;;         ("C-c , a" . nil)
+;;         ("C-c , s" . nil)
+;;         ("C-c , v" . nil)
+;;         ("C-c , e" . nil)
+;;         ("C-c , r" . nil))
+;;   (:map alchemist-mode-map
+;;         ("C-c , r" . nil)
+;;         ("C-c , t" . alchemist-project-toggle-file-and-tests)
+;;         ("C-c , y" . alchemist-project-toggle-file-and-tests-other-window)
+;;         ("C-c , r" . alchemist-mix-rerun-last-test)
+;;         ("C-c , c" . alchemist-mix-compile)
+;;         ("C-c , S" . rr/iex-pry)
+;;         ("C-c r p" . rr/elixir-to-pipe)
+;;         ("C-c C-d" . alchemist-help-search-at-point))
+;;   (:map alchemist-test-report-mode-map
+;;         ("T" . toggle-truncate-lines)
+;;         ("g" . alchemist-mix-rerun-last-test))
 
-  :config
-  (add-hook 'alchemist-test-report-mode-hook
-            (lambda () (setq-local default-directory (alchemist-project-root))))
-  (add-hook 'alchemist-mode-hook
-            (lambda ()
-              (setq alchemist-goto-elixir-source-dir (concat "/home/milhouse/.asdf/installs/elixir/" (shell-command-to-string "echo -n $(asdf current elixir | cut -d ' ' -f1)")))
-              (setq alchemist-goto-erlang-source-dir (concat "/home/milhouse/.asdf/plugins/erlang/kerl-home/builds/asdf_20.2/otp_src_20.2"))))
-  (add-hook 'elixir-mode-hook
-            (lambda () (delete 'company-dabbrev company-backends)))
+;;   :config
+;;   (add-hook 'alchemist-test-report-mode-hook
+;;             (lambda () (setq-local default-directory (alchemist-project-root))))
+;;   (add-hook 'alchemist-mode-hook
+;;             (lambda ()
+;;               (setq alchemist-goto-elixir-source-dir (concat "/home/milhouse/.asdf/installs/elixir/" (shell-command-to-string "echo -n $(asdf current elixir | cut -d ' ' -f1)")))
+;;               (setq alchemist-goto-erlang-source-dir (concat "/home/milhouse/.asdf/plugins/erlang/kerl-home/builds/asdf_20.2/otp_src_20.2"))))
+;;   (add-hook 'elixir-mode-hook
+;;             (lambda () (delete 'company-dabbrev company-backends)))
 
-  (defadvice alchemist-project-root (around seancribbs/alchemist-project-root activate)
-    (let ((alchemist-project-mix-project-indicator ".git"))
-      ad-do-it))
-  (defun seancribbs/activate-alchemist-root-advice ()
-    "Activates advice to override alchemist's root-finding logic"
-    (ad-activate 'alchemist-project-root))
-  (defun rr/toggle-dialplan-update-fixture ()
-    (interactive)
-    (setenv "DIALPLAN_UPDATE_REGRESSION_FIXTURES"
-            (if (equalp "true" (getenv "DIALPLAN_UPDATE_REGRESSION_FIXTURES"))
-                "false"
-              "true")))
+;;   (defadvice alchemist-project-root (around seancribbs/alchemist-project-root activate)
+;;     (let ((alchemist-project-mix-project-indicator ".git"))
+;;       ad-do-it))
+;;   (defun seancribbs/activate-alchemist-root-advice ()
+;;     "Activates advice to override alchemist's root-finding logic"
+;;     (ad-activate 'alchemist-project-root))
+;;   (defun rr/toggle-dialplan-update-fixture ()
+;;     (interactive)
+;;     (setenv "DIALPLAN_UPDATE_REGRESSION_FIXTURES"
+;;             (if (equalp "true" (getenv "DIALPLAN_UPDATE_REGRESSION_FIXTURES"))
+;;                 "false"
+;;               "true")))
 
-  (add-to-list 'elixir-mode-hook 'seancribbs/activate-alchemist-root-advice))
+;;   (add-to-list 'elixir-mode-hook 'seancribbs/activate-alchemist-root-advice))
 
 (use-package exunit
   :after (elixir-mode)
