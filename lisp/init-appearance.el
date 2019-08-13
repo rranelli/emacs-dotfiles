@@ -5,12 +5,13 @@
 (defvar rr/theme-loaded nil)
 
 (use-package northcode-theme)
+(use-package zenburn-theme)
 
 ;; themes
 (defvar rr/presenting? (getenv "KEYNOTEMACS"))
 (defvar rr/presentation-theme 'dichromacy)
 
-(defcustom rr/chosen-theme 'northcode
+(defcustom rr/chosen-theme 'zenburn
   "Theme chosen to be initialized."
   :group 'init-appearance)
 
@@ -23,6 +24,21 @@
                     (paren-highlight-style . nil)
                     (custom-faces-fn . (lambda ()
                                          (set-face-attribute 'fringe nil :background nil)))))
+    (zenburn . '((cursor . "Red")
+		 (set-mode-line-faces-p . nil)
+		 (paren-highlight-style . parenthesis)
+		 (custom-faces-fn . (lambda ()
+                                      (set-default-font "Fira Code Bold 14")
+				      (set-face-attribute 'fringe nil
+                                                          :background nil)
+                                      (set-face-attribute 'default nil
+                                                          :height 140)
+                                      (set-face-attribute 'mode-line-inactive nil
+                                                          :box nil
+                                                          :foreground "#8FB28F")
+                                      (set-face-attribute 'mode-line nil
+                                                          :box '(:line-width -1 :style raised)
+                                                          :foreground "#8FB28F")))))
     (northcode . '((custom-faces-fn . (lambda ()
                                         (require 'hl-line)
                                         (set-face-attribute 'sp-show-pair-match-face nil :background "gray5")
