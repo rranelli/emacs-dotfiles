@@ -40,6 +40,7 @@
 (use-package yaml-mode)
 (use-package yasnippet)
 (use-package wakatime-mode :diminish t)
+(use-package sqlformat)
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
