@@ -74,6 +74,7 @@ If MATCH regexp is given, return only the files that match it"
                       ;; projectile extras
                       ("f" . projectile-find-file)
                       ("y" . projectile-find-implementation-or-test-other-window)
+                      ("t" . projectile-toggle-between-implementation-and-test)
                       ("a" . projectile-test-project)))
 
 (global-set-key (kbd "C-c C-f") 'projectile-find-file)
