@@ -120,6 +120,7 @@
         ("C-c C-s" . inferior-elixir))
 
   :hook
+  (elixir-mode . lsp)
   (elixir-mode . prettify-symbols-mode)
   (elixir-mode . rr/set-prettify-elixir-symbols)
   (elixir-mode . rr/register-elixir-ls-custom-settings)
