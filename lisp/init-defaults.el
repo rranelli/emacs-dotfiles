@@ -15,8 +15,7 @@
           global-undo-tree-mode
           ido-mode
           ido-vertical-mode
-          volatile-highlights-mode
-          global-wakatime-mode)
+          volatile-highlights-mode)
   (funcall it 1))
 
 (--each '(global-auto-revert-mode
@@ -89,8 +88,7 @@
       ;; make mans open in the same window
       Man-notify-method 'pushy
       ;; make tab complete and indent
-      tab-always-indent 'complete
-      wakatime-api-key (shell-command-to-string "mimipass get wakatime/api-key"))
+      tab-always-indent 'complete)
 
 ;; more depth and sizes
 (setq max-specpdl-size 10000
