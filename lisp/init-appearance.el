@@ -11,7 +11,7 @@
 (defvar rr/presenting? (getenv "KEYNOTEMACS"))
 (defvar rr/presentation-theme 'dichromacy)
 
-(defcustom rr/chosen-theme 'zenburn
+(defcustom rr/chosen-theme 'northcode
   "Theme chosen to be initialized."
   :group 'init-appearance)
 
