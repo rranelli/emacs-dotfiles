@@ -41,6 +41,7 @@
                                                           :foreground "#8FB28F")))))
     (northcode . '((custom-faces-fn . (lambda ()
                                         (require 'hl-line)
+                                        (set-face-attribute 'elixir-atom-face nil :foreground "dark cyan")
                                         (set-face-attribute 'sp-show-pair-match-face nil :background "gray5")
                                         (set-face-attribute 'hl-line nil :background "gray21")
                                         (set-face-attribute 'vhl/default-face nil :background "gray")
