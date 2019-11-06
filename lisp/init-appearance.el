@@ -4,14 +4,14 @@
 (unicode-fonts-setup)
 (defvar rr/theme-loaded nil)
 
-(use-package northcode-theme)
+;; (use-package northcode :ensure northcode-theme)
 (use-package zenburn-theme)
 
 ;; themes
 (defvar rr/presenting? (getenv "KEYNOTEMACS"))
 (defvar rr/presentation-theme 'dichromacy)
 
-(defcustom rr/chosen-theme 'northcode
+(defcustom rr/chosen-theme 'zenburn
   "Theme chosen to be initialized."
   :group 'init-appearance)
 
