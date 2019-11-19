@@ -25,7 +25,7 @@
 (use-package iedit)
 (use-package markdown-mode
   :mode ("\\.md$" "\\.markdown$")
-  :after (init-custom-defuns)
+  :after (init-custom-defuns markdown-mode)
   :config
   (rr/expose-default-bindings markdown-mode-map))
 (use-package treemacs)

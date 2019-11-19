@@ -5,21 +5,19 @@
   :mode "\\.erl$")
 
 (use-package lsp-mode
-  :commands lsp
   :custom
   (lsp-auto-guess-root t)
   (lsp-response-timeout 5)
   (lsp-prefer-flymake nil))
 
 (use-package lsp-ui
-  :commands lsp-ui-mode
-
   :custom
   (lsp-ui-flycheck-enable t)
   (lsp-ui-peek-enable nil)
   (lsp-ui-sideline-enable nil)
-  (lsp-ui-doc-enable t)
-  (lsp-ui-doc-delay 0.2)
+  (lsp-ui-doc-enable nil)
+  (lsp-file-watch-ignored (-concat '("\\.asdf" "[/\\\\]\\.elixir_ls$" "[/\\\\]deps$" "[/\\\\]_build$") lsp-file-watch-ignored))
+  (lsp-ui-doc-delay 0)
   (lsp-ui-doc-include-signature t))
 
 (use-package company-lsp
@@ -117,7 +115,8 @@
                        ))
   :bind
   (:map elixir-mode-map
-        ("C-c C-s" . inferior-elixir))
+        ("C-c C-s" . inferior-elixir)
+        ("C-c C-d" . lsp-ui-doc-show))
 
   :hook
   (elixir-mode . lsp)
@@ -126,6 +125,8 @@
   (elixir-mode . rr/register-elixir-ls-custom-settings)
 
   :config
+  (set-face-attribute 'elixir-atom-face nil :foreground "dark cyan")
+
   (defcustom lsp-elixir-ls-language-server-enable-dialyzer "false"
     "Dialyzer analysis enabled"
     :group 'elixir-ls
