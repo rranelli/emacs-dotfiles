@@ -6,6 +6,7 @@
 
 (use-package lsp-mode
   :custom
+  (lsp-restart 'ignore)
   (lsp-auto-guess-root t)
   (lsp-response-timeout 5)
   (lsp-prefer-flymake nil))
