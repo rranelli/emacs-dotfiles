@@ -24,6 +24,7 @@
          ("M-l" . ivy-switch-buffer)
          ("M-L" . ivy-recentf))
   :custom
+  (ivy-initial-inputs-alist nil) ;; Drops the `^' in all m-x
   (ivy--regex-function 'ivy--regex-ignore-order)
   (ivy-count-format "(%d/%d) ")
   (ivy-use-virtual-buffers t)
