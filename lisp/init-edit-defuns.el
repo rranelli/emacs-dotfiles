@@ -17,7 +17,7 @@
 (defun rr/sudo-edit (&optional arg)
   "Edit file as sudo. ARG as point."
   (interactive "p")
-  (find-file (concat "/sudo:root@localhost:" (read-file-name "File: "))))
+  (find-file (concat "/sudo:root@localhost:" (buffer-file-name))))
 
 (defun rr/show-file-name ()
   "Show the full path filename in the minibuffer."
