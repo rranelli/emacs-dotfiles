@@ -2,14 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 (use-package yaml-mode
-  :mode "\\.vault"
-
-  :config
-  (add-hook 'yaml-mode-hook (lambda () (auto-fill-mode -1)))
-  (add-hook 'yaml-mode-hook 'flyspell-mode-off))
+  :mode "\\.vault")
 
 (use-package ansible
   :after yaml-mode
+  :mode "\\.yml"
 
   :custom
   (ansible-vault-password-file "~/.emacs.d/.ansible-vault")
@@ -36,6 +33,11 @@
                      ansible-vault-password-file)
     (chmod ansible-vault-password-file
            (string-to-number "700" 8))))
+
+(use-package k8s-mode
+  :ensure t
+  :mode "\\.yaml"
+  :hook (k8s-mode . yas-minor-mode))
 
 (use-package company-ansible
   :hook ansible-mode)
