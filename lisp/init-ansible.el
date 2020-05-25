@@ -9,7 +9,7 @@
   :mode "\\.yml"
 
   :custom
-  (ansible-vault-password-file "~/.emacs.d/.ansible-vault")
+  (ansible-vault-password-file "~/bin/ansible-vault-pwd")
 
   :hook (yaml-mode . ansible)
 
