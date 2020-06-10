@@ -2,16 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 (use-package yaml-mode
-  :mode "\\.vault")
+  :mode "\\.yml")
 
 (use-package ansible
   :after yaml-mode
-  :mode "\\.yml"
+  :mode "\\.yml.vault"
 
   :custom
   (ansible-vault-password-file "~/bin/ansible-vault-pwd")
-
-  :hook (yaml-mode . ansible)
 
   :bind
   (:map ansible-key-map
