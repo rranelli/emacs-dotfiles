@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: debug
+# key: --
+# --
+debug: var=${1:var}
+$0
