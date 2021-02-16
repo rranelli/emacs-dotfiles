@@ -16,7 +16,7 @@
   (lsp-ui-flycheck-enable t)
   (lsp-ui-peek-enable nil)
   (lsp-ui-sideline-enable nil)
-  (lsp-ui-doc-enable nil)
+  (lsp-ui-doc-enable t)
   (lsp-file-watch-ignored (-concat '("\\.asdf" "[/\\\\]\\.elixir_ls$" "[/\\\\]deps$" "[/\\\\]_build$") lsp-file-watch-ignored))
   (lsp-ui-doc-delay 0)
   (lsp-ui-doc-include-signature t))

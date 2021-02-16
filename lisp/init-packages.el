@@ -28,7 +28,6 @@
   :after (init-keybindings markdown-mode)
   :config
   (rr/expose-default-bindings markdown-mode-map))
-(use-package treemacs)
 (use-package nginx-mode :defer t)
 (use-package pretty-symbols)
 (use-package projectile)
@@ -40,6 +39,7 @@
 (use-package yaml-mode)
 (use-package yasnippet)
 (use-package sqlformat)
+(use-package gitlab)
 
 (provide 'init-packages)
 ;;; init-packages.el ends here

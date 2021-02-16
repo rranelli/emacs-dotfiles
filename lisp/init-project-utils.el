@@ -8,7 +8,7 @@
 ;;; Jumping between projects
 ;;
 (defvar rr/project-sources
-  (cdr (s-split ":" (getenv "CDPATH"))))
+  (cdr (s-split ":" (or (getenv "CDPATH") ""))))
 
 (defvar rr/default-file-regexps
   '("^mix.exs$"
@@ -45,13 +45,6 @@ If MATCH regexp is given, return only the files that match it"
       ag-reuse-buffers t)   ;; use the same buffer for many searches
 
 ;;
-;;; neotree config
-;;
-(setq neo-persist-show nil
-      neo-keymap-style 'concise
-      neo-window-fixed-size nil)
-
-;;
 ;;; extensions to projectile keymap
 ;;
 (setq projectile-completion-system 'ivy)
@@ -66,8 +59,6 @@ If MATCH regexp is given, return only the files that match it"
                       ("S"   . ag)
                       ("s"   . ag-project)
                       ("C-s" . ag-project-regexp)
-                      ;; neotree
-                      ("x" . neotree-find)
                       ;; highlight-symbol
                       ("h" . highlight-symbol)
                       ("u" . highlight-symbol-remove-all)
